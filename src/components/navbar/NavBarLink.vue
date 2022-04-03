@@ -20,17 +20,22 @@ export default {
 </script>
 
 <style scoped>
-/*
-.navbar-light .navbar-nav .nav-link {
-  font-size: 80% !important;
+.navbar-dark .navbar-nav .nav-link {
+  font-size: 90% !important;
   color: #487ef6;
+  padding-left: 20%;
+  padding-right: 120%;
 }
 .navbar .nav-item:hover .nav-link {
   color: #52e2aa;
 }
-.navbar-light .navbar-nav .show > .nav-link,
-.navbar-light .navbar-nav .nav-link.active {
+.navbar-dark .navbar-nav .show > .nav-link,
+.navbar-dark .navbar-nav .nav-link.active {
   color: #19e6b9;
 }
-@import "bootstrap"; */
+/* .navbar-nav > li > a {
+  border-radius: 20px;
+  background-color: #dde1eb !important;
+} */
+@import "bootstrap";
 </style>

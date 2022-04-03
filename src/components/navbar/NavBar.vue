@@ -1,12 +1,12 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid mx-5">
       <!-- Icono de NAVBAR -->
       <nav class="navbar navbar-dark py-0">
         <div class="container-fluid">
           <router-link class="navbar-brand" :to="'/'">
             <img
-              src="../../assets/images/logo_teidesat_negro.png"
+              src="../../assets/images/logo_teidesat_blanco.png"
               alt=""
               width="30"
             />
@@ -26,7 +26,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0" style="text-align: left">
-          <li class="nav-item ms-3" v-for="link in links" :key="link.path">
+          <li class="nav-item mx-4" v-for="link in links" :key="link.path">
             <NavBarLink :path="link.path" :name="link.name"></NavBarLink>
           </li>
         </ul>
@@ -58,6 +58,6 @@ export default {
 }
 .navbar-light .bg-light {
   background-color: antiquewhite;
-}
-@import "bootstrap"; */
+}*/
+@import "bootstrap";
 </style>
