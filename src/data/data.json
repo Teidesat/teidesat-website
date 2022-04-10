@@ -1,0 +1,16 @@
+{
+  "freq_questions": [
+    {
+      "question": "¿Qué sueles desayunar?",
+      "answer": "nose comidaXD",
+      "imgPosition": "right",
+      "imgSrc": "ejemplo_testimonio.jpg"
+    },
+    {
+      "question": "¿Y de cenar?",
+      "answer": "pos no te dije comida tonto XD",
+      "imgPosition": "left",
+      "imgSrc": "ejemplo_testimonio.jpg"
+    }
+  ]
+}
