@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-nav">
     <div class="container-fluid mx-5">
       <!-- Icono de NAVBAR -->
       <nav class="navbar navbar-dark py-0">
@@ -52,12 +52,11 @@ export default {
 </script>
 
 <style>
-/* .navbar {
-  font-family: "Nunito", sans-serif;
-
-}
-.navbar-light .bg-light {
-  background-color: antiquewhite;
-}*/
+/* IF YOU WANT TO HAVE A FIXED NAVBAR ALWAYS AT THE TOP OF THE SCREEN */
+/* .fixed-nav {
+  position: fixed;
+  z-index: 6;
+  width: 100%;
+} */
 @import "bootstrap";
 </style>

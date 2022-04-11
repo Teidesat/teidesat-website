@@ -95,15 +95,42 @@
     }
   ],
   "news_data": [
-    { "imgSrc": "ejemplo_testimonio.jpg" },
-    { "imgSrc": "ejemplo_testimonio.jpg" },
-    { "imgSrc": "ejemplo_testimonio.jpg" },
-    { "imgSrc": "ejemplo_testimonio.jpg" },
-    { "imgSrc": "ejemplo_testimonio.jpg" },
-    { "imgSrc": "ejemplo_testimonio.jpg" },
-    { "imgSrc": "ejemplo_testimonio.jpg" },
-    { "imgSrc": "ejemplo_testimonio.jpg" },
-    { "imgSrc": "ejemplo_testimonio.jpg" }
+    {
+      "imgSrc": "ejemplo_testimonio.jpg",
+      "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est neque sapiente ad magnam eaque a, quae, reiciendis rerum laborum veniam velit aliquam molestiae numquam itaque commodi! Molestiae quasi ipsam nam."
+    },
+    {
+      "imgSrc": "ejemplo_testimonio.jpg",
+      "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est neque sapiente ad magnam eaque a, quae, reiciendis rerum laborum veniam velit aliquam molestiae numquam itaque commodi! Molestiae quasi ipsam nam."
+    },
+    {
+      "imgSrc": "ejemplo_testimonio.jpg",
+      "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est neque sapiente ad magnam eaque a, quae, reiciendis rerum laborum veniam velit aliquam molestiae numquam itaque commodi! Molestiae quasi ipsam nam."
+    },
+    {
+      "imgSrc": "ejemplo_testimonio.jpg",
+      "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est neque sapiente ad magnam eaque a, quae, reiciendis rerum laborum veniam velit aliquam molestiae numquam itaque commodi! Molestiae quasi ipsam nam."
+    },
+    {
+      "imgSrc": "ejemplo_testimonio.jpg",
+      "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est neque sapiente ad magnam eaque a, quae, reiciendis rerum laborum veniam velit aliquam molestiae numquam itaque commodi! Molestiae quasi ipsam nam."
+    },
+    {
+      "imgSrc": "ejemplo_testimonio.jpg",
+      "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est neque sapiente ad magnam eaque a, quae, reiciendis rerum laborum veniam velit aliquam molestiae numquam itaque commodi! Molestiae quasi ipsam nam."
+    },
+    {
+      "imgSrc": "ejemplo_testimonio.jpg",
+      "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est neque sapiente ad magnam eaque a, quae, reiciendis rerum laborum veniam velit aliquam molestiae numquam itaque commodi! Molestiae quasi ipsam nam."
+    },
+    {
+      "imgSrc": "ejemplo_testimonio.jpg",
+      "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est neque sapiente ad magnam eaque a, quae, reiciendis rerum laborum veniam velit aliquam molestiae numquam itaque commodi! Molestiae quasi ipsam nam."
+    },
+    {
+      "imgSrc": "ejemplo_testimonio.jpg",
+      "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est neque sapiente ad magnam eaque a, quae, reiciendis rerum laborum veniam velit aliquam molestiae numquam itaque commodi! Molestiae quasi ipsam nam."
+    }
   ],
   "objectives": [
     {

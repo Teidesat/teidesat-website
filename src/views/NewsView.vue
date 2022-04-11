@@ -10,7 +10,7 @@
   <div class="container">
     <div class="row row-cols-3">
       <div v-for="new_ in news" :key="new_">
-        <News :imgSrc="new_.imgSrc" :description="description"></News>
+        <News :imgSrc="new_.imgSrc" :description="new_.description"></News>
       </div>
     </div>
   </div>
@@ -25,7 +25,9 @@ export default {
     News,
   },
   data() {
-    return { news: news_data };
+    return {
+      news: news_data,
+    };
   },
 };
 </script>
