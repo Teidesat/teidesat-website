@@ -2,6 +2,7 @@
   "name": "teidesat_web",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://fabiobianchinicano.github.io/teidesat-web/",
   "scripts": {
     "serve": "vue-cli-service serve",
     "serve_pages": "vue-cli-service build && serve -s dist",
