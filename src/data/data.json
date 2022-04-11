@@ -12,5 +12,133 @@
       "imgPosition": "left",
       "imgSrc": "ejemplo_testimonio.jpg"
     }
+  ],
+  "departments": [
+    {
+      "name": "Mecánica",
+      "description": "Departamento de mecánica\nLorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam odio nesciunt itaque neque sunt ab, aliquam atque totam? Nemo, voluptatibus voluptate! Saepe reprehenderit hic placeat accusantium illo pariatur doloremque alias.",
+      "imgSrc": "mecanica.jpg"
+    },
+    {
+      "name": "Electrónica",
+      "description": "Departamento de electrónica\nLorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam odio nesciunt itaque neque sunt ab, aliquam atque totam? Nemo, voluptatibus voluptate! Saepe reprehenderit hic placeat accusantium illo pariatur doloremque alias.",
+
+      "imgSrc": "electronica.jpg"
+    },
+    {
+      "name": "Física",
+      "description": "Departamento de física\nLorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam odio nesciunt itaque neque sunt ab, aliquam atque totam? Nemo, voluptatibus voluptate! Saepe reprehenderit hic placeat accusantium illo pariatur doloremque alias.",
+      "imgSrc": "fisica.jpg"
+    },
+    {
+      "name": "Informática",
+      "description": "Departamento de informática\nLorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam odio nesciunt itaque neque sunt ab, aliquam atque totam? Nemo, voluptatibus voluptate! Saepe reprehenderit hic placeat accusantium illo pariatur doloremque alias.",
+      "imgSrc": "informatica.png"
+    }
+  ],
+  "tfgs": [
+    {
+      "imgSrc": "ejemplo_testimonio.jpg",
+      "name": "Fabio Bianchini",
+      "title": "Desarrollo de Lenguaje de Dominio Específico para Generación Procedural."
+    },
+    {
+      "imgSrc": "ejemplo_testimonio.jpg",
+      "name": "Daniel Del Castillo",
+      "title": "Desarrollo de Lenguaje de Dominio Específico para Generación Procedural."
+    },
+    {
+      "imgSrc": "ejemplo_testimonio.jpg",
+      "name": "Eduardo Gil",
+      "title": "Desarrollo de Lenguaje de Dominio Específico para Generación Procedural."
+    },
+    {
+      "imgSrc": "ejemplo_testimonio.jpg",
+      "name": "Pablo Torres",
+      "title": "Desarrollo de Lenguaje de Dominio Específico para Generación Procedural."
+    },
+    {
+      "imgSrc": "ejemplo_testimonio.jpg",
+      "name": "Alberto Fuentes",
+      "title": "Desarrollo de Lenguaje de Dominio Específico para Generación Procedural."
+    },
+    {
+      "imgSrc": "ejemplo_testimonio.jpg",
+      "name": "Luis David Romero",
+      "title": "Desarrollo de Lenguaje de Dominio Específico para Generación Procedural."
+    }
+  ],
+  "social_icons": [
+    {
+      "fa": "fa-brands fa-youtube",
+      "href": "https://www.youtube.com/channel/UCOD8MkTEBZJFkXkhQG4wOYw"
+    },
+    {
+      "fa": "fa-brands fa-github",
+      "href": "https://github.com/Teidesat"
+    },
+    {
+      "fa": "fa-brands fa-facebook",
+      "href": "https://es-es.facebook.com/pages/biz/TeideSat-1579970005429636/"
+    },
+    {
+      "fa": "fa-brands fa-twitter",
+      "href": "https://twitter.com/teidesat"
+    },
+    {
+      "fa": "fa fa-rss",
+      "href": "https://hyperspacegroup.com/feed/"
+    },
+    {
+      "fa": "fa fa-envelope",
+      "href": "/subscribe/"
+    }
+  ],
+  "news_data": [
+    { "imgSrc": "ejemplo_testimonio.jpg" },
+    { "imgSrc": "ejemplo_testimonio.jpg" },
+    { "imgSrc": "ejemplo_testimonio.jpg" },
+    { "imgSrc": "ejemplo_testimonio.jpg" },
+    { "imgSrc": "ejemplo_testimonio.jpg" },
+    { "imgSrc": "ejemplo_testimonio.jpg" },
+    { "imgSrc": "ejemplo_testimonio.jpg" },
+    { "imgSrc": "ejemplo_testimonio.jpg" },
+    { "imgSrc": "ejemplo_testimonio.jpg" }
+  ],
+  "objectives": [
+    {
+      "title": "Académico",
+      "imgPosition": "left",
+      "imgSrc": "logo_teidesat_negro.png"
+    },
+    {
+      "title": "Científico",
+      "imgPosition": "right",
+      "imgSrc": "logo_teidesat_negro.png"
+    },
+    {
+      "title": "Divulgativo",
+      "imgPosition": "left",
+      "imgSrc": "logo_teidesat_negro.png"
+    },
+    {
+      "title": "Investigativo",
+      "imgPosition": "right",
+      "imgSrc": "logo_teidesat_negro.png"
+    }
+  ],
+  "testimonies": [
+    {
+      "name": "Fabio Bianchini",
+      "imgSrc": "ejemplo_testimonio.jpg"
+    },
+    {
+      "name": "Joshua Barrios Pérez",
+      "imgSrc": "ejemplo_testimonio.jpg"
+    },
+    {
+      "name": "Jorge Sierra Acosta",
+      "imgSrc": "ejemplo_testimonio.jpg"
+    }
   ]
 }

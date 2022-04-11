@@ -1,12 +1,12 @@
 <template>
   <h1>Titular principal 1A</h1>
-  <p>
+  <p class="col-8 offset-2">
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam alias eos
     tempore voluptates excepturi repellendus sapiente laboriosam iure unde ea,
     culpa possimus voluptas blanditiis neque aliquid deleniti impedit facilis
     error?
   </p>
-  <p>
+  <p class="col-8 offset-2">
     Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque minima,
     quidem aspernatur et repudiandae sit consequuntur! Dolores atque dolore
     vitae quibusdam dolorum, animi, facilis dolorem vero enim autem accusantium
@@ -41,39 +41,14 @@
 <script>
 import SocialIcon from "@/components/contactpage/SocialIcon.vue";
 import FreqAsked from "@/components/contactpage/FreqAsked.vue";
-import data from "@/data/data.json";
+import { freq_questions, social_icons } from "@/data/data.json";
 export default {
   name: "ContactView",
   components: { SocialIcon, FreqAsked },
   data() {
     return {
-      social_icons: [
-        {
-          fa: "fa-brands fa-youtube",
-          href: "https://www.youtube.com/channel/UCOD8MkTEBZJFkXkhQG4wOYw",
-        },
-        {
-          fa: "fa-brands fa-github",
-          href: "https://github.com/Teidesat",
-        },
-        {
-          fa: "fa-brands fa-facebook",
-          href: "https://es-es.facebook.com/pages/biz/TeideSat-1579970005429636/",
-        },
-        {
-          fa: "fa-brands fa-twitter",
-          href: "https://twitter.com/teidesat",
-        },
-        {
-          fa: "fa fa-rss",
-          href: "https://hyperspacegroup.com/feed/",
-        },
-        {
-          fa: "fa fa-envelope",
-          href: "/subscribe/",
-        },
-      ],
-      freq_questions: data.freq_questions,
+      social_icons: social_icons,
+      freq_questions: freq_questions,
     };
   },
 };

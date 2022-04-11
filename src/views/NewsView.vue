@@ -18,27 +18,14 @@
 
 <script>
 import News from "@/components/newspage/News.vue";
+import { news_data } from "@/data/data.json";
 export default {
   name: "NewsView",
   components: {
     News,
   },
   data() {
-    return {
-      description:
-        "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat reprehenderit enim, similique maxime in ea magni aut itaque nemo perferendis nihil dolor minima voluptate nobis voluptatum nostrum ab modi. Aut!",
-      news: [
-        { imgSrc: "ejemplo_testimonio.jpg" },
-        { imgSrc: "ejemplo_testimonio.jpg" },
-        { imgSrc: "ejemplo_testimonio.jpg" },
-        { imgSrc: "ejemplo_testimonio.jpg" },
-        { imgSrc: "ejemplo_testimonio.jpg" },
-        { imgSrc: "ejemplo_testimonio.jpg" },
-        { imgSrc: "ejemplo_testimonio.jpg" },
-        { imgSrc: "ejemplo_testimonio.jpg" },
-        { imgSrc: "ejemplo_testimonio.jpg" },
-      ],
-    };
+    return { news: news_data };
   },
 };
 </script>

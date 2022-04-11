@@ -54,6 +54,7 @@
 // import LandPage from "@/components/LandPage.vue";
 import Objective from "@/components/landpage/Objective.vue";
 import Testimony from "@/components/landpage/Testimony.vue";
+import { objectives, testimonies } from "@/data/data.json";
 
 export default {
   name: "LandView",
@@ -63,42 +64,8 @@ export default {
   },
   data() {
     return {
-      objectives: [
-        {
-          title: "Académico",
-          imgPosition: "left",
-          imgSrc: "logo_teidesat_negro.png",
-        },
-        {
-          title: "Científico",
-          imgPosition: "right",
-          imgSrc: "logo_teidesat_negro.png",
-        },
-        {
-          title: "Divulgativo",
-          imgPosition: "left",
-          imgSrc: "logo_teidesat_negro.png",
-        },
-        {
-          title: "Investigativo",
-          imgPosition: "right",
-          imgSrc: "logo_teidesat_negro.png",
-        },
-      ],
-      testimonies: [
-        {
-          name: "Fabio Bianchini",
-          imgSrc: "ejemplo_testimonio.jpg",
-        },
-        {
-          name: "Joshua Barrios Pérez",
-          imgSrc: "ejemplo_testimonio.jpg",
-        },
-        {
-          name: "Jorge Sierra Acosta",
-          imgSrc: "ejemplo_testimonio.jpg",
-        },
-      ],
+      objectives: objectives,
+      testimonies: testimonies,
     };
   },
 };
