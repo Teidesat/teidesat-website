@@ -27,11 +27,12 @@
   <div class="container">
     <div class="row">
       <FreqAsked
+        :class="{ 'my-3': isMobile }"
         v-for="question in freq_questions"
         :key="question"
         :question="question.question"
         :answer="question.answer"
-        :imgPosition="question.imgPosition"
+        :imgPosition="!isMobile ? question.imgPosition : 'left'"
         :imgSrc="question.imgSrc"
       ></FreqAsked>
     </div>
@@ -42,9 +43,13 @@
 import SocialIcon from "@/components/contactpage/SocialIcon.vue";
 import FreqAsked from "@/components/contactpage/FreqAsked.vue";
 import { freq_questions, social_icons } from "@/data/data.json";
+import { isMobile } from "@/data/isMobile.js";
 export default {
   name: "ContactView",
   components: { SocialIcon, FreqAsked },
+  computed: {
+    isMobile: isMobile,
+  },
   data() {
     return {
       social_icons: social_icons,

@@ -21,9 +21,7 @@ import DescriptiveText from "@/components/missionpage/DescriptiveText.vue";
 
 export default {
   name: "MissionView",
-  components: {
-    DescriptiveText,
-  },
+  components: { DescriptiveText },
 };
 </script>
 
@@ -53,5 +51,13 @@ export default {
   text-align: center;
   color: #032e43;
   font-size: 64px;
+}
+@media only screen and (max-width: 626px) {
+  [class*="col"] {
+    width: 100%;
+  }
+  [class*="offset-"] {
+    width: 100%;
+  }
 }
 </style>

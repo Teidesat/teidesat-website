@@ -2,16 +2,16 @@
   <h1>Titular principal 1A</h1>
   <h2>Titular de apoyo 1B</h2>
   <div class="container">
-    <div class="row">
-      <p class="col-8 offset-2">
+    <div class="row justify-content-center">
+      <p class="col-8">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam vitae
         quas et dolores, amet repellat animi incidunt sed, illum omnis aliquid
         dolore? Architecto ab, quibusdam quia repudiandae tenetur voluptatem
         aspernatur!
       </p>
     </div>
-    <div class="row">
-      <p class="col-8 offset-2">
+    <div class="row justify-content-center">
+      <p class="col-8">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam vitae
         quas et dolores, amet repellat animi incidunt sed, illum omnis aliquid
         dolore? Architecto ab, quibusdam quia repudiandae tenetur voluptatem
@@ -21,9 +21,8 @@
   </div>
 
   <h2>Título de refuerzo 1C</h2>
-
   <div class="container">
-    <div class="row row-cols-2">
+    <div class="row" :class="{ 'row-cols-2': !isMobile }">
       <div v-for="department in departments" :key="department" class="col">
         <Department
           :imgSrc="department.imgSrc"
@@ -48,12 +47,13 @@
 import Department from "@/components/offerpage/Department.vue";
 import TFG from "@/components/offerpage/TFG.vue";
 import { departments, tfgs } from "@/data/data.json";
+import { isMobile } from "@/data/isMobile.js";
 
 export default {
   name: "OfferView",
-  components: {
-    Department,
-    TFG,
+  components: { Department, TFG },
+  computed: {
+    isMobile: isMobile,
   },
   data() {
     return {
@@ -65,8 +65,11 @@ export default {
 </script>
 
 <style scoped>
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 626px) {
   [class*="col"] {
+    width: 100%;
+  }
+  [class*="offset-"] {
     width: 100%;
   }
 }

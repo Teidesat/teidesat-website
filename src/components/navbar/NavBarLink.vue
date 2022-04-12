@@ -23,8 +23,6 @@ export default {
 .navbar-dark .navbar-nav .nav-link {
   font-size: 90% !important;
   color: #487ef6;
-  padding-left: 20%;
-  padding-right: 120%;
 }
 .navbar .nav-item:hover .nav-link {
   color: #52e2aa;

@@ -16,7 +16,7 @@
         <div v-for="objective in objectives" :key="objective.index">
           <Objective
             :title="objective.title"
-            :imgPosition="objective.imgPosition"
+            :imgPosition="!isMobile ? objective.imgPosition : 'left'"
             :imgSrc="objective.imgSrc"
           ></Objective>
         </div>
@@ -55,18 +55,19 @@
 import Objective from "@/components/landpage/Objective.vue";
 import Testimony from "@/components/landpage/Testimony.vue";
 import { objectives, testimonies } from "@/data/data.json";
+import { isMobile } from "@/data/isMobile.js";
 
 export default {
   name: "LandView",
-  components: {
-    Objective,
-    Testimony,
-  },
+  components: { Objective, Testimony },
   data() {
     return {
       objectives: objectives,
       testimonies: testimonies,
     };
+  },
+  computed: {
+    isMobile: isMobile,
   },
 };
 </script>

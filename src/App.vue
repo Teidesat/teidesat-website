@@ -19,6 +19,7 @@
 
 <script>
 import NavBar from "./components/navbar/NavBar.vue";
+import { isMobile } from "./data/isMobile.js";
 
 export default {
   components: { NavBar },
@@ -30,6 +31,9 @@ export default {
         paddingBottom: "20px",
       },
     };
+  },
+  computed: {
+    isMobile: isMobile,
   },
 };
 </script>

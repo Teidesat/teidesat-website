@@ -1,23 +1,33 @@
 // eslint-disable-next-line vue/multi-word-component-names
 <template>
-  <div class="row align-items-center">
-    <div class="col-sm-3 offset-3" v-if="isImgRight">
-      <h2>{{ question }}</h2>
-      <p>
-        {{ answer }}
-      </p>
+  <div>
+    <div
+      class="row justify-content-center align-items-center"
+      v-if="isImgRight"
+    >
+      <div class="col-sm-3">
+        <h2>{{ question }}</h2>
+        <p>
+          {{ answer }}
+        </p>
+      </div>
+      <div class="col-sm-3">
+        <img :src="require(`@/assets/images/${imgSrc}`)" :style="imgSize" />
+      </div>
     </div>
-    <div class="col-sm-3" v-if="isImgRight">
-      <img :src="require(`@/assets/images/${imgSrc}`)" :style="imgSize" />
-    </div>
-    <div class="col-sm-3 offset-3" v-if="!isImgRight">
-      <img :src="require(`@/assets/images/${imgSrc}`)" :style="imgSize" />
-    </div>
-    <div class="col-sm-3" v-if="!isImgRight">
-      <h2>{{ question }}</h2>
-      <p>
-        {{ answer }}
-      </p>
+    <div
+      class="row justify-content-center align-items-center"
+      v-if="!isImgRight"
+    >
+      <div class="col-sm-3">
+        <img :src="require(`@/assets/images/${imgSrc}`)" :style="imgSize" />
+      </div>
+      <div class="col-sm-3">
+        <h2>{{ question }}</h2>
+        <p>
+          {{ answer }}
+        </p>
+      </div>
     </div>
   </div>
 </template>

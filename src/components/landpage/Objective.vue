@@ -1,34 +1,40 @@
 // eslint-disable-next-line vue/multi-word-component-names
 <template>
-  <div class="row my-5 align-items-center">
-    <div class="col-sm-4 offset-2" v-if="isImgRight">
-      <h2>{{ title }}</h2>
-      <p :style="textLeft">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed libero a
-        quam voluptatem exercitationem minus esse. Corrupti sint non iusto
-        aliquam fugiat exercitationem eligendi maxime nemo repellendus. Harum,
-        amet ad.
-      </p>
+  <div class="my-5 align-items-center">
+    <div class="row justify-content-center" v-if="isImgRight">
+      <div :class="isMobile ? imgMobile : imgDesktop">
+        <h2>{{ title }}</h2>
+        <p :style="!isMobile ? textLeft : textCenter">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed libero a
+          quam voluptatem exercitationem minus esse. Corrupti sint non iusto
+          aliquam fugiat exercitationem eligendi maxime nemo repellendus. Harum,
+          amet ad.
+        </p>
+      </div>
+      <div class="col-sm-4">
+        <img :src="require(`@/assets/images/${imgSrc}`)" />
+      </div>
     </div>
-    <div class="col-sm-4" v-if="isImgRight">
-      <img :src="require(`@/assets/images/${imgSrc}`)" />
-    </div>
-    <div class="col-sm-4 offset-2" v-if="!isImgRight">
-      <img :src="require(`@/assets/images/${imgSrc}`)" />
-    </div>
-    <div class="col-sm-4" v-if="!isImgRight">
-      <h2>{{ title }}</h2>
-      <p :style="textLeft">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed libero a
-        quam voluptatem exercitationem minus esse. Corrupti sint non iusto
-        aliquam fugiat exercitationem eligendi maxime nemo repellendus. Harum,
-        amet ad.
-      </p>
+    <div class="row justify-content-center" v-if="!isImgRight">
+      <div :class="isMobile ? imgMobile : imgDesktop">
+        <img :src="require(`@/assets/images/${imgSrc}`)" />
+      </div>
+      <div class="col-sm-4">
+        <h2>{{ title }}</h2>
+        <p :style="!isMobile ? textLeft : textCenter">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed libero a
+          quam voluptatem exercitationem minus esse. Corrupti sint non iusto
+          aliquam fugiat exercitationem eligendi maxime nemo repellendus. Harum,
+          amet ad.
+        </p>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import { isMobile } from "@/data/isMobile.js";
+
 export default {
   props: {
     title: String,
@@ -39,6 +45,7 @@ export default {
     imgSrc: String,
   },
   computed: {
+    isMobile: isMobile,
     isImgRight() {
       return this.imgPosition === "right";
     },
@@ -46,6 +53,9 @@ export default {
   data() {
     return {
       textLeft: "text-align: left;",
+      textCenter: "text-align: center;",
+      imgDesktop: "col-sm-4",
+      imgMobile: "col-sm",
     };
   },
 };

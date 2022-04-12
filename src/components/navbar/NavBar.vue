@@ -45,9 +45,7 @@ export default {
     };
   },
   computed: {},
-  components: {
-    NavBarLink,
-  },
+  components: { NavBarLink },
 };
 </script>
 

@@ -2,14 +2,22 @@
   <div class="mainTitle">
     <h1>Titular principal 1A</h1>
   </div>
-  <p class="descriptiveText">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque omnis magnam
-    saepe amet natus minima rerum unde, necessitatibus laboriosam impedit id
-    nihil sit ratione ducimus hic, voluptatem iusto quidem aliquid?
-  </p>
   <div class="container">
-    <div class="row row-cols-3">
-      <div v-for="new_ in news" :key="new_">
+    <div class="row justify-content-center">
+      <div class="col-10">
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque omnis
+          magnam saepe amet natus minima rerum unde, necessitatibus laboriosam
+          impedit id nihil sit ratione ducimus hic, voluptatem iusto quidem
+          aliquid?
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row" :class="{ 'row-cols-3': !isMobile }">
+      <div :class="{ 'my-3': isMobile }" v-for="new_ in news" :key="new_">
+        <hr v-if="isMobile" />
         <News :imgSrc="new_.imgSrc" :description="new_.description"></News>
       </div>
     </div>
@@ -19,10 +27,12 @@
 <script>
 import News from "@/components/newspage/News.vue";
 import { news_data } from "@/data/data.json";
+import { isMobile } from "@/data/isMobile.js";
 export default {
   name: "NewsView",
-  components: {
-    News,
+  components: { News },
+  computed: {
+    isMobile: isMobile,
   },
   data() {
     return {
