@@ -64,4 +64,10 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+@media only screen and (max-width: 768px) {
+  [class*="col"] {
+    width: 100%;
+  }
+}
+</style>
