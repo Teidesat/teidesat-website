@@ -2,13 +2,13 @@
   <!-- <nav><router-link to="/"></router-link></nav> -->
   <NavBar></NavBar>
   <router-view />
-  <footer class="my-5 text-white bg-primary" role="contentinfo">
+  <footer class="pt-5 text-white bg-primary" role="contentinfo">
     <div class="container">
       <div class="row">
         <img class="img-fluid" src="./assets/images/PATROCINADORES_2_1.png" />
       </div>
       <div class="row" :style="creditStyle">
-        Page made by Fabio Bianchini and Eduardo {Apellido}
+        Page made by Fabio Bianchini and Eduardo Puyol
       </div>
     </div>
     <a class="btn btn-sm fade-half back-to-top inner-link" href="#top">
@@ -78,4 +78,7 @@ html,
 /* .back-to-top:hover {
   background-color: #aceddf;
 } */
+.bg-primary {
+  background-color: #d3db71 !important;
+}
 </style>

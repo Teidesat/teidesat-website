@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-nav">
+  <nav class="navbar navbar-dark bg-dark fixed-nav">
     <div class="container-fluid mx-5">
       <!-- Icono de NAVBAR -->
       <nav class="navbar navbar-dark py-0">
@@ -19,7 +19,7 @@
         data-bs-toggle="collapse"
         data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent"
-        aria-expanded="false"
+        aria-expanded="true"
         aria-label="Toggle navigation"
       >
         <span class="fa-solid fa-bars"></span>
@@ -56,5 +56,8 @@ export default {
   z-index: 6;
   width: 100%;
 } */
+.bg-dark {
+  background-color: #d3db71 !important;
+}
 @import "bootstrap";
 </style>
