@@ -1,6 +1,6 @@
 <template>
   <router-link :to="path" class="nav-link" :class="{ active: isActive }">
-    {{ name.toUpperCase() }}
+    {{ name }}
   </router-link>
 </template>
 
@@ -21,8 +21,8 @@ export default {
 
 <style scoped>
 .navbar-dark .navbar-nav .nav-link {
-  font-size: 90% !important;
-  color: #487ef6;
+  font-size: 100% !important;
+  color: #ffffff;
 }
 .navbar .nav-item:hover .nav-link {
   color: #52e2aa;

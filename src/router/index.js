@@ -7,10 +7,10 @@ import ContactView from "../views/ContactView.vue";
 
 export const routes = [
   { path: "/", name: "home", component: LandView },
-  { path: "/oferta", name: "oferta", component: OfferView },
-  { path: "/mision", name: "mision", component: MissionView },
-  { path: "/novedades", name: "novedades", component: NewsView },
-  { path: "/contacto", name: "contacto", component: ContactView },
+  { path: "/mision", name: "Misión", component: MissionView },
+  { path: "/oferta", name: "Oferta Académica", component: OfferView },
+  { path: "/novedades", name: "Novedades", component: NewsView },
+  { path: "/contacto", name: "Contacto", component: ContactView },
 ];
 
 const router = createRouter({

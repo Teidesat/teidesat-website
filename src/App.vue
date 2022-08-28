@@ -79,6 +79,6 @@ html,
   background-color: #aceddf;
 } */
 .bg-primary {
-  background-color: #d3db71 !important;
+  background-color: #6569ee !important;
 }
 </style>

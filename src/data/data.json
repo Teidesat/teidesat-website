@@ -135,23 +135,31 @@
   "objectives": [
     {
       "title": "Conoce la misión",
-      "imgSrc": "logo_teidesat_negro.png",
-      "text": "Nuestro principal proyecto consiste en diseñar, fabricar y poner en órbita el primer nanosatélite de jóvenes profesionales de Canarias, el TEIDESAT-I. Ello con el objeto de establecer comunicación óptica con la superficie de la Tierra."
+      "text": "Nuestro principal proyecto consiste en diseñar, fabricar y poner en órbita el primer nanosatélite de jóvenes profesionales de Canarias, el TEIDESAT-I. Ello con el objeto de establecer comunicación óptica con la superficie de la Tierra.",
+      "theme": "dark",
+      "src": "Objetivo_1.png",
+      "height": 600
     },
     {
       "title": "La mejor forma de llegar al cielo es juntos.",
-      "imgSrc": "logo_teidesat_negro.png",
-      "text": "Te queremos en nuestra órbita, por eso te ofrecemos convenios de prácticas y trabajos de final de titulación pensados espacialmente para tu perfil, esté dentro o fuera del ámbito de la ingeniería."
+      "text": "Te queremos en nuestra órbita, por eso te ofrecemos convenios de prácticas y trabajos de final de titulación pensados espacialmente para tu perfil, esté dentro o fuera del ámbito de la ingeniería.",
+      "theme": "light",
+      "src": "Objetivo_2.png",
+      "height": 400
     },
     {
       "title": "Las estrellas comparten luz, nosotros conocimiento ",
-      "imgSrc": "logo_teidesat_negro.png",
-      "text": "Sabemos que para impulsar la comunidad científica la accesibilidad del conocimiento es clave, por eso Teidesat te ofrece formación y tutorización regular como nuevo integrante. Nuestra labor divulgativa también se extiende a eventos científicos como, en los que participamos impartiendo charlas y talleres."
+      "text": "Sabemos que para impulsar la comunidad científica la accesibilidad del conocimiento es clave, por eso Teidesat te ofrece formación y tutorización regular como nuevo integrante. Nuestra labor divulgativa también se extiende a eventos científicos como, en los que participamos impartiendo charlas y talleres.",
+      "theme": "light",
+      "src": "Objetivo_3.png",
+      "height": 400
     },
     {
       "title": "Creemos en un espacio sostenible para Canarias",
-      "imgSrc": "logo_teidesat_negro.png",
-      "text": "Teidesat es un equipo reponsable con el impacto de su trabajo. Por ello enfocamos nuestro actual proyecto en analizar las consecuencias de las comunicaciones ópticas espaciales en las observaciones astrofísicas que se realizan desde los Observatorios de Canarias."
+      "text": "Teidesat es un equipo reponsable con el impacto de su trabajo. Por ello enfocamos nuestro actual proyecto en analizar las consecuencias de las comunicaciones ópticas espaciales en las observaciones astrofísicas que se realizan desde los Observatorios de Canarias.",
+      "theme": "light",
+      "src": "Objetivo_4.png",
+      "height": 400
     }
   ],
   "testimonies": [

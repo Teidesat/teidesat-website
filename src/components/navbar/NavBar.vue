@@ -1,10 +1,11 @@
 <template>
-  <nav class="navbar navbar-dark bg-dark fixed-nav">
+  <nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid mx-5">
       <!-- Icono de NAVBAR -->
       <nav class="navbar navbar-dark py-0">
         <div class="container-fluid">
           <router-link class="navbar-brand" :to="'/'">
+            <!-- TODO poner teidesat al lado del icono -->
             <img
               src="../../assets/images/logo_teidesat_blanco.png"
               alt=""
@@ -19,7 +20,7 @@
         data-bs-toggle="collapse"
         data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent"
-        aria-expanded="true"
+        aria-expanded="false"
         aria-label="Toggle navigation"
       >
         <span class="fa-solid fa-bars"></span>
@@ -56,8 +57,14 @@ export default {
   z-index: 6;
   width: 100%;
 } */
-.bg-dark {
-  background-color: #d3db71 !important;
+/*TODO quitar navbar colapsado por defecto*/
+@media (max-width: 768px) {
+  .navbar-collapse {
+    width: 100%;
+  }
 }
-@import "bootstrap";
+.bg-dark {
+  background-color: #6965f8 !important;
+}
+/* @import "bootstrap"; */
 </style>

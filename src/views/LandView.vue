@@ -1,37 +1,36 @@
 <template>
   <div class="land">
     <div class="heroShoot">
-      <img class="mainTitle" src="@/assets/images/landpage/teidesat-logo.png" />
-      <!-- 
-        <h1 class="mainTitle">Teidesat 1A</h1>
-      <h2 class="secondTitle">
-        Shedding a light into infinite outter space 2B
-      </h2>
-       -->
+      <!-- <img class="mainTitle" src="@/assets/images/landpage/teidesat-logo.png" /> -->
+      <div class="mainTitle">
+        <p class="title">Arrojamos nuestra luz en el cielo infinito</p>
+        <p class="subtitle">
+          Una asociación aeroespacial accesible para los ingenieros del mañana
+        </p>
+        <router-link to="/contacto" class="botonHeroShoot">
+          <span style="color: #424369" class="fw-bold">Contáctanos </span>
+          <i style="color: #9696f8" class="fa-solid fa-arrow-right"></i>
+        </router-link>
+      </div>
     </div>
   </div>
-  <div class="ksp py-5">
+  <div class="ksp">
     <!-- OBJETIVOS -->
     <div class="objectives">
-      <div class="container-fluid">
+      <div class="container-fluid px-0">
         <div v-for="(objective, index) in objectives" :key="objective">
           <Objective
             :title="objective.title"
-            :imgSrc="'Objetivo_' + (index + 1) + '.png'"
+            :imgSrc="objective.src"
             :imgPosition="!(index % 2) ? 'left' : 'right'"
             :text="objective.text"
+            :theme="objective.theme"
+            :height="objective.height"
           ></Objective>
         </div>
       </div>
     </div>
-    <div>
-      <router-link
-        to="/contacto"
-        class="boton_contacto btn btn-primary px-4 py-3 bold"
-      >
-        Contacto
-      </router-link>
-    </div>
+
     <!-- TESTIMONIOS -->
     <!-- <div class="testimonies">
       <div class="container">
@@ -83,35 +82,54 @@ export default {
 
 .mainTitle {
   position: absolute;
-  --logo-width: 40%;
+  --logo-width: 65%;
   left: calc(var(--logo-width) / 2);
   width: calc(100% - var(--logo-width));
   top: 30%;
-  text-align: left;
-  color: #000000;
-  font-size: 24px;
-}
-.secondTitle {
-  color: #12638b;
-  position: absolute;
-  /* left: 0; */
-  top: 60%;
-  width: 100%;
   text-align: center;
+  color: #9696f8;
+}
+
+.title {
+  font-size: 48px;
+  font-family: PPEikoHeavy;
+}
+.subtitle {
+  font-size: 26px;
+  color: #ababab;
+}
+
+.botonHeroShoot {
+  background-color: transparent;
+  border-radius: 25px;
+  border: 2px solid #9696f8;
+  display: inline-block;
+  cursor: pointer;
+  color: #424369;
+  font-family: Arial;
+  font-size: 17px;
+  font-weight: bold;
+  padding: 8px 17px;
+  text-decoration: none;
+}
+.botonHeroShoot:hover {
+  transition: 0.3s ease;
+  background-color: rgb(230, 230, 247, 0.5);
+}
+.botonHeroShoot:active {
+  position: relative;
+  top: 1px;
 }
 
 .heroShoot {
-  margin: 0;
-
   min-height: 100%;
   position: relative;
   /* opacity: 0.65; */
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
-  background-image: url(../assets/images/landpage/HeroShoot.png);
-  font-family: "Nunito", sans-serif;
+  /* background-size: contain; */
+  background-image: url(../assets/images/landpage/Landing\ 1.png);
 }
 
 .ksp {
@@ -126,5 +144,30 @@ export default {
 .boton_contacto:hover {
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
     rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}
+
+@font-face {
+  font-family: MaisonNeueMedium;
+  src: url("@/assets/fonts/Maison Neue/Maison Neue Medium.otf");
+}
+@font-face {
+  font-family: PPEikoBlackItalic;
+  src: url("@/assets/fonts/PPEiko/PPEiko-BlackItalic.otf");
+}
+@font-face {
+  font-family: PPEikoHeavy;
+  src: url("@/assets/fonts/PPEiko/PPEiko-Heavy.otf");
+}
+@font-face {
+  font-family: PPEikoLightItalic;
+  src: url("@/assets/fonts/PPEiko/PPEiko-LightItalic.otf");
+}
+@font-face {
+  font-family: PPEikoMedium;
+  src: url("@/assets/fonts/PPEiko/PPEiko-Medium.otf");
+}
+@font-face {
+  font-family: PPEikoThin;
+  src: url("@/assets/fonts/PPEiko/PPEiko-Thin.otf");
 }
 </style>
