@@ -39,33 +39,48 @@
   "tfgs": [
     {
       "imgSrc": "ejemplo_testimonio.jpg",
-      "name": "Fabio Bianchini",
-      "title": "Desarrollo de Lenguaje de Dominio Específico para Generación Procedural."
+      "title": "Diseño de paneles fotovoltaicos TEIDESAT-I.",
+      "place": "Universidad de La Laguna",
+      "year": 2022,
+      "name": "Javier González Vilar",
+      "subject": "Termodinámica",
+      "section": "Mecánica"
     },
     {
       "imgSrc": "ejemplo_testimonio.jpg",
-      "name": "Daniel Del Castillo",
-      "title": "Desarrollo de Lenguaje de Dominio Específico para Generación Procedural."
+      "title": "Diseño de paneles fotovoltaicos TEIDESAT-I.",
+      "place": "Universidad de La Laguna",
+      "year": 2022,
+      "name": "Javier González Vilar",
+      "subject": "Termodinámica",
+      "section": "Mecánica"
     },
     {
       "imgSrc": "ejemplo_testimonio.jpg",
-      "name": "Eduardo Gil",
-      "title": "Desarrollo de Lenguaje de Dominio Específico para Generación Procedural."
+      "title": "Diseño de paneles fotovoltaicos TEIDESAT-I.",
+      "place": "Universidad de La Laguna",
+      "year": 2022,
+      "name": "Javier González Vilar",
+      "subject": "Termodinámica",
+      "section": "Mecánica"
     },
     {
       "imgSrc": "ejemplo_testimonio.jpg",
-      "name": "Pablo Torres",
-      "title": "Desarrollo de Lenguaje de Dominio Específico para Generación Procedural."
+      "title": "Diseño de paneles fotovoltaicos TEIDESAT-I.",
+      "place": "Universidad de La Laguna",
+      "year": 2022,
+      "name": "Javier González Vilar",
+      "subject": "Termodinámica",
+      "section": "Mecánica"
     },
     {
       "imgSrc": "ejemplo_testimonio.jpg",
-      "name": "Alberto Fuentes",
-      "title": "Desarrollo de Lenguaje de Dominio Específico para Generación Procedural."
-    },
-    {
-      "imgSrc": "ejemplo_testimonio.jpg",
-      "name": "Luis David Romero",
-      "title": "Desarrollo de Lenguaje de Dominio Específico para Generación Procedural."
+      "title": "Diseño de paneles fotovoltaicos TEIDESAT-I.",
+      "place": "Universidad de La Laguna",
+      "year": 2022,
+      "name": "Javier González Vilar",
+      "subject": "Termodinámica",
+      "section": "Mecánica"
     }
   ],
   "social_icons": [
@@ -138,28 +153,40 @@
       "text": "Nuestro principal proyecto consiste en diseñar, fabricar y poner en órbita el primer nanosatélite de jóvenes profesionales de Canarias, el TEIDESAT-I. Ello con el objeto de establecer comunicación óptica con la superficie de la Tierra.",
       "theme": "dark",
       "src": "Objetivo_1.png",
-      "height": 600
+      "height": 600,
+      "customMargin": "",
+      "buttonLabel": "Sube a bordo ",
+      "buttonLink": "/mision"
     },
     {
       "title": "La mejor forma de llegar al cielo es juntos.",
       "text": "Te queremos en nuestra órbita, por eso te ofrecemos convenios de prácticas y trabajos de final de titulación pensados espacialmente para tu perfil, esté dentro o fuera del ámbito de la ingeniería.",
       "theme": "light",
       "src": "Objetivo_2.png",
-      "height": 400
+      "height": 700,
+      "customMargin": -250,
+      "buttonLabel": "Despegamos",
+      "buttonLink": "/oferta"
     },
     {
       "title": "Las estrellas comparten luz, nosotros conocimiento ",
       "text": "Sabemos que para impulsar la comunidad científica la accesibilidad del conocimiento es clave, por eso Teidesat te ofrece formación y tutorización regular como nuevo integrante. Nuestra labor divulgativa también se extiende a eventos científicos como, en los que participamos impartiendo charlas y talleres.",
       "theme": "light",
       "src": "Objetivo_3.png",
-      "height": 400
+      "height": 600,
+      "customMargin": "-100",
+      "buttonLabel": "Propulsando ",
+      "buttonLink": "/novedades"
     },
     {
       "title": "Creemos en un espacio sostenible para Canarias",
       "text": "Teidesat es un equipo reponsable con el impacto de su trabajo. Por ello enfocamos nuestro actual proyecto en analizar las consecuencias de las comunicaciones ópticas espaciales en las observaciones astrofísicas que se realizan desde los Observatorios de Canarias.",
       "theme": "light",
       "src": "Objetivo_4.png",
-      "height": 400
+      "height": 600,
+      "customMargin": 0,
+      "buttonLabel": "Explora",
+      "buttonLink": "/contacto"
     }
   ],
   "testimonies": [

@@ -5,12 +5,13 @@
       <nav class="navbar navbar-dark py-0">
         <div class="container-fluid">
           <router-link class="navbar-brand" :to="'/'">
-            <!-- TODO poner teidesat al lado del icono -->
             <img
               src="../../assets/images/logo_teidesat_blanco.png"
               alt=""
               width="30"
             />
+            <!-- TODO poner teidesat al lado del icono -->
+            <!-- <img src="../../assets/images/landpage/teidesat-logo.png" /> -->
           </router-link>
         </div>
       </nav>

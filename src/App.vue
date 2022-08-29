@@ -3,6 +3,18 @@
   <NavBar></NavBar>
   <router-view />
   <footer class="pt-5 text-white bg-primary" role="contentinfo">
+    <div class="footerText mx-5">
+      <h1>Unimos fuerzas</h1>
+      <p class="h5" style="font-family: MaisonNeueLight">
+        Desde los últimos años, cada vez son más los colaboradores y
+        patrocinadores que deciden unirse a la iniciativa de poner en órbita el
+        TEIDESAT-01. Las propuestas que nos llegan para propulsar el proyecto lo
+        hacen en todo tipo de formatos. Si eres una empresa o asociación de
+        cualquier clase, y quieres aportar tu granito de arena, no dudes en
+        participar en la familia TEIDESAT. Estamos deseando escuchar lo que
+        tienes que decir.
+      </p>
+    </div>
     <div class="container">
       <div class="row">
         <img class="img-fluid" src="./assets/images/PATROCINADORES_2_1.png" />
@@ -42,7 +54,7 @@ export default {
 body,
 html,
 #app {
-  font-family: "Nunito", Helvetica, Arial, sans-serif;
+  font-family: "MaisonNeueLight", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -54,6 +66,7 @@ html,
   font-size: 16px;
   line-height: 1.42857143;
   color: #333;
+  background-color: #ebebeb;
   /* overflow-x: hidden; */
 }
 
@@ -80,5 +93,35 @@ html,
 } */
 .bg-primary {
   background-color: #6569ee !important;
+}
+
+.footerText {
+  text-align: left;
+  font-family: PPEikoMedium;
+}
+
+@font-face {
+  font-family: MaisonNeueLight;
+  src: url("@/assets/fonts/Maison Neue/Maison Neue Light.otf");
+}
+@font-face {
+  font-family: PPEikoBlackItalic;
+  src: url("@/assets/fonts/PPEiko/PPEiko-BlackItalic.otf");
+}
+@font-face {
+  font-family: PPEikoHeavy;
+  src: url("@/assets/fonts/PPEiko/PPEiko-Heavy.otf");
+}
+@font-face {
+  font-family: PPEikoLightItalic;
+  src: url("@/assets/fonts/PPEiko/PPEiko-LightItalic.otf");
+}
+@font-face {
+  font-family: PPEikoMedium;
+  src: url("@/assets/fonts/PPEiko/PPEiko-Medium.otf");
+}
+@font-face {
+  font-family: PPEikoThin;
+  src: url("@/assets/fonts/PPEiko/PPEiko-Thin.otf");
 }
 </style>

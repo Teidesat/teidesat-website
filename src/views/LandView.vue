@@ -1,19 +1,23 @@
 <template>
-  <div class="land">
-    <div class="heroShoot">
-      <!-- <img class="mainTitle" src="@/assets/images/landpage/teidesat-logo.png" /> -->
-      <div class="mainTitle">
-        <p class="title">Arrojamos nuestra luz en el cielo infinito</p>
-        <p class="subtitle">
-          Una asociación aeroespacial accesible para los ingenieros del mañana
-        </p>
-        <router-link to="/contacto" class="botonHeroShoot">
-          <span style="color: #424369" class="fw-bold">Contáctanos </span>
-          <i style="color: #9696f8" class="fa-solid fa-arrow-right"></i>
-        </router-link>
+  <!-- <div class="land"> -->
+  <div class="heroShoot">
+    <!-- <img class="mainTitle" src="@/assets/images/landpage/teidesat-logo.png" /> -->
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 offset-sm-3 mainTitle">
+          <p class="title">Arrojamos nuestra luz en el cielo infinito</p>
+          <p class="subtitle">
+            Una asociación aeroespacial accesible para los ingenieros del mañana
+          </p>
+          <router-link to="/contacto" class="botonHeroShoot">
+            <span style="color: #424369" class="fw-bold">Contáctanos </span>
+            <i style="color: #9696f8" class="fa-solid fa-arrow-right"></i>
+          </router-link>
+        </div>
       </div>
     </div>
   </div>
+
   <div class="ksp">
     <!-- OBJETIVOS -->
     <div class="objectives">
@@ -26,10 +30,14 @@
             :text="objective.text"
             :theme="objective.theme"
             :height="objective.height"
+            :customMargin="objective.customMargin"
+            :buttonLabel="objective.buttonLabel"
+            :buttonLink="objective.buttonLink"
           ></Objective>
         </div>
       </div>
     </div>
+    <!-- </div> -->
 
     <!-- TESTIMONIOS -->
     <!-- <div class="testimonies">
@@ -78,16 +86,33 @@ export default {
 <style scoped>
 .land {
   height: 100%;
+  overflow-x: auto;
+}
+
+.heroShoot {
+  /* margin-top: 15%; */
+  /* min-height: 100%; */
+  /* opacity: 0.65; */
+  background-position-x: center;
+  /* background-position-y: bottom; */
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 0;
+  padding-top: 56.25%;
+  background-color: #ebebeb;
+  background-image: url(../assets/images/landpage/Landing\ 1.png);
 }
 
 .mainTitle {
-  position: absolute;
-  --logo-width: 65%;
+  /* position: relative; */
+  /* --logo-width: 65%;
   left: calc(var(--logo-width) / 2);
-  width: calc(100% - var(--logo-width));
-  top: 30%;
+  width: calc(100% - var(--logo-width)); */
+  margin-top: -60%;
   text-align: center;
   color: #9696f8;
+  z-index: 6;
 }
 
 .title {
@@ -121,16 +146,15 @@ export default {
   top: 1px;
 }
 
-.heroShoot {
+/* .heroShoot {
   min-height: 100%;
   position: relative;
-  /* opacity: 0.65; */
   background-attachment: fixed;
-  background-position: center;
+  background-position-x: center;
   background-repeat: no-repeat;
-  /* background-size: contain; */
+  background-size: contain;
   background-image: url(../assets/images/landpage/Landing\ 1.png);
-}
+} */
 
 .ksp {
   background-color: #656ee4;
