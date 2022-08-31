@@ -1,30 +1,38 @@
 // eslint-disable-next-line vue/multi-word-component-names
 <template>
-  <div>
+  <div class="my-5">
     <div
       class="row justify-content-center align-items-center"
       v-if="isImgRight"
     >
-      <div class="col-sm-3">
-        <h2>{{ question }}</h2>
-        <p>
+      <div class="col-sm-4">
+        <h2 class="question">{{ question }}</h2>
+        <p class="answer">
           {{ answer }}
         </p>
       </div>
-      <div class="col-sm-3">
-        <img :src="require(`@/assets/images/${imgSrc}`)" :style="imgSize" />
+      <div class="col-sm-4">
+        <img
+          class="image"
+          :src="require(`@/assets/images/freqasked/${imgSrc}`)"
+          :style="imgSize"
+        />
       </div>
     </div>
     <div
       class="row justify-content-center align-items-center"
       v-if="!isImgRight"
     >
-      <div class="col-sm-3">
-        <img :src="require(`@/assets/images/${imgSrc}`)" :style="imgSize" />
+      <div class="col-sm-4">
+        <img
+          class="image"
+          :src="require(`@/assets/images/freqasked/${imgSrc}`)"
+          :style="imgSize"
+        />
       </div>
-      <div class="col-sm-3">
-        <h2>{{ question }}</h2>
-        <p>
+      <div class="col-sm-4">
+        <h2 class="question">{{ question }}</h2>
+        <p class="answer">
           {{ answer }}
         </p>
       </div>
@@ -48,10 +56,23 @@ export default {
   data() {
     return {
       textLeft: "text-align: left;",
-      imgSize: "width: 200px; height: 300px; border-radius: 20px;",
+      imgSize: " height: 300px; border-radius: 20px;",
     };
   },
 };
 </script>
 
-<style></style>
+<style>
+.question {
+  font-family: PPEikoMedium;
+  color: #9694fd;
+  font-size: 250%;
+  margin-bottom: 15px;
+  text-align: left;
+}
+.answer {
+  text-align: left;
+  color: #737373;
+  font-size: 120%;
+}
+</style>

@@ -1,16 +1,16 @@
 {
   "freq_questions": [
     {
-      "question": "¿Qué sueles desayunar?",
-      "answer": "Leche con cereales",
+      "question": "¿Cómo puedo participar?",
+      "answer": "Desde sus inicios, Teidesat cuenta con un flujo regular de colaboradores externo, así como una matriz de integrantes estable en su equipo. La versatilidad de estos roles permite que todas aquellas personas o entidades que deseen apoyarnos lo puedan hacer desde el marco de sus propias posibilidades, y siempre dentro de un contexto de aporte mutuo, buscando el beneficio de todos. Tanto si eres estudiante como empresa contáctanos para descubrir todo lo que el proyecto te puede ofrecer.",
       "imgPosition": "right",
-      "imgSrc": "ejemplo_testimonio.jpg"
+      "imgSrc": "Equipo_2019_low.png"
     },
     {
-      "question": "¿Y de cenar?",
-      "answer": "Tostadas con aceite y aguacate",
+      "question": "¿Qué hace de un Cubesat la opción perfecta?",
+      "answer": " Este formato consiste en un nanosatélite de 10*10*10cm de dimensiones. Siendo en su origen concebido para poder testear nueva tecnología en el espacio y favorecer que proyectos con pocos recursos, como los estudiantiles, puedan ponerse en órbita. Las misiones Cubesat se caracterizan por ser menos costosas, más simples y cortas (ya que a vida del satélite es inferior a un año). Esto también afecta a sus fases de puesta a punto.  Normalmente hay 3 etapas de verificación previas al lanzamiento que nos aseguran que el satélite no se hará añicos en el espacio: cualificación, aceptación y prelanzamiento. Se diferencian en las duraciones de las pruebas y las magnitudes de las cargas aplicadas. Pero para los CubeSats no es necesario pasar por todas ellas, nos saltamos la cola y pasamos directamente a las pruebas de prelanzamiento, lo que supone reducir en coste y tiempo, aunque asumiendo mayores riesgos.",
       "imgPosition": "left",
-      "imgSrc": "ejemplo_testimonio.jpg"
+      "imgSrc": "divulgacion.png"
     }
   ],
   "departments": [
@@ -85,12 +85,12 @@
   ],
   "social_icons": [
     {
-      "fa": "fa-brands fa-youtube",
-      "href": "https://www.youtube.com/channel/UCOD8MkTEBZJFkXkhQG4wOYw"
+      "fa": "fa-brands fa-instagram",
+      "href": "https://www.instagram.com/teidesat"
     },
     {
-      "fa": "fa-brands fa-github",
-      "href": "https://github.com/Teidesat"
+      "fa": "fa-brands fa-youtube",
+      "href": "https://www.youtube.com/channel/UCOD8MkTEBZJFkXkhQG4wOYw"
     },
     {
       "fa": "fa-brands fa-facebook",
@@ -101,12 +101,12 @@
       "href": "https://twitter.com/teidesat"
     },
     {
-      "fa": "fa fa-rss",
-      "href": "https://hyperspacegroup.com/feed/"
+      "fa": "fa-brands fa-linkedin-in",
+      "href": "https://www.linkedin.com/company/teidesat/"
     },
     {
-      "fa": "fa fa-envelope",
-      "href": "/subscribe/"
+      "fa": "fa-brands fa-github",
+      "href": "https://github.com/Teidesat"
     }
   ],
   "news_data": [
@@ -156,7 +156,7 @@
       "height": 600,
       "customMargin": "",
       "buttonLabel": "Sube a bordo ",
-      "buttonLink": "/mision"
+      "buttonLink": "/"
     },
     {
       "title": "La mejor forma de llegar al cielo es juntos.",
@@ -176,7 +176,7 @@
       "height": 600,
       "customMargin": "-100",
       "buttonLabel": "Propulsando ",
-      "buttonLink": "/novedades"
+      "buttonLink": "/"
     },
     {
       "title": "Creemos en un espacio sostenible para Canarias",

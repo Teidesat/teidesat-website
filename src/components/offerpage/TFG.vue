@@ -80,13 +80,12 @@ export default {
   margin-bottom: 10%;
   text-align: left;
 }
-.button {
+.tfg .button {
   background-color: #c8e11f;
   border-radius: 25px;
   /* border: 2px solid #9696f8; */
   display: inline-block;
   cursor: pointer;
-  color: #424369;
   font-family: Arial;
   font-size: 17px;
   font-weight: bold;
@@ -94,11 +93,11 @@ export default {
   margin-top: 10px;
   text-decoration: none;
 }
-.button:hover {
+.tfg .button:hover {
   transition: 0.2s ease;
   background-color: #9baf19;
 }
-.button:active {
+.tfg .button:active {
   position: relative;
   top: 1px;
 }

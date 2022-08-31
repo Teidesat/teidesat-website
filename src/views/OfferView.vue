@@ -16,7 +16,7 @@
           <a style="color: #656ee4">teidesat.contact@ull.es</a>
         </p>
         <h1 class="secondTitle my-5">¿Sientes que tu futuro está aquí?</h1>
-        <router-link to="/contacto" class="button mb-5">
+        <router-link to="/" class="button mb-5">
           <span style="color: #424369" class="fw-bold">Descúbrelo </span>
           <i style="color: #9696f8" class="fa-solid fa-arrow-right"></i>
         </router-link>

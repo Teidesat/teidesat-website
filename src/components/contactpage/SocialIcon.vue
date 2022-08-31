@@ -1,5 +1,5 @@
 <template>
-  <a class="col" :href="href">
+  <a class="mx-2" :href="href">
     <i :class="fa"></i>
   </a>
 </template>
@@ -22,11 +22,23 @@ a {
 }
 a svg {
   pointer-events: auto;
+  color: #c5da30;
 }
 svg:hover {
-  color: rgb(96, 244, 210);
+  transition: 0.15s ease;
+  color: #78851c;
 }
 a:visited {
-  color: #e2b1a1;
+  color: #c5da30;
 }
+/* .cell {
+  background-color: #c5da30;
+  width: 65px;
+  height: 70px;
+  border-radius: 20px;
+}
+.cell:hover {
+  transition: 0.15s ease;
+  color: #78851c;
+} */
 </style>

@@ -9,7 +9,7 @@
           <p class="subtitle">
             Una asociación aeroespacial accesible para los ingenieros del mañana
           </p>
-          <router-link to="/contacto" class="botonHeroShoot">
+          <router-link to="/" class="botonHeroShoot">
             <span style="color: #424369" class="fw-bold">Contáctanos </span>
             <i style="color: #9696f8" class="fa-solid fa-arrow-right"></i>
           </router-link>
