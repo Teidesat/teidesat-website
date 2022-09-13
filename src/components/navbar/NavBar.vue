@@ -1,7 +1,36 @@
 <template>
-  <nav class="navbar navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg bg-blue px-5">
+    <div class="container-fluid">
+      <router-link class="navbar-brand" :to="'/'">
+        <img
+          src="../../assets/images/logo_teidesat_blanco.png"
+          alt=""
+          width="30"
+        />
+      </router-link>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="fa-solid fa-bars" style="color: white"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item" v-for="link in links" :key="link.path">
+            <NavBarLink :path="link.path" :name="link.name"></NavBarLink>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- <nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid mx-5">
-      <!-- Icono de NAVBAR -->
       <nav class="navbar navbar-dark py-0">
         <div class="container-fluid">
           <router-link class="navbar-brand" :to="'/'">
@@ -10,8 +39,6 @@
               alt=""
               width="30"
             />
-            <!-- TODO poner teidesat al lado del icono -->
-            <!-- <img src="../../assets/images/landpage/teidesat-logo.png" /> -->
           </router-link>
         </div>
       </nav>
@@ -34,7 +61,7 @@
         </ul>
       </div>
     </div>
-  </nav>
+  </nav> -->
 </template>
 
 <script>
@@ -59,13 +86,41 @@ export default {
   width: 100%;
 } */
 /*TODO quitar navbar colapsado por defecto*/
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .navbar-collapse {
     width: 100%;
   }
-}
-.bg-dark {
+} */
+.bg-blue {
   background-color: #6965f8 !important;
+}
+.nav-link {
+  font-family: MaisonNeueLight;
+  color: white;
+}
+@font-face {
+  font-family: MaisonNeueLight;
+  src: url("@/assets/fonts/Maison Neue/Maison Neue Light.otf");
+}
+@font-face {
+  font-family: PPEikoBlackItalic;
+  src: url("@/assets/fonts/PPEiko/PPEiko-BlackItalic.otf");
+}
+@font-face {
+  font-family: PPEikoHeavy;
+  src: url("@/assets/fonts/PPEiko/PPEiko-Heavy.otf");
+}
+@font-face {
+  font-family: PPEikoLightItalic;
+  src: url("@/assets/fonts/PPEiko/PPEiko-LightItalic.otf");
+}
+@font-face {
+  font-family: PPEikoMedium;
+  src: url("@/assets/fonts/PPEiko/PPEiko-Medium.otf");
+}
+@font-face {
+  font-family: PPEikoThin;
+  src: url("@/assets/fonts/PPEiko/PPEiko-Thin.otf");
 }
 /* @import "bootstrap"; */
 </style>

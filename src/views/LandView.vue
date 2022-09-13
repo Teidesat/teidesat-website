@@ -5,11 +5,15 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-6 offset-sm-3 mainTitle">
-          <p class="title">Arrojamos nuestra luz en el cielo infinito</p>
-          <p class="subtitle">
-            Una asociación aeroespacial accesible para los ingenieros del mañana
+          <p class="title">
+            Arrojamos nuestra luz <br />
+            en el cielo infinito
           </p>
-          <router-link to="/" class="botonHeroShoot">
+          <p class="subtitle">
+            Una equipo para quien posan las <br />
+            miradas en las estrellas
+          </p>
+          <router-link to="/contacto" class="botonHeroShoot">
             <span style="color: #424369" class="fw-bold">Contáctanos </span>
             <i style="color: #9696f8" class="fa-solid fa-arrow-right"></i>
           </router-link>
@@ -22,46 +26,29 @@
     <!-- OBJETIVOS -->
     <div class="objectives">
       <div class="container-fluid px-0">
-        <div v-for="(objective, index) in objectives" :key="objective">
+        <div v-for="objective in objectives" :key="objective">
           <Objective
             :title="objective.title"
-            :imgSrc="objective.src"
-            :imgPosition="!(index % 2) ? 'left' : 'right'"
             :text="objective.text"
             :theme="objective.theme"
             :height="objective.height"
+            :img="objective.img"
+            :positionText="objective.positionText"
             :customMargin="objective.customMargin"
             :buttonLabel="objective.buttonLabel"
             :buttonLink="objective.buttonLink"
           ></Objective>
+          <!-- :imgSrc="objective.src"
+            :positionImg="objective.positionImg" -->
         </div>
       </div>
     </div>
-    <!-- </div> -->
-
-    <!-- TESTIMONIOS -->
-    <!-- <div class="testimonies">
-      <div class="container">
-        <div class="row my-5">
-          <div
-            class="col-sm"
-            v-for="testimony in testimonies"
-            :key="testimony.index"
-          >
-            <Testimony
-              :name="testimony.name"
-              :imgSrc="testimony.imgSrc"
-            ></Testimony>
-          </div>
-        </div>
-      </div>
-    </div> -->
   </div>
 </template>
 
 <script>
 // import LandPage from "@/components/LandPage.vue";
-import Objective from "@/components/landpage/Objective.vue";
+import Objective from "@/components/landpage/Objective_new.vue";
 // import Testimony from "@/components/landpage/Testimony.vue";
 import { objectives, testimonies } from "@/data/data.json";
 import { isMobile } from "@/data/isMobile.js";
@@ -99,6 +86,7 @@ export default {
   background-repeat: no-repeat;
   width: 100%;
   height: 0;
+  margin-top: 40px;
   padding-top: 56.25%;
   background-color: #ebebeb;
   background-image: url(../assets/images/landpage/Landing\ 1.png);
@@ -109,10 +97,9 @@ export default {
   /* --logo-width: 65%;
   left: calc(var(--logo-width) / 2);
   width: calc(100% - var(--logo-width)); */
-  margin-top: -60%;
+  margin-top: -54vw;
   text-align: center;
   color: #9696f8;
-  z-index: 6;
 }
 
 .title {

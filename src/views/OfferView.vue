@@ -80,7 +80,6 @@
   <!--  -->
   <!--  -->
   <!--  -->
-  <Department></Department>
   <!-- <div class="container">
     <div class="row" :class="{ 'row-cols-2': !isMobile }">
       <div v-for="department in departments" :key="department" class="col">
@@ -95,14 +94,14 @@
 </template>
 
 <script>
-import Department from "@/components/offerpage/Department.vue";
+// import Department from "@/components/offerpage/Department.vue";
 import TFG from "@/components/offerpage/TFG.vue";
 import { departments, tfgs } from "@/data/data.json";
 import { isMobile } from "@/data/isMobile.js";
 
 export default {
   name: "OfferView",
-  components: { Department, TFG },
+  components: { TFG },
   computed: {
     isMobile: isMobile,
   },

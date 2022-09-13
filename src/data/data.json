@@ -4,7 +4,7 @@
       "question": "¿Cómo puedo participar?",
       "answer": "Desde sus inicios, Teidesat cuenta con un flujo regular de colaboradores externo, así como una matriz de integrantes estable en su equipo. La versatilidad de estos roles permite que todas aquellas personas o entidades que deseen apoyarnos lo puedan hacer desde el marco de sus propias posibilidades, y siempre dentro de un contexto de aporte mutuo, buscando el beneficio de todos. Tanto si eres estudiante como empresa contáctanos para descubrir todo lo que el proyecto te puede ofrecer.",
       "imgPosition": "right",
-      "imgSrc": "Equipo_2019_low.png"
+      "imgSrc": "equipo.jpg"
     },
     {
       "question": "¿Qué hace de un Cubesat la opción perfecta?",
@@ -152,19 +152,39 @@
       "title": "Conoce la misión",
       "text": "Nuestro principal proyecto consiste en diseñar, fabricar y poner en órbita el primer nanosatélite de jóvenes profesionales de Canarias, el TEIDESAT-I. Ello con el objeto de establecer comunicación óptica con la superficie de la Tierra.",
       "theme": "dark",
-      "src": "Objetivo_1.png",
-      "height": 600,
-      "customMargin": "",
+      "height": 60,
+      "img": {
+        "src": "Objetivo_1.png",
+        "height": 60,
+        "positionImg": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      "positionText": {
+        "x": 55,
+        "y": 5
+      },
       "buttonLabel": "Sube a bordo ",
-      "buttonLink": "/"
+      "buttonLink": "/oferta"
     },
     {
       "title": "La mejor forma de llegar al cielo es juntos.",
       "text": "Te queremos en nuestra órbita, por eso te ofrecemos convenios de prácticas y trabajos de final de titulación pensados espacialmente para tu perfil, esté dentro o fuera del ámbito de la ingeniería.",
       "theme": "light",
-      "src": "Objetivo_2.png",
-      "height": 700,
-      "customMargin": -250,
+      "height": 40,
+      "img": {
+        "src": "Objetivo_2.png",
+        "height": 60,
+        "positionImg": {
+          "x": 50,
+          "y": -20
+        }
+      },
+      "positionText": {
+        "x": 5,
+        "y": 5
+      },
       "buttonLabel": "Despegamos",
       "buttonLink": "/oferta"
     },
@@ -172,19 +192,39 @@
       "title": "Las estrellas comparten luz, nosotros conocimiento ",
       "text": "Sabemos que para impulsar la comunidad científica la accesibilidad del conocimiento es clave, por eso Teidesat te ofrece formación y tutorización regular como nuevo integrante. Nuestra labor divulgativa también se extiende a eventos científicos como, en los que participamos impartiendo charlas y talleres.",
       "theme": "light",
-      "src": "Objetivo_3.png",
-      "height": 600,
-      "customMargin": "-100",
+      "height": 40,
+      "img": {
+        "src": "Objetivo_3.png",
+        "height": 40,
+        "positionImg": {
+          "x": 10,
+          "y": 0
+        }
+      },
+      "positionText": {
+        "x": 50,
+        "y": 10
+      },
       "buttonLabel": "Propulsando ",
-      "buttonLink": "/"
+      "buttonLink": "/oferta"
     },
     {
       "title": "Creemos en un espacio sostenible para Canarias",
       "text": "Teidesat es un equipo reponsable con el impacto de su trabajo. Por ello enfocamos nuestro actual proyecto en analizar las consecuencias de las comunicaciones ópticas espaciales en las observaciones astrofísicas que se realizan desde los Observatorios de Canarias.",
       "theme": "light",
-      "src": "Objetivo_4.png",
-      "height": 600,
-      "customMargin": 0,
+      "height": 55,
+      "img": {
+        "src": "Objetivo_4.png",
+        "height": 40,
+        "positionImg": {
+          "x": 30,
+          "y": 0
+        }
+      },
+      "positionText": {
+        "x": 25,
+        "y": 30
+      },
       "buttonLabel": "Explora",
       "buttonLink": "/contacto"
     }

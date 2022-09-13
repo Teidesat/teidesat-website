@@ -18,7 +18,7 @@
       </div>
     </div>
 
-    <router-link to="/contacto" class="button mb-5">
+    <router-link to="/contacto" class="buttonTFG mb-5">
       <span style="color: #ffffff" class="fw-bold">Descubrir </span>
       <i style="color: #ffffff" class="fa-solid fa-arrow-down"></i>
     </router-link>
@@ -80,7 +80,7 @@ export default {
   margin-bottom: 10%;
   text-align: left;
 }
-.tfg .button {
+.tfg .buttonTFG {
   background-color: #c8e11f;
   border-radius: 25px;
   /* border: 2px solid #9696f8; */
@@ -93,11 +93,11 @@ export default {
   margin-top: 10px;
   text-decoration: none;
 }
-.tfg .button:hover {
+.tfg .buttonTFG:hover {
   transition: 0.2s ease;
   background-color: #9baf19;
 }
-.tfg .button:active {
+.tfg .buttonTFG:active {
   position: relative;
   top: 1px;
 }

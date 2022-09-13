@@ -5,7 +5,7 @@
       class="row justify-content-center align-items-start mx-5"
       v-if="isImgRight"
     >
-      <div class="col-sm-4" style="text-align: left">
+      <div class="col-sm-5" style="text-align: left">
         <h2 class="title">{{ title }}</h2>
         <p class="description">
           {{ text }}
@@ -23,6 +23,7 @@
         <img
           :src="require(`@/assets/images/landpage/${imgSrc}`)"
           :style="imgResize"
+          style="margin-left: -100px"
         />
       </div>
     </div>
@@ -30,13 +31,13 @@
       class="row justify-content-center align-items-start mx-5"
       v-if="!isImgRight"
     >
-      <div class="col-sm-7" :style="customMarginCalc">
+      <div class="col-sm-6" :style="customMarginCalc">
         <img
           :src="require(`@/assets/images/landpage/${imgSrc}`)"
           :style="imgResize"
         />
       </div>
-      <div class="col-sm-4" style="text-align: left">
+      <div class="col-sm-6" style="text-align: left">
         <h2 class="title">{{ title }}</h2>
         <p class="description">
           {{ text }}
@@ -76,7 +77,6 @@ export default {
       return this.imgPosition === "right";
     },
     isLightTheme() {
-      console.log(this.theme);
       return this.theme === "light";
     },
     imgResize() {
