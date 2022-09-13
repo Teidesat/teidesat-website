@@ -185,7 +185,7 @@
         "x": 5,
         "y": 5
       },
-      "buttonLabel": "Despegamos",
+      "buttonLabel": "Despegamos ",
       "buttonLink": "/oferta"
     },
     {
@@ -225,7 +225,7 @@
         "x": 25,
         "y": 30
       },
-      "buttonLabel": "Explora",
+      "buttonLabel": "Explora ",
       "buttonLink": "/contacto"
     }
   ],
