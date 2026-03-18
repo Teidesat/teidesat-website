@@ -1,5 +1,0 @@
-<odoo>
-    <template id="teidesat_homepage_legacy" name="Legacy homepage loader">
-        <t t-call="teidesat_website.page_home"/>
-    </template>
-</odoo>
