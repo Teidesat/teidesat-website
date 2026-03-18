@@ -1,0 +1,14 @@
+<odoo>
+    <template id="page_divulgacion" name="Divulgación">
+        <t t-call="website.layout">
+            <main class="teidesat-page teidesat-page--divulgacion">
+                <section class="container py-5">
+                    <h1>Divulgación</h1>
+                    <p>
+                        Contenido inicial de la página de divulgación del proyecto TEIDESAT.
+                    </p>
+                </section>
+            </main>
+        </t>
+    </template>
+</odoo>

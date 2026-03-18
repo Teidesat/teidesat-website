@@ -1,0 +1,12 @@
+<odoo>
+    <template id="page_nosotros" name="Nosotros">
+        <t t-call="website.layout">
+            <main class="teidesat-page teidesat-page--nosotros">
+                <section class="container py-5">
+                    <h1>Nosotros</h1>
+                    <p>Página en construcción.</p>
+                </section>
+            </main>
+        </t>
+    </template>
+</odoo>
