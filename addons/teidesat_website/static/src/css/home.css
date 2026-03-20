@@ -2,6 +2,18 @@ html {
     scroll-behavior: smooth;
 }
 
+:root {
+    --teidesat-bg: #050816;
+    --teidesat-bg-soft: #0b1326;
+    --teidesat-card: rgba(18, 26, 46, 0.82);
+    --teidesat-card-strong: rgba(20, 30, 54, 0.94);
+    --teidesat-border: rgba(255,255,255,0.08);
+    --teidesat-text-soft: rgba(255,255,255,0.78);
+    --teidesat-accent: #9edfff;
+    --teidesat-accent-2: #76f6de;
+    --teidesat-glow: rgba(118, 246, 222, 0.18);
+}
+
 body.teidesat-page {
     margin: 0;
     padding: 0;
@@ -9,33 +21,67 @@ body.teidesat-page {
     color: #f4f7fb;
     scroll-snap-type: y mandatory;
     overflow-y: scroll;
+    overflow-x: hidden;
     font-family: 'Montserrat', sans-serif;
+    scrollbar-gutter: stable;
 }
 
-.teidesat-main section,
-.teidesat-custom-footer {
+.teidesat-main section {
     min-height: 100vh;
+    min-height: 100svh;
     scroll-snap-align: start;
     scroll-snap-stop: always;
     box-sizing: border-box;
 }
 
-/* HEADER PROPIO */
+.teidesat-custom-footer {
+    box-sizing: border-box;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+}
+
+body.teidesat-menu-open {
+    overflow: hidden;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
 .teidesat-custom-header {
     position: fixed;
     top: 0;
     left: 0;
+    right: 0;
+    z-index: 1100;
+    padding: 1rem 2rem;
+    background: transparent;
+    backdrop-filter: none;
+    box-sizing: border-box;
+    pointer-events: none;
+}
+
+.teidesat-custom-header__inner {
     width: 100%;
-    z-index: 1000;
-
-    padding: 1.1rem 2rem;
-
-    display: flex;
+    max-width: 1440px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 56px 1fr 56px;
     align-items: center;
-    justify-content: space-between;
 
-    background: rgba(2,7,18,0.35);
+    background: rgba(2, 7, 18, 0.35);
     backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 18px;
+    padding: 0 0.4rem;
+    box-sizing: border-box;
+
+    pointer-events: auto;
+}
+
+.teidesat-custom-header__logo {
+    justify-self: center;
+    text-decoration: none;
 }
 
 .teidesat-logo {
@@ -45,59 +91,276 @@ body.teidesat-page {
     filter: drop-shadow(0 0 10px rgba(141,214,255,0.35));
 }
 
-.teidesat-custom-header__inner {
-    width: 100%;
-    max-width: 1440px;
-    margin: 0 auto;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.teidesat-header-spacer {
+    width: 56px;
+    height: 56px;
+    justify-self: end;
 }
 
-.teidesat-custom-header__logo {
-    text-decoration: none;
-    color: #ffffff;
-    font-weight: 800;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-}
-
-.teidesat-custom-header__nav {
-    display: flex;
-    gap: 1.5rem;
-}
-
-.teidesat-custom-header__nav a {
-    text-decoration: none;
-    color: rgba(255,255,255,0.92);
-    font-weight: 500;
-}
-
-.teidesat-custom-header__nav a:hover {
-    color: #9edfff;
-}
-
-/* FOOTER PROPIO */
-.teidesat-custom-footer {
-    display: flex;
+.teidesat-menu-toggle {
+    width: 56px;
+    height: 56px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    display: inline-flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: #020712;
-    text-align: center;
+    gap: 6px;
+    cursor: pointer;
+    justify-self: start;
 }
 
-.teidesat-custom-footer__inner p {
-    margin: 0;
-    font-size: 1rem;
-    color: rgba(255,255,255,0.85);
+.teidesat-menu-toggle span {
+    display: block;
+    width: 26px;
+    height: 2px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.92);
+    transition: transform 0.22s ease, opacity 0.22s ease;
 }
+
+.teidesat-menu-toggle:hover span {
+    background: #9edfff;
+}
+
+/* =========================================================
+   MENÚ LATERAL
+========================================================= */
+
+.teidesat-menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    z-index: 1190;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.teidesat-menu-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.teidesat-side-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: min(380px, 88vw);
+    height: 100vh;
+    height: 100svh;
+    background: rgba(1, 5, 14, 0.98);
+    border-right: 1px solid rgba(255,255,255,0.06);
+    z-index: 1200;
+    transform: translateX(-100%);
+    transition: transform 0.28s ease;
+    display: flex;
+    flex-direction: column;
+    padding: 1.3rem 1.2rem 1.5rem;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.teidesat-side-menu.is-open {
+    transform: translateX(0);
+}
+
+.teidesat-side-menu__top {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+}
+
+.teidesat-side-menu__close {
+    border: 0;
+    background: transparent;
+    color: rgba(255,255,255,0.7);
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0;
+}
+
+.teidesat-side-menu__close:hover {
+    color: #ffffff;
+}
+
+.teidesat-side-menu__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.teidesat-side-menu__nav a {
+    color: rgba(255,255,255,0.82);
+    text-decoration: none;
+    font-size: 1.05rem;
+    line-height: 1.4;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.teidesat-side-menu__nav a:hover {
+    color: #ffffff;
+    transform: translateX(4px);
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.teidesat-custom-footer {
+    position: relative;
+    min-height: auto;
+    padding: 3.5rem 0 2.5rem;
+    background: #020712;
+    overflow: hidden;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+}
+
+.teidesat-custom-footer__inner {
+    width: 100%;
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 2rem;
+}
+
+.teidesat-footer__brand {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.teidesat-footer__logo {
+    width: 280px;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 0 20px rgba(255,255,255,0.08));
+}
+
+.teidesat-footer__backtop {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.28);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 1.8rem;
+    line-height: 1;
+    transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+}
+
+.teidesat-footer__backtop:hover {
+    transform: translateY(-3px);
+    border-color: rgba(158,223,255,0.8);
+    background: rgba(255,255,255,0.04);
+}
+
+.teidesat-footer__socials {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+}
+
+.teidesat-footer__socials a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 2.1rem;
+    line-height: 1;
+    transition: transform 0.22s ease, color 0.22s ease, opacity 0.22s ease;
+    opacity: 0.95;
+}
+
+.teidesat-footer__socials a:hover {
+    transform: translateY(-3px);
+    color: #9edfff;
+    opacity: 1;
+}
+
+.teidesat-footer__social-x {
+    font-size: 2rem;
+    font-weight: 700;
+    display: inline-block;
+    transform: translateY(-1px);
+}
+
+/* =========================================================
+   BASE
+========================================================= */
 
 .teidesat-homepage {
     background:
         radial-gradient(circle at top, rgba(38, 78, 168, 0.28), transparent 35%),
         linear-gradient(180deg, #050816 0%, #07111f 50%, #050816 100%);
     color: #f4f7fb;
+}
+
+.teidesat-section {
+    padding: 6rem 0;
+}
+
+.teidesat-section-dark {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.teidesat-section-gradient {
+    background:
+        radial-gradient(circle at 20% 20%, rgba(70, 130, 255, 0.12), transparent 26%),
+        radial-gradient(circle at 80% 30%, rgba(118, 246, 222, 0.08), transparent 30%),
+        linear-gradient(180deg, #07101d 0%, #081223 50%, #050816 100%);
+}
+
+.teidesat-section-impact {
+    background:
+        radial-gradient(circle at 75% 20%, rgba(158, 223, 255, 0.10), transparent 28%),
+        linear-gradient(180deg, #07101d 0%, #050816 100%);
+}
+
+.section-heading {
+    margin-bottom: 3rem;
+}
+
+.section-heading--center {
+    text-align: center;
+}
+
+.section-heading h2 {
+    font-size: clamp(2rem, 3vw, 3rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.section-heading p {
+    max-width: 860px;
+    color: rgba(255, 255, 255, 0.78);
+    line-height: 1.75;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.section-kicker {
+    display: inline-block;
+    margin-bottom: 0.8rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--teidesat-accent);
 }
 
 /* =========================================================
@@ -111,11 +374,13 @@ body.teidesat-page {
 .teidesat-hero {
     position: relative;
     min-height: 100vh;
+    min-height: 100svh;
     overflow: hidden;
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
 }
+
 .teidesat-hero-brand {
     font-size: 1.15rem;
     font-weight: 700;
@@ -159,6 +424,7 @@ body.teidesat-page {
     padding-top: 7rem;
     padding-bottom: 3rem;
     min-height: 100vh;
+    min-height: 100svh;
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
@@ -175,7 +441,16 @@ body.teidesat-page {
     letter-spacing: -0.03em;
 }
 
-/* Satélite provisional */
+.teidesat-hero-subtitle {
+    margin-top: 1.4rem;
+    max-width: 720px;
+    font-size: 1.08rem;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.84);
+    text-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+}
+
+/* Satélite */
 .hero-satellite {
     position: absolute;
     top: 75%;
@@ -236,45 +511,21 @@ body.teidesat-page {
 }
 
 /* =========================================================
-   SECCIONES GENERALES
+   OBJETIVOS DESKTOP
 ========================================================= */
-
-.teidesat-section {
-    padding: 6rem 0;
-}
-
-.teidesat-section-dark {
-    background: rgba(255, 255, 255, 0.03);
-}
-
-.section-heading h2 {
-    font-size: clamp(2rem, 3vw, 3rem);
-    font-weight: 700;
-    margin-bottom: 1rem;
-}
-
-.section-heading p {
-    max-width: 860px;
-    color: rgba(255, 255, 255, 0.78);
-    line-height: 1.75;
-    margin-left: auto;
-    margin-right: auto;
-}
 
 #objetivos.teidesat-section {
     min-height: 100vh;
-    padding: 130px 0 0;
+    min-height: 100svh;
+    padding: 150px 0 30px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     box-sizing: border-box;
 }
 
 #objetivos .container {
     width: 100%;
 }
-/* =========================================================
-   OBJETIVOS
-========================================================= */
 
 .teidesat-objectives-stage {
     position: relative;
@@ -310,7 +561,6 @@ body.teidesat-page {
     filter: drop-shadow(0 0 8px rgba(118, 246, 222, 0.06));
 }
 
-/* Núcleo central */
 .objectives-core {
     position: absolute;
     top: 50%;
@@ -354,7 +604,6 @@ body.teidesat-page {
     pointer-events: none;
 }
 
-/* Nodos orbitales */
 .objective-node {
     position: absolute;
     top: 0;
@@ -402,18 +651,18 @@ body.teidesat-page {
     line-height: 1;
 }
 
-/* Tarjetas */
 .objective-panel {
     position: absolute;
     width: 260px;
     min-height: 150px;
     display: none;
-    padding: 1.2rem 1.25rem;
+    padding: 1rem 1rem;
     border-radius: 22px;
     background: rgba(20, 27, 46, 0.92);
     border: 1px solid rgba(255, 255, 255, 0.08);
     box-shadow: 0 18px 50px rgba(0,0,0,0.18);
     z-index: 1;
+    box-sizing: border-box;
 }
 
 .objective-panel.active {
@@ -432,7 +681,6 @@ body.teidesat-page {
     color: rgba(255, 255, 255, 0.82);
 }
 
-/* Posiciones desktop */
 .objective-panel--1 {
     top: 70px;
     left: -10px;
@@ -460,14 +708,598 @@ body.teidesat-page {
 }
 
 /* =========================================================
-   TABLET / PANTALLA MEDIA
+   TIMELINE
+========================================================= */
+
+#fases.teidesat-section {
+    min-height: 100vh;
+    min-height: 100svh;
+    padding: 120px 0 80px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+#fases .container {
+    width: 100%;
+    max-width: 1320px;
+    margin: 0 auto;
+}
+
+#fases .section-heading {
+    max-width: 1080px;
+    margin: 0 auto 2rem;
+}
+
+#fases .section-heading p {
+    max-width: 780px;
+    line-height: 1.55;
+}
+
+.teidesat-timeline {
+    position: relative;
+    width: min(1180px, 100%);
+    margin: 0 auto;
+    padding: 0 0 2.5rem;
+    box-sizing: border-box;
+}
+
+.teidesat-timeline::before {
+    content: "";
+    position: absolute;
+    top: 6px;
+    bottom: 6px;
+    left: 50%;
+    width: 2px;
+    transform: translateX(-50%);
+    background: linear-gradient(
+        180deg,
+        rgba(118, 246, 222, 0.08) 0%,
+        rgba(118, 246, 222, 0.42) 50%,
+        rgba(118, 246, 222, 0.08) 100%
+    );
+    box-shadow: 0 0 16px rgba(118, 246, 222, 0.12);
+}
+
+.timeline-item {
+    position: relative;
+    width: 100%;
+    margin-bottom: 0.9rem;
+    min-height: 112px;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-dot {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, #d9fff8 0%, #76f6de 55%, #318a7f 100%);
+    box-shadow:
+        0 0 0 6px rgba(118, 246, 222, 0.08),
+        0 0 18px rgba(118, 246, 222, 0.28);
+    z-index: 2;
+}
+
+.timeline-card {
+    position: relative;
+    width: calc(50% - 34px);
+    box-sizing: border-box;
+    padding: 1rem 1.1rem;
+    border-radius: 22px;
+    background: rgba(15, 24, 43, 0.84);
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 18px 42px rgba(0,0,0,0.18);
+    backdrop-filter: blur(8px);
+}
+
+.timeline-item:nth-child(odd) .timeline-card {
+    margin-left: auto;
+}
+
+.timeline-item:nth-child(even) .timeline-card {
+    margin-right: auto;
+}
+
+.timeline-card::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 22px;
+    height: 1px;
+    background: rgba(118, 246, 222, 0.35);
+}
+
+.timeline-item:nth-child(odd) .timeline-card::after {
+    left: -22px;
+}
+
+.timeline-item:nth-child(even) .timeline-card::after {
+    right: -22px;
+}
+
+.timeline-period {
+    display: inline-block;
+    margin-bottom: 0.35rem;
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #9edfff;
+}
+
+.timeline-card h3 {
+    margin: 0 0 0.35rem;
+    font-size: 1.45rem;
+    color: #ffffff;
+    line-height: 1.15;
+}
+
+.timeline-card p {
+    margin: 0;
+    color: rgba(255,255,255,0.78);
+    line-height: 1.45;
+    font-size: 0.94rem;
+}
+
+/* =========================================================
+   DESARROLLO
+========================================================= */
+
+.feature-highlight {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    align-items: stretch;
+}
+
+.feature-highlight__text,
+.feature-highlight__stats {
+    border-radius: 26px;
+    background: var(--teidesat-card);
+    border: 1px solid var(--teidesat-border);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.18);
+    backdrop-filter: blur(10px);
+}
+
+.feature-highlight__text {
+    padding: 1.8rem;
+}
+
+.feature-highlight__text h3 {
+    margin: 0 0 1rem;
+    font-size: 1.8rem;
+    color: #ffffff;
+}
+
+.feature-highlight__text p {
+    margin: 0 0 1rem;
+    color: var(--teidesat-text-soft);
+    line-height: 1.8;
+}
+
+.feature-highlight__text p:last-child {
+    margin-bottom: 0;
+}
+
+.feature-highlight__stats {
+    padding: 1.2rem;
+    display: grid;
+    gap: 1rem;
+}
+
+.mini-stat {
+    padding: 1.2rem;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.mini-stat__value {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--teidesat-accent-2);
+    line-height: 1;
+}
+
+.mini-stat__label {
+    margin-top: 0.5rem;
+    color: rgba(255,255,255,0.82);
+    line-height: 1.5;
+}
+
+/* =========================================================
+   CARDS / GRIDS
+========================================================= */
+
+.teidesat-grid {
+    display: grid;
+    gap: 1.4rem;
+}
+
+.teidesat-grid--3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.info-card {
+    position: relative;
+    padding: 1.45rem;
+    border-radius: 22px;
+    background: var(--teidesat-card);
+    border: 1px solid var(--teidesat-border);
+    box-shadow: 0 20px 45px rgba(0,0,0,0.16);
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+    transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+    box-sizing: border-box;
+}
+
+.info-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(158,223,255,0.5), transparent);
+}
+
+.info-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(158,223,255,0.16);
+    box-shadow: 0 28px 55px rgba(0,0,0,0.22);
+}
+
+.info-card h3 {
+    margin: 0 0 0.7rem;
+    font-size: 1.2rem;
+    color: #ffffff;
+}
+
+.info-card p {
+    margin: 0;
+    color: var(--teidesat-text-soft);
+    line-height: 1.7;
+}
+
+.status-banner {
+    margin-top: 2rem;
+    padding: 1.2rem 1.4rem;
+    border-radius: 22px;
+    background: linear-gradient(135deg, rgba(118,246,222,0.12), rgba(158,223,255,0.06));
+    border: 1px solid rgba(158,223,255,0.14);
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+
+.status-pill {
+    display: inline-flex;
+    width: fit-content;
+    padding: 0.38rem 0.8rem;
+    border-radius: 999px;
+    background: rgba(118,246,222,0.14);
+    border: 1px solid rgba(118,246,222,0.2);
+    color: #d9fff8;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.status-banner p {
+    margin: 0;
+    color: rgba(255,255,255,0.88);
+    line-height: 1.75;
+}
+
+/* =========================================================
+   FINANCIACIÓN
+========================================================= */
+
+.support-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 1.5rem;
+    align-items: stretch;
+}
+
+.support-hero-card {
+    padding: 1.8rem;
+    border-radius: 28px;
+    background:
+        radial-gradient(circle at top right, rgba(158,223,255,0.12), transparent 30%),
+        rgba(16, 25, 46, 0.92);
+    border: 1px solid var(--teidesat-border);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.18);
+}
+
+.support-amount {
+    display: inline-block;
+    margin-bottom: 0.7rem;
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    font-weight: 800;
+    color: var(--teidesat-accent-2);
+    line-height: 1;
+}
+
+.support-hero-card h3 {
+    margin: 0 0 1rem;
+    font-size: 1.8rem;
+    color: #fff;
+}
+
+.support-hero-card p {
+    margin: 0 0 1.5rem;
+    line-height: 1.8;
+    color: var(--teidesat-text-soft);
+}
+
+.progress-block__label {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.6rem;
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.88);
+}
+
+.progress-block__bar {
+    width: 100%;
+    height: 12px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.08);
+    overflow: hidden;
+}
+
+.progress-block__bar span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #76f6de 0%, #9edfff 100%);
+    box-shadow: 0 0 20px rgba(118,246,222,0.24);
+}
+
+.support-list {
+    display: grid;
+    gap: 1rem;
+}
+
+/* =========================================================
+   COLABORACIONES
+========================================================= */
+
+.partner-card {
+    position: relative;
+    padding: 1.6rem;
+    border-radius: 24px;
+    background: rgba(14, 21, 38, 0.94);
+    border: 1px solid rgba(255,255,255,0.08);
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+    box-sizing: border-box;
+}
+
+.partner-card:hover {
+    transform: translateY(-6px);
+}
+
+.partner-card__glow {
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(118,246,222,0.18) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.partner-card h3 {
+    position: relative;
+    margin: 0 0 0.9rem;
+    font-size: 1.25rem;
+    color: #fff;
+}
+
+.partner-card p {
+    position: relative;
+    margin: 0;
+    color: var(--teidesat-text-soft);
+    line-height: 1.75;
+}
+
+#colaboraciones.teidesat-section {
+    min-height: 100vh;
+    min-height: 100svh;
+    padding: 120px 0 40px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+#colaboraciones .container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+#colaboraciones .section-heading {
+    max-width: 980px;
+    margin: 0 auto 2.5rem;
+    text-align: center;
+}
+
+#colaboraciones .section-heading p {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 760px;
+}
+
+#colaboraciones .teidesat-grid--3 {
+    max-width: 1180px;
+    margin: 0 auto;
+    grid-template-columns: repeat(3, minmax(260px, 360px));
+    justify-content: center;
+    align-items: stretch;
+}
+
+#colaboraciones .partner-card {
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+/* =========================================================
+   IMPACTO
+========================================================= */
+
+#impacto.teidesat-section,
+.teidesat-section-impact {
+    min-height: 100vh;
+    min-height: 100svh;
+    padding: 120px 0 40px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+#impacto .container,
+.teidesat-section-impact .container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.impact-layout {
+    display: grid;
+    grid-template-columns: 1.35fr 0.9fr;
+    gap: 1.5rem;
+    align-items: center;
+    width: 100%;
+}
+
+.impact-copy {
+    padding: 2rem;
+    border-radius: 28px;
+    background: rgba(14, 23, 40, 0.82);
+    border: 1px solid var(--teidesat-border);
+    box-shadow: 0 20px 55px rgba(0,0,0,0.18);
+    box-sizing: border-box;
+}
+
+.impact-copy h2 {
+    margin: 0 0 1rem;
+    font-size: clamp(2rem, 3.2vw, 3.1rem);
+    color: #fff;
+}
+
+.impact-copy p {
+    margin: 0 0 1rem;
+    color: var(--teidesat-text-soft);
+    line-height: 1.72;
+}
+
+.impact-copy p:last-child {
+    margin-bottom: 0;
+}
+
+.impact-stats {
+    display: grid;
+    gap: 1rem;
+    align-content: center;
+}
+
+.impact-stat {
+    padding: 1.4rem;
+    border-radius: 22px;
+    background: rgba(18, 28, 50, 0.88);
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 18px 48px rgba(0,0,0,0.18);
+    box-sizing: border-box;
+}
+
+.impact-stat__value {
+    display: block;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--teidesat-accent-2);
+    margin-bottom: 0.5rem;
+}
+
+.impact-stat__label {
+    color: rgba(255,255,255,0.84);
+    line-height: 1.6;
+}
+
+/* =========================================================
+   REVEAL
+========================================================= */
+
+.reveal-up {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+}
+
+.reveal-up.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =========================================================
+   RESPONSIVE
 ========================================================= */
 
 @media (max-width: 1199px) {
+    .feature-highlight,
+    .support-layout,
+    .impact-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .teidesat-grid--3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .teidesat-hero-subtitle {
+        max-width: 600px;
+    }
+
+    #colaboraciones .teidesat-grid--3 {
+        grid-template-columns: repeat(2, minmax(260px, 360px));
+    }
+
+    #objetivos.teidesat-section {
+        min-height: 100vh;
+        min-height: 100svh;
+        padding: 120px 0 60px;
+        display: flex;
+        align-items: flex-start;
+    }
+
     .teidesat-objectives-stage {
+        width: 100%;
         height: auto;
-        display: grid;
-        gap: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 1.5rem;
+        margin-top: 0;
     }
 
     .teidesat-objectives-system {
@@ -478,6 +1310,7 @@ body.teidesat-page {
         height: 560px;
         margin: 0 auto;
         transform: none;
+        flex: 0 0 auto;
     }
 
     .objectives-core {
@@ -507,66 +1340,201 @@ body.teidesat-page {
         margin: 0 auto;
     }
 
-    .objective-panel h3 {
-        font-size: 1.35rem;
-    }
-
-    .objective-panel p {
-        font-size: 0.95rem;
-        line-height: 1.65;
-    }
-
     .objective-panel.active {
         display: block;
     }
 
-    .teidesat-objectives-system {
-    order: 1;
-    }
-
-    .objective-panel--2 {
-        order: 2;
-    }
-
-    .objective-panel--1 {
-        order: 3;
-    }
-
-    .objective-panel--3 {
-        order: 4;
-    }
-
-    .objective-panel--4 {
-        order: 5;
-    }
-
-    .objective-panel--5 {
-        order: 6;
-    }
+    .objective-panel--2 { order: 2; }
+    .objective-panel--1 { order: 3; }
+    .objective-panel--3 { order: 4; }
+    .objective-panel--4 { order: 5; }
+    .objective-panel--5 { order: 6; }
 }
 
-/* =========================================================
-   MÓVIL
-========================================================= */
+@media (max-width: 991px) {
+    #fases.teidesat-section {
+        min-height: calc(100svh + 72px);
+        padding: 110px 0 96px;
+        display: flex;
+        align-items: flex-start;
+    }
+
+    #fases .container {
+        padding-left: 16px;
+        padding-right: 16px;
+        box-sizing: border-box;
+    }
+
+    #fases .section-heading {
+        margin-bottom: 1.8rem;
+    }
+
+    .teidesat-timeline {
+        width: 100%;
+        padding: 0 0 4rem 26px;
+        box-sizing: border-box;
+    }
+
+    .teidesat-timeline::before {
+        left: 10px;
+        transform: none;
+        top: 0;
+        bottom: 0;
+    }
+
+    .timeline-item {
+        min-height: auto;
+        margin-bottom: 1rem;
+    }
+
+    .timeline-dot {
+        left: 10px;
+        top: 1.25rem;
+        transform: translate(-50%, 0);
+        width: 12px;
+        height: 12px;
+    }
+
+    .timeline-card {
+        width: 100%;
+        margin: 0 !important;
+        padding: 1rem;
+    }
+
+    .timeline-card::after {
+        display: none;
+    }
+
+    #colaboraciones.teidesat-section,
+    #impacto.teidesat-section,
+    .teidesat-section-impact {
+        min-height: calc(100svh + 72px);
+        padding: 110px 0 88px;
+        display: flex;
+        align-items: flex-start;
+    }
+
+    #colaboraciones .teidesat-grid--3 {
+        grid-template-columns: 1fr;
+        max-width: 700px;
+    }
+
+    .impact-layout {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+
+    .teidesat-custom-footer {
+        padding: 3rem 0 2.2rem;
+    }
+
+    .teidesat-custom-footer__inner {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+        gap: 1.8rem;
+    }
+
+    .teidesat-footer__brand {
+        justify-content: center;
+    }
+
+    .teidesat-footer__logo {
+        width: 230px;
+    }
+
+    .teidesat-footer__socials {
+        justify-content: center;
+    }
+
+}
 
 @media (max-width: 767px) {
+    .teidesat-custom-header {
+        padding: 0.9rem 1rem;
+    }
+
+    .teidesat-custom-header__nav {
+        gap: 0.9rem;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+
+    .teidesat-logo {
+        height: 30px;
+    }
+
+    .teidesat-hero-content {
+        padding-top: 6.5rem;
+        padding-bottom: 2rem;
+    }
+
+    .teidesat-hero-main-title {
+        font-size: clamp(2.2rem, 10vw, 3.4rem);
+    }
+
+    .teidesat-hero-subtitle {
+        font-size: 1rem;
+        line-height: 1.65;
+    }
+
+    .hero-satellite {
+        width: 250px;
+        height: 250px;
+        right: -18%;
+        top: 78%;
+        opacity: 0.9;
+    }
+
+    .teidesat-grid--3 {
+        grid-template-columns: 1fr;
+    }
+
+    .section-heading {
+        margin-bottom: 2rem;
+    }
+
+    .section-heading h2 {
+        line-height: 1.15;
+    }
+
+    #fases .container,
+    #colaboraciones .container,
+    #impacto .container,
+    .teidesat-section-impact .container {
+        padding-left: 14px;
+        padding-right: 14px;
+        box-sizing: border-box;
+    }
+
+    #objetivos.teidesat-section {
+        min-height: 100vh;
+        min-height: 100svh;
+        padding: 110px 0 50px;
+        display: flex;
+        align-items: flex-start;
+    }
+
     .teidesat-objectives-stage {
+        width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 1.5rem;
+        justify-content: flex-start;
+        gap: 1.2rem;
         height: auto;
-        margin-top: 1rem;
+        margin-top: 0;
     }
 
     .teidesat-objectives-system {
         position: relative;
         top: auto;
         left: auto;
-        width: 420px;
-        height: 420px;
+        width: min(420px, 100%);
+        height: min(420px, 100vw);
         margin: 0 auto;
         transform: none;
+        flex: 0 0 auto;
     }
 
     .objectives-orbits-svg {
@@ -601,6 +1569,7 @@ body.teidesat-page {
         padding: 1rem;
         transform: none !important;
         display: none;
+        margin: 0 auto;
     }
 
     .objective-panel.active {
@@ -617,16 +1586,83 @@ body.teidesat-page {
         line-height: 1.55;
     }
 
+    .timeline-card h3 {
+        font-size: 1.3rem;
+    }
+
+    .timeline-card p {
+        font-size: 0.92rem;
+        line-height: 1.5;
+    }
+
+    .impact-copy {
+        padding: 1.35rem;
+    }
 }
 
-/* =========================================================
-   MÓVIL PEQUEÑO
-========================================================= */
-
 @media (max-width: 480px) {
+    .teidesat-hero-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .hero-satellite {
+        width: 210px;
+        height: 210px;
+        right: -24%;
+    }
+
+    .hero-satellite::before {
+        width: 120px;
+        height: 16px;
+        top: 47%;
+        left: 31%;
+        transform: translateY(-50%) rotate(155deg);
+        filter: blur(7px);
+    }
+
+    .support-hero-card,
+    .impact-copy,
+    .info-card,
+    .partner-card,
+    .timeline-card {
+        border-radius: 18px;
+    }
+
+    #fases .container,
+    #colaboraciones .container,
+    #impacto .container,
+    .teidesat-section-impact .container {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .teidesat-timeline {
+        padding: 0 0 4rem 22px;
+    }
+
+    .timeline-dot {
+        left: 8px;
+    }
+
+    .teidesat-timeline::before {
+        left: 8px;
+    }
+
+    .timeline-card {
+        padding: 0.95rem;
+    }
+
+    .timeline-card h3 {
+        font-size: 1.18rem;
+    }
+
+    .timeline-period {
+        font-size: 0.68rem;
+    }
+
     .teidesat-objectives-system {
-        width: 320px;
-        height: 320px;
+        width: min(320px, 100%);
+        height: min(320px, 100vw);
     }
 
     .objectives-core {
@@ -649,5 +1685,35 @@ body.teidesat-page {
 
     .objective-panel {
         max-width: 280px;
+    }
+    .teidesat-custom-footer {
+        padding: 2.4rem 0 2rem;
+    }
+
+    .teidesat-custom-footer__inner {
+        padding: 0 1rem;
+        gap: 1.4rem;
+    }
+
+    .teidesat-footer__logo {
+        width: 190px;
+    }
+
+    .teidesat-footer__backtop {
+        width: 48px;
+        height: 48px;
+        font-size: 1.5rem;
+    }
+
+    .teidesat-footer__socials {
+        gap: 1rem;
+    }
+
+    .teidesat-footer__socials a {
+        font-size: 1.8rem;
+    }
+
+    .teidesat-footer__social-x {
+        font-size: 1.7rem;
     }
 }
