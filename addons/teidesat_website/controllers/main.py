@@ -15,3 +15,7 @@ class TeidesatWebsite(http.Controller):
     @http.route('/nosotros', type='http', auth='public', website=True)
     def teidesat_nosotros(self, **kwargs):
         return request.render('teidesat_website.page_nosotros')
+    
+    @http.route('/departamentos', type='http', auth='public', website=True)
+    def departamentos(self, **kwargs):
+        return request.render('teidesat_website.page_departamentos')

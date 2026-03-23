@@ -2,7 +2,7 @@
     <template id="page_nosotros" name="Nosotros">
         <t t-call="teidesat_website.teidesat_base_layout">
 
-            <main class="teidesat-page teidesat-page--about">
+            <div class="teidesat-page teidesat-page--about">
 
                 <!-- HERO -->
                 <section class="teidesat-about-hero">
@@ -222,7 +222,7 @@
                     </div>
                 </section>
 
-            </main>
+            </div>
 
         </t>
     </template>

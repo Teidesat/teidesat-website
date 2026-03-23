@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="page_departamentos" name="Departamentos">
+        <t t-call="teidesat_website.teidesat_base_layout">
+
+            <div class="teidesat-page teidesat-page--departments">
+
+                <!-- HERO -->
+                <section class="teidesat-departments-hero">
+                    <div class="container">
+                        <div class="teidesat-departments-hero__content reveal-up">
+                            <span class="section-kicker">DEPARTAMENTOS</span>
+                            <h1>Nuestros departamentos</h1>
+                            <p class="teidesat-departments-hero__lead">
+                                TEIDESAT está formado por distintos departamentos que trabajan de forma coordinada
+                                para desarrollar, comunicar y hacer crecer el proyecto.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FRASE LATINA -->
+                <section class="teidesat-departments-quote-band">
+                    <div class="container">
+                        <div class="teidesat-departments-quote reveal-up">
+                            <span class="teidesat-departments-quote__latin">Unitas in diversitate</span>
+                            <p>Un mismo proyecto, múltiples disciplinas trabajando en una misma dirección.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- GRID DE DEPARTAMENTOS -->
+                <section class="teidesat-departments-section">
+                    <div class="container">
+                        <div class="teidesat-departments-intro reveal-up">
+                            <span class="section-kicker">ÁREAS DE TRABAJO</span>
+                            <h2>Explora cada área del proyecto</h2>
+                            <p>
+                                Cada departamento aporta una parte esencial al desarrollo de la misión.
+                                Pulsa sobre cualquiera de ellos para conocer mejor su función.
+                            </p>
+                        </div>
+
+                        <div class="teidesat-departments-grid reveal-up">
+
+                            <a href="/departamentos/ads" class="department-bubble department-bubble--pink">
+                                <span class="department-bubble__glow"></span>
+                                <div class="department-bubble__image-wrap">
+                                    <img src="/teidesat_website/static/src/img/Pegatina_ADSC.png"
+                                         alt="Departamento ADS"
+                                         class="department-bubble__image"/>
+                                </div>
+                                <span class="department-bubble__label">ADS</span>
+                            </a>
+
+                            <a href="/departamentos/arte" class="department-bubble department-bubble--yellow">
+                                <span class="department-bubble__glow"></span>
+                                <div class="department-bubble__image-wrap">
+                                    <img src="/teidesat_website/static/src/img/Pegatina_Arte.png"
+                                         alt="Departamento Arte"
+                                         class="department-bubble__image"/>
+                                </div>
+                                <span class="department-bubble__label">Arte</span>
+                            </a>
+
+                            <a href="/departamentos/divulgacion" class="department-bubble department-bubble--green">
+                                <span class="department-bubble__glow"></span>
+                                <div class="department-bubble__image-wrap">
+                                    <img src="/teidesat_website/static/src/img/Pegatina_Divulgacion.png"
+                                         alt="Departamento Divulgación"
+                                         class="department-bubble__image"/>
+                                </div>
+                                <span class="department-bubble__label">Divulgación</span>
+                            </a>
+
+                            <a href="/departamentos/electrocom" class="department-bubble department-bubble--gold">
+                                <span class="department-bubble__glow"></span>
+                                <div class="department-bubble__image-wrap">
+                                    <img src="/teidesat_website/static/src/img/Pegatina_Electrocom.png"
+                                         alt="Departamento Electrocom"
+                                         class="department-bubble__image"/>
+                                </div>
+                                <span class="department-bubble__label">Electrocom</span>
+                            </a>
+
+                            <a href="/departamentos/it" class="department-bubble department-bubble--blue">
+                                <span class="department-bubble__glow"></span>
+                                <div class="department-bubble__image-wrap">
+                                    <img src="/teidesat_website/static/src/img/Pegatina_IT.png"
+                                         alt="Departamento IT"
+                                         class="department-bubble__image"/>
+                                </div>
+                                <span class="department-bubble__label">IT</span>
+                            </a>
+
+                            <a href="/departamentos/mecanica" class="department-bubble department-bubble--gray">
+                                <span class="department-bubble__glow"></span>
+                                <div class="department-bubble__image-wrap">
+                                    <img src="/teidesat_website/static/src/img/Pegatina_Mecanica.png"
+                                         alt="Departamento Mecánica"
+                                         class="department-bubble__image"/>
+                                </div>
+                                <span class="department-bubble__label">Mecánica</span>
+                            </a>
+
+                            <a href="/departamentos/rd" class="department-bubble department-bubble--purple">
+                                <span class="department-bubble__glow"></span>
+                                <div class="department-bubble__image-wrap">
+                                    <img src="/teidesat_website/static/src/img/Pegatina_R&amp;D.png"
+                                         alt="Departamento R&amp;D"
+                                         class="department-bubble__image"/>
+                                </div>
+                                <span class="department-bubble__label">R&amp;D</span>
+                            </a>
+
+                            <a href="/departamentos/administracion" class="department-bubble department-bubble--cyan">
+                                <span class="department-bubble__glow"></span>
+                                <div class="department-bubble__image-wrap">
+                                    <img src="/teidesat_website/static/src/img/Pegatina_Administracion.png"
+                                         alt="Departamento Administración"
+                                         class="department-bubble__image"/>
+                                </div>
+                                <span class="department-bubble__label">Administración</span>
+                            </a>
+
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+        </t>
+    </template>
+
+</odoo>

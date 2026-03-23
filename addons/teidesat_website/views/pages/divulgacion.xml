@@ -1,14 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <template id="page_divulgacion" name="Divulgación">
-        <t t-call="website.layout">
-            <main class="teidesat-page teidesat-page--divulgacion">
-                <section class="container py-5">
-                    <h1>Divulgación</h1>
-                    <p>
-                        Contenido inicial de la página de divulgación del proyecto TEIDESAT.
-                    </p>
+
+    <template id="page_divulgacion" name="Divulgacion">
+        <t t-call="teidesat_website.teidesat_base_layout">
+
+            <div class="teidesat-page teidesat-page--divulgacion">
+
+                <!-- HERO -->
+                <section class="teidesat-divulgacion-hero">
+                    <div class="container">
+                        <div class="teidesat-divulgacion-hero__content reveal-up">
+                            <span class="section-kicker">DIVULGACIÓN</span>
+                            <h1>Acercamos el espacio a las aulas y a la sociedad</h1>
+                            <p class="teidesat-divulgacion-hero__lead">
+                                TEIDESAT no es solo un proyecto tecnológico. También es una herramienta
+                                educativa y divulgativa para inspirar vocaciones científicas, acercar la
+                                ingeniería espacial a Canarias y generar impacto real en estudiantes,
+                                centros educativos y eventos públicos.
+                            </p>
+                        </div>
+                    </div>
                 </section>
-            </main>
+
+                <!-- FRASE -->
+                <section class="teidesat-divulgacion-quote-band">
+                    <div class="container">
+                        <div class="teidesat-divulgacion-quote reveal-up">
+                            <span class="teidesat-divulgacion-quote__latin">Scientia omnibus</span>
+                            <p>La ciencia no solo se construye: también se comparte.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- GALERÍA -->
+                <section class="teidesat-divulgacion-section teidesat-divulgacion-section--gallery">
+                    <div class="container">
+                        <div class="teidesat-divulgacion-heading reveal-up">
+                            <span class="section-kicker">GALERÍA</span>
+                            <h2>Divulgación en acción</h2>
+                            <p>
+                                Talleres, charlas, ferias, demostraciones y encuentros en los que TEIDESAT
+                                ha acercado el sector espacial a estudiantes y público general.
+                            </p>
+                        </div>
+
+                        <div class="teidesat-divulgacion-gallery reveal-up">
+                            <article class="teidesat-gallery-card teidesat-gallery-card--large">
+                                <img src="/teidesat_website/static/src/img/divulgacion-1.jpg"
+                                     alt="Actividad divulgativa TEIDESAT 1"/>
+                            </article>
+
+                            <article class="teidesat-gallery-card">
+                                <img src="/teidesat_website/static/src/img/divulgacion-2.jpg"
+                                     alt="Actividad divulgativa TEIDESAT 2"/>
+                            </article>
+
+                            <article class="teidesat-gallery-card">
+                                <img src="/teidesat_website/static/src/img/divulgacion-3.jpg"
+                                     alt="Actividad divulgativa TEIDESAT 3"/>
+                            </article>
+
+                            <article class="teidesat-gallery-card">
+                                <img src="/teidesat_website/static/src/img/divulgacion-4.jpg"
+                                     alt="Actividad divulgativa TEIDESAT 4"/>
+                            </article>
+
+                            <article class="teidesat-gallery-card">
+                                <img src="/teidesat_website/static/src/img/divulgacion-5.jpg"
+                                     alt="Actividad divulgativa TEIDESAT 5"/>
+                            </article>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- QUÉ HACEMOS -->
+                <section class="teidesat-divulgacion-section teidesat-divulgacion-section--activities">
+                    <div class="container">
+                        <div class="teidesat-divulgacion-heading reveal-up">
+                            <span class="section-kicker">QUÉ HACEMOS</span>
+                            <h2>Actividades divulgativas</h2>
+                            <p>
+                                Nuestra divulgación combina educación, participación y experiencia directa
+                                con tecnología real vinculada al ámbito aeroespacial.
+                            </p>
+                        </div>
+
+                        <div class="teidesat-divulgacion-cards reveal-up">
+                            <article class="teidesat-divulgacion-card teidesat-divulgacion-card--cyan">
+                                <h3>Talleres educativos</h3>
+                                <p>
+                                    Actividades prácticas para alumnado de diferentes edades, orientadas
+                                    a despertar interés por la ciencia, la tecnología y el espacio.
+                                </p>
+                            </article>
+
+                            <article class="teidesat-divulgacion-card teidesat-divulgacion-card--blue">
+                                <h3>Charlas y ponencias</h3>
+                                <p>
+                                    Intervenciones en centros, congresos y encuentros para explicar el
+                                    proyecto, sus retos técnicos y su impacto académico y social.
+                                </p>
+                            </article>
+
+                            <article class="teidesat-divulgacion-card teidesat-divulgacion-card--green">
+                                <h3>Ferias y eventos</h3>
+                                <p>
+                                    Participación en espacios públicos donde acercamos el proyecto a la
+                                    sociedad y generamos conversación sobre innovación en Canarias.
+                                </p>
+                            </article>
+
+                            <article class="teidesat-divulgacion-card teidesat-divulgacion-card--purple">
+                                <h3>Inspiración STEM</h3>
+                                <p>
+                                    Acciones orientadas a fomentar vocaciones científicas y tecnológicas,
+                                    mostrando referentes cercanos y experiencias reales.
+                                </p>
+                            </article>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- IMPACTO -->
+                <section class="teidesat-divulgacion-section teidesat-divulgacion-section--stats">
+                    <div class="container">
+                        <div class="teidesat-divulgacion-heading reveal-up">
+                            <span class="section-kicker">IMPACTO</span>
+                            <h2>Alcance y participación</h2>
+                            <p>
+                                La divulgación forma parte del núcleo del proyecto y se traduce en impacto
+                                directo sobre estudiantes, docentes y comunidad educativa.
+                            </p>
+                        </div>
+
+                        <div class="teidesat-divulgacion-stats reveal-up">
+                            <article class="teidesat-divulgacion-stat">
+                                <span class="teidesat-divulgacion-stat__value">+20.000</span>
+                                <span class="teidesat-divulgacion-stat__label">alumnos alcanzados</span>
+                            </article>
+
+                            <article class="teidesat-divulgacion-stat">
+                                <span class="teidesat-divulgacion-stat__value">+100</span>
+                                <span class="teidesat-divulgacion-stat__label">centros educativos y eventos</span>
+                            </article>
+
+                            <article class="teidesat-divulgacion-stat">
+                                <span class="teidesat-divulgacion-stat__value">Canarias</span>
+                                <span class="teidesat-divulgacion-stat__label">como entorno de innovación y ciencia</span>
+                            </article>
+
+                            <article class="teidesat-divulgacion-stat">
+                                <span class="teidesat-divulgacion-stat__value">STEM</span>
+                                <span class="teidesat-divulgacion-stat__label">vocaciones impulsadas desde el territorio</span>
+                            </article>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- REDES -->
+                <section class="teidesat-divulgacion-section teidesat-divulgacion-section--social">
+                    <div class="container">
+                        <div class="teidesat-divulgacion-social reveal-up">
+                            <div class="teidesat-divulgacion-social__text">
+                                <span class="section-kicker">COMUNIDAD</span>
+                                <h2>Sigue nuestra actividad</h2>
+                                <p>
+                                    Compartimos eventos, talleres, avances del proyecto y contenido
+                                    divulgativo en nuestras redes sociales.
+                                </p>
+                            </div>
+
+                            <div class="teidesat-divulgacion-social__links">
+                                <a href="https://www.instagram.com/teidesat/" target="_blank" rel="noopener noreferrer">Instagram</a>
+                                <a href="https://www.youtube.com/@TEIDESAT" target="_blank" rel="noopener noreferrer">YouTube</a>
+                                <a href="https://x.com/teidesat" target="_blank" rel="noopener noreferrer">X</a>
+                                <a href="https://www.linkedin.com/company/teidesat/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                                <a href="https://www.facebook.com/profile.php?id=100063464266134" target="_blank" rel="noopener noreferrer">Facebook</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CONTACTO -->
+                <section class="teidesat-divulgacion-section teidesat-divulgacion-section--contact">
+                    <div class="container">
+                        <div class="teidesat-divulgacion-contact reveal-up">
+                            <span class="section-kicker">COLABORA</span>
+                            <h2>¿Eres un centro educativo o una entidad?</h2>
+                            <p>
+                                Si quieres contar con TEIDESAT para una charla, taller, actividad o
+                                colaboración divulgativa, estaremos encantados de escucharte.
+                            </p>
+                            <a href="/contactus" class="teidesat-divulgacion-contact__button">Contactar con TEIDESAT</a>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
         </t>
     </template>
+
 </odoo>

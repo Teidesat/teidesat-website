@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
-    <!-- LAYOUT BASE PROPIO -->
+    <!-- LAYOUT BASE -->
     <template id="teidesat_base_layout" name="Teidesat Base Layout">
         <html lang="es">
             <head>
@@ -9,14 +9,13 @@
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
                 <title>TEIDESAT</title>
 
-                <!-- Assets frontend -->
-                <t t-call-assets="web.assets_frontend" t-css="true"/>
-                <t t-call-assets="web.assets_frontend" t-js="true"/>
+                <!-- Assets -->
+                <t t-call-assets="web.assets_frontend"/>
             </head>
 
             <body class="teidesat-page">
 
-                <!-- HEADER PROPIO -->
+                <!-- HEADER -->
             <header class="teidesat-custom-header">
                 <div class="teidesat-custom-header__inner">
 
@@ -57,12 +56,10 @@
                     <a href="/">Inicio</a>
                     <a href="/nosotros">Sobre nosotros</a>
                     <a href="/divulgacion">Divulgación</a>
-
-                    <!-- futuras páginas -->
                     <a href="#">Participa</a>
-                    <a href="#">Departamentos</a>
+                    <a href="/departamentos">Departamentos</a>
                     <a href="#">TeidesatKids</a>
-                    <a href="#contacto">Contacto</a>
+                    <a href="/contactus">Contacto</a>
                 </nav>
             </aside>
 
@@ -71,7 +68,7 @@
                     <t t-out="0"/>
                 </main>
 
-                <!-- FOOTER PROPIO -->
+                <!-- FOOTER -->
                 <footer class="teidesat-custom-footer" id="contacto">
 
                     <div class="teidesat-custom-footer__inner">
