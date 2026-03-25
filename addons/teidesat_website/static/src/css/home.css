@@ -68,14 +68,12 @@ body.teidesat-menu-open {
     display: grid;
     grid-template-columns: 56px 1fr 56px;
     align-items: center;
-
     background: rgba(2, 7, 18, 0.35);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255,255,255,0.06);
     border-radius: 18px;
     padding: 0 0.4rem;
     box-sizing: border-box;
-
     pointer-events: auto;
 }
 
@@ -118,7 +116,7 @@ body.teidesat-menu-open {
     height: 2px;
     border-radius: 999px;
     background: rgba(255,255,255,0.92);
-    transition: transform 0.22s ease, opacity 0.22s ease;
+    transition: transform 0.22s ease, opacity 0.22s ease, background 0.22s ease;
 }
 
 .teidesat-menu-toggle:hover span {
@@ -219,8 +217,6 @@ body.teidesat-menu-open {
     padding: 3.5rem 0 2.5rem;
     background: #020712;
     overflow: hidden;
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
 }
 
 .teidesat-custom-footer__inner {
@@ -303,13 +299,6 @@ body.teidesat-menu-open {
    BASE
 ========================================================= */
 
-.teidesat-homepage {
-    background:
-        radial-gradient(circle at top, rgba(38, 78, 168, 0.28), transparent 35%),
-        linear-gradient(180deg, #050816 0%, #07111f 50%, #050816 100%);
-    color: #f4f7fb;
-}
-
 .teidesat-section {
     padding: 6rem 0;
 }
@@ -333,10 +322,6 @@ body.teidesat-menu-open {
 
 .section-heading {
     margin-bottom: 3rem;
-}
-
-.section-heading--center {
-    text-align: center;
 }
 
 .section-heading h2 {
@@ -410,8 +395,12 @@ body.teidesat-menu-open {
 .teidesat-hero-overlay {
     position: absolute;
     inset: 0;
-    background:
-        linear-gradient(90deg, rgba(3, 8, 18, 0.78) 0%, rgba(3, 8, 18, 0.35) 42%, rgba(3, 8, 18, 0.12) 100%);
+    background: linear-gradient(
+        90deg,
+        rgba(3, 8, 18, 0.78) 0%,
+        rgba(3, 8, 18, 0.35) 42%,
+        rgba(3, 8, 18, 0.12) 100%
+    );
 }
 
 .teidesat-hero .container {
@@ -441,16 +430,8 @@ body.teidesat-menu-open {
     letter-spacing: -0.03em;
 }
 
-.teidesat-hero-subtitle {
-    margin-top: 1.4rem;
-    max-width: 720px;
-    font-size: 1.08rem;
-    line-height: 1.75;
-    color: rgba(255,255,255,0.84);
-    text-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
-}
-
 /* Satélite */
+
 .hero-satellite {
     position: absolute;
     top: 75%;
@@ -1122,9 +1103,9 @@ body.teidesat-menu-open {
 #colaboraciones.teidesat-section {
     min-height: 100vh;
     min-height: 100svh;
-    padding: 120px 0 40px;
+    padding: 120px 0 60px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     box-sizing: border-box;
 }
 
@@ -1132,25 +1113,23 @@ body.teidesat-menu-open {
     width: 100%;
     max-width: 1280px;
     margin: 0 auto;
+    min-height: calc(100svh - 180px);
+    display: grid;
+    grid-template-rows: auto 1fr;
+    align-content: start;
 }
 
 #colaboraciones .section-heading {
-    max-width: 980px;
-    margin: 0 auto 2.5rem;
-    text-align: center;
-}
-
-#colaboraciones .section-heading p {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 760px;
+    margin-bottom: 2.5rem;
 }
 
 #colaboraciones .teidesat-grid--3 {
     max-width: 1180px;
     margin: 0 auto;
+    width: 100%;
     grid-template-columns: repeat(3, minmax(260px, 360px));
     justify-content: center;
+    align-content: center;
     align-items: stretch;
 }
 
@@ -1165,7 +1144,6 @@ body.teidesat-menu-open {
    IMPACTO
 ========================================================= */
 
-#impacto.teidesat-section,
 .teidesat-section-impact {
     min-height: 100vh;
     min-height: 100svh;
@@ -1175,7 +1153,6 @@ body.teidesat-menu-open {
     box-sizing: border-box;
 }
 
-#impacto .container,
 .teidesat-section-impact .container {
     width: 100%;
     max-width: 1280px;
@@ -1273,10 +1250,6 @@ body.teidesat-menu-open {
 
     .teidesat-grid--3 {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .teidesat-hero-subtitle {
-        max-width: 600px;
     }
 
     #colaboraciones .teidesat-grid--3 {
@@ -1406,12 +1379,16 @@ body.teidesat-menu-open {
     }
 
     #colaboraciones.teidesat-section,
-    #impacto.teidesat-section,
     .teidesat-section-impact {
         min-height: calc(100svh + 72px);
         padding: 110px 0 88px;
         display: flex;
         align-items: flex-start;
+    }
+
+    #colaboraciones .container {
+        min-height: auto;
+        display: block;
     }
 
     #colaboraciones .teidesat-grid--3 {
@@ -1446,18 +1423,11 @@ body.teidesat-menu-open {
     .teidesat-footer__socials {
         justify-content: center;
     }
-
 }
 
 @media (max-width: 767px) {
     .teidesat-custom-header {
         padding: 0.9rem 1rem;
-    }
-
-    .teidesat-custom-header__nav {
-        gap: 0.9rem;
-        flex-wrap: wrap;
-        justify-content: flex-end;
     }
 
     .teidesat-logo {
@@ -1471,11 +1441,6 @@ body.teidesat-menu-open {
 
     .teidesat-hero-main-title {
         font-size: clamp(2.2rem, 10vw, 3.4rem);
-    }
-
-    .teidesat-hero-subtitle {
-        font-size: 1rem;
-        line-height: 1.65;
     }
 
     .hero-satellite {
@@ -1500,7 +1465,6 @@ body.teidesat-menu-open {
 
     #fases .container,
     #colaboraciones .container,
-    #impacto .container,
     .teidesat-section-impact .container {
         padding-left: 14px;
         padding-right: 14px;
@@ -1601,10 +1565,6 @@ body.teidesat-menu-open {
 }
 
 @media (max-width: 480px) {
-    .teidesat-hero-subtitle {
-        font-size: 0.95rem;
-    }
-
     .hero-satellite {
         width: 210px;
         height: 210px;
@@ -1630,7 +1590,6 @@ body.teidesat-menu-open {
 
     #fases .container,
     #colaboraciones .container,
-    #impacto .container,
     .teidesat-section-impact .container {
         padding-left: 12px;
         padding-right: 12px;
@@ -1686,6 +1645,7 @@ body.teidesat-menu-open {
     .objective-panel {
         max-width: 280px;
     }
+
     .teidesat-custom-footer {
         padding: 2.4rem 0 2rem;
     }

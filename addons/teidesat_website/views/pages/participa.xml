@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="page_participa" name="Teidesat Participa">
+        <t t-call="teidesat_website.teidesat_base_layout">
+
+            <div class="teidesat-page--participa">
+
+                <!-- HERO PARTICIPA -->
+                <section class="teidesat-participa-hero">
+                    <div class="container">
+                        <div class="teidesat-participa-hero__content reveal-up">
+                            <span class="section-kicker">PARTICIPA</span>
+                            <h1>¿Quieres formar parte de nuestro equipo?</h1>
+                            <p>
+                                No buscamos espectadores. Buscamos personas con ganas de aprender,
+                                construir y crecer dentro de un proyecto espacial real.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- BLOQUE PRINCIPAL -->
+                <section class="teidesat-participa-section">
+                    <div class="container">
+
+                        <div class="teidesat-participa-heading reveal-up">
+                            <span class="section-kicker">OPORTUNIDADES</span>
+                            <h2>Formas de participar en TEIDESAT</h2>
+                            <p>
+                                Puedes unirte desde distintos perfiles y etapas. Ya sea colaborando en
+                                divulgación, realizando prácticas o desarrollando tu TFG, buscamos gente
+                                con iniciativa y ganas de aportar.
+                            </p>
+                        </div>
+
+                        <div class="teidesat-participa-grid">
+
+                            <article class="participa-card reveal-up">
+                                <div class="participa-card__image">
+                                    <img src="/teidesat_website/static/src/img/participa-voluntariado.jpg"
+                                         alt="Voluntariado en actividades de TEIDESAT"/>
+                                </div>
+                                <div class="participa-card__body">
+                                    <h3>Voluntariado</h3>
+                                    <p>
+                                        Participa en eventos, talleres y actividades de divulgación
+                                        científica y tecnológica.
+                                    </p>
+                                    <p>
+                                        Es una buena forma de conocer el proyecto desde dentro, aprender
+                                        cómo trabaja el equipo y empezar a formar parte de la misión.
+                                    </p>
+                                </div>
+                            </article>
+
+                            <article class="participa-card reveal-up">
+                                <div class="participa-card__image">
+                                    <img src="/teidesat_website/static/src/img/participa-practicas.jpg"
+                                         alt="Prácticas en TEIDESAT"/>
+                                </div>
+                                <div class="participa-card__body">
+                                    <h3>Prácticas</h3>
+                                    <p>
+                                        Desarrolla tus habilidades profesionales participando en un entorno
+                                        técnico y multidisciplinar.
+                                    </p>
+                                    <p>
+                                        Podrás colaborar en tareas reales del proyecto y adquirir experiencia
+                                        aplicada en ingeniería, software, comunicación o gestión.
+                                    </p>
+                                </div>
+                            </article>
+
+                            <article class="participa-card reveal-up">
+                                <div class="participa-card__image">
+                                    <img src="/teidesat_website/static/src/img/participa-tfg.jpg"
+                                         alt="Trabajo de fin de grado en TEIDESAT"/>
+                                </div>
+                                <div class="participa-card__body">
+                                    <h3>Fin de grado</h3>
+                                    <p>
+                                        Desarrolla tu TFG dentro de un proyecto espacial real, con apoyo
+                                        técnico y conexión con necesidades concretas de la misión.
+                                    </p>
+                                    <p>
+                                        Es una oportunidad para aprender, especializarte y aportar algo
+                                        útil dentro del ecosistema TEIDESAT.
+                                    </p>
+                                </div>
+                            </article>
+
+                        </div>
+
+                        <div class="teidesat-participa-cta reveal-up">
+                            <div class="teidesat-participa-cta__text">
+                                <h3>Si quieres formar parte de la tripulación de TEIDESAT, este es tu punto de despegue.</h3>
+                                <p>
+                                    Escríbenos y cuéntanos cómo te gustaría participar. Estaremos encantados
+                                    de conocerte.
+                                </p>
+                            </div>
+
+                            <div class="teidesat-participa-cta__action">
+                                <a href="/contactus" class="teidesat-btn-primary">Contáctanos</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+            </div>
+
+        </t>
+    </template>
+
+</odoo>
