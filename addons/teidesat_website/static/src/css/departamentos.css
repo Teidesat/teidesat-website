@@ -8,7 +8,6 @@
         linear-gradient(180deg, #050816 0%, #07111f 45%, #050816 100%);
 }
 
-/* quitar snap en departamentos */
 body.teidesat-page:has(.teidesat-page--departments) {
     scroll-snap-type: none;
 }
@@ -63,7 +62,7 @@ body.teidesat-page:has(.teidesat-page--departments) {
     color: rgba(255,255,255,0.86);
 }
 
-/* FRASE LATINA */
+/* FRASE */
 .teidesat-departments-quote-band {
     padding: 34px 0;
     background: linear-gradient(180deg, rgba(255,255,255,0.025) 0%, rgba(255,255,255,0.04) 100%);
@@ -91,7 +90,7 @@ body.teidesat-page:has(.teidesat-page--departments) {
     line-height: 1.7;
 }
 
-/* SECCIÓN GRID */
+/* SECCIÓN */
 .teidesat-departments-section {
     padding: 88px 0;
     background:
@@ -117,56 +116,85 @@ body.teidesat-page:has(.teidesat-page--departments) {
     line-height: 1.82;
 }
 
-/* GRID */
-.teidesat-departments-grid {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 2rem 1.5rem;
-    max-width: 1100px;
+/* =========================================================
+   SISTEMA CENTRAL
+========================================================= */
+
+.teidesat-departments-orbital {
+    position: relative;
+    width: min(1000px, 100%);
+    min-height: 760px;
     margin: 0 auto;
-    justify-items: center;
-    align-items: start;
 }
 
-/* ICONOS */
-.department-bubble {
-    position: relative;
+.department-orbit-card {
+    position: absolute;
+    width: 270px;
+    text-decoration: none;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.95rem;
-    width: 100%;
-    max-width: 200px;
-    text-decoration: none;
-    padding: 0.8rem 0.4rem;
-    transition: transform 0.28s ease;
+    gap: 0.85rem;
+    text-align: center;
+    transition:
+        transform 0.35s ease,
+        opacity 0.35s ease,
+        filter 0.35s ease;
+    opacity: 1;
 }
 
-.department-bubble:hover {
+.department-orbit-card.is-changing {
+    opacity: 0;
+    transform: scale(0.92);
+    pointer-events: none;
+}
+
+.department-orbit-card:hover {
     transform: translateY(-6px);
 }
 
-.department-bubble__glow {
+.department-orbit-card--top-left {
+    top: 40px;
+    left: 90px;
+}
+
+.department-orbit-card--top-right {
+    top: 40px;
+    right: 90px;
+}
+
+.department-orbit-card--bottom-left {
+    bottom: 50px;
+    left: 90px;
+}
+
+.department-orbit-card--bottom-right {
+    bottom: 50px;
+    right: 90px;
+}
+
+.department-orbit-card__glow {
     position: absolute;
-    inset: 18px 28px 46px;
+    inset: 30px 30px 46px;
     border-radius: 999px;
-    opacity: 0;
+    background: rgba(118,246,222,0.22);
     filter: blur(26px);
-    transition: opacity 0.28s ease, transform 0.28s ease;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
     transform: scale(0.92);
     z-index: 0;
 }
 
-.department-bubble:hover .department-bubble__glow {
+.department-orbit-card:hover .department-orbit-card__glow {
     opacity: 1;
-    transform: scale(1.06);
+    transform: scale(1.08);
 }
 
-.department-bubble__image-wrap {
+.department-orbit-card__image-wrap {
     position: relative;
     z-index: 2;
-    width: 148px;
-    height: 148px;
+    width: 180px;
+    height: 180px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -180,7 +208,7 @@ body.teidesat-page:has(.teidesat-page--departments) {
     transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
 }
 
-.department-bubble:hover .department-bubble__image-wrap {
+.department-orbit-card:hover .department-orbit-card__image-wrap {
     transform: scale(1.06);
     border-color: rgba(255,255,255,0.18);
     box-shadow:
@@ -188,58 +216,131 @@ body.teidesat-page:has(.teidesat-page--departments) {
         0 0 0 1px rgba(255,255,255,0.10);
 }
 
-.department-bubble__image {
+.department-orbit-card__image {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
 }
 
-.department-bubble__label {
+.department-orbit-card__label {
     position: relative;
     z-index: 2;
-    color: rgba(255,255,255,0.92);
-    font-size: 0.98rem;
+    color: rgba(255,255,255,0.96);
+    font-size: 1.08rem;
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
+}
+
+/* =========================================================
+   ESTRELLA CENTRAL
+========================================================= */
+
+.departments-star-toggle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 210px;
+    height: 210px;
+    transform: translate(-50%, -50%);
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.departments-star-toggle__halo {
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle, rgba(118,246,222,0.18) 0%, rgba(118,246,222,0.08) 42%, transparent 72%);
+    filter: blur(16px);
+    animation: departmentsHaloPulse 2.6s ease-in-out infinite;
+}
+
+.departments-star-toggle__image {
+    position: relative;
+    z-index: 2;
+    width: 240px;
+    height: 240px;
+    object-fit: contain;
+    display: block;
+    filter:
+        brightness(1.15)
+        drop-shadow(0 0 20px rgba(118,246,222,0.22))
+        drop-shadow(0 0 42px rgba(118,246,222,0.22))
+        drop-shadow(0 0 70px rgba(74,214,255,0.14));
+    transition: transform 0.22s ease, filter 0.22s ease;
+}
+
+.departments-star-toggle:hover .departments-star-toggle__image {
+    transform: scale(1.06);
+    filter:
+        brightness(1.22)
+        drop-shadow(0 0 24px rgba(118,246,222,0.28))
+        drop-shadow(0 0 50px rgba(118,246,222,0.26))
+        drop-shadow(0 0 90px rgba(74,214,255,0.18));
+}
+
+.departments-star-toggle.is-spinning .departments-star-toggle__image {
+    animation: departmentsStarSpin 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.departments-star-helper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 135px);
+    z-index: 4;
     text-align: center;
 }
 
-/* COLORES GLOW */
-.department-bubble--pink .department-bubble__glow {
-    background: rgba(255, 92, 163, 0.34);
+.departments-star-helper span {
+    display: inline-block;
+    padding: 0.5rem 0.95rem;
+    border-radius: 999px;
+    background: rgba(14, 23, 40, 0.75);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.82);
+    font-size: 0.88rem;
+    line-height: 1.4;
 }
 
-.department-bubble--yellow .department-bubble__glow {
-    background: rgba(255, 214, 64, 0.34);
+/* =========================================================
+   ANIMACIONES
+========================================================= */
+
+@keyframes departmentsStarSpin {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+    100% {
+        transform: rotate(180deg) scale(1.04);
+    }
 }
 
-.department-bubble--green .department-bubble__glow {
-    background: rgba(113, 232, 125, 0.30);
+@keyframes departmentsHaloPulse {
+    0%, 100% {
+        transform: scale(0.95);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.04);
+        opacity: 1;
+    }
 }
 
-.department-bubble--gold .department-bubble__glow {
-    background: rgba(255, 196, 73, 0.30);
-}
+/* =========================================================
+   RESPONSIVE
+========================================================= */
 
-.department-bubble--blue .department-bubble__glow {
-    background: rgba(70, 164, 255, 0.32);
-}
-
-.department-bubble--gray .department-bubble__glow {
-    background: rgba(185, 198, 214, 0.22);
-}
-
-.department-bubble--purple .department-bubble__glow {
-    background: rgba(162, 101, 255, 0.30);
-}
-
-.department-bubble--cyan .department-bubble__glow {
-    background: rgba(74, 214, 255, 0.28);
-}
-
-/* RESPONSIVE */
 @media (max-width: 991px) {
     .teidesat-departments-hero {
         padding: 130px 0 70px;
@@ -249,8 +350,46 @@ body.teidesat-page:has(.teidesat-page--departments) {
         padding: 72px 0;
     }
 
-    .teidesat-departments-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+    .teidesat-departments-orbital {
+        min-height: 980px;
+    }
+
+    .department-orbit-card {
+        width: 200px;
+    }
+
+    .department-orbit-card--top-left {
+        top: 30px;
+        left: 20px;
+    }
+
+    .department-orbit-card--top-right {
+        top: 30px;
+        right: 20px;
+    }
+
+    .department-orbit-card--bottom-left {
+        bottom: 40px;
+        left: 20px;
+    }
+
+    .department-orbit-card--bottom-right {
+        bottom: 40px;
+        right: 20px;
+    }
+
+    .departments-star-toggle {
+        width: 280px;
+        height: 280px;
+    }
+
+    .departments-star-toggle__image {
+        width: 240px;
+        height: 240px;
+    }
+
+    .departments-star-helper {
+        transform: translate(-50%, 118px);
     }
 }
 
@@ -281,24 +420,72 @@ body.teidesat-page:has(.teidesat-page--departments) {
         padding: 60px 0;
     }
 
-    .teidesat-departments-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 2rem 1rem;
+    .teidesat-departments-orbital {
+        min-height: auto;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.4rem;
+        justify-items: center;
     }
 
-    .department-bubble__image-wrap {
-        width: 128px;
-        height: 128px;
+    .departments-star-toggle {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        order: 1;
+        width: 150px;
+        height: 150px;
+    }
+
+    .departments-star-toggle__image {
+        width: 125px;
+        height: 125px;
+    }
+
+    .departments-star-helper {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        order: 2;
+        margin-top: -0.6rem;
+    }
+
+    .department-orbit-card {
+        position: relative;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        width: 100%;
+        max-width: 250px;
+        order: 3;
+    }
+
+    .department-orbit-card__image-wrap {
+        width: 130px;
+        height: 130px;
     }
 }
 
 @media (max-width: 479px) {
-    .department-bubble__image-wrap {
+    .department-orbit-card__image-wrap {
         width: 112px;
         height: 112px;
     }
 
-    .department-bubble__label {
+    .department-orbit-card__label {
         font-size: 0.86rem;
+    }
+
+    .departments-star-toggle {
+        width: 130px;
+        height: 130px;
+    }
+
+    .departments-star-toggle__image {
+        width: 108px;
+        height: 108px;
     }
 }

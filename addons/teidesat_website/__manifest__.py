@@ -10,6 +10,7 @@
         'views/pages/nosotros.xml',
         'views/pages/departamentos.xml',
         'views/pages/participa.xml',
+        'views/pages/contacto.xml',
     ],
     'assets': {
         'web.assets_frontend': [
@@ -19,6 +20,8 @@
             'teidesat_website/static/src/js/home.js',
             'teidesat_website/static/src/css/departamentos.css',
             'teidesat_website/static/src/css/participa.css',
+            'teidesat_website/static/src/css/contacto.css',
+            'teidesat_website/static/src/js/departamentos.js',
         ],
     },
     'installable': True,

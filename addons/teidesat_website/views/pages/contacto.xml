@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="page_contacto" name="Teidesat Contacto">
+        <t t-call="teidesat_website.teidesat_base_layout">
+
+            <div class="teidesat-page--contacto">
+
+                <!-- HERO CONTACTO -->
+                <section class="teidesat-contacto-hero">
+                    <div class="container">
+                        <div class="teidesat-contacto-hero__content reveal-up">
+                            <span class="section-kicker">CONTACTO</span>
+                            <h1>Contáctanos</h1>
+                            <p>
+                                Estamos abiertos a colaboraciones, propuestas académicas y alianzas estratégicas.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FORMULARIO -->
+                <section class="teidesat-contacto-section">
+                    <div class="container">
+
+                        <div class="teidesat-contacto-heading reveal-up">
+                            <span class="section-kicker">ESCRÍBENOS</span>
+                            <h2>Cuéntanos cómo te gustaría participar</h2>
+                            <p>
+                                Tanto si eres estudiante, investigador, entidad colaboradora o simplemente
+                                quieres saber más, estaremos encantados de escucharte.
+                            </p>
+                        </div>
+
+                        <div class="teidesat-contacto-form-wrap reveal-up">
+
+                            <t t-if="request.params.get('ok')">
+                                <div class="teidesat-contacto-success">
+                                    Tu mensaje se ha enviado correctamente. Gracias por contactar con TEIDESAT.
+                                </div>
+                            </t>
+
+                            <form action="/contacto/enviar" method="post" class="teidesat-contacto-form">
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+
+                                <div class="teidesat-form-row">
+                                    <label for="nombre">Nombre *</label>
+                                    <input type="text" id="nombre" name="nombre" required="required"/>
+                                </div>
+
+                                <div class="teidesat-form-row">
+                                    <label for="telefono">Número de teléfono</label>
+                                    <input type="text" id="telefono" name="telefono"/>
+                                </div>
+
+                                <div class="teidesat-form-row">
+                                    <label for="email">Correo electrónico *</label>
+                                    <input type="email" id="email" name="email" required="required"/>
+                                </div>
+
+                                <div class="teidesat-form-row">
+                                    <label for="empresa">Empresa</label>
+                                    <input type="text" id="empresa" name="empresa"/>
+                                </div>
+
+                                <div class="teidesat-form-row">
+                                    <label for="asunto">Asunto *</label>
+                                    <select id="asunto" name="asunto" required="required">
+                                        <option value="">Selecciona una opción</option>
+                                        <option value="Prácticas">Prácticas</option>
+                                        <option value="Voluntariado">Voluntariado</option>
+                                        <option value="Divulgación">Divulgación</option>
+                                        <option value="TFG/TFM">TFG/TFM</option>
+                                    </select>
+                                </div>
+
+                                <div class="teidesat-form-row">
+                                    <label for="mensaje">Mensaje *</label>
+                                    <textarea id="mensaje" name="mensaje" rows="6" required="required"></textarea>
+                                </div>
+
+                                <div class="teidesat-contacto-actions">
+                                    <button type="submit" class="teidesat-btn-primary">Enviar</button>
+                                </div>
+                            </form>
+
+                        </div>
+
+                    </div>
+                </section>
+
+            </div>
+
+        </t>
+    </template>
+
+</odoo>
