@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="page_departamento_administracion" name="Departamento Administración">
+        <t t-call="teidesat_website.teidesat_base_layout">
+
+            <div class="teidesat-page teidesat-page--department-detail">
+
+                <!-- HERO -->
+                <section class="teidesat-department-hero">
+                    <div class="container">
+                        <div class="teidesat-department-hero__grid reveal-up">
+
+                            <div class="teidesat-department-hero__content">
+                                <span class="section-kicker">DEPARTAMENTO</span>
+                                <h1>Administración</h1>
+                                <p class="teidesat-department-hero__lead">
+                                    El departamento de Administración se encarga de la gestión organizativa,
+                                    coordinación interna y soporte operativo del proyecto TEIDESAT,
+                                    asegurando que todos los equipos trabajen de forma estructurada y eficiente.
+                                </p>
+                            </div>
+
+                            <div class="teidesat-department-hero__visual">
+                                <div class="teidesat-department-hero__logo-wrap">
+                                    <img src="/teidesat_website/static/src/img/Pegatina_Administracion.png"
+                                         alt="Logo del departamento Administración"
+                                         class="teidesat-department-hero__logo"/>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FRASE -->
+                <section class="teidesat-department-band">
+                    <div class="container">
+                        <div class="teidesat-department-band__inner reveal-up">
+                            <span class="teidesat-department-band__title">Rol dentro del proyecto</span>
+                            <p>
+                                Coordinar equipos, organizar recursos y garantizar el correcto funcionamiento
+                                del proyecto a nivel interno y logístico.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- RESUMEN -->
+                <section class="teidesat-department-section">
+                    <div class="container">
+
+                        <div class="teidesat-department-section__intro reveal-up">
+                            <span class="section-kicker">VISIÓN GENERAL</span>
+                            <h2>Qué hace este departamento</h2>
+                            <p>
+                                Este departamento actúa como eje organizativo del proyecto, facilitando la
+                                comunicación entre áreas, la gestión de tareas y el seguimiento del trabajo.
+                            </p>
+                        </div>
+
+                        <div class="teidesat-department-cards teidesat-department-cards--3">
+                            <article class="teidesat-department-card reveal-up">
+                                <h3>Gestión de equipos</h3>
+                                <p>
+                                    Coordinación entre departamentos para asegurar que el trabajo avance
+                                    de forma organizada y alineada con los objetivos del proyecto.
+                                </p>
+                            </article>
+
+                            <article class="teidesat-department-card reveal-up">
+                                <h3>Planificación</h3>
+                                <p>
+                                    Organización de tareas, seguimiento de avances y estructuración del
+                                    flujo de trabajo dentro del equipo.
+                                </p>
+                            </article>
+
+                            <article class="teidesat-department-card reveal-up">
+                                <h3>Soporte organizativo</h3>
+                                <p>
+                                    Apoyo a los distintos departamentos en aspectos logísticos, documentación
+                                    y coordinación interna.
+                                </p>
+                            </article>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- OBJETIVOS -->
+                <section class="teidesat-department-section teidesat-department-section--alt">
+                    <div class="container">
+
+                        <div class="teidesat-department-section__intro reveal-up">
+                            <span class="section-kicker">OBJETIVOS</span>
+                            <h2>Objetivos del departamento</h2>
+                            <p>
+                                Administración permite que el proyecto funcione de forma organizada y sostenible.
+                            </p>
+                        </div>
+
+                        <div class="teidesat-department-goals">
+                            <article class="teidesat-goal-card reveal-up">
+                                <span class="teidesat-goal-card__number">01</span>
+                                <h3>Mejorar la coordinación</h3>
+                                <p>
+                                    Facilitar la comunicación entre equipos y evitar bloqueos en el desarrollo.
+                                </p>
+                            </article>
+
+                            <article class="teidesat-goal-card reveal-up">
+                                <span class="teidesat-goal-card__number">02</span>
+                                <h3>Organizar el trabajo</h3>
+                                <p>
+                                    Estructurar tareas y prioridades para que el proyecto avance de forma eficiente.
+                                </p>
+                            </article>
+
+                            <article class="teidesat-goal-card reveal-up">
+                                <span class="teidesat-goal-card__number">03</span>
+                                <h3>Dar soporte al equipo</h3>
+                                <p>
+                                    Ayudar a los distintos departamentos en aspectos organizativos y de gestión.
+                                </p>
+                            </article>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- MIEMBROS -->
+                <section class="teidesat-department-section">
+                    <div class="container">
+
+                        <div class="teidesat-department-section__intro reveal-up">
+                            <span class="section-kicker">EQUIPO</span>
+                            <h2>Miembros del departamento</h2>
+                            <p>
+                                Personas encargadas de la organización, planificación y coordinación del proyecto.
+                            </p>
+                        </div>
+
+                        <div class="teidesat-department-members">
+                            <article class="teidesat-member-card reveal-up">
+                                <div class="teidesat-member-card__avatar">
+                                    <span>A</span>
+                                </div>
+                                <h3>Miembro Administración</h3>
+                                <p class="teidesat-member-card__role">Gestión / coordinación</p>
+                                <p>
+                                    Organización de tareas, coordinación de equipos y seguimiento del estado del proyecto.
+                                </p>
+                            </article>
+
+                            <article class="teidesat-member-card reveal-up">
+                                <div class="teidesat-member-card__avatar">
+                                    <span>+</span>
+                                </div>
+                                <h3>Próximamente</h3>
+                                <p class="teidesat-member-card__role">Miembro del departamento</p>
+                                <p>
+                                    Espacio para añadir nuevos integrantes del área administrativa.
+                                </p>
+                            </article>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- CTA -->
+                <section class="teidesat-department-cta-section">
+                    <div class="container">
+                        <div class="teidesat-department-cta reveal-up">
+                            <div class="teidesat-department-cta__text">
+                                <h3>¿Quieres colaborar en la organización del proyecto?</h3>
+                                <p>
+                                    Puedes participar ayudando en la gestión, coordinación o soporte interno del equipo.
+                                </p>
+                            </div>
+
+                            <div class="teidesat-department-cta__actions">
+                                <a href="/departamentos" class="teidesat-btn-secondary">Volver a departamentos</a>
+                                <a href="/contacto" class="teidesat-btn-primary">Contactar</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+        </t>
+    </template>
+
+</odoo>

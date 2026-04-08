@@ -27,6 +27,38 @@ class TeidesatWebsite(http.Controller):
     @http.route('/contacto', type='http', auth='public', website=True)
     def contacto(self, **kwargs):
         return request.render('teidesat_website.page_contacto')
+    
+    @http.route('/departamentos/it', type='http', auth='public', website=True)
+    def departamento_it(self, **kwargs):
+        return request.render('teidesat_website.page_departamento_it')
+    
+    @http.route('/departamentos/arte', type='http', auth='public', website=True)
+    def departamento_arte(self, **kwargs):
+        return request.render('teidesat_website.page_departamento_arte')
+    
+    @http.route('/departamentos/divulgacion', type='http', auth='public', website=True)
+    def departamento_divulgacion(self, **kwargs):
+        return request.render('teidesat_website.page_departamento_divulgacion')
+    
+    @http.route('/departamentos/ads', type='http', auth='public', website=True)
+    def departamento_ads(self, **kwargs):
+        return request.render('teidesat_website.page_departamento_ads')
+    
+    @http.route('/departamentos/mecanica', type='http', auth='public', website=True)
+    def departamento_mecanica(self, **kwargs):
+        return request.render('teidesat_website.page_departamento_mecanica')
+    
+    @http.route('/departamentos/administracion', type='http', auth='public', website=True)
+    def departamento_administracion(self, **kwargs):
+        return request.render('teidesat_website.page_departamento_administracion')
+    
+    @http.route('/departamentos/rd', type='http', auth='public', website=True)
+    def departamento_rd(self, **kwargs):
+        return request.render('teidesat_website.page_departamento_rd')
+    
+    @http.route('/departamentos/electrocom', type='http', auth='public', website=True)
+    def departamento_electrocom(self, **kwargs):
+        return request.render('teidesat_website.page_departamento_electrocom')
 
     @http.route('/contacto/enviar', type='http', auth='public', website=True, methods=['POST'], csrf=True)
     def contacto_enviar(self, **post):

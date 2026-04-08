@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="page_departamento_rd" name="Departamento R&D">
+        <t t-call="teidesat_website.teidesat_base_layout">
+
+            <div class="teidesat-page teidesat-page--department-detail">
+
+                <!-- HERO -->
+                <section class="teidesat-department-hero">
+                    <div class="container">
+                        <div class="teidesat-department-hero__grid reveal-up">
+
+                            <div class="teidesat-department-hero__content">
+                                <span class="section-kicker">DEPARTAMENTO</span>
+                                <h1>R&amp;D</h1>
+                                <p class="teidesat-department-hero__lead">
+                                    El departamento de R&amp;D (Research and Development) trabaja en la
+                                    investigación, validación y evolución de nuevas soluciones técnicas
+                                    para el proyecto, explorando mejoras, conceptos y tecnologías con
+                                    potencial aplicación en TEIDESAT.
+                                </p>
+                            </div>
+
+                            <div class="teidesat-department-hero__visual">
+                                <div class="teidesat-department-hero__logo-wrap">
+                                    <img src="/teidesat_website/static/src/img/Pegatina_R&amp;D.png"
+                                         alt="Logo del departamento R&amp;D"
+                                         class="teidesat-department-hero__logo"/>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FRASE / IDENTIDAD -->
+                <section class="teidesat-department-band">
+                    <div class="container">
+                        <div class="teidesat-department-band__inner reveal-up">
+                            <span class="teidesat-department-band__title">Rol dentro del proyecto</span>
+                            <p>
+                                Investigar, experimentar y transformar nuevas ideas en avances útiles
+                                para el presente y futuro de la misión.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- RESUMEN -->
+                <section class="teidesat-department-section">
+                    <div class="container">
+
+                        <div class="teidesat-department-section__intro reveal-up">
+                            <span class="section-kicker">VISIÓN GENERAL</span>
+                            <h2>Qué hace este departamento</h2>
+                            <p>
+                                Esta área estudia nuevas posibilidades técnicas, analiza mejoras y
+                                desarrolla propuestas que pueden incorporarse al proyecto a medio o largo plazo.
+                            </p>
+                        </div>
+
+                        <div class="teidesat-department-cards teidesat-department-cards--3">
+                            <article class="teidesat-department-card reveal-up">
+                                <h3>Investigación aplicada</h3>
+                                <p>
+                                    Estudio de conceptos, tecnologías y metodologías que puedan aportar
+                                    valor real al desarrollo del satélite y sus sistemas.
+                                </p>
+                            </article>
+
+                            <article class="teidesat-department-card reveal-up">
+                                <h3>Prototipado y validación</h3>
+                                <p>
+                                    Desarrollo de pruebas, simulaciones o prototipos para analizar la
+                                    viabilidad de nuevas ideas antes de integrarlas en el proyecto.
+                                </p>
+                            </article>
+
+                            <article class="teidesat-department-card reveal-up">
+                                <h3>Evolución del proyecto</h3>
+                                <p>
+                                    Identificación de mejoras futuras y oportunidades de innovación que
+                                    ayuden a hacer crecer TEIDESAT técnica y estratégicamente.
+                                </p>
+                            </article>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- OBJETIVOS -->
+                <section class="teidesat-department-section teidesat-department-section--alt">
+                    <div class="container">
+
+                        <div class="teidesat-department-section__intro reveal-up">
+                            <span class="section-kicker">OBJETIVOS</span>
+                            <h2>Objetivos del departamento</h2>
+                            <p>
+                                R&amp;D actúa como espacio de exploración e innovación dentro del ecosistema de TEIDESAT.
+                            </p>
+                        </div>
+
+                        <div class="teidesat-department-goals">
+                            <article class="teidesat-goal-card reveal-up">
+                                <span class="teidesat-goal-card__number">01</span>
+                                <h3>Explorar nuevas soluciones</h3>
+                                <p>
+                                    Analizar tecnologías, herramientas y enfoques que puedan aplicarse
+                                    al proyecto en futuras fases.
+                                </p>
+                            </article>
+
+                            <article class="teidesat-goal-card reveal-up">
+                                <span class="teidesat-goal-card__number">02</span>
+                                <h3>Reducir incertidumbre técnica</h3>
+                                <p>
+                                    Validar mediante pruebas y estudios previos aquellas propuestas que
+                                    puedan convertirse en mejoras reales para la misión.
+                                </p>
+                            </article>
+
+                            <article class="teidesat-goal-card reveal-up">
+                                <span class="teidesat-goal-card__number">03</span>
+                                <h3>Impulsar la innovación</h3>
+                                <p>
+                                    Mantener abierto un espacio de investigación que permita a TEIDESAT
+                                    evolucionar con nuevas ideas y desarrollos.
+                                </p>
+                            </article>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- MIEMBROS -->
+                <section class="teidesat-department-section">
+                    <div class="container">
+
+                        <div class="teidesat-department-section__intro reveal-up">
+                            <span class="section-kicker">EQUIPO</span>
+                            <h2>Miembros del departamento</h2>
+                            <p>
+                                Espacio preparado para presentar a las personas que trabajan en investigación,
+                                prototipado y desarrollo de nuevas propuestas.
+                            </p>
+                        </div>
+
+                        <div class="teidesat-department-members">
+                            <article class="teidesat-member-card reveal-up">
+                                <div class="teidesat-member-card__avatar">
+                                    <span>R</span>
+                                </div>
+                                <h3>Miembro de R&amp;D</h3>
+                                <p class="teidesat-member-card__role">Investigación / desarrollo</p>
+                                <p>
+                                    Trabajo orientado a estudiar nuevas soluciones y validar ideas con
+                                    posible aplicación futura dentro del proyecto.
+                                </p>
+                            </article>
+
+                            <article class="teidesat-member-card reveal-up">
+                                <div class="teidesat-member-card__avatar">
+                                    <span>+</span>
+                                </div>
+                                <h3>Próximamente</h3>
+                                <p class="teidesat-member-card__role">Miembro del departamento</p>
+                                <p>
+                                    Esta tarjeta puede reutilizarse para añadir más integrantes o líneas
+                                    de trabajo específicas del área.
+                                </p>
+                            </article>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- CTA -->
+                <section class="teidesat-department-cta-section">
+                    <div class="container">
+                        <div class="teidesat-department-cta reveal-up">
+                            <div class="teidesat-department-cta__text">
+                                <h3>¿Quieres saber más sobre R&amp;D?</h3>
+                                <p>
+                                    Puedes volver al mapa general de departamentos o contactar con el equipo
+                                    para conocer mejor las líneas de innovación e investigación del proyecto.
+                                </p>
+                            </div>
+
+                            <div class="teidesat-department-cta__actions">
+                                <a href="/departamentos" class="teidesat-btn-secondary">Volver a departamentos</a>
+                                <a href="/contacto" class="teidesat-btn-primary">Contactar</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+        </t>
+    </template>
+
+</odoo>

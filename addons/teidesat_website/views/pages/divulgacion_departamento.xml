@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="page_departamento_divulgacion" name="Departamento Divulgación">
+        <t t-call="teidesat_website.teidesat_base_layout">
+
+            <div class="teidesat-page teidesat-page--department-detail">
+
+                <!-- HERO -->
+                <section class="teidesat-department-hero">
+                    <div class="container">
+                        <div class="teidesat-department-hero__grid reveal-up">
+
+                            <div class="teidesat-department-hero__content">
+                                <span class="section-kicker">DEPARTAMENTO</span>
+                                <h1>Divulgación</h1>
+                                <p class="teidesat-department-hero__lead">
+                                    El departamento de Divulgación acerca TEIDESAT a estudiantes,
+                                    centros educativos y público general, transformando el trabajo
+                                    técnico del proyecto en actividades, contenidos y experiencias
+                                    accesibles y motivadoras.
+                                </p>
+                            </div>
+
+                            <div class="teidesat-department-hero__visual">
+                                <div class="teidesat-department-hero__logo-wrap">
+                                    <img src="/teidesat_website/static/src/img/Pegatina_Divulgacion.png"
+                                         alt="Logo del departamento Divulgación"
+                                         class="teidesat-department-hero__logo"/>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FRASE / IDENTIDAD -->
+                <section class="teidesat-department-band">
+                    <div class="container">
+                        <div class="teidesat-department-band__inner reveal-up">
+                            <span class="teidesat-department-band__title">Rol dentro del proyecto</span>
+                            <p>
+                                Hacer comprensible, cercana e inspiradora la dimensión científica y
+                                tecnológica de TEIDESAT para conectar el proyecto con la sociedad.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- RESUMEN -->
+                <section class="teidesat-department-section">
+                    <div class="container">
+
+                        <div class="teidesat-department-section__intro reveal-up">
+                            <span class="section-kicker">VISIÓN GENERAL</span>
+                            <h2>Qué hace este departamento</h2>
+                            <p>
+                                Esta área trabaja en la comunicación pública del proyecto, el diseño
+                                de actividades de divulgación y la generación de impacto educativo y social.
+                            </p>
+                        </div>
+
+                        <div class="teidesat-department-cards teidesat-department-cards--3">
+                            <article class="teidesat-department-card reveal-up">
+                                <h3>Talleres y charlas</h3>
+                                <p>
+                                    Organización de actividades para centros educativos, eventos y
+                                    espacios de divulgación científica relacionados con el proyecto.
+                                </p>
+                            </article>
+
+                            <article class="teidesat-department-card reveal-up">
+                                <h3>Comunicación accesible</h3>
+                                <p>
+                                    Adaptación de contenidos técnicos para que puedan entenderse mejor
+                                    desde fuera del entorno especializado.
+                                </p>
+                            </article>
+
+                            <article class="teidesat-department-card reveal-up">
+                                <h3>Impacto social</h3>
+                                <p>
+                                    Desarrollo de iniciativas que conecten TEIDESAT con la ciudadanía
+                                    y fomenten el interés por la ciencia y la tecnología.
+                                </p>
+                            </article>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- OBJETIVOS -->
+                <section class="teidesat-department-section teidesat-department-section--alt">
+                    <div class="container">
+
+                        <div class="teidesat-department-section__intro reveal-up">
+                            <span class="section-kicker">OBJETIVOS</span>
+                            <h2>Objetivos del departamento</h2>
+                            <p>
+                                Estas son algunas de las metas principales del área de Divulgación
+                                dentro del ecosistema de trabajo de TEIDESAT.
+                            </p>
+                        </div>
+
+                        <div class="teidesat-department-goals">
+                            <article class="teidesat-goal-card reveal-up">
+                                <span class="teidesat-goal-card__number">01</span>
+                                <h3>Acercar el proyecto a la sociedad</h3>
+                                <p>
+                                    Dar visibilidad al trabajo realizado en TEIDESAT y explicar su valor
+                                    científico, académico y tecnológico de forma comprensible.
+                                </p>
+                            </article>
+
+                            <article class="teidesat-goal-card reveal-up">
+                                <span class="teidesat-goal-card__number">02</span>
+                                <h3>Inspirar nuevas vocaciones</h3>
+                                <p>
+                                    Despertar interés por la ciencia, la ingeniería y el espacio en
+                                    estudiantes de distintas edades mediante experiencias cercanas y motivadoras.
+                                </p>
+                            </article>
+
+                            <article class="teidesat-goal-card reveal-up">
+                                <span class="teidesat-goal-card__number">03</span>
+                                <h3>Conectar con el entorno</h3>
+                                <p>
+                                    Fortalecer la relación del proyecto con centros educativos, eventos,
+                                    instituciones y público general a través de actividades divulgativas.
+                                </p>
+                            </article>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- MIEMBROS -->
+                <section class="teidesat-department-section">
+                    <div class="container">
+
+                        <div class="teidesat-department-section__intro reveal-up">
+                            <span class="section-kicker">EQUIPO</span>
+                            <h2>Miembros del departamento</h2>
+                            <p>
+                                Espacio preparado para presentar a las personas que participan en la
+                                organización y ejecución de la divulgación del proyecto.
+                            </p>
+                        </div>
+
+                        <div class="teidesat-department-members">
+                            <article class="teidesat-member-card reveal-up">
+                                <div class="teidesat-member-card__avatar">
+                                    <span>D</span>
+                                </div>
+                                <h3>Miembro de Divulgación</h3>
+                                <p class="teidesat-member-card__role">Comunicación / actividades</p>
+                                <p>
+                                    Participación en talleres, eventos y creación de contenidos orientados
+                                    a acercar el proyecto a distintos públicos.
+                                </p>
+                            </article>
+
+                            <article class="teidesat-member-card reveal-up">
+                                <div class="teidesat-member-card__avatar">
+                                    <span>+</span>
+                                </div>
+                                <h3>Próximamente</h3>
+                                <p class="teidesat-member-card__role">Miembro del departamento</p>
+                                <p>
+                                    Esta tarjeta puede reutilizarse para añadir más integrantes, roles
+                                    específicos o responsables del área.
+                                </p>
+                            </article>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- CTA -->
+                <section class="teidesat-department-cta-section">
+                    <div class="container">
+                        <div class="teidesat-department-cta reveal-up">
+                            <div class="teidesat-department-cta__text">
+                                <h3>¿Quieres seguir explorando el proyecto?</h3>
+                                <p>
+                                    Puedes volver al mapa general de departamentos o ponerte en contacto
+                                    con el equipo para conocer mejor cómo se desarrolla la parte divulgativa de TEIDESAT.
+                                </p>
+                            </div>
+
+                            <div class="teidesat-department-cta__actions">
+                                <a href="/departamentos" class="teidesat-btn-secondary">Volver a departamentos</a>
+                                <a href="/contacto" class="teidesat-btn-primary">Contactar</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+        </t>
+    </template>
+
+</odoo>

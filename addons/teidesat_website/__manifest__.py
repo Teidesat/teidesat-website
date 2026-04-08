@@ -11,6 +11,14 @@
         'views/pages/departamentos.xml',
         'views/pages/participa.xml',
         'views/pages/contacto.xml',
+        'views/pages/it_departamento.xml',
+        'views/pages/arte_departamento.xml',
+        'views/pages/divulgacion_departamento.xml',
+        'views/pages/ads_departamento.xml',
+        'views/pages/mecanica_departamento.xml',
+        'views/pages/administracion_departamento.xml',
+        'views/pages/rd_departamento.xml',
+        'views/pages/electrocom_departamento.xml',
     ],
     'assets': {
         'web.assets_frontend': [
@@ -22,6 +30,7 @@
             'teidesat_website/static/src/css/participa.css',
             'teidesat_website/static/src/css/contacto.css',
             'teidesat_website/static/src/js/departamentos.js',
+            'teidesat_website/static/src/css/departamento_detalle.css',
         ],
     },
     'installable': True,

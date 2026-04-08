@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="page_departamento_mecanica" name="Departamento Mecánica">
+        <t t-call="teidesat_website.teidesat_base_layout">
+
+            <div class="teidesat-page teidesat-page--department-detail">
+
+                <!-- HERO -->
+                <section class="teidesat-department-hero">
+                    <div class="container">
+                        <div class="teidesat-department-hero__grid reveal-up">
+
+                            <div class="teidesat-department-hero__content">
+                                <span class="section-kicker">DEPARTAMENTO</span>
+                                <h1>Mecánica</h1>
+                                <p class="teidesat-department-hero__lead">
+                                    El departamento de Mecánica se encarga del diseño estructural del satélite,
+                                    la integración física de sus componentes y la validación del comportamiento
+                                    mecánico del sistema antes del lanzamiento.
+                                </p>
+                            </div>
+
+                            <div class="teidesat-department-hero__visual">
+                                <div class="teidesat-department-hero__logo-wrap">
+                                    <img src="/teidesat_website/static/src/img/Pegatina_Mecanica.png"
+                                         alt="Logo del departamento Mecánica"
+                                         class="teidesat-department-hero__logo"/>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FRASE / IDENTIDAD -->
+                <section class="teidesat-department-band">
+                    <div class="container">
+                        <div class="teidesat-department-band__inner reveal-up">
+                            <span class="teidesat-department-band__title">Rol dentro del proyecto</span>
+                            <p>
+                                Diseñar una estructura capaz de soportar el entorno del lanzamiento y
+                                garantizar la correcta integración de todos los subsistemas del satélite.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- RESUMEN -->
+                <section class="teidesat-department-section">
+                    <div class="container">
+
+                        <div class="teidesat-department-section__intro reveal-up">
+                            <span class="section-kicker">VISIÓN GENERAL</span>
+                            <h2>Qué hace este departamento</h2>
+                            <p>
+                                Esta área trabaja sobre la parte física del satélite, asegurando que la
+                                estructura sea funcional, resistente y compatible con las necesidades de la misión.
+                            </p>
+                        </div>
+
+                        <div class="teidesat-department-cards teidesat-department-cards--3">
+                            <article class="teidesat-department-card reveal-up">
+                                <h3>Diseño estructural</h3>
+                                <p>
+                                    Desarrollo de la arquitectura mecánica del satélite para alojar de forma
+                                    segura todos los componentes y subsistemas.
+                                </p>
+                            </article>
+
+                            <article class="teidesat-department-card reveal-up">
+                                <h3>Integración física</h3>
+                                <p>
+                                    Organización del ensamblaje interno del sistema para asegurar compatibilidad,
+                                    acceso y correcta distribución del espacio disponible.
+                                </p>
+                            </article>
+
+                            <article class="teidesat-department-card reveal-up">
+                                <h3>Pruebas y validación</h3>
+                                <p>
+                                    Evaluación del comportamiento mecánico del diseño mediante simulaciones,
+                                    prototipos y pruebas de resistencia previas al lanzamiento.
+                                </p>
+                            </article>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- OBJETIVOS -->
+                <section class="teidesat-department-section teidesat-department-section--alt">
+                    <div class="container">
+
+                        <div class="teidesat-department-section__intro reveal-up">
+                            <span class="section-kicker">OBJETIVOS</span>
+                            <h2>Objetivos del departamento</h2>
+                            <p>
+                                La parte mecánica es esencial para que el satélite pueda mantenerse íntegro
+                                y operativo durante todas las fases de la misión.
+                            </p>
+                        </div>
+
+                        <div class="teidesat-department-goals">
+                            <article class="teidesat-goal-card reveal-up">
+                                <span class="teidesat-goal-card__number">01</span>
+                                <h3>Garantizar la integridad estructural</h3>
+                                <p>
+                                    Diseñar una estructura sólida y compatible con los requisitos del lanzamiento
+                                    y de la operación en órbita.
+                                </p>
+                            </article>
+
+                            <article class="teidesat-goal-card reveal-up">
+                                <span class="teidesat-goal-card__number">02</span>
+                                <h3>Optimizar el espacio disponible</h3>
+                                <p>
+                                    Aprovechar al máximo el volumen del satélite para integrar todos los sistemas
+                                    sin comprometer accesibilidad ni funcionalidad.
+                                </p>
+                            </article>
+
+                            <article class="teidesat-goal-card reveal-up">
+                                <span class="teidesat-goal-card__number">03</span>
+                                <h3>Validar el diseño</h3>
+                                <p>
+                                    Confirmar mediante análisis y pruebas que la estructura responde correctamente
+                                    a las exigencias mecánicas del proyecto.
+                                </p>
+                            </article>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- MIEMBROS -->
+                <section class="teidesat-department-section">
+                    <div class="container">
+
+                        <div class="teidesat-department-section__intro reveal-up">
+                            <span class="section-kicker">EQUIPO</span>
+                            <h2>Miembros del departamento</h2>
+                            <p>
+                                Espacio preparado para presentar a las personas encargadas del diseño
+                                estructural e integración mecánica del satélite.
+                            </p>
+                        </div>
+
+                        <div class="teidesat-department-members">
+                            <article class="teidesat-member-card reveal-up">
+                                <div class="teidesat-member-card__avatar">
+                                    <span>M</span>
+                                </div>
+                                <h3>Miembro de Mecánica</h3>
+                                <p class="teidesat-member-card__role">Diseño estructural / integración</p>
+                                <p>
+                                    Trabajo en la definición de la estructura, organización del ensamblaje
+                                    y análisis del comportamiento físico del sistema.
+                                </p>
+                            </article>
+
+                            <article class="teidesat-member-card reveal-up">
+                                <div class="teidesat-member-card__avatar">
+                                    <span>+</span>
+                                </div>
+                                <h3>Próximamente</h3>
+                                <p class="teidesat-member-card__role">Miembro del departamento</p>
+                                <p>
+                                    Esta tarjeta puede reutilizarse para añadir más integrantes, responsables
+                                    o funciones concretas del área mecánica.
+                                </p>
+                            </article>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- CTA -->
+                <section class="teidesat-department-cta-section">
+                    <div class="container">
+                        <div class="teidesat-department-cta reveal-up">
+                            <div class="teidesat-department-cta__text">
+                                <h3>¿Quieres saber más sobre el área mecánica?</h3>
+                                <p>
+                                    Puedes volver al mapa general de departamentos o contactar con el equipo
+                                    para conocer mejor cómo se desarrolla la parte estructural del proyecto.
+                                </p>
+                            </div>
+
+                            <div class="teidesat-department-cta__actions">
+                                <a href="/departamentos" class="teidesat-btn-secondary">Volver a departamentos</a>
+                                <a href="/contacto" class="teidesat-btn-primary">Contactar</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+        </t>
+    </template>
+
+</odoo>

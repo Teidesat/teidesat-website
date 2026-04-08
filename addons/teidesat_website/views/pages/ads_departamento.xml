@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="page_departamento_ads" name="Departamento ADS">
+        <t t-call="teidesat_website.teidesat_base_layout">
+
+            <div class="teidesat-page teidesat-page--department-detail">
+
+                <!-- HERO -->
+                <section class="teidesat-department-hero">
+                    <div class="container">
+                        <div class="teidesat-department-hero__grid reveal-up">
+
+                            <div class="teidesat-department-hero__content">
+                                <span class="section-kicker">DEPARTAMENTO</span>
+                                <h1>ADS</h1>
+                                <p class="teidesat-department-hero__lead">
+                                    El departamento de ADS (Attitude Determination and Control System)
+                                    se encarga de controlar la orientación del satélite en el espacio,
+                                    asegurando que apunte correctamente durante toda la misión.
+                                </p>
+                            </div>
+
+                            <div class="teidesat-department-hero__visual">
+                                <div class="teidesat-department-hero__logo-wrap">
+                                    <img src="/teidesat_website/static/src/img/Pegatina_ADSC.png"
+                                         alt="Logo del departamento ADS"
+                                         class="teidesat-department-hero__logo"/>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FRASE -->
+                <section class="teidesat-department-band">
+                    <div class="container">
+                        <div class="teidesat-department-band__inner reveal-up">
+                            <span class="teidesat-department-band__title">Rol dentro del proyecto</span>
+                            <p>
+                                Controlar cómo se orienta el satélite en órbita para garantizar el
+                                correcto funcionamiento de sus sistemas y experimentos.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- RESUMEN -->
+                <section class="teidesat-department-section">
+                    <div class="container">
+
+                        <div class="teidesat-department-section__intro reveal-up">
+                            <span class="section-kicker">VISIÓN GENERAL</span>
+                            <h2>Qué hace este departamento</h2>
+                            <p>
+                                ADS es clave para la estabilidad del satélite, permitiendo orientar
+                                correctamente sensores, comunicaciones y carga útil durante la misión.
+                            </p>
+                        </div>
+
+                        <div class="teidesat-department-cards teidesat-department-cards--3">
+                            <article class="teidesat-department-card reveal-up">
+                                <h3>Control de actitud</h3>
+                                <p>
+                                    Desarrollo de sistemas que permiten ajustar la orientación del
+                                    satélite mediante actuadores como ruedas de inercia.
+                                </p>
+                            </article>
+
+                            <article class="teidesat-department-card reveal-up">
+                                <h3>Determinación de posición</h3>
+                                <p>
+                                    Uso de sensores para conocer en todo momento la orientación del
+                                    satélite respecto al entorno espacial.
+                                </p>
+                            </article>
+
+                            <article class="teidesat-department-card reveal-up">
+                                <h3>Simulación y pruebas</h3>
+                                <p>
+                                    Validación del comportamiento del sistema mediante simulaciones
+                                    y pruebas en entornos controlados como bobinas de Helmholtz.
+                                </p>
+                            </article>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- OBJETIVOS -->
+                <section class="teidesat-department-section teidesat-department-section--alt">
+                    <div class="container">
+
+                        <div class="teidesat-department-section__intro reveal-up">
+                            <span class="section-kicker">OBJETIVOS</span>
+                            <h2>Objetivos del departamento</h2>
+                            <p>
+                                ADS garantiza que el satélite mantenga una orientación adecuada
+                                durante todas las fases de la misión.
+                            </p>
+                        </div>
+
+                        <div class="teidesat-department-goals">
+                            <article class="teidesat-goal-card reveal-up">
+                                <span class="teidesat-goal-card__number">01</span>
+                                <h3>Estabilizar el satélite</h3>
+                                <p>
+                                    Mantener una orientación controlada frente a perturbaciones externas.
+                                </p>
+                            </article>
+
+                            <article class="teidesat-goal-card reveal-up">
+                                <span class="teidesat-goal-card__number">02</span>
+                                <h3>Apuntar con precisión</h3>
+                                <p>
+                                    Garantizar que la carga útil y sistemas de comunicación apunten correctamente.
+                                </p>
+                            </article>
+
+                            <article class="teidesat-goal-card reveal-up">
+                                <span class="teidesat-goal-card__number">03</span>
+                                <h3>Validar el sistema</h3>
+                                <p>
+                                    Comprobar mediante simulaciones y pruebas que el sistema funciona correctamente antes del lanzamiento.
+                                </p>
+                            </article>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- MIEMBROS -->
+                <section class="teidesat-department-section">
+                    <div class="container">
+
+                        <div class="teidesat-department-section__intro reveal-up">
+                            <span class="section-kicker">EQUIPO</span>
+                            <h2>Miembros del departamento</h2>
+                            <p>
+                                Equipo encargado del desarrollo, simulación y validación del sistema de control de actitud.
+                            </p>
+                        </div>
+
+                        <div class="teidesat-department-members">
+                            <article class="teidesat-member-card reveal-up">
+                                <div class="teidesat-member-card__avatar">
+                                    <span>A</span>
+                                </div>
+                                <h3>Miembro ADS</h3>
+                                <p class="teidesat-member-card__role">Control y simulación</p>
+                                <p>
+                                    Desarrollo de algoritmos de control y validación del sistema en entorno simulado.
+                                </p>
+                            </article>
+
+                            <article class="teidesat-member-card reveal-up">
+                                <div class="teidesat-member-card__avatar">
+                                    <span>+</span>
+                                </div>
+                                <h3>Próximamente</h3>
+                                <p class="teidesat-member-card__role">Miembro del departamento</p>
+                                <p>
+                                    Espacio para añadir más integrantes del área.
+                                </p>
+                            </article>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- CTA -->
+                <section class="teidesat-department-cta-section">
+                    <div class="container">
+                        <div class="teidesat-department-cta reveal-up">
+                            <div class="teidesat-department-cta__text">
+                                <h3>¿Quieres saber más sobre ADS?</h3>
+                                <p>
+                                    Descubre cómo se controla un satélite en órbita o contacta con el equipo para más información.
+                                </p>
+                            </div>
+
+                            <div class="teidesat-department-cta__actions">
+                                <a href="/departamentos" class="teidesat-btn-secondary">Volver a departamentos</a>
+                                <a href="/contacto" class="teidesat-btn-primary">Contactar</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+        </t>
+    </template>
+
+</odoo>
