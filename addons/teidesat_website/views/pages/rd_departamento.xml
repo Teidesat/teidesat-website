@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
-    <template id="page_departamento_rd" name="Departamento R&D">
+    <template id="page_departamento_rd" name="Departamento R&amp;D">
         <t t-call="teidesat_website.teidesat_base_layout">
 
             <div class="teidesat-page teidesat-page--department-detail">
