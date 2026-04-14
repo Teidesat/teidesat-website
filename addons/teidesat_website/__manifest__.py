@@ -19,6 +19,7 @@
         'views/pages/administracion_departamento.xml',
         'views/pages/rd_departamento.xml',
         'views/pages/electrocom_departamento.xml',
+        'views/pages/404.xml',
     ],
     'assets': {
         'web.assets_frontend': [
@@ -31,6 +32,8 @@
             'teidesat_website/static/src/css/contacto.css',
             'teidesat_website/static/src/js/departamentos.js',
             'teidesat_website/static/src/css/departamento_detalle.css',
+            'teidesat_website/static/src/css/404.css',
+            'teidesat_website/static/src/js/404.js',
         ],
     },
     'installable': True,
