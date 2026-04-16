@@ -67,8 +67,10 @@
                 <main class="teidesat-main">
                     <t t-out="0"/>
                 </main>
+                
 
-                <!-- FOOTER -->
+                <!-- FOOTER ANTIGUO 
+    
                 <footer class="teidesat-custom-footer" id="contacto">
 
                     <div class="teidesat-custom-footer__inner">
@@ -101,6 +103,51 @@
                             <a href="https://www.youtube.com/@TEIDESAT" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
                                 <i class="fa fa-youtube-play"></i>
                             </a>
+                        </div>
+                    </div>
+                </footer>
+                -->
+
+                <!-- FOOTER -->
+                <footer class="teidesat-footer-sponsors" id="patrocinadores">
+                    <div class="container">
+
+                        <div class="teidesat-footer-sponsors__heading">
+                            <span class="section-kicker">PATROCINADORES / COLABORADORES</span>
+                        </div>
+
+                        <div class="teidesat-footer-sponsors__grid">
+
+                            <a href="#" class="teidesat-footer-sponsor" aria-label="IACTEC Espacio (IAC)">
+                                <img src="/teidesat_website/static/src/img/partner-placeholder.png"
+                                    alt="IACTEC Espacio (IAC)"/>
+                            </a>
+
+                            <a href="#" class="teidesat-footer-sponsor" aria-label="Cátedra Fundación Cepsa">
+                                <img src="/teidesat_website/static/src/img/partner-placeholder.png"
+                                    alt="Cátedra Fundación Cepsa"/>
+                            </a>
+
+                            <a href="#" class="teidesat-footer-sponsor" aria-label="Hydra Space">
+                                <img src="/teidesat_website/static/src/img/partner-placeholder.png"
+                                    alt="Hydra Space"/>
+                            </a>
+
+                            <a href="#" class="teidesat-footer-sponsor" aria-label="Patrocinador 4">
+                                <img src="/teidesat_website/static/src/img/partner-placeholder.png"
+                                    alt="Patrocinador 4"/>
+                            </a>
+
+                            <a href="#" class="teidesat-footer-sponsor" aria-label="Patrocinador 5">
+                                <img src="/teidesat_website/static/src/img/partner-placeholder.png"
+                                    alt="Patrocinador 5"/>
+                            </a>
+
+                            <a href="#" class="teidesat-footer-sponsor" aria-label="Patrocinador 6">
+                                <img src="/teidesat_website/static/src/img/partner-placeholder.png"
+                                    alt="Patrocinador 6"/>
+                            </a>
+
                         </div>
                     </div>
                 </footer>
@@ -227,6 +274,187 @@
                             </p>
                         </div>
 
+                    </div>
+                </div>
+            </section>
+
+            <!-- QUIERES SABER MAS -->
+            <section id="mas-info" class="teidesat-section teidesat-section-gradient">
+                <div class="container">
+                    <div class="section-heading reveal-up">
+                        <span class="section-kicker">INFORMACIÓN</span>
+                        <h2>¿Quieres saber más?</h2>
+                        <p>
+                            Explora más sobre TEIDESAT, consulta preguntas frecuentes y descubre
+                            novedades relacionadas con la misión.
+                        </p>
+                    </div>
+
+                    <div class="teidesat-more-links reveal-up">
+                        <a href="https://www.instagram.com/teidesat/" target="_blank" rel="noopener noreferrer" class="teidesat-more-link" aria-label="Instagram">
+                            <span class="teidesat-more-link__icon">
+                                <i class="fa fa-instagram"></i>
+                            </span>
+                            <span class="teidesat-more-link__label">Instagram</span>
+                        </a>
+
+                        <a href="https://www.facebook.com/profile.php?id=100063464266134" target="_blank" rel="noopener noreferrer" class="teidesat-more-link" aria-label="Facebook">
+                            <span class="teidesat-more-link__icon">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                            <span class="teidesat-more-link__label">Facebook</span>
+                        </a>
+
+                        <a href="https://www.youtube.com/@TEIDESAT" target="_blank" rel="noopener noreferrer" class="teidesat-more-link" aria-label="YouTube">
+                            <span class="teidesat-more-link__icon">
+                                <i class="fa fa-youtube-play"></i>
+                            </span>
+                            <span class="teidesat-more-link__label">YouTube</span>
+                        </a>
+
+                        <a href="https://x.com/teidesat" target="_blank" rel="noopener noreferrer" class="teidesat-more-link" aria-label="X">
+                            <span class="teidesat-more-link__icon">
+                                <span class="teidesat-more-link__x">X</span>
+                            </span>
+                            <span class="teidesat-more-link__label">X</span>
+                        </a>
+                    </div>
+
+                    <div class="teidesat-faq reveal-up">
+                        <div class="teidesat-faq__heading">
+                            <h3>Preguntas frecuentes</h3>
+                        </div>
+
+                        <div class="teidesat-faq__list">
+                            <div class="teidesat-faq-item teidesat-faq-item--left">
+                                <button class="teidesat-faq-item__question" type="button">
+                                    <span>¿Qué es TEIDESAT?</span>
+                                    <span class="teidesat-faq-item__icon">+</span>
+                                </button>
+                                <div class="teidesat-faq-item__answer">
+                                    <p>
+                                        TEIDESAT es el primer nanosatélite universitario de Canarias,
+                                        concebido como una misión tecnológica, científica y educativa.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="teidesat-faq-item teidesat-faq-item--right">
+                                <button class="teidesat-faq-item__question" type="button">
+                                    <span>¿Cuál es el objetivo principal de la misión?</span>
+                                    <span class="teidesat-faq-item__icon">+</span>
+                                </button>
+                                <div class="teidesat-faq-item__answer">
+                                    <p>
+                                        Diseñar, fabricar, lanzar y operar un nanosatélite universitario,
+                                        desarrollando además capacidades de investigación y formación.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="teidesat-faq-item teidesat-faq-item--left">
+                                <button class="teidesat-faq-item__question" type="button">
+                                    <span>¿Quién participa en el proyecto?</span>
+                                    <span class="teidesat-faq-item__icon">+</span>
+                                </button>
+                                <div class="teidesat-faq-item__answer">
+                                    <p>
+                                        Participan estudiantes, profesorado, personal investigador y distintas
+                                        entidades colaboradoras del ámbito académico, tecnológico y espacial.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="teidesat-faq-item teidesat-faq-item--right">
+                                <button class="teidesat-faq-item__question" type="button">
+                                    <span>¿Cómo se pueden seguir sus avances?</span>
+                                    <span class="teidesat-faq-item__icon">+</span>
+                                </button>
+                                <div class="teidesat-faq-item__answer">
+                                    <p>
+                                        A través de sus redes sociales, publicaciones, eventos de divulgación
+                                        y futuras actualizaciones dentro de la propia web.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teidesat-news reveal-up">
+                        <div class="teidesat-news__heading">
+                            <h3>Novedades</h3>
+                        </div>
+
+                        <div class="teidesat-news-slider" data-slider="news">
+                            <div class="teidesat-news-slider__viewport">
+                                <div class="teidesat-news-slider__track">
+
+                                    <div class="teidesat-news-slide">
+                                        <article class="teidesat-news-card">
+                                            <span class="teidesat-news-card__tag">Evento</span>
+                                            <h4>Talleres y charlas</h4>
+                                            <p>
+                                                Actividades de divulgación y encuentros para acercar el proyecto
+                                                al alumnado y al público general.
+                                            </p>
+                                        </article>
+
+                                        <article class="teidesat-news-card">
+                                            <span class="teidesat-news-card__tag">Proyecto</span>
+                                            <h4>Avances de desarrollo</h4>
+                                            <p>
+                                                Seguimiento del estado actual de integración, pruebas y evolución
+                                                de la misión.
+                                            </p>
+                                        </article>
+
+                                        <article class="teidesat-news-card">
+                                            <span class="teidesat-news-card__tag">Comunidad</span>
+                                            <h4>Participación y difusión</h4>
+                                            <p>
+                                                Noticias sobre colaboraciones, actividades y nuevas iniciativas
+                                                relacionadas con TEIDESAT.
+                                            </p>
+                                        </article>
+                                    </div>
+
+                                    <div class="teidesat-news-slide">
+                                        <article class="teidesat-news-card">
+                                            <span class="teidesat-news-card__tag">Misión</span>
+                                            <h4>Próximos hitos</h4>
+                                            <p>
+                                                Resumen de próximas fases relevantes dentro del recorrido técnico
+                                                y académico del proyecto.
+                                            </p>
+                                        </article>
+
+                                        <article class="teidesat-news-card">
+                                            <span class="teidesat-news-card__tag">Actualidad</span>
+                                            <h4>Nuevas publicaciones</h4>
+                                            <p>
+                                                Difusión de noticias, artículos y materiales relacionados con la
+                                                evolución del proyecto.
+                                            </p>
+                                        </article>
+
+                                        <article class="teidesat-news-card">
+                                            <span class="teidesat-news-card__tag">Equipo</span>
+                                            <h4>Vida del proyecto</h4>
+                                            <p>
+                                                Pequeñas actualizaciones sobre el trabajo del equipo y el día a día
+                                                de la misión.
+                                            </p>
+                                        </article>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="teidesat-news-slider__dots">
+                                <button class="teidesat-news-slider__dot active" type="button" data-slide="0" aria-label="Ver grupo 1"></button>
+                                <button class="teidesat-news-slider__dot" type="button" data-slide="1" aria-label="Ver grupo 2"></button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -483,49 +711,7 @@
                 </div>
             </section>
 
-            <!-- COLABORACIONES -->
-            <section id="colaboraciones" class="teidesat-section teidesat-section-dark">
-                <div class="container">
-                    <div class="section-heading reveal-up">
-                        <span class="section-kicker">ALIANZAS</span>
-                        <h2>Colaboraciones clave</h2>
-                        <p>
-                            La misión se apoya en socios estratégicos que aportan infraestructura,
-                            financiación, asesoramiento técnico y proyección futura.
-                        </p>
-                    </div>
-
-                    <div class="teidesat-grid teidesat-grid--3 collaborators-grid">
-                        <article class="partner-card reveal-up">
-                            <div class="partner-card__glow"></div>
-                            <h3>IACTEC Espacio (IAC)</h3>
-                            <p>
-                                Asesoramiento técnico, acceso a infraestructura especializada y
-                                colaboración directa en áreas relacionadas con el desarrollo espacial.
-                            </p>
-                        </article>
-
-                        <article class="partner-card reveal-up">
-                            <div class="partner-card__glow"></div>
-                            <h3>Cátedra Fundación Cepsa</h3>
-                            <p>
-                                Financiación para el espacio Makerspace y apoyo a su utilización como
-                                sala de control de la misión.
-                            </p>
-                        </article>
-
-                        <article class="partner-card reveal-up">
-                            <div class="partner-card__glow"></div>
-                            <h3>Hydra Space</h3>
-                            <p>
-                                Interés en impulsar colaboración técnica y futuras oportunidades de
-                                transferencia de conocimiento.
-                            </p>
-                        </article>
-                    </div>
-                </div>
-            </section>
-
+            
             <!-- RETORNO -->
             <section id="impacto" class="teidesat-section teidesat-section-impact">
                 <div class="container">

@@ -78,30 +78,6 @@ function initTeidesatPage() {
     }
 
     /* =========================================================
-       BOTÓN VOLVER ARRIBA
-    ========================================================= */
-
-       const backTop = document.getElementById("teidesat-backtop");
-
-    if (backTop && backTop.dataset.bound !== "true") {
-        backTop.addEventListener("click", function (e) {
-            e.preventDefault();
-
-            const scrollTarget = document.scrollingElement || document.documentElement || document.body;
-
-            scrollTarget.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-
-            document.documentElement.scrollTop = 0;
-            document.body.scrollTop = 0;
-        });
-
-        backTop.dataset.bound = "true";
-    }
-
-    /* =========================================================
        REVEAL ANIMATIONS
     ========================================================= */
 
@@ -204,7 +180,7 @@ function initTeidesatPage() {
         }
 
         updateObjectivesHeadingVisibility();
-        
+
         const orbitConfigs = [
             { orbit: 1, duration: 11, offset: 0.08 },
             { orbit: 2, duration: 17, offset: 0.30 },
@@ -247,6 +223,96 @@ function initTeidesatPage() {
             system.dataset.animationStarted = "true";
             requestAnimationFrame(animateOrbits);
         }
+    }
+
+    /* =========================================================
+    FAQ
+    ========================================================= */
+
+    const faqItems = document.querySelectorAll(".teidesat-faq-item");
+
+    faqItems.forEach((item) => {
+        const question = item.querySelector(".teidesat-faq-item__question");
+
+        if (!question || question.dataset.bound === "true") return;
+
+        question.addEventListener("click", () => {
+            item.classList.toggle("active");
+        });
+
+        question.dataset.bound = "true";
+    });
+
+    /* =========================================================
+       NEWS SLIDER
+    ========================================================= */
+
+    const newsSlider = document.querySelector('[data-slider="news"]');
+
+    if (newsSlider) {
+        const viewport = newsSlider.querySelector('.teidesat-news-slider__viewport');
+        const track = newsSlider.querySelector('.teidesat-news-slider__track');
+        const dots = newsSlider.querySelectorAll('.teidesat-news-slider__dot');
+
+        let currentSlide = 0;
+
+        function getMaxSlide() {
+            return Math.max(0, dots.length - 1);
+        }
+
+        function updateNewsSlider(index) {
+            const isStackedLayout = window.innerWidth <= 991;
+            const maxSlide = getMaxSlide();
+            currentSlide = Math.max(0, Math.min(index, maxSlide));
+
+            if (isStackedLayout) {
+                track.style.transform = 'none';
+                return;
+            }
+
+            const viewportWidth = viewport.offsetWidth;
+            track.style.transform = `translateX(-${currentSlide * viewportWidth}px)`;
+
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentSlide);
+            });
+        }
+
+        dots.forEach((dot) => {
+            if (dot.dataset.bound === "true") return;
+
+            dot.addEventListener('click', () => {
+                const index = parseInt(dot.dataset.slide, 10) || 0;
+                updateNewsSlider(index);
+            });
+
+            dot.dataset.bound = "true";
+        });
+
+        if (viewport && viewport.dataset.wheelBound !== "true") {
+            viewport.addEventListener('wheel', (e) => {
+                const isStackedLayout = window.innerWidth <= 991;
+                const maxSlide = getMaxSlide();
+
+                if (isStackedLayout || maxSlide === 0) return;
+
+                if (e.deltaY > 10) {
+                    e.preventDefault();
+                    updateNewsSlider(currentSlide + 1);
+                } else if (e.deltaY < -10) {
+                    e.preventDefault();
+                    updateNewsSlider(currentSlide - 1);
+                }
+            }, { passive: false });
+
+            viewport.dataset.wheelBound = "true";
+        }
+
+        window.addEventListener('resize', () => {
+            updateNewsSlider(currentSlide);
+        });
+
+        updateNewsSlider(0);
     }
 }
 

@@ -19,7 +19,6 @@ body.teidesat-page {
     padding: 0;
     background: #050816;
     color: #f4f7fb;
-    scroll-snap-type: y mandatory;
     overflow-y: scroll;
     overflow-x: hidden;
     font-family: 'Montserrat', sans-serif;
@@ -29,15 +28,7 @@ body.teidesat-page {
 .teidesat-main section {
     min-height: 100vh;
     min-height: 100svh;
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
     box-sizing: border-box;
-}
-
-.teidesat-custom-footer {
-    box-sizing: border-box;
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
 }
 
 body.teidesat-menu-open {
@@ -208,91 +199,84 @@ body.teidesat-menu-open {
 }
 
 /* =========================================================
-   FOOTER
+   FOOTER PATROCINADORES
 ========================================================= */
 
-.teidesat-custom-footer {
+.teidesat-footer-sponsors {
     position: relative;
     min-height: auto;
-    padding: 3.5rem 0 2.5rem;
+    padding: 3.5rem 0 3rem;
     background: #020712;
+    border-top: 1px solid rgba(255,255,255,0.06);
     overflow: hidden;
+    box-sizing: border-box;
 }
 
-.teidesat-custom-footer__inner {
+.teidesat-footer-sponsors .container {
     width: 100%;
     max-width: 1320px;
     margin: 0 auto;
     padding: 0 2rem;
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-    gap: 2rem;
+    box-sizing: border-box;
 }
 
-.teidesat-footer__brand {
+.teidesat-footer-sponsors__heading {
+    margin-bottom: 2rem;
+    text-align: left;
+}
+
+.teidesat-footer-sponsors__heading h2 {
+    margin: 0;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.teidesat-footer-sponsors__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    align-items: stretch;
+}
+
+.teidesat-footer-sponsor {
+    min-height: 110px;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.02);
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-}
-
-.teidesat-footer__logo {
-    width: 280px;
-    max-width: 100%;
-    height: auto;
-    display: block;
-    filter: drop-shadow(0 0 20px rgba(255,255,255,0.08));
-}
-
-.teidesat-footer__backtop {
-    width: 54px;
-    height: 54px;
-    border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.28);
-    display: inline-flex;
-    align-items: center;
     justify-content: center;
+    padding: 1rem;
     text-decoration: none;
-    color: #ffffff;
-    font-size: 1.8rem;
-    line-height: 1;
-    transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+    box-sizing: border-box;
+    transition:
+        transform 0.22s ease,
+        border-color 0.22s ease,
+        background 0.22s ease;
 }
 
-.teidesat-footer__backtop:hover {
-    transform: translateY(-3px);
-    border-color: rgba(158,223,255,0.8);
+.teidesat-footer-sponsor:hover {
+    transform: translateY(-4px);
+    border-color: rgba(158,223,255,0.22);
     background: rgba(255,255,255,0.04);
 }
 
-.teidesat-footer__socials {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 1.25rem;
-    flex-wrap: wrap;
+.teidesat-footer-sponsor img {
+    max-width: 100%;
+    max-height: 56px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    filter: grayscale(100%) brightness(1.05);
+    opacity: 0.92;
+    transition: filter 0.22s ease, opacity 0.22s ease;
 }
 
-.teidesat-footer__socials a {
-    text-decoration: none;
-    color: #ffffff;
-    font-size: 2.1rem;
-    line-height: 1;
-    transition: transform 0.22s ease, color 0.22s ease, opacity 0.22s ease;
-    opacity: 0.95;
-}
-
-.teidesat-footer__socials a:hover {
-    transform: translateY(-3px);
-    color: #9edfff;
+.teidesat-footer-sponsor:hover img {
+    filter: grayscale(0%) brightness(1.08);
     opacity: 1;
-}
-
-.teidesat-footer__social-x {
-    font-size: 2rem;
-    font-weight: 700;
-    display: inline-block;
-    transform: translateY(-1px);
 }
 
 /* =========================================================
@@ -429,8 +413,6 @@ body.teidesat-menu-open {
     letter-spacing: -0.03em;
 }
 
-/* Satélite */
-
 .hero-satellite {
     position: absolute;
     top: 75%;
@@ -491,7 +473,7 @@ body.teidesat-menu-open {
 }
 
 /* =========================================================
-   OBJETIVOS DESKTOP
+   OBJETIVOS
 ========================================================= */
 
 #objetivos.teidesat-section {
@@ -528,9 +510,7 @@ body.teidesat-menu-open {
     z-index: 6;
     pointer-events: none;
     box-sizing: border-box;
-    transition:
-        opacity 0.3s ease,
-        visibility 0.3s ease;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .teidesat-objectives-heading h2 {
@@ -674,7 +654,7 @@ body.teidesat-menu-open {
     width: 260px;
     min-height: 150px;
     display: none;
-    padding: 1rem 1rem;
+    padding: 1rem;
     border-radius: 22px;
     background: rgba(20, 27, 46, 0.92);
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -723,6 +703,256 @@ body.teidesat-menu-open {
 .objective-panel--5 {
     bottom: 60px;
     right: -10px;
+}
+
+/* =========================================================
+   QUIERES SABER MAS
+========================================================= */
+
+#mas-info.teidesat-section {
+    min-height: calc(100svh + 160px);
+    padding: 120px 0 150px;
+    display: flex;
+    align-items: flex-start;
+    box-sizing: border-box;
+}
+
+#mas-info .container {
+    width: 100%;
+    max-width: 1320px;
+    margin: 0 auto;
+}
+
+.teidesat-more-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.2rem;
+}
+
+.teidesat-more-link {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.7rem;
+    min-width: 90px;
+}
+
+.teidesat-more-link__icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.10);
+    background: rgba(18, 28, 50, 0.82);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 2rem;
+    transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+}
+
+.teidesat-more-link:hover .teidesat-more-link__icon {
+    transform: translateY(-4px);
+    border-color: rgba(158,223,255,0.25);
+    background: rgba(255,255,255,0.04);
+}
+
+.teidesat-more-link__label {
+    color: rgba(255,255,255,0.88);
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+.teidesat-more-link__x {
+    font-size: 1.9rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.teidesat-faq {
+    margin-bottom: 2.8rem;
+}
+
+.teidesat-faq__heading,
+.teidesat-news__heading {
+    margin-bottom: 1rem;
+}
+
+.teidesat-faq__heading h3,
+.teidesat-news__heading h3 {
+    margin: 0;
+    font-size: 1.6rem;
+    color: #ffffff;
+}
+
+.teidesat-faq__list {
+    display: grid;
+    gap: 1rem;
+}
+
+.teidesat-faq-item {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    min-height: 92px;
+    align-items: start;
+}
+
+.teidesat-faq-item__question {
+    width: 100%;
+    border: 0;
+    background: rgba(18, 28, 50, 0.82);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 22px;
+    color: #ffffff;
+    padding: 1.2rem 1.3rem;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    min-height: 84px;
+    box-sizing: border-box;
+}
+
+.teidesat-faq-item__icon {
+    font-size: 1.3rem;
+    color: var(--teidesat-accent);
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+}
+
+.teidesat-faq-item__answer {
+    display: none;
+    position: absolute;
+    top: 0;
+    width: calc(50% - 0.5rem);
+    padding: 1.2rem 1.3rem;
+    border-radius: 22px;
+    background: rgba(18, 28, 50, 0.96);
+    border: 1px solid rgba(255,255,255,0.08);
+    min-height: 84px;
+    box-sizing: border-box;
+    z-index: 3;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.2);
+}
+
+.teidesat-faq-item.active .teidesat-faq-item__answer {
+    display: block;
+}
+
+.teidesat-faq-item.active .teidesat-faq-item__icon {
+    transform: rotate(45deg);
+}
+
+.teidesat-faq-item__answer p {
+    margin: 0;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.7;
+}
+
+.teidesat-faq-item--left .teidesat-faq-item__question {
+    grid-column: 1;
+}
+
+.teidesat-faq-item--left .teidesat-faq-item__answer {
+    left: calc(50% + 0.5rem);
+}
+
+.teidesat-faq-item--right .teidesat-faq-item__question {
+    grid-column: 2;
+}
+
+.teidesat-faq-item--right .teidesat-faq-item__answer {
+    left: 0;
+}
+
+.teidesat-news-slider {
+    width: 100%;
+}
+
+.teidesat-news-slider__viewport {
+    overflow: hidden;
+    width: 100%;
+}
+
+.teidesat-news-slider__track {
+    display: flex;
+    transition: transform 0.45s ease;
+    will-change: transform;
+}
+
+.teidesat-news-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    box-sizing: border-box;
+}
+
+.teidesat-news-card {
+    padding: 1.3rem;
+    border-radius: 22px;
+    background: rgba(18, 28, 50, 0.82);
+    border: 1px solid rgba(255,255,255,0.08);
+    min-height: 220px;
+    box-sizing: border-box;
+}
+
+.teidesat-news-card__tag {
+    display: inline-flex;
+    margin-bottom: 0.8rem;
+    padding: 0.35rem 0.7rem;
+    border-radius: 999px;
+    background: rgba(118,246,222,0.12);
+    border: 1px solid rgba(118,246,222,0.18);
+    color: #d9fff8;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.teidesat-news-card h4 {
+    margin: 0 0 0.7rem;
+    font-size: 1.2rem;
+    color: #ffffff;
+}
+
+.teidesat-news-card p {
+    margin: 0;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.7;
+}
+
+.teidesat-news-slider__dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.7rem;
+    margin-top: 1.2rem;
+}
+
+.teidesat-news-slider__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 0;
+    background: rgba(255,255,255,0.22);
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.teidesat-news-slider__dot.active {
+    background: #9edfff;
+    transform: scale(1.15);
 }
 
 /* =========================================================
@@ -1093,91 +1323,6 @@ body.teidesat-menu-open {
 }
 
 /* =========================================================
-   COLABORACIONES
-========================================================= */
-
-.partner-card {
-    position: relative;
-    padding: 1.6rem;
-    border-radius: 24px;
-    background: rgba(14, 21, 38, 0.94);
-    border: 1px solid rgba(255,255,255,0.08);
-    overflow: hidden;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-    transition: transform 0.3s ease;
-    box-sizing: border-box;
-}
-
-.partner-card:hover {
-    transform: translateY(-6px);
-}
-
-.partner-card__glow {
-    position: absolute;
-    top: -50px;
-    right: -50px;
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(118,246,222,0.18) 0%, transparent 70%);
-    pointer-events: none;
-}
-
-.partner-card h3 {
-    position: relative;
-    margin: 0 0 0.9rem;
-    font-size: 1.25rem;
-    color: #fff;
-}
-
-.partner-card p {
-    position: relative;
-    margin: 0;
-    color: var(--teidesat-text-soft);
-    line-height: 1.75;
-}
-
-#colaboraciones.teidesat-section {
-    min-height: 100vh;
-    min-height: 100svh;
-    padding: 120px 0 60px;
-    display: flex;
-    align-items: flex-start;
-    box-sizing: border-box;
-}
-
-#colaboraciones .container {
-    width: 100%;
-    max-width: 1280px;
-    margin: 0 auto;
-    min-height: calc(100svh - 180px);
-    display: grid;
-    grid-template-rows: auto 1fr;
-    align-content: start;
-}
-
-#colaboraciones .section-heading {
-    margin-bottom: 2.5rem;
-}
-
-#colaboraciones .teidesat-grid--3 {
-    max-width: 1180px;
-    margin: 0 auto;
-    width: 100%;
-    grid-template-columns: repeat(3, minmax(260px, 360px));
-    justify-content: center;
-    align-content: center;
-    align-items: stretch;
-}
-
-#colaboraciones .partner-card {
-    min-height: 220px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-}
-
-/* =========================================================
    IMPACTO
 ========================================================= */
 
@@ -1264,9 +1409,7 @@ body.teidesat-menu-open {
 .reveal-up {
     opacity: 0;
     transform: translateY(28px);
-    transition:
-        opacity 0.7s ease,
-        transform 0.7s ease;
+    transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
 .reveal-up.is-visible {
@@ -1279,6 +1422,7 @@ body.teidesat-menu-open {
 ========================================================= */
 
 @media (max-width: 1199px) {
+
     .feature-highlight,
     .support-layout,
     .impact-layout {
@@ -1289,16 +1433,8 @@ body.teidesat-menu-open {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    #colaboraciones .teidesat-grid--3 {
-        grid-template-columns: repeat(2, minmax(260px, 360px));
-    }
-
     #objetivos.teidesat-section {
-    min-height: 100vh;
-    min-height: 100svh;
-    padding: 110px 0 110px;
-    display: flex;
-    align-items: flex-start;
+        padding: 110px 0 110px;
     }
 
     #objetivos .container {
@@ -1381,8 +1517,40 @@ body.teidesat-menu-open {
         opacity: 1;
         visibility: visible;
     }
+
+    #mas-info.teidesat-section {
+        min-height: 100vh;
+        min-height: 100svh;
+        padding: 110px 0 90px;
+    }
 }
+
 @media (max-width: 991px) {
+
+    .teidesat-news-slider__viewport {
+        overflow: visible;
+    }
+
+    .teidesat-news-slider__track {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        transform: none !important;
+    }
+
+    .teidesat-news-slide {
+        display: contents;
+    }
+
+    .teidesat-news-card {
+        width: 100%;
+        min-height: 0;
+    }
+
+    .teidesat-news-slider__dots {
+        display: none;
+    }
+
     #fases.teidesat-section {
         min-height: calc(100svh + 72px);
         padding: 110px 0 96px;
@@ -1436,54 +1604,25 @@ body.teidesat-menu-open {
         display: none;
     }
 
-    #colaboraciones.teidesat-section,
-    .teidesat-section-impact {
-        min-height: calc(100svh + 72px);
-        padding: 110px 0 88px;
-        display: flex;
-        align-items: flex-start;
+    .teidesat-footer-sponsors {
+        padding: 3rem 0 2.5rem;
     }
 
-    #colaboraciones .container {
-        min-height: auto;
-        display: block;
+    .teidesat-footer-sponsors .container {
+        padding: 0 1.4rem;
     }
 
-    #colaboraciones .teidesat-grid--3 {
-        grid-template-columns: 1fr;
-        max-width: 700px;
+    .teidesat-footer-sponsors__heading {
+        margin-bottom: 1.5rem;
     }
 
-    .impact-layout {
-        grid-template-columns: 1fr;
-        gap: 1.2rem;
-    }
-
-    .teidesat-custom-footer {
-        padding: 3rem 0 2.2rem;
-    }
-
-    .teidesat-custom-footer__inner {
-        grid-template-columns: 1fr;
-        justify-items: center;
-        text-align: center;
-        gap: 1.8rem;
-    }
-
-    .teidesat-footer__brand {
-        justify-content: center;
-    }
-
-    .teidesat-footer__logo {
-        width: 230px;
-    }
-
-    .teidesat-footer__socials {
-        justify-content: center;
+    .teidesat-footer-sponsors__grid {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     }
 }
 
 @media (max-width: 767px) {
+
     .teidesat-custom-header {
         padding: 0.9rem 1rem;
     }
@@ -1522,19 +1661,15 @@ body.teidesat-menu-open {
     }
 
     #fases .container,
-    #colaboraciones .container,
-    .teidesat-section-impact .container {
+    .teidesat-section-impact .container,
+    #mas-info .container {
         padding-left: 14px;
         padding-right: 14px;
         box-sizing: border-box;
     }
 
     #objetivos.teidesat-section {
-    min-height: 100vh;
-    min-height: 100svh;
-    padding: 110px 0 110px;
-    display: flex;
-    align-items: flex-start;
+        padding: 110px 0 110px;
     }
 
     #objetivos .container {
@@ -1638,17 +1773,72 @@ body.teidesat-menu-open {
         visibility: visible;
     }
 
-    .timeline-card h3 {
-        font-size: 1.3rem;
+    #mas-info.teidesat-section {
+        min-height: calc(100svh + 220px);
+        padding: 110px 0 130px;
     }
 
-    .timeline-card p {
-        font-size: 0.92rem;
-        line-height: 1.5;
+    .teidesat-more-links {
+        gap: 1rem;
     }
 
-    .impact-copy {
-        padding: 1.35rem;
+    .teidesat-more-link__icon {
+        width: 64px;
+        height: 64px;
+    }
+
+    .teidesat-more-link i,
+    .teidesat-more-link__x {
+        font-size: 1.7rem;
+    }
+
+    .teidesat-faq-item {
+        grid-template-columns: 1fr;
+        min-height: auto;
+    }
+
+    .teidesat-faq-item--left .teidesat-faq-item__question,
+    .teidesat-faq-item--right .teidesat-faq-item__question {
+        grid-column: auto;
+    }
+
+    .teidesat-faq-item__question {
+        padding: 1rem;
+        font-size: 0.96rem;
+    }
+
+    .teidesat-faq-item__answer {
+        position: static;
+        width: 100%;
+        margin-top: 0.75rem;
+        padding: 1rem;
+        box-shadow: none;
+    }
+
+    .teidesat-footer-sponsors {
+        padding: 2.6rem 0 2.2rem;
+    }
+
+    .teidesat-footer-sponsors .container {
+        padding: 0 1rem;
+    }
+
+    .teidesat-footer-sponsors__heading h2 {
+        font-size: 1.9rem;
+    }
+
+    .teidesat-footer-sponsors__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.85rem;
+    }
+
+    .teidesat-footer-sponsor {
+        min-height: 92px;
+        padding: 0.9rem;
+    }
+
+    .teidesat-footer-sponsor img {
+        max-height: 46px;
     }
 }
 
@@ -1671,14 +1861,13 @@ body.teidesat-menu-open {
     .support-hero-card,
     .impact-copy,
     .info-card,
-    .partner-card,
     .timeline-card {
         border-radius: 18px;
     }
 
     #fases .container,
-    #colaboraciones .container,
-    .teidesat-section-impact .container {
+    .teidesat-section-impact .container,
+    #mas-info .container {
         padding-left: 12px;
         padding-right: 12px;
     }
@@ -1708,7 +1897,7 @@ body.teidesat-menu-open {
     }
 
     .teidesat-objectives-stage {
-    height: auto;
+        height: auto;
     }
 
     .teidesat-objectives-heading {
@@ -1754,34 +1943,15 @@ body.teidesat-menu-open {
         max-width: 280px;
     }
 
-    .teidesat-custom-footer {
-        padding: 2.4rem 0 2rem;
+    .teidesat-footer-sponsors__grid {
+        grid-template-columns: 1fr;
     }
 
-    .teidesat-custom-footer__inner {
-        padding: 0 1rem;
-        gap: 1.4rem;
+    .teidesat-footer-sponsors__heading h2 {
+        font-size: 1.65rem;
     }
 
-    .teidesat-footer__logo {
-        width: 190px;
-    }
-
-    .teidesat-footer__backtop {
-        width: 48px;
-        height: 48px;
-        font-size: 1.5rem;
-    }
-
-    .teidesat-footer__socials {
-        gap: 1rem;
-    }
-
-    .teidesat-footer__socials a {
-        font-size: 1.8rem;
-    }
-
-    .teidesat-footer__social-x {
-        font-size: 1.7rem;
+    .teidesat-more-links {
+        gap: 0.8rem;
     }
 }
