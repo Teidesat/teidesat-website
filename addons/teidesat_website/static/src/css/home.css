@@ -334,8 +334,7 @@ body.teidesat-menu-open {
     max-width: 860px;
     color: rgba(255, 255, 255, 0.78);
     line-height: 1.75;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0;
 }
 
 .section-kicker {
@@ -498,7 +497,7 @@ body.teidesat-menu-open {
 #objetivos.teidesat-section {
     min-height: 100vh;
     min-height: 100svh;
-    padding: 150px 0 30px;
+    padding: 140px 0 30px;
     display: flex;
     align-items: flex-start;
     box-sizing: border-box;
@@ -506,18 +505,56 @@ body.teidesat-menu-open {
 
 #objetivos .container {
     width: 100%;
+    max-width: 1320px;
+    margin: 0 auto;
+    position: relative;
 }
 
 .teidesat-objectives-stage {
     position: relative;
-    width: min(1200px, 100%);
+    width: 100%;
     height: 760px;
     margin: 0 auto;
 }
 
+.teidesat-objectives-heading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-width: 860px;
+    margin: 0;
+    text-align: left;
+    z-index: 6;
+    pointer-events: none;
+    box-sizing: border-box;
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+}
+
+.teidesat-objectives-heading h2 {
+    margin: 0 0 1rem;
+    font-size: clamp(2rem, 3vw, 3rem);
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.teidesat-objectives-heading p {
+    margin: 0;
+    max-width: 760px;
+    color: rgba(255,255,255,0.78);
+    line-height: 1.75;
+}
+
+#objetivos.has-active-objective .teidesat-objectives-heading {
+    opacity: 0;
+    visibility: hidden;
+}
+
 .teidesat-objectives-system {
     position: absolute;
-    top: 50%;
+    top: 56%;
     left: 50%;
     width: 760px;
     height: 760px;
@@ -709,7 +746,7 @@ body.teidesat-menu-open {
 
 #fases .section-heading {
     max-width: 1080px;
-    margin: 0 auto 2rem;
+    margin: 0 0 2rem;
 }
 
 #fases .section-heading p {
@@ -1257,11 +1294,17 @@ body.teidesat-menu-open {
     }
 
     #objetivos.teidesat-section {
-        min-height: 100vh;
-        min-height: 100svh;
-        padding: 120px 0 60px;
-        display: flex;
-        align-items: flex-start;
+    min-height: 100vh;
+    min-height: 100svh;
+    padding: 110px 0 110px;
+    display: flex;
+    align-items: flex-start;
+    }
+
+    #objetivos .container {
+        padding-left: 16px;
+        padding-right: 16px;
+        box-sizing: border-box;
     }
 
     .teidesat-objectives-stage {
@@ -1269,10 +1312,22 @@ body.teidesat-menu-open {
         height: auto;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
+        align-items: flex-start;
         gap: 1.5rem;
-        margin-top: 0;
+    }
+
+    .teidesat-objectives-heading {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: 100%;
+        max-width: 760px;
+        transform: none;
+        padding: 0;
+        text-align: left;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: none;
     }
 
     .teidesat-objectives-system {
@@ -1283,7 +1338,6 @@ body.teidesat-menu-open {
         height: 560px;
         margin: 0 auto;
         transform: none;
-        flex: 0 0 auto;
     }
 
     .objectives-core {
@@ -1322,8 +1376,12 @@ body.teidesat-menu-open {
     .objective-panel--3 { order: 4; }
     .objective-panel--4 { order: 5; }
     .objective-panel--5 { order: 6; }
-}
 
+    #objetivos.has-active-objective .teidesat-objectives-heading {
+        opacity: 1;
+        visibility: visible;
+    }
+}
 @media (max-width: 991px) {
     #fases.teidesat-section {
         min-height: calc(100svh + 72px);
@@ -1472,22 +1530,48 @@ body.teidesat-menu-open {
     }
 
     #objetivos.teidesat-section {
-        min-height: 100vh;
-        min-height: 100svh;
-        padding: 110px 0 50px;
-        display: flex;
-        align-items: flex-start;
+    min-height: 100vh;
+    min-height: 100svh;
+    padding: 110px 0 110px;
+    display: flex;
+    align-items: flex-start;
+    }
+
+    #objetivos .container {
+        padding-left: 14px;
+        padding-right: 14px;
+        box-sizing: border-box;
     }
 
     .teidesat-objectives-stage {
         width: 100%;
+        height: auto;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
+        align-items: flex-start;
         gap: 1.2rem;
-        height: auto;
-        margin-top: 0;
+    }
+
+    .teidesat-objectives-heading {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: 100%;
+        max-width: 520px;
+        transform: none;
+        padding: 0;
+        text-align: left;
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .teidesat-objectives-heading h2 {
+        font-size: clamp(1.8rem, 8vw, 2.5rem);
+    }
+
+    .teidesat-objectives-heading p {
+        font-size: 0.95rem;
+        line-height: 1.6;
     }
 
     .teidesat-objectives-system {
@@ -1498,7 +1582,6 @@ body.teidesat-menu-open {
         height: min(420px, 100vw);
         margin: 0 auto;
         transform: none;
-        flex: 0 0 auto;
     }
 
     .objectives-orbits-svg {
@@ -1548,6 +1631,11 @@ body.teidesat-menu-open {
     .objective-panel p {
         font-size: 0.9rem;
         line-height: 1.55;
+    }
+
+    #objetivos.has-active-objective .teidesat-objectives-heading {
+        opacity: 1;
+        visibility: visible;
     }
 
     .timeline-card h3 {
@@ -1617,6 +1705,26 @@ body.teidesat-menu-open {
 
     .timeline-period {
         font-size: 0.68rem;
+    }
+
+    .teidesat-objectives-stage {
+    height: auto;
+    }
+
+    .teidesat-objectives-heading {
+        width: 100%;
+        max-width: 360px;
+        padding: 0;
+        text-align: left;
+    }
+
+    .teidesat-objectives-heading h2 {
+        font-size: 1.9rem;
+    }
+
+    .teidesat-objectives-heading p {
+        font-size: 0.9rem;
+        line-height: 1.55;
     }
 
     .teidesat-objectives-system {

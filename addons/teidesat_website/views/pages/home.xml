@@ -142,8 +142,15 @@
             <!-- OBJETIVOS -->
             <section id="objetivos" class="teidesat-section teidesat-section-dark">
                 <div class="container">
-
                     <div class="teidesat-objectives-stage reveal-up">
+
+                        <div class="teidesat-objectives-heading section-heading">
+                            <span class="section-kicker">OBJETIVOS</span>
+                            <h2>Nuestros objetivos</h2>
+                            <p>
+                                Haz clic en cada punto para descubrir los principales objetivos de TEIDESAT.
+                            </p>
+                        </div>
 
                         <div class="teidesat-objectives-system">
 

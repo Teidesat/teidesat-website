@@ -147,6 +147,7 @@ function initTeidesatPage() {
        OBJETIVOS
     ========================================================= */
 
+    const objectivesSection = document.getElementById("objetivos");
     const system = document.querySelector(".teidesat-objectives-system");
     const nodes = document.querySelectorAll(".objective-node");
     const toggleAllButton = document.getElementById("objectives-toggle-all");
@@ -164,6 +165,16 @@ function initTeidesatPage() {
             return Array.from(nodes).every((node) => node.classList.contains("active"));
         }
 
+        function updateObjectivesHeadingVisibility() {
+            if (!objectivesSection) return;
+
+            const hasAnyOpen = Array.from(nodes).some((node) =>
+                node.classList.contains("active")
+            );
+
+            objectivesSection.classList.toggle("has-active-objective", hasAnyOpen);
+        }
+
         nodes.forEach((node) => {
             if (node.dataset.bound === "true") return;
 
@@ -171,6 +182,7 @@ function initTeidesatPage() {
                 const target = this.getAttribute("data-target");
                 const nextState = !this.classList.contains("active");
                 setObjectiveState(target, nextState);
+                updateObjectivesHeadingVisibility();
             });
 
             node.dataset.bound = "true";
@@ -184,11 +196,15 @@ function initTeidesatPage() {
                     const target = node.getAttribute("data-target");
                     setObjectiveState(target, openAll);
                 });
+
+                updateObjectivesHeadingVisibility();
             });
 
             toggleAllButton.dataset.bound = "true";
         }
 
+        updateObjectivesHeadingVisibility();
+        
         const orbitConfigs = [
             { orbit: 1, duration: 11, offset: 0.08 },
             { orbit: 2, duration: 17, offset: 0.30 },
