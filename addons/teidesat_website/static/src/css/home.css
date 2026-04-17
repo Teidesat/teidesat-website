@@ -14,6 +14,10 @@ html {
     --teidesat-glow: rgba(118, 246, 222, 0.18);
 }
 
+.teidesat-page-home {
+    display: contents;
+}
+
 body.teidesat-page {
     margin: 0;
     padding: 0;
@@ -33,6 +37,101 @@ body.teidesat-page {
 
 body.teidesat-menu-open {
     overflow: hidden;
+}
+.hero-title-block,
+.section-heading,
+.teidesat-objectives-heading,
+.teidesat-footer-sponsors__heading {
+    width: 100%;
+    box-sizing: border-box;
+}
+/* =========================================================
+   NAVEGACIÓN FLOTANTE
+========================================================= */
+
+.teidesat-floating-nav {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 1300;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.8rem;
+}
+
+.teidesat-floating-nav__toggle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.14);
+    background: rgba(10, 18, 34, 0.88);
+    color: #ffffff;
+    font-size: 1.4rem;
+    cursor: pointer;
+    box-shadow: 0 14px 32px rgba(0,0,0,0.28);
+    backdrop-filter: blur(10px);
+    transition: transform 0.22s ease, background 0.22s ease, border-color 0.22s ease;
+}
+
+.teidesat-floating-nav__toggle:hover {
+    transform: translateY(-4px);
+    background: rgba(16, 28, 48, 0.95);
+    border-color: rgba(158,223,255,0.3);
+}
+
+.teidesat-floating-nav__menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
+    transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+.teidesat-floating-nav.is-open .teidesat-floating-nav__menu {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.teidesat-floating-nav__item {
+    min-width: 170px;
+    padding: 0.8rem 1rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(12, 20, 36, 0.92);
+    color: rgba(255,255,255,0.9);
+    text-align: left;
+    cursor: pointer;
+    font-size: 0.92rem;
+    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.teidesat-floating-nav__item:hover {
+    transform: translateX(-4px);
+    background: rgba(18, 30, 50, 0.96);
+    border-color: rgba(158,223,255,0.24);
+    color: #ffffff;
+}
+
+@media (max-width: 767px) {
+    .teidesat-floating-nav {
+        right: 14px;
+        bottom: 14px;
+    }
+
+    .teidesat-floating-nav__toggle {
+        width: 54px;
+        height: 54px;
+    }
+
+    .teidesat-floating-nav__item {
+        min-width: 145px;
+        font-size: 0.86rem;
+        padding: 0.7rem 0.9rem;
+    }
 }
 
 /* =========================================================
@@ -331,6 +430,18 @@ body.teidesat-menu-open {
     color: var(--teidesat-accent);
 }
 
+.section-kicker--right {
+    display: block;
+    width: 100%;
+    text-align: right;
+    margin-bottom: 0.8rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--teidesat-accent);
+}
+
 /* =========================================================
    HERO
 ========================================================= */
@@ -504,7 +615,7 @@ body.teidesat-menu-open {
     top: 0;
     left: 0;
     width: 100%;
-    max-width: 860px;
+    max-width: none;
     margin: 0;
     text-align: left;
     z-index: 6;
@@ -515,6 +626,7 @@ body.teidesat-menu-open {
 
 .teidesat-objectives-heading h2 {
     margin: 0 0 1rem;
+    max-width: 860px;
     font-size: clamp(2rem, 3vw, 3rem);
     font-weight: 700;
     color: #ffffff;
@@ -881,30 +993,34 @@ body.teidesat-menu-open {
 .teidesat-news-slider__viewport {
     overflow: hidden;
     width: 100%;
+    position: relative;
 }
 
 .teidesat-news-slider__track {
     display: flex;
+    gap: 1rem;
     transition: transform 0.45s ease;
     will-change: transform;
 }
 
-.teidesat-news-slide {
-    flex: 0 0 100%;
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1rem;
-    box-sizing: border-box;
-}
-
 .teidesat-news-card {
+    flex: 0 0 calc((100% - 2rem) / 3);
+    flex-shrink: 0;
+    min-width: 0;
     padding: 1.3rem;
     border-radius: 22px;
     background: rgba(18, 28, 50, 0.82);
     border: 1px solid rgba(255,255,255,0.08);
     min-height: 220px;
     box-sizing: border-box;
+}
+
+.teidesat-news-slider.is-2-col .teidesat-news-card {
+    flex: 0 0 calc((100% - 1rem) / 2);
+}
+
+.teidesat-news-slider.is-1-col .teidesat-news-card {
+    flex: 0 0 100%;
 }
 
 .teidesat-news-card__tag {
@@ -975,7 +1091,8 @@ body.teidesat-menu-open {
 }
 
 #fases .section-heading {
-    max-width: 1080px;
+    width: 100%;
+    max-width: none;
     margin: 0 0 2rem;
 }
 
@@ -1331,7 +1448,7 @@ body.teidesat-menu-open {
     min-height: 100svh;
     padding: 120px 0 40px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     box-sizing: border-box;
 }
 
@@ -1339,6 +1456,12 @@ body.teidesat-menu-open {
     width: 100%;
     max-width: 1280px;
     margin: 0 auto;
+}
+
+#impacto .section-heading {
+    width: 100%;
+    max-width: none;
+    margin-bottom: 2rem;
 }
 
 .impact-layout {
@@ -1356,12 +1479,6 @@ body.teidesat-menu-open {
     border: 1px solid var(--teidesat-border);
     box-shadow: 0 20px 55px rgba(0,0,0,0.18);
     box-sizing: border-box;
-}
-
-.impact-copy h2 {
-    margin: 0 0 1rem;
-    font-size: clamp(2rem, 3.2vw, 3.1rem);
-    color: #fff;
 }
 
 .impact-copy p {
@@ -1423,6 +1540,35 @@ body.teidesat-menu-open {
 
 @media (max-width: 1199px) {
 
+    .teidesat-faq__list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .teidesat-faq-item {
+        display: block;
+        min-height: auto;
+    }
+
+    .teidesat-faq-item--left .teidesat-faq-item__question,
+    .teidesat-faq-item--right .teidesat-faq-item__question {
+        grid-column: auto;
+    }
+
+    .teidesat-faq-item__question {
+        width: 100%;
+        min-height: auto;
+    }
+
+    .teidesat-faq-item__answer {
+        position: static;
+        width: 100%;
+        margin-top: 0.75rem;
+        min-height: auto;
+        box-shadow: none;
+    }
+
     .feature-highlight,
     .support-layout,
     .impact-layout {
@@ -1452,12 +1598,12 @@ body.teidesat-menu-open {
         gap: 1.5rem;
     }
 
-    .teidesat-objectives-heading {
+   .teidesat-objectives-heading {
         position: relative;
         top: auto;
         left: auto;
         width: 100%;
-        max-width: 760px;
+        max-width: none;
         transform: none;
         padding: 0;
         text-align: left;
@@ -1526,30 +1672,6 @@ body.teidesat-menu-open {
 }
 
 @media (max-width: 991px) {
-
-    .teidesat-news-slider__viewport {
-        overflow: visible;
-    }
-
-    .teidesat-news-slider__track {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 1rem;
-        transform: none !important;
-    }
-
-    .teidesat-news-slide {
-        display: contents;
-    }
-
-    .teidesat-news-card {
-        width: 100%;
-        min-height: 0;
-    }
-
-    .teidesat-news-slider__dots {
-        display: none;
-    }
 
     #fases.teidesat-section {
         min-height: calc(100svh + 72px);
@@ -1623,6 +1745,10 @@ body.teidesat-menu-open {
 
 @media (max-width: 767px) {
 
+    .teidesat-news-card {
+        min-height: 0;
+    }
+
     .teidesat-custom-header {
         padding: 0.9rem 1rem;
     }
@@ -1692,7 +1818,7 @@ body.teidesat-menu-open {
         top: auto;
         left: auto;
         width: 100%;
-        max-width: 520px;
+        max-width: none;
         transform: none;
         padding: 0;
         text-align: left;
@@ -1902,7 +2028,7 @@ body.teidesat-menu-open {
 
     .teidesat-objectives-heading {
         width: 100%;
-        max-width: 360px;
+        max-width: none;
         padding: 0;
         text-align: left;
     }

@@ -2,6 +2,53 @@ function initTeidesatPage() {
     console.log("TEIDESAT JS cargado");
 
     /* =========================================================
+    NAVEGACIÓN FLOTANTE
+    ========================================================= */
+
+    const floatingNav = document.getElementById("teidesat-floating-nav");
+    const floatingNavToggle = document.getElementById("teidesat-floating-nav-toggle");
+    const floatingNavItems = document.querySelectorAll(".teidesat-floating-nav__item");
+
+    if (floatingNav && floatingNavToggle) {
+        if (floatingNavToggle.dataset.bound !== "true") {
+            floatingNavToggle.addEventListener("click", () => {
+                const isOpen = floatingNav.classList.toggle("is-open");
+                floatingNavToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+            });
+
+            floatingNavToggle.dataset.bound = "true";
+        }
+
+        floatingNavItems.forEach((item) => {
+            if (item.dataset.bound === "true") return;
+
+            item.addEventListener("click", () => {
+                const targetSelector = item.getAttribute("data-scroll-target");
+                const target = document.querySelector(targetSelector);
+
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+                }
+
+                floatingNav.classList.remove("is-open");
+                floatingNavToggle.setAttribute("aria-expanded", "false");
+            });
+
+            item.dataset.bound = "true";
+        });
+
+        document.addEventListener("click", (e) => {
+            if (!floatingNav.contains(e.target)) {
+                floatingNav.classList.remove("is-open");
+                floatingNavToggle.setAttribute("aria-expanded", "false");
+            }
+        });
+    }
+
+    /* =========================================================
        HERO SEGÚN HORA
     ========================================================= */
 
@@ -244,7 +291,7 @@ function initTeidesatPage() {
     });
 
     /* =========================================================
-       NEWS SLIDER
+    NEWS SLIDER
     ========================================================= */
 
     const newsSlider = document.querySelector('[data-slider="news"]');
@@ -252,67 +299,131 @@ function initTeidesatPage() {
     if (newsSlider) {
         const viewport = newsSlider.querySelector('.teidesat-news-slider__viewport');
         const track = newsSlider.querySelector('.teidesat-news-slider__track');
-        const dots = newsSlider.querySelectorAll('.teidesat-news-slider__dot');
+        const dotsContainer = newsSlider.querySelector('.teidesat-news-slider__dots');
+        const cards = Array.from(newsSlider.querySelectorAll('.teidesat-news-card'));
 
-        let currentSlide = 0;
+        let currentPage = 0;
+        let cardsPerPage = 3;
+        let totalPages = 1;
 
-        function getMaxSlide() {
-            return Math.max(0, dots.length - 1);
+        function getCardsPerPage() {
+            const width = window.innerWidth;
+
+            if (width <= 767) return 1;
+            if (width <= 1199) return 2;
+            return 3;
         }
 
-        function updateNewsSlider(index) {
-            const isStackedLayout = window.innerWidth <= 991;
-            const maxSlide = getMaxSlide();
-            currentSlide = Math.max(0, Math.min(index, maxSlide));
+        function updateSliderClasses() {
+            newsSlider.classList.remove('is-1-col', 'is-2-col');
 
-            if (isStackedLayout) {
-                track.style.transform = 'none';
-                return;
+            if (cardsPerPage === 1) {
+                newsSlider.classList.add('is-1-col');
+            } else if (cardsPerPage === 2) {
+                newsSlider.classList.add('is-2-col');
+            }
+        }
+
+        function buildDots() {
+            if (!dotsContainer) return;
+
+            dotsContainer.innerHTML = '';
+
+            for (let i = 0; i < totalPages; i++) {
+                const dot = document.createElement('button');
+                dot.type = 'button';
+                dot.className = 'teidesat-news-slider__dot';
+                dot.setAttribute('aria-label', `Ver grupo ${i + 1}`);
+                dot.dataset.slide = String(i);
+
+                dot.addEventListener('click', () => {
+                    goToPage(i);
+                });
+
+                dotsContainer.appendChild(dot);
+            }
+        }
+
+        function updateDots() {
+            if (!dotsContainer) return;
+
+            const dots = dotsContainer.querySelectorAll('.teidesat-news-slider__dot');
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentPage);
+            });
+        }
+
+        function goToPage(pageIndex) {
+            const maxPage = Math.max(0, totalPages - 1);
+            currentPage = Math.max(0, Math.min(pageIndex, maxPage));
+
+            const firstCard = cards[0];
+            if (!firstCard) return;
+
+            const trackStyles = window.getComputedStyle(track);
+            const gap = parseFloat(trackStyles.columnGap || trackStyles.gap || 0);
+
+            const cardWidth = firstCard.getBoundingClientRect().width;
+            const pageOffset = (cardWidth + gap) * cardsPerPage * currentPage;
+
+            track.style.transform = `translateX(-${pageOffset}px)`;
+
+            updateDots();
+        }
+
+        function updateNewsSlider() {
+            if (!viewport || !track || !cards.length) return;
+
+            cardsPerPage = getCardsPerPage();
+            updateSliderClasses();
+
+            totalPages = Math.ceil(cards.length / cardsPerPage);
+
+            if (currentPage > totalPages - 1) {
+                currentPage = totalPages - 1;
             }
 
-            const viewportWidth = viewport.offsetWidth;
-            track.style.transform = `translateX(-${currentSlide * viewportWidth}px)`;
+            if (currentPage < 0) {
+                currentPage = 0;
+            }
 
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === currentSlide);
+            buildDots();
+
+            requestAnimationFrame(() => {
+                goToPage(currentPage);
             });
         }
-
-        dots.forEach((dot) => {
-            if (dot.dataset.bound === "true") return;
-
-            dot.addEventListener('click', () => {
-                const index = parseInt(dot.dataset.slide, 10) || 0;
-                updateNewsSlider(index);
-            });
-
-            dot.dataset.bound = "true";
-        });
 
         if (viewport && viewport.dataset.wheelBound !== "true") {
             viewport.addEventListener('wheel', (e) => {
-                const isStackedLayout = window.innerWidth <= 991;
-                const maxSlide = getMaxSlide();
-
-                if (isStackedLayout || maxSlide === 0) return;
+                if (totalPages <= 1) return;
 
                 if (e.deltaY > 10) {
                     e.preventDefault();
-                    updateNewsSlider(currentSlide + 1);
+                    goToPage(currentPage + 1);
                 } else if (e.deltaY < -10) {
                     e.preventDefault();
-                    updateNewsSlider(currentSlide - 1);
+                    goToPage(currentPage - 1);
                 }
             }, { passive: false });
 
             viewport.dataset.wheelBound = "true";
         }
 
-        window.addEventListener('resize', () => {
-            updateNewsSlider(currentSlide);
-        });
+        let resizeTimeout;
 
-        updateNewsSlider(0);
+        if (!window.__teidesatNewsResizeBound) {
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(() => {
+                    updateNewsSlider();
+                }, 120);
+            });
+
+            window.__teidesatNewsResizeBound = true;
+        }
+
+        updateNewsSlider();
     }
 }
 

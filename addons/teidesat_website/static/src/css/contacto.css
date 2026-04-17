@@ -138,6 +138,13 @@ body.teidesat-page:has(.teidesat-page--contacto) {
     gap: 0.45rem;
 }
 
+.teidesat-form-row--hidden {
+    display: none;
+}
+
+.teidesat-form-row--hidden.teidesat-form-row--visible {
+    display: flex;
+}
 .teidesat-form-row label {
     font-size: 0.95rem;
     font-weight: 600;
