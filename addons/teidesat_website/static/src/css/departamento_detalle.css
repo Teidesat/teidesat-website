@@ -8,10 +8,6 @@
         linear-gradient(180deg, #050816 0%, #07111f 45%, #050816 100%);
 }
 
-body.teidesat-page:has(.teidesat-page--department-detail) {
-    scroll-snap-type: none;
-}
-
 .teidesat-page--department-detail section {
     min-height: auto;
     scroll-snap-align: none;
@@ -50,9 +46,7 @@ body.teidesat-page:has(.teidesat-page--department-detail) {
     align-items: center;
 }
 
-.teidesat-department-hero__content {
-    max-width: 860px;
-}
+.teidesat-department-hero__content { max-width: 860px; }
 
 .teidesat-department-hero__content h1 {
     margin: 0 0 1rem;
@@ -89,6 +83,7 @@ body.teidesat-page:has(.teidesat-page--department-detail) {
         0 24px 60px rgba(0,0,0,0.22),
         0 0 40px rgba(118,246,222,0.08);
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .teidesat-department-hero__logo {
@@ -187,6 +182,7 @@ body.teidesat-page:has(.teidesat-page--department-detail) {
     border: 1px solid rgba(255,255,255,0.08);
     box-shadow: 0 20px 45px rgba(0,0,0,0.16);
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
 }
 
@@ -326,9 +322,7 @@ body.teidesat-page:has(.teidesat-page--department-detail) {
     gap: 1.5rem;
 }
 
-.teidesat-department-cta__text {
-    max-width: 760px;
-}
+.teidesat-department-cta__text { max-width: 760px; }
 
 .teidesat-department-cta__text h3 {
     margin: 0 0 0.8rem;
@@ -362,6 +356,8 @@ body.teidesat-page:has(.teidesat-page--department-detail) {
     font-weight: 700;
     transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
     white-space: nowrap;
+    min-height: 44px;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .teidesat-btn-secondary:hover {
@@ -382,6 +378,8 @@ body.teidesat-page:has(.teidesat-page--department-detail) {
     font-weight: 700;
     transition: transform 0.22s ease, box-shadow 0.22s ease;
     white-space: nowrap;
+    min-height: 44px;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .teidesat-btn-primary:hover {
@@ -391,17 +389,12 @@ body.teidesat-page:has(.teidesat-page--department-detail) {
 }
 
 /* =========================================================
-   RESPONSIVE
+   RESPONSIVE — TABLET (≤991px)
 ========================================================= */
 
 @media (max-width: 991px) {
-    .teidesat-department-hero {
-        padding: 130px 0 70px;
-    }
-
-    .teidesat-department-section {
-        padding: 72px 0;
-    }
+    .teidesat-department-hero    { padding: 130px 0 70px; }
+    .teidesat-department-section { padding: 72px 0; }
 
     .teidesat-department-hero__grid,
     .teidesat-department-cards--3,
@@ -409,13 +402,8 @@ body.teidesat-page:has(.teidesat-page--department-detail) {
         grid-template-columns: 1fr;
     }
 
-    .teidesat-department-hero__visual {
-        justify-content: flex-start;
-    }
-
-    .teidesat-department-members {
-        grid-template-columns: 1fr;
-    }
+    .teidesat-department-hero__visual { justify-content: flex-start; }
+    .teidesat-department-members      { grid-template-columns: 1fr; }
 
     .teidesat-department-cta {
         flex-direction: column;
@@ -423,9 +411,16 @@ body.teidesat-page:has(.teidesat-page--department-detail) {
     }
 }
 
+/* =========================================================
+   RESPONSIVE — MÓVIL (≤767px)
+========================================================= */
+
 @media (max-width: 767px) {
-    .teidesat-department-hero {
-        padding: 120px 0 60px;
+    .teidesat-department-hero { padding: 110px 0 56px; }
+
+    .teidesat-department-hero__content h1 {
+        font-size: clamp(2.2rem, 10vw, 3.2rem);
+        letter-spacing: -0.02em;
     }
 
     .teidesat-department-hero__lead {
@@ -433,22 +428,80 @@ body.teidesat-page:has(.teidesat-page--department-detail) {
         line-height: 1.7;
     }
 
-    .teidesat-department-band {
-        padding: 26px 0;
+    .teidesat-department-band { padding: 22px 0; }
+
+    .teidesat-department-band__title {
+        letter-spacing: 0.10em;
+        font-size: 1rem;
     }
 
-    .teidesat-department-section {
-        padding: 60px 0;
-    }
+    .teidesat-department-band__inner p { font-size: 0.92rem; }
+
+    .teidesat-department-section { padding: 56px 0; }
+    .teidesat-department-section__intro { margin-bottom: 2rem; }
+    .teidesat-department-section__intro p { font-size: 0.96rem; }
 
     .teidesat-department-hero__logo-wrap {
-        width: 220px;
-        height: 220px;
-        border-radius: 26px;
+        width: 200px;
+        height: 200px;
+        border-radius: 24px;
     }
 
-    .teidesat-department-cta {
-        padding: 1.4rem;
-        border-radius: 22px;
+    .teidesat-department-card,
+    .teidesat-goal-card,
+    .teidesat-member-card {
+        padding: 1.25rem;
+        border-radius: 18px;
     }
+
+    .teidesat-department-card h3 { font-size: 1.2rem; }
+    .teidesat-goal-card h3       { font-size: 1.1rem; }
+    .teidesat-member-card h3     { font-size: 1.2rem; }
+
+    .teidesat-member-card__avatar {
+        width: 72px;
+        height: 72px;
+        font-size: 1.4rem;
+    }
+
+    /* Sin hover en móvil */
+    .teidesat-department-card:hover { transform: none; }
+
+    .teidesat-department-cta {
+        padding: 1.35rem;
+        border-radius: 20px;
+        gap: 1.2rem;
+    }
+
+    .teidesat-department-cta__actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .teidesat-btn-secondary,
+    .teidesat-btn-primary {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .teidesat-department-cta-section { padding: 30px 0 72px; }
+}
+
+/* =========================================================
+   RESPONSIVE — MÓVIL PEQUEÑO (≤480px)
+========================================================= */
+
+@media (max-width: 480px) {
+    .teidesat-department-hero    { padding: 100px 0 48px; }
+    .teidesat-department-section { padding: 48px 0; }
+
+    .teidesat-department-hero__logo-wrap {
+        width: 160px;
+        height: 160px;
+        border-radius: 20px;
+    }
+
+    .teidesat-department-members { gap: 1rem; }
+
+    .teidesat-department-cta { border-radius: 16px; padding: 1.1rem; }
 }

@@ -8,10 +8,6 @@
         linear-gradient(180deg, #050816 0%, #07111f 45%, #050816 100%);
 }
 
-body.teidesat-page:has(.teidesat-page--participa) {
-    scroll-snap-type: none;
-}
-
 .teidesat-page--participa .teidesat-participa-hero,
 .teidesat-page--participa .teidesat-participa-section {
     min-height: auto;
@@ -126,6 +122,7 @@ body.teidesat-page:has(.teidesat-page--participa) {
     border: 1px solid rgba(255,255,255,0.08);
     box-shadow: 0 20px 45px rgba(0,0,0,0.16);
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
 }
 
@@ -149,9 +146,7 @@ body.teidesat-page:has(.teidesat-page--participa) {
     object-fit: cover;
 }
 
-.participa-card__body {
-    padding: 1.5rem;
-}
+.participa-card__body { padding: 1.5rem; }
 
 .participa-card__body h3 {
     margin: 0 0 0.8rem;
@@ -165,9 +160,7 @@ body.teidesat-page:has(.teidesat-page--participa) {
     line-height: 1.75;
 }
 
-.participa-card__body p:last-child {
-    margin-bottom: 0;
-}
+.participa-card__body p:last-child { margin-bottom: 0; }
 
 /* =========================================================
    CTA
@@ -186,9 +179,7 @@ body.teidesat-page:has(.teidesat-page--participa) {
     gap: 1.5rem;
 }
 
-.teidesat-participa-cta__text {
-    max-width: 760px;
-}
+.teidesat-participa-cta__text { max-width: 760px; }
 
 .teidesat-participa-cta__text h3 {
     margin: 0 0 0.8rem;
@@ -215,6 +206,8 @@ body.teidesat-page:has(.teidesat-page--participa) {
     font-weight: 700;
     transition: transform 0.22s ease, box-shadow 0.22s ease;
     white-space: nowrap;
+    -webkit-tap-highlight-color: transparent;
+    min-height: 44px;
 }
 
 .teidesat-btn-primary:hover {
@@ -224,17 +217,12 @@ body.teidesat-page:has(.teidesat-page--participa) {
 }
 
 /* =========================================================
-   RESPONSIVE
+   RESPONSIVE — TABLET (≤991px)
 ========================================================= */
 
 @media (max-width: 991px) {
-    .teidesat-participa-hero {
-        padding: 130px 0 70px;
-    }
-
-    .teidesat-participa-section {
-        padding: 72px 0;
-    }
+    .teidesat-participa-hero    { padding: 130px 0 70px; }
+    .teidesat-participa-section { padding: 72px 0; }
 
     .teidesat-participa-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -246,9 +234,16 @@ body.teidesat-page:has(.teidesat-page--participa) {
     }
 }
 
+/* =========================================================
+   RESPONSIVE — MÓVIL (≤767px)
+========================================================= */
+
 @media (max-width: 767px) {
-    .teidesat-participa-hero {
-        padding: 120px 0 60px;
+    .teidesat-participa-hero { padding: 110px 0 56px; }
+
+    .teidesat-participa-hero__content h1 {
+        font-size: clamp(2.2rem, 10vw, 3.2rem);
+        letter-spacing: -0.02em;
     }
 
     .teidesat-participa-hero__content p {
@@ -256,21 +251,43 @@ body.teidesat-page:has(.teidesat-page--participa) {
         line-height: 1.7;
     }
 
-    .teidesat-participa-section {
-        padding: 60px 0;
-    }
+    .teidesat-participa-section { padding: 56px 0; }
 
-    .teidesat-participa-grid {
-        grid-template-columns: 1fr;
-    }
+    .teidesat-participa-heading { margin-bottom: 2rem; }
+    .teidesat-participa-heading p { font-size: 0.96rem; }
+
+    .teidesat-participa-grid { grid-template-columns: 1fr; }
 
     .participa-card__image,
-    .participa-card__image img {
-        min-height: 220px;
-    }
+    .participa-card__image img { min-height: 200px; }
+
+    .participa-card__body { padding: 1.25rem; }
+    .participa-card__body h3 { font-size: 1.3rem; }
+    .participa-card__body p  { font-size: 0.95rem; }
+
+    /* Sin hover en móvil (no hay hover real) */
+    .participa-card:hover { transform: none; }
 
     .teidesat-participa-cta {
-        padding: 1.4rem;
-        border-radius: 22px;
+        padding: 1.35rem;
+        border-radius: 20px;
+        gap: 1.2rem;
     }
+
+    .teidesat-btn-primary { width: 100%; justify-content: center; }
+}
+
+/* =========================================================
+   RESPONSIVE — MÓVIL PEQUEÑO (≤480px)
+========================================================= */
+
+@media (max-width: 480px) {
+    .teidesat-participa-hero { padding: 100px 0 48px; }
+    .teidesat-participa-section { padding: 48px 0; }
+
+    .participa-card { border-radius: 18px; }
+    .participa-card__image,
+    .participa-card__image img { min-height: 180px; }
+
+    .teidesat-participa-cta { border-radius: 18px; padding: 1.2rem; }
 }

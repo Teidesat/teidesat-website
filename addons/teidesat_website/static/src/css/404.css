@@ -1,37 +1,42 @@
-/* ── Variables de marca HyperSpace ── */
+/* =========================================================
+   404 — HyperSpace
+========================================================= */
 
 :root {
-    --hs-void:        #020b18;
-    --hs-deep:        #041428;
-    --hs-navy:        #072040;
-    --hs-ocean:       #0d3a6e;
-    --hs-electric:    #1565c0;
-    --hs-pulse:       #1e88e5;
-    --hs-glow:        #42a5f5;
-    --hs-corona:      #90caf9;
-    --hs-white:       #e8f4fd;
-    --hs-muted:       #5a7a99;
-    --hs-accent:      #00e5ff;
-    --hs-accent2:     #0091ea;
+    --hs-void:     #020b18;
+    --hs-deep:     #041428;
+    --hs-navy:     #072040;
+    --hs-ocean:    #0d3a6e;
+    --hs-electric: #1565c0;
+    --hs-pulse:    #1e88e5;
+    --hs-glow:     #42a5f5;
+    --hs-corona:   #90caf9;
+    --hs-white:    #e8f4fd;
+    --hs-muted:    #5a7a99;
+    --hs-accent:   #00e5ff;
+    --hs-accent2:  #0091ea;
 }
 
 body {
     background: var(--hs-void);
     color: var(--hs-white);
-    font-family: 'Courier New', 'Lucida Console', monospace; /* estilo terminal */   
+    font-family: 'Courier New', 'Lucida Console', monospace;
     min-height: 100vh;
+    min-height: 100svh;
     margin: 0;
 }
 
 .hs-404-wrapper {
     position: relative;
     min-height: 90vh;
+    min-height: 90svh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    padding: 4rem 2rem;
+    padding: 4rem 1.5rem;
+    box-sizing: border-box;
     background:
         radial-gradient(ellipse 80% 60% at 50% 0%,   #0d2f5e 0%, transparent 65%),
         radial-gradient(ellipse 50% 40% at 80% 80%,  #062244 0%, transparent 60%),
@@ -39,7 +44,10 @@ body {
         linear-gradient(180deg, #020b18 0%, #041428 50%, #020b18 100%);
 }
 
-/* Campo de estrellas */
+/* =========================================================
+   CAMPO DE ESTRELLAS
+========================================================= */
+
 .hs-stars {
     position: absolute;
     inset: 0;
@@ -47,18 +55,23 @@ body {
     pointer-events: none;
     z-index: 0;
 }
+
 .hs-star {
     position: absolute;
     border-radius: 50%;
     background: var(--hs-white);
     animation: hs-twinkle var(--dur, 3s) ease-in-out infinite var(--delay, 0s);
 }
+
 @keyframes hs-twinkle {
     0%, 100% { opacity: 0.15; transform: scale(1); }
     50%       { opacity: 0.9;  transform: scale(1.4); }
 }
 
-/* Nebulosas */
+/* =========================================================
+   NEBULOSAS
+========================================================= */
+
 .hs-nebula {
     position: absolute;
     border-radius: 50%;
@@ -67,27 +80,33 @@ body {
     z-index: 0;
     animation: hs-nebula-drift 12s ease-in-out infinite alternate;
 }
+
 .hs-nebula-1 {
     width: 600px; height: 400px;
     top: -100px; left: -150px;
     background: radial-gradient(circle, rgba(21,101,192,.35) 0%, transparent 70%);
 }
+
 .hs-nebula-2 {
     width: 500px; height: 350px;
     bottom: -80px; right: -100px;
     background: radial-gradient(circle, rgba(0,145,234,.25) 0%, transparent 70%);
     animation-delay: -6s;
 }
+
 @keyframes hs-nebula-drift {
     0%   { transform: translate(0, 0) scale(1); }
     100% { transform: translate(30px, 20px) scale(1.05); }
 }
 
-/* Grid perspectiva */
+/* =========================================================
+   GRID PERSPECTIVA
+========================================================= */
+
 .hs-grid {
     position: absolute;
     bottom: 0; left: 0; right: 0;
-    height: 45%;
+    height: 40%;
     background-image:
         linear-gradient(rgba(21,101,192,.18) 1px, transparent 1px),
         linear-gradient(90deg, rgba(21,101,192,.18) 1px, transparent 1px);
@@ -95,15 +114,19 @@ body {
     transform: perspective(600px) rotateX(55deg);
     transform-origin: bottom center;
     mask-image: linear-gradient(to top, rgba(0,0,0,.6) 0%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,.6) 0%, transparent 100%);
     pointer-events: none;
     z-index: 0;
 }
 
-/* Número 404 */
+/* =========================================================
+   NÚMERO 404
+========================================================= */
+
 .hs-code {
     position: relative;
     z-index: 2;
-    font-size: clamp(7rem, 20vw, 15rem);
+    font-size: clamp(5.5rem, 18vw, 15rem);
     font-weight: 900;
     letter-spacing: -0.04em;
     line-height: 1;
@@ -115,16 +138,20 @@ body {
     animation: hs-float 6s ease-in-out infinite;
     user-select: none;
 }
+
 @keyframes hs-float {
     0%, 100% { transform: translateY(0px); }
     50%       { transform: translateY(-14px); }
 }
 
-/* Línea escáner */
+/* =========================================================
+   LÍNEA ESCÁNER
+========================================================= */
+
 .hs-scan-line {
     position: relative;
     z-index: 2;
-    width: clamp(200px, 50vw, 520px);
+    width: clamp(180px, 50vw, 520px);
     height: 2px;
     background: linear-gradient(90deg,
         transparent 0%,
@@ -135,12 +162,16 @@ body {
     margin: 0.5rem auto 1.8rem;
     animation: hs-scan-pulse 3s ease-in-out infinite;
 }
+
 @keyframes hs-scan-pulse {
     0%, 100% { opacity: .5; transform: scaleX(.8); }
     50%       { opacity: 1;  transform: scaleX(1); }
 }
 
-/* Badge */
+/* =========================================================
+   BADGE
+========================================================= */
+
 .hs-badge {
     position: relative;
     z-index: 2;
@@ -156,13 +187,17 @@ body {
     margin-bottom: 1.6rem;
     background: rgba(0,229,255,.06);
     backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 
-/* Título */
+/* =========================================================
+   TÍTULO
+========================================================= */
+
 .hs-title {
     position: relative;
     z-index: 2;
-    font-size: clamp(1.4rem, 4vw, 2.4rem);
+    font-size: clamp(1.2rem, 4vw, 2.4rem);
     font-weight: 700;
     text-align: center;
     color: var(--hs-white);
@@ -170,19 +205,26 @@ body {
     letter-spacing: .02em;
 }
 
-/* Descripción */
+/* =========================================================
+   DESCRIPCIÓN
+========================================================= */
+
 .hs-desc {
     position: relative;
     z-index: 2;
-    font-size: clamp(.9rem, 2vw, 1.1rem);
+    font-size: clamp(.88rem, 2vw, 1.1rem);
     color: var(--hs-muted);
     text-align: center;
     max-width: 480px;
     line-height: 1.75;
-    margin: 0 auto 2.8rem;
+    margin: 0 auto 2.5rem;
+    padding: 0 0.5rem;
 }
 
-/* Botones */
+/* =========================================================
+   BOTONES
+========================================================= */
+
 .hs-actions {
     position: relative;
     z-index: 2;
@@ -191,11 +233,12 @@ body {
     gap: 1rem;
     justify-content: center;
 }
+
 .hs-btn {
     display: inline-flex;
     align-items: center;
     gap: .5rem;
-    padding: .75rem 2rem;
+    padding: .75rem 1.8rem;
     border-radius: 4px;
     font-size: .95rem;
     font-weight: 600;
@@ -204,60 +247,83 @@ body {
     transition: transform .2s, box-shadow .2s, background .2s;
     cursor: pointer;
     border: none;
+    min-height: 44px;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
+
 .hs-btn-primary {
     background: linear-gradient(135deg, var(--hs-electric) 0%, var(--hs-pulse) 100%);
     color: #fff !important;
     box-shadow: 0 4px 24px rgba(21,101,192,.5);
 }
+
 .hs-btn-primary:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 32px rgba(30,136,229,.65);
     background: linear-gradient(135deg, var(--hs-pulse) 0%, var(--hs-glow) 100%);
 }
+
 .hs-btn-ghost {
     background: rgba(21,101,192,.1);
     color: var(--hs-corona) !important;
     border: 1px solid rgba(66,165,245,.3);
     backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
+
 .hs-btn-ghost:hover {
     transform: translateY(-2px);
     background: rgba(21,101,192,.25);
     border-color: rgba(66,165,245,.6);
 }
 
-/* Marca inferior */
+/* =========================================================
+   MARCA INFERIOR
+========================================================= */
+
 .hs-brand {
     position: relative;
     z-index: 2;
-    margin-top: 4rem;
-    font-size: .75rem;
+    margin-top: 3.5rem;
+    font-size: .72rem;
     letter-spacing: .18em;
     text-transform: uppercase;
     color: rgba(90,122,153,.55);
+    text-align: center;
 }
+
 .hs-brand strong {
     color: rgba(144,202,249,.4);
     font-weight: 700;
 }
 
-/* Icono decorativo */
+/* =========================================================
+   ICONO DECORATIVO
+========================================================= */
+
 .hs-icon {
     position: relative;
     z-index: 2;
     margin-bottom: 1.2rem;
     opacity: .75;
 }
+
 .hs-icon svg {
-    width: 56px; height: 56px;
+    width: 48px;
+    height: 48px;
     filter: drop-shadow(0 0 16px rgba(0,229,255,.4));
     animation: hs-icon-spin 20s linear infinite;
 }
+
 @keyframes hs-icon-spin {
     from { transform: rotate(0deg); }
     to   { transform: rotate(360deg); }
 }
+
+/* =========================================================
+   ESTILOS ODOO
+========================================================= */
 
 header#top,
 footer.o_footer,
@@ -267,6 +333,60 @@ nav.navbar {
     display: none !important;
 }
 
-#wrapwrap {
-    padding: 0 !important;
+#wrapwrap { padding: 0 !important; }
+
+/* =========================================================
+   RESPONSIVE — MÓVIL (≤767px)
+========================================================= */
+
+@media (max-width: 767px) {
+    .hs-404-wrapper {
+        padding: 3rem 1.25rem;
+        min-height: 100svh;
+    }
+
+    /* Reducir nebulosas en móvil */
+    .hs-nebula-1 { width: 320px; height: 220px; left: -80px; top: -60px; }
+    .hs-nebula-2 { width: 280px; height: 200px; right: -60px; bottom: -50px; }
+
+    .hs-icon svg { width: 40px; height: 40px; }
+
+    .hs-badge {
+        font-size: 0.62rem;
+        letter-spacing: 0.16em;
+        padding: 0.3rem 0.8rem;
+        margin-bottom: 1.2rem;
+    }
+
+    /* Detener flotación para rendimiento si se prefiere */
+    @media (prefers-reduced-motion: reduce) {
+        .hs-code { animation: none; }
+        .hs-icon svg { animation: none; }
+        .hs-nebula { animation: none; }
+    }
+
+    .hs-actions { gap: 0.8rem; }
+
+    .hs-btn {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    /* En pantallas muy pequeñas, botones en columna */
+    @media (max-width: 380px) {
+        .hs-actions { flex-direction: column; align-items: stretch; }
+        .hs-btn { justify-content: center; }
+    }
+
+    .hs-brand { margin-top: 2.5rem; font-size: 0.65rem; }
+}
+
+/* =========================================================
+   RESPONSIVE — MÓVIL PEQUEÑO (≤480px)
+========================================================= */
+
+@media (max-width: 480px) {
+    .hs-404-wrapper { padding: 2.5rem 1rem; }
+
+    .hs-grid { height: 30%; }
 }

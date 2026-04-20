@@ -8,9 +8,11 @@
         linear-gradient(180deg, #050816 0%, #07111f 45%, #050816 100%);
 }
 
-body.teidesat-page:has(.teidesat-page--about) {
-    scroll-snap-type: none;
-}
+/*
+ * NOTA: scroll-snap y reveal-up ahora se gestionan globalmente
+ * desde main.css y base_layout.xml. Se eliminan las reglas
+ * redundantes que había aquí para evitar conflictos.
+ */
 
 .teidesat-page--about .teidesat-about-section,
 .teidesat-page--about .teidesat-about-quote-band,
@@ -21,7 +23,10 @@ body.teidesat-page:has(.teidesat-page--about) {
     box-sizing: border-box;
 }
 
-/* HERO */
+/* =========================================================
+   HERO
+========================================================= */
+
 .teidesat-about-hero {
     position: relative;
     padding: 150px 0 90px;
@@ -35,8 +40,7 @@ body.teidesat-page:has(.teidesat-page--about) {
     content: "";
     position: absolute;
     inset: 0;
-    background:
-        linear-gradient(90deg, rgba(3,8,18,0.76) 0%, rgba(3,8,18,0.38) 50%, rgba(3,8,18,0.14) 100%);
+    background: linear-gradient(90deg, rgba(3,8,18,0.76) 0%, rgba(3,8,18,0.38) 50%, rgba(3,8,18,0.14) 100%);
     pointer-events: none;
 }
 
@@ -44,6 +48,7 @@ body.teidesat-page:has(.teidesat-page--about) {
     position: relative;
     z-index: 2;
     max-width: 860px;
+    width: 100%;
 }
 
 .teidesat-about-hero__content h1 {
@@ -62,15 +67,14 @@ body.teidesat-page:has(.teidesat-page--about) {
     color: rgba(255,255,255,0.86);
 }
 
-/* SECCIONES */
-.teidesat-about-section {
-    padding: 88px 0;
-}
+/* =========================================================
+   SECCIONES
+========================================================= */
+
+.teidesat-about-section { padding: 88px 0; }
 
 .teidesat-about-section--story,
-.teidesat-about-section--team {
-    background: rgba(255,255,255,0.02);
-}
+.teidesat-about-section--team { background: rgba(255,255,255,0.02); }
 
 .teidesat-about-section--what,
 .teidesat-about-section--philosophy {
@@ -85,7 +89,10 @@ body.teidesat-page:has(.teidesat-page--about) {
         linear-gradient(180deg, #06101d 0%, #050816 100%);
 }
 
-/* FRASES LATINAS */
+/* =========================================================
+   FRASES LATINAS
+========================================================= */
+
 .teidesat-about-quote-band {
     padding: 34px 0;
     background: linear-gradient(180deg, rgba(255,255,255,0.025) 0%, rgba(255,255,255,0.04) 100%);
@@ -97,9 +104,7 @@ body.teidesat-page:has(.teidesat-page--about) {
     background: linear-gradient(180deg, rgba(118,246,222,0.04) 0%, rgba(255,255,255,0.025) 100%);
 }
 
-.teidesat-about-quote {
-    text-align: center;
-}
+.teidesat-about-quote { text-align: center; }
 
 .teidesat-about-quote__latin {
     display: block;
@@ -111,13 +116,12 @@ body.teidesat-page:has(.teidesat-page--about) {
     color: rgba(255,255,255,0.92);
 }
 
-.teidesat-about-quote p {
-    margin: 0;
-    color: rgba(255,255,255,0.72);
-    line-height: 1.7;
-}
+.teidesat-about-quote p { margin: 0; color: rgba(255,255,255,0.72); line-height: 1.7; }
 
-/* SPLIT */
+/* =========================================================
+   SPLIT
+========================================================= */
+
 .teidesat-about-split {
     display: grid;
     grid-template-columns: 1.05fr 0.95fr;
@@ -125,9 +129,7 @@ body.teidesat-page:has(.teidesat-page--about) {
     align-items: center;
 }
 
-.teidesat-about-split--reverse {
-    grid-template-columns: 0.95fr 1.05fr;
-}
+.teidesat-about-split--reverse { grid-template-columns: 0.95fr 1.05fr; }
 
 .teidesat-about-split__text h2,
 .teidesat-about-block h2,
@@ -146,11 +148,12 @@ body.teidesat-page:has(.teidesat-page--about) {
 }
 
 .teidesat-about-split__text p:last-child,
-.teidesat-about-impact__text p:last-child {
-    margin-bottom: 0;
-}
+.teidesat-about-impact__text p:last-child { margin-bottom: 0; }
 
-/* IMAGENES */
+/* =========================================================
+   IMÁGENES
+========================================================= */
+
 .teidesat-about-image-card {
     padding: 0.5rem;
     border-radius: 28px;
@@ -159,28 +162,20 @@ body.teidesat-page:has(.teidesat-page--about) {
     box-shadow: 0 22px 55px rgba(0,0,0,0.2);
 }
 
-.teidesat-about-image {
-    display: block;
-    width: 100%;
-    height: auto;
-    border-radius: 22px;
-}
+.teidesat-about-image { display: block; width: 100%; height: auto; border-radius: 22px; }
 
-/* BLOCK */
-.teidesat-about-block {
-    max-width: 1100px;
-    margin: 0 auto;
-}
+/* =========================================================
+   BLOCK
+========================================================= */
 
-.teidesat-about-block__intro {
-    font-size: 1.05rem;
-}
+.teidesat-about-block { max-width: 1100px; margin: 0 auto; }
+.teidesat-about-block__intro { font-size: 1.05rem; }
+.teidesat-about-block__text  { max-width: 860px; }
 
-.teidesat-about-block__text {
-    max-width: 860px;
-}
+/* =========================================================
+   CARDS
+========================================================= */
 
-/* CARDS */
 .teidesat-about-cards {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -188,7 +183,10 @@ body.teidesat-page:has(.teidesat-page--about) {
     margin-top: 2rem;
 }
 
-/* TAGS */
+/* =========================================================
+   TAGS
+========================================================= */
+
 .teidesat-about-tags {
     display: flex;
     flex-wrap: wrap;
@@ -207,11 +205,14 @@ body.teidesat-page:has(.teidesat-page--about) {
     font-size: 0.95rem;
 }
 
-/* FILOSOFIA */
+/* =========================================================
+   FILOSOFÍA
+========================================================= */
+
 .teidesat-about-philosophy-box {
-    margin: 2rem auto;  
+    margin: 2rem auto;
     padding: 1.8rem;
-    max-width: 700px;   
+    max-width: 700px;
     width: 100%;
     border-radius: 24px;
     background: rgba(14, 23, 40, 0.82);
@@ -220,17 +221,13 @@ body.teidesat-page:has(.teidesat-page--about) {
     text-align: center;
 }
 
-.teidesat-about-philosophy-box p {
-    margin: 0 0 0.65rem;
-    font-size: 1.05rem;
-    color: rgba(255,255,255,0.92);
-}
+.teidesat-about-philosophy-box p { margin: 0 0 0.65rem; font-size: 1.05rem; color: rgba(255,255,255,0.92); }
+.teidesat-about-philosophy-box p:last-child { margin-bottom: 0; }
 
-.teidesat-about-philosophy-box p:last-child {
-    margin-bottom: 0;
-}
+/* =========================================================
+   IMPACTO
+========================================================= */
 
-/* IMPACTO */
 .teidesat-about-impact {
     display: grid;
     grid-template-columns: 1.2fr 0.9fr;
@@ -238,75 +235,65 @@ body.teidesat-page:has(.teidesat-page--about) {
     align-items: stretch;
 }
 
-.teidesat-about-impact__stats {
-    display: grid;
-    gap: 1rem;
-    align-content: center;
-}
+.teidesat-about-impact__stats { display: grid; gap: 1rem; align-content: center; }
 
-/* RESPONSIVE */
+/* =========================================================
+   RESPONSIVE — TABLET (≤991px)
+========================================================= */
+
 @media (max-width: 991px) {
     .teidesat-about-split,
     .teidesat-about-split--reverse,
     .teidesat-about-impact,
-    .teidesat-about-cards {
-        grid-template-columns: 1fr;
-    }
+    .teidesat-about-cards { grid-template-columns: 1fr; }
 
-    .teidesat-about-hero {
-        padding: 130px 0 70px;
-    }
-
-    .teidesat-about-section {
-        padding: 72px 0;
-    }
+    .teidesat-about-hero    { padding: 130px 0 70px; }
+    .teidesat-about-section { padding: 72px 0; }
 }
 
+/* =========================================================
+   RESPONSIVE — MÓVIL (≤767px)
+========================================================= */
+
 @media (max-width: 767px) {
-    .teidesat-about-hero {
-        padding: 120px 0 60px;
+    .teidesat-about-hero { padding: 110px 0 56px; }
+
+    .teidesat-about-hero__content h1 {
+        font-size: clamp(2.2rem, 9vw, 3rem);
+        letter-spacing: -0.02em;
+        word-break: break-word;
     }
 
-    .teidesat-about-hero__lead {
-        font-size: 1rem;
-        line-height: 1.7;
-    }
+    .teidesat-about-hero__lead { font-size: 1rem; line-height: 1.7; }
 
-    .teidesat-about-quote-band {
-        padding: 26px 0;
-    }
+    .teidesat-about-quote-band { padding: 24px 0; }
+    .teidesat-about-quote__latin { letter-spacing: 0.10em; font-size: 1rem; }
+    .teidesat-about-quote p { font-size: 0.92rem; }
 
-    .teidesat-about-quote__latin {
-        letter-spacing: 0.1em;
-        font-size: 1.05rem;
-    }
+    .teidesat-about-section { padding: 56px 0; }
 
-    .teidesat-about-quote p {
-        font-size: 0.94rem;
-    }
+    .teidesat-about-image-card { border-radius: 20px; }
+    .teidesat-about-image      { border-radius: 15px; }
 
-    .teidesat-about-section {
-        padding: 60px 0;
-    }
+    .teidesat-about-philosophy-box { padding: 1.2rem; border-radius: 18px; margin: 1.5rem auto; }
+    .teidesat-about-philosophy-box p { font-size: 0.98rem; }
 
-    .teidesat-about-image-card {
-        border-radius: 22px;
-    }
+    .teidesat-about-tags { gap: 0.6rem; }
+    .teidesat-about-tags span { font-size: 0.88rem; padding: 0.55rem 0.85rem; }
 
-    .teidesat-about-image {
-        border-radius: 18px;
-    }
+    .teidesat-about-cards { grid-template-columns: 1fr; gap: 1rem; }
 
-    .teidesat-about-philosophy-box {
-        padding: 1.2rem;
-        border-radius: 20px;
-    }
+    .teidesat-about-split__text p,
+    .teidesat-about-block p,
+    .teidesat-about-impact__text p { font-size: 0.97rem; line-height: 1.75; }
+}
 
-    .teidesat-about-tags {
-        gap: 0.65rem;
-    }
+/* =========================================================
+   RESPONSIVE — MÓVIL PEQUEÑO (≤480px)
+========================================================= */
 
-    .teidesat-about-tags span {
-        font-size: 0.9rem;
-    }
+@media (max-width: 480px) {
+    .teidesat-about-hero    { padding: 100px 0 48px; }
+    .teidesat-about-section { padding: 48px 0; }
+    .teidesat-about-philosophy-box { padding: 1rem; }
 }
