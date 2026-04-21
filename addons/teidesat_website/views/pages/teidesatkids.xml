@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="teidesat_kids_page" name="Teidesat Kids">
+        <t t-call="teidesat_website.teidesat_base_layout">
+            
+            <div class="teidesat-page teidesat-page--kids">
+                
+                <section class="teidesat-kids-hero d-flex align-items-center justify-content-center text-center text-white" 
+                         style="min-height: 60vh; background: radial-gradient(circle, #1a2a44 0%, #0b111b 100%); padding: 100px 0;">
+                    <div class="container">
+                        <div class="reveal-up">
+                            <span class="section-kicker d-block mb-3" style="color: #66e0e0; font-weight: bold; letter-spacing: 2px; text-transform: uppercase;">
+                                Próxima Generación
+                            </span>
+                            <h1 class="display-3 fw-bold mb-4">
+                                Teidesat <span style="color: #66e0e0;">Kids</span> 🚀
+                            </h1>
+                            <p class="lead mx-auto" style="max-width: 700px; font-size: 1.3rem; color: #cbd5e0;">
+                                ¡El espacio no tiene límites! Aquí los más pequeños aprenden a construir el futuro de la exploración espacial en Canarias.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="teidesat-kids-cards py-5" style="background-color: #0b111b;">
+                    <div class="container py-4">
+                        <div class="row g-4">
+                            <div class="col-md-4">
+                                <article class="h-100 p-5 text-center reveal-up" 
+                                         style="background: rgba(255, 255, 255, 0.03); border: 2px solid #66e0e0; border-radius: 20px;">
+                                    <div class="display-4 mb-3">🚀</div>
+                                    <h3 style="color: #66e0e0; font-weight: 700;">Misión Cohete</h3>
+                                    <p style="color: #cbd5e0;">Descubre cómo vencemos a la gravedad para llegar a las estrellas.</p>
+                                </article>
+                            </div>
+
+                            <div class="col-md-4">
+                                <article class="h-100 p-5 text-center reveal-up" 
+                                         style="background: rgba(255, 255, 255, 0.03); border: 2px solid #66e0e0; border-radius: 20px;">
+                                    <div class="display-4 mb-3">🛰️</div>
+                                    <h3 style="color: #66e0e0; font-weight: 700;">Tu Satélite</h3>
+                                    <p style="color: #cbd5e0;">Aprende cómo funciona el Teidesat-1 y para qué sirve en el espacio.</p>
+                                </article>
+                            </div>
+
+                            <div class="col-md-4">
+                                <article class="h-100 p-5 text-center reveal-up" 
+                                         style="background: rgba(255, 255, 255, 0.03); border: 2px solid #66e0e0; border-radius: 20px;">
+                                    <div class="display-4 mb-3">👩‍🚀</div>
+                                    <h3 style="color: #66e0e0; font-weight: 700;">Ser Astronauta</h3>
+                                    <p style="color: #cbd5e0;">Entrena tu mente y cuerpo para las futuras misiones espaciales.</p>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="teidesat-kids-fact py-5" style="background-color: #0b111b;">
+                    <div class="container">
+                        <div class="row align-items-center p-5 reveal-up" 
+                             style="background: rgba(102, 224, 224, 0.1); border-radius: 30px;">
+                            <div class="col-lg-8 mb-4 mb-lg-0">
+                                <h2 class="text-white fw-bold">¿Sabías que el <span style="color: #66e0e0;">Teidesat-1</span> es tan pequeño como una caja de zapatos?</h2>
+                                <p class="mb-0 mt-3" style="color: #cbd5e0; font-size: 1.1rem;">
+                                    ¡Es verdad! Se llaman Nanosatélites. Aunque son pequeños, son capaces de hacer cosas increíbles como medir señales desde el espacio.
+                                </p>
+                            </div>
+                            <div class="col-lg-4 text-center text-lg-end">
+                                <span class="d-inline-block px-5 py-3 fw-bold shadow-sm" 
+                                      style="background: #66e0e0; color: #0b111b; border-radius: 50px; font-size: 1.2rem;">
+                                    ¡Dato Espacial! ✨
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </t>
+    </template>
+</odoo>

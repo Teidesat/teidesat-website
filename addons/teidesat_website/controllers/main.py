@@ -60,6 +60,10 @@ class TeidesatWebsite(http.Controller):
     def departamento_electrocom(self, **kwargs):
         return request.render('teidesat_website.page_departamento_electrocom')
 
+    @http.route('/teidesatkids', type='http', auth='public', website=True)
+    def teidesat_kids(self, **kwargs):
+        return request.render('teidesat_website.teidesat_kids_page')
+
     @http.route('/contacto/enviar', type='http', auth='public', website=True, methods=['POST'], csrf=True)
     def contacto_enviar(self, **post):
         nombre = (post.get('nombre') or '').strip()

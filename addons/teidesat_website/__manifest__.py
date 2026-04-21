@@ -19,6 +19,7 @@
         'views/pages/administracion_departamento.xml',
         'views/pages/rd_departamento.xml',
         'views/pages/electrocom_departamento.xml',
+        'views/pages/teidesatkids.xml' ,
     ],
     'assets': {
         'web.assets_frontend': [
