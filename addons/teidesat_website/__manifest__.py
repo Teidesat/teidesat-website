@@ -36,6 +36,8 @@
             'teidesat_website/static/src/css/404.css',
             'teidesat_website/static/src/js/404.js',
             'teidesat_website/static/src/js/contacto.js',
+            'teidesat_website/static/src/css/teidesatkids.css',
+            'teidesat_website/static/src/js/teidesatkids_game.js',
         ],
     },
     'installable': True,

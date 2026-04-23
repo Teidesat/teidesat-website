@@ -74,8 +74,6 @@ class TeidesatWebsite(http.Controller):
         asunto_libre = (post.get('asunto_libre') or '').strip()
         mensaje = (post.get('mensaje') or '').strip()
 
-        # Si elige "Otro", usamos el texto libre solo como detalle,
-        # pero la categoría interna sigue siendo "Otro"
         asunto_final = asunto_libre if asunto == 'Otro' and asunto_libre else asunto
 
         descripcion = f"""
@@ -86,7 +84,12 @@ class TeidesatWebsite(http.Controller):
         ___________<br/><br/>
 
         <strong>Asunto seleccionado:</strong> {asunto}<br/>
-        <strong>Asunto final:</strong> {asunto_final}<br/>
+        """
+
+        if asunto == 'Otro' and asunto_libre:
+            descripcion += f"<strong>Asunto final:</strong> {asunto_final}<br/>"
+
+        descripcion += f"""
         <strong>Empresa:</strong> {empresa}<br/>
         <strong>Teléfono:</strong> {telefono}<br/>
         <strong>Email:</strong> {email}
@@ -110,9 +113,7 @@ class TeidesatWebsite(http.Controller):
             if tag:
                 tag_ids = [tag.id]
 
-        # Para no romper lo que ya te funcionaba antes,
-        # el nombre del lead será la categoría seleccionada.
-        lead_name = asunto if asunto else (nombre or 'Consulta web')
+        lead_name = f'Consulta web - {nombre}' if nombre else 'Consulta web'
 
         lead_vals = {
             'name': lead_name,

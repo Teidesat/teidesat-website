@@ -30,8 +30,6 @@ body.teidesat-page {
 }
 
 .teidesat-main section {
-    min-height: 100vh;
-    min-height: 100svh;
     box-sizing: border-box;
 }
 
@@ -639,9 +637,15 @@ body.teidesat-menu-open {
     line-height: 1.75;
 }
 
-#objetivos.has-active-objective .teidesat-objectives-heading {
+#objetivos.has-active-objective .teidesat-objectives-heading h2,
+#objetivos.has-active-objective .teidesat-objectives-heading p {
     opacity: 0;
     visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.teidesat-objectives-heading h2,
+.teidesat-objectives-heading p {
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .teidesat-objectives-system {
@@ -822,8 +826,8 @@ body.teidesat-menu-open {
 ========================================================= */
 
 #mas-info.teidesat-section {
-    min-height: calc(100svh + 160px);
-    padding: 120px 0 150px;
+    min-height: auto;
+    padding: 110px 0 90px;
     display: flex;
     align-items: flex-start;
     box-sizing: border-box;
@@ -1112,18 +1116,16 @@ body.teidesat-menu-open {
 .teidesat-timeline::before {
     content: "";
     position: absolute;
-    top: 6px;
-    bottom: 6px;
+    top: 60px;
+    bottom: 60px;
     left: 50%;
-    width: 2px;
+    width: 180px;
     transform: translateX(-50%);
-    background: linear-gradient(
-        180deg,
-        rgba(118, 246, 222, 0.08) 0%,
-        rgba(118, 246, 222, 0.42) 50%,
-        rgba(118, 246, 222, 0.08) 100%
-    );
-    box-shadow: 0 0 16px rgba(118, 246, 222, 0.12);
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.9;
+    background: no-repeat center / 100% 100%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 900' preserveAspectRatio='none'%3E%3Cpath d='M92 0 L78 120 L96 250 L76 390 L98 530 L80 700 L92 900' fill='none' stroke='rgba(118,246,222,0.42)' stroke-width='2' stroke-linecap='round' stroke-dasharray='10 12'/%3E%3C/svg%3E");
 }
 
 .timeline-item {
@@ -1140,21 +1142,38 @@ body.teidesat-menu-open {
 .timeline-dot {
     position: absolute;
     top: 50%;
-    left: 50%;
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
+    width: 24px;
+    height: 24px;
     transform: translate(-50%, -50%);
-    background: radial-gradient(circle, #d9fff8 0%, #76f6de 55%, #318a7f 100%);
+    z-index: 5;
+    background: #dffffa;
+    clip-path: polygon(
+        50% 0%,
+        61% 35%,
+        100% 35%,
+        68% 57%,
+        79% 100%,
+        50% 72%,
+        21% 100%,
+        32% 57%,
+        0% 35%,
+        39% 35%
+    );
     box-shadow:
-        0 0 0 6px rgba(118, 246, 222, 0.08),
-        0 0 18px rgba(118, 246, 222, 0.28);
-    z-index: 2;
+        0 0 8px rgba(118,246,222,0.8),
+        0 0 18px rgba(118,246,222,0.45),
+        0 0 30px rgba(118,246,222,0.18);
 }
+.timeline-item:nth-child(1) .timeline-dot { left: calc(50% + 1px); }
+.timeline-item:nth-child(2) .timeline-dot { left: calc(50% - 2px); }
+.timeline-item:nth-child(3) .timeline-dot { left: calc(50% - 11px); }
+.timeline-item:nth-child(4) .timeline-dot { left: calc(50% + 5px); }
+.timeline-item:nth-child(5) .timeline-dot { left: calc(50% - 10px); }
+.timeline-item:nth-child(6) .timeline-dot { left: calc(50% - 2px); }
 
 .timeline-card {
     position: relative;
-    width: calc(50% - 34px);
+    width: calc(50% - 72px);
     box-sizing: border-box;
     padding: 1rem 1.1rem;
     border-radius: 22px;
@@ -1176,17 +1195,22 @@ body.teidesat-menu-open {
     content: "";
     position: absolute;
     top: 50%;
-    width: 22px;
-    height: 1px;
-    background: rgba(118, 246, 222, 0.35);
+    width: 54px;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        rgba(118,246,222,0.0),
+        rgba(118,246,222,0.55),
+        rgba(118,246,222,0.0)
+    );
 }
 
 .timeline-item:nth-child(odd) .timeline-card::after {
-    left: -22px;
+    left: -54px;
 }
 
 .timeline-item:nth-child(even) .timeline-card::after {
-    right: -22px;
+    right: -54px;
 }
 
 .timeline-period {
@@ -1444,9 +1468,8 @@ body.teidesat-menu-open {
 ========================================================= */
 
 .teidesat-section-impact {
-    min-height: 100vh;
-    min-height: 100svh;
-    padding: 120px 0 40px;
+    min-height: auto;
+    padding: 120px 0 70px;
     display: flex;
     align-items: flex-start;
     box-sizing: border-box;
@@ -1665,13 +1688,32 @@ body.teidesat-menu-open {
     }
 
     #mas-info.teidesat-section {
-        min-height: 100vh;
-        min-height: 100svh;
-        padding: 110px 0 90px;
+        min-height: auto;
+        padding: 100px 0 80px;
     }
 }
 
 @media (max-width: 991px) {
+    /* Ocultar línea central decorativa */
+    .teidesat-timeline::before {
+        display: none;
+    }
+
+    /* Ocultar estrellas */
+    .timeline-dot {
+        display: none;
+    }
+
+    /* quitar espacio lateral reservado */
+    .teidesat-timeline {
+        padding: 0 0 2rem 0;
+    }
+
+    /* tarjetas limpias full width */
+    .timeline-card {
+        width: 100%;
+        margin: 0 !important;
+    }
 
     #fases.teidesat-section {
         min-height: calc(100svh + 72px);
@@ -1900,8 +1942,8 @@ body.teidesat-menu-open {
     }
 
     #mas-info.teidesat-section {
-        min-height: calc(100svh + 220px);
-        padding: 110px 0 130px;
+        min-height: auto;
+        padding: 100px 0 80px;
     }
 
     .teidesat-more-links {
