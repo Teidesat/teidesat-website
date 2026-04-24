@@ -7,9 +7,13 @@
             <head>
                 <meta charset="utf-8"/>
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+                <link rel="preconnect" href="https://fonts.googleapis.com"/>
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+                <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+
                 <title>TEIDESAT</title>
 
-                <!-- Assets -->
                 <t t-call-assets="web.assets_frontend"/>
             </head>
 
@@ -18,6 +22,21 @@
                 <!-- HEADER -->
             <header class="teidesat-custom-header">
                 <div class="teidesat-custom-header__inner">
+
+                    <a href="/" class="teidesat-custom-header__logo">
+                        <img src="/teidesat_website/static/src/img/Logo TEIDESAT - Blanco sobre transparente.png"
+                            alt="TEIDESAT"
+                            class="teidesat-logo"/>
+                    </a>
+
+                    <nav class="teidesat-desktop-nav">
+                        <a href="/nosotros">Sobre nosotros</a>
+                        <a href="/divulgacion">Divulgación</a>
+                        <a href="/participa">Participa</a>
+                        <a href="/departamentos">Departamentos</a>
+                        <a href="/teidesatkids">TeidesatKids</a>
+                        <a href="/contacto">Contacto</a>
+                    </nav>
 
                     <button class="teidesat-menu-toggle"
                             type="button"
@@ -30,13 +49,6 @@
                         <span></span>
                     </button>
 
-                    <a href="/" class="teidesat-custom-header__logo">
-                        <img src="/teidesat_website/static/src/img/Logo TEIDESAT - Blanco sobre transparente.png"
-                            alt="TEIDESAT"
-                            class="teidesat-logo"/>
-                    </a>
-
-                    <div class="teidesat-header-spacer"></div>
                 </div>
             </header>
 

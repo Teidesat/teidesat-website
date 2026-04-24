@@ -25,8 +25,26 @@ body.teidesat-page {
     color: #f4f7fb;
     overflow-y: scroll;
     overflow-x: hidden;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Manrope', sans-serif;
     scrollbar-gutter: stable;
+}
+/* ==========================================
+   TIPOGRAFÍA TEIDESAT GLOBAL
+========================================== */
+
+body.teidesat-page h1,
+body.teidesat-page h2,
+body.teidesat-page h3,
+body.teidesat-page h4,
+body.teidesat-page .section-kicker,
+body.teidesat-page .section-kicker--right,
+body.teidesat-page .teidesat-desktop-nav a,
+body.teidesat-page .teidesat-side-menu__nav a,
+body.teidesat-page .timeline-period,
+body.teidesat-page .status-pill,
+body.teidesat-page .support-amount {
+    font-family: 'Rajdhani', sans-serif;
+    letter-spacing: 0.03em;
 }
 
 .teidesat-main section {
@@ -135,6 +153,11 @@ body.teidesat-menu-open {
 /* =========================================================
    HEADER
 ========================================================= */
+.teidesat-desktop-nav a {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
 
 .teidesat-custom-header {
     position: fixed;
@@ -153,21 +176,24 @@ body.teidesat-menu-open {
     width: 100%;
     max-width: 1440px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: 56px 1fr 56px;
+    display: flex;
     align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
     background: rgba(2, 7, 18, 0.35);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255,255,255,0.06);
     border-radius: 18px;
-    padding: 0 0.4rem;
+    padding: 0.65rem 1.2rem;
     box-sizing: border-box;
     pointer-events: auto;
 }
 
 .teidesat-custom-header__logo {
-    justify-self: center;
+    display: flex;
+    align-items: center;
     text-decoration: none;
+    flex-shrink: 0;
 }
 
 .teidesat-logo {
@@ -177,10 +203,27 @@ body.teidesat-menu-open {
     filter: drop-shadow(0 0 10px rgba(141,214,255,0.35));
 }
 
-.teidesat-header-spacer {
-    width: 56px;
-    height: 56px;
-    justify-self: end;
+.teidesat-desktop-nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: clamp(1rem, 2vw, 2rem);
+}
+
+.teidesat-desktop-nav a {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.82);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.teidesat-desktop-nav a:hover {
+    color: #ffffff;
+    transform: translateY(-2px);
 }
 
 .teidesat-menu-toggle {
@@ -189,13 +232,13 @@ body.teidesat-menu-open {
     padding: 0;
     border: 0;
     background: transparent;
-    display: inline-flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 6px;
     cursor: pointer;
-    justify-self: start;
+    flex-shrink: 0;
 }
 
 .teidesat-menu-toggle span {
@@ -1694,6 +1737,27 @@ body.teidesat-menu-open {
 }
 
 @media (max-width: 991px) {
+    .teidesat-custom-header__inner {
+        display: grid;
+        grid-template-columns: 56px 1fr 56px;
+        padding: 0 0.4rem;
+    }
+
+    .teidesat-custom-header__logo {
+        grid-column: 2;
+        justify-self: center;
+    }
+
+    .teidesat-desktop-nav {
+        display: none;
+    }
+
+    .teidesat-menu-toggle {
+        display: inline-flex;
+        grid-column: 1;
+        grid-row: 1;
+        justify-self: start;
+    }
     /* Ocultar línea central decorativa */
     .teidesat-timeline::before {
         display: none;

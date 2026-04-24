@@ -290,6 +290,45 @@ body.teidesat-page:has(.teidesat-page--kids) {
     transform: none;
 }
 
+.teidesat-kids-game:fullscreen {
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+    border: none;
+    background: #050816;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.teidesat-kids-game:fullscreen .teidesat-kids-game__heading,
+.teidesat-kids-game:fullscreen .teidesat-kids-game__controls {
+    display: none;
+}
+
+.teidesat-kids-game:fullscreen .teidesat-kids-game__wrap {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #050816;
+}
+
+.teidesat-kids-game:fullscreen #teidesat-kids-game-canvas {
+    width: 100vw !important;
+    height: auto !important;
+    max-height: 100vh !important;
+    max-width: 100vw !important;
+    object-fit: contain;
+}
+
 /* =========================================================
    RESPONSIVE
 ========================================================= */

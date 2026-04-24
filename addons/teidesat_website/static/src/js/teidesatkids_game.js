@@ -1,6 +1,5 @@
 function initTeidesatKidsGame() {
     const canvas = document.getElementById("teidesat-kids-game-canvas");
-    const actionButton = document.getElementById("teidesat-kids-action");
 
     if (!canvas) return;
 
@@ -14,7 +13,7 @@ function initTeidesatKidsGame() {
     let gameStarted = false;
     let gameOver = false;
     let score = 0;
-    let bestScore = 0;
+    let bestScore = parseInt(localStorage.getItem("teidesatKidsBestScore")) || 0;
     let lastTime = 0;
     let obstacleTimer = 0;
     let earthOffset = 0;
@@ -24,8 +23,8 @@ function initTeidesatKidsGame() {
     const bananas = [];
     let shieldCount = 0;
     let bananaTimer = 0;
-    let bananaChance = 0.50;
-    let bananaInterval = 5000;
+    let bananaChance = 0.55;
+    let bananaInterval = 7000;
 
     let burstTimer = 0;
     let burstShotsPending = 0;
@@ -36,6 +35,87 @@ function initTeidesatKidsGame() {
 
     let paceTimer = 0;
     let paceMode = "normal";
+    let currentPaceMultiplier = 1.0;
+    let targetPaceMultiplier = 1.0;
+    let currentPhaseDuration = 7000;
+
+    let rescueUsed = false;
+    let waitingForAnswer = false;
+    let pendingQuestion = null;
+    let rescueCause = null;
+    let touchTarget = null;
+    let resultMessage = "";
+    let resultTimer = 0;
+    let pendingGameOverAfterMessage = false;
+
+    const fullscreenButtonArea = {
+        x: GAME_WIDTH - 54,
+        y: GAME_HEIGHT - 46,
+        width: 38,
+        height: 28
+    };
+
+    const gameButtonArea = {
+        x: GAME_WIDTH / 2 - 90,
+        y: GAME_HEIGHT / 2 + 62,
+        width: 180,
+        height: 46
+    };
+
+    const questionOptionAreas = [];
+
+    const scienceQuestions = [
+        {
+            question: "¿Qué es un nanosatélite?",
+            options: ["Un satélite pequeño", "Un planeta pequeño", "Una estrella"],
+            correct: 0
+        },
+        {
+            question: "¿De dónde obtiene energía un satélite?",
+            options: ["De paneles solares", "De gasolina", "Del viento"],
+            correct: 0
+        },
+        {
+            question: "¿Qué planeta es nuestro hogar?",
+            options: ["Marte", "La Tierra", "Júpiter"],
+            correct: 1
+        },
+        {
+            question: "¿Para qué sirve una antena en un satélite?",
+            options: ["Enviar y recibir señales", "Dar oxígeno", "Frenar meteoritos"],
+            correct: 0
+        },
+        {
+            question: "¿Qué astro ilumina la Tierra durante el día?",
+            options: ["La Luna", "El Sol", "Marte"],
+            correct: 1
+        },
+        {
+            question: "¿Qué mide un sensor?",
+            options: ["Información del entorno", "El sabor de la comida", "La música"],
+            correct: 0
+        },
+        {
+            question: "¿Qué es una órbita?",
+            options: ["El camino de un objeto alrededor de otro", "Una nube", "Un tipo de cohete"],
+            correct: 0
+        },
+        {
+            question: "¿Qué necesita un satélite para comunicarse?",
+            options: ["Una antena", "Un paracaídas", "Una rueda"],
+            correct: 0
+        },
+        {
+            question: "¿Qué protege a la Tierra de muchos meteoritos pequeños?",
+            options: ["La atmósfera", "Los océanos", "Las montañas"],
+            correct: 0
+        },
+        {
+            question: "¿Qué es la gravedad?",
+            options: ["Una fuerza que atrae los objetos", "Una luz", "Un combustible"],
+            correct: 0
+        }
+    ];
 
     const stars = Array.from({ length: 50 }, () => ({
         x: Math.random() * GAME_WIDTH,
@@ -61,26 +141,22 @@ function initTeidesatKidsGame() {
         right: false
     };
 
-    function updateActionButton() {
-        if (!actionButton) return;
-
-        if (!gameStarted && !gameOver) {
-            actionButton.textContent = "Jugar";
-            actionButton.disabled = false;
-        } else if (gameStarted && !gameOver) {
-            actionButton.textContent = "Jugando...";
-            actionButton.disabled = true;
-        } else if (gameOver) {
-            actionButton.textContent = "Reiniciar";
-            actionButton.disabled = false;
-        }
-    }
 
     function getEarthY(x) {
         const normalized = x / GAME_WIDTH;
         const base = GAME_HEIGHT - 34;
         const curve = 46 * Math.pow((normalized - 0.5), 2);
         return base + curve;
+    }
+    
+    function setNextPhaseDuration() {
+        if (paceMode === "normal") {
+            currentPhaseDuration = 6500 + Math.random() * 2500; // 6.5s a 9s
+        } else if (paceMode === "intense") {
+            currentPhaseDuration = 3000 + Math.random() * 1800; // 3s a 4.8s
+        } else {
+            currentPhaseDuration = 2500 + Math.random() * 1800; // 2.5s a 4.3s
+        }
     }
 
     function resetGame() {
@@ -96,8 +172,8 @@ function initTeidesatKidsGame() {
         bananas.length = 0;
 
         shieldCount = 0;
-        bananaChance = 0.50;
-        bananaInterval = 5000;
+        bananaChance = 0.55;
+        bananaInterval = 7000;
 
         burstTimer = 0;
         burstShotsPending = 0;
@@ -106,11 +182,23 @@ function initTeidesatKidsGame() {
         explosion = null;
         playerVisible = true;
 
+        rescueUsed = false;
+        waitingForAnswer = false;
+        pendingQuestion = null;
+
         lastObstacleLane = null;
         previousObstacleLane = null;
 
         paceTimer = 0;
         paceMode = "normal";
+        currentPaceMultiplier = 1.0;
+        targetPaceMultiplier = 1.0;
+        setNextPhaseDuration();
+        rescueCause = null;
+        touchTarget = null;
+        resultMessage = "";
+        resultTimer = 0;
+        pendingGameOverAfterMessage = false;
 
         player.x = 165;
         player.y = 120;
@@ -120,7 +208,6 @@ function initTeidesatKidsGame() {
         keys.left = false;
         keys.right = false;
 
-        updateActionButton();
         draw();
     }
 
@@ -137,14 +224,88 @@ function initTeidesatKidsGame() {
         playerVisible = false;
     }
 
+    function showRescueQuestion(cause = "obstacle") {
+        if (rescueUsed) {
+            triggerGameOverExplosion();
+            return;
+        }
+
+        rescueUsed = true;
+        rescueCause = cause;
+        waitingForAnswer = true;
+        pendingQuestion = scienceQuestions[Math.floor(Math.random() * scienceQuestions.length)];
+
+        keys.up = false;
+        keys.down = false;
+        keys.left = false;
+        keys.right = false;
+    }
+
+    function answerQuestion(selectedIndex) {
+        if (!waitingForAnswer || !pendingQuestion) return;
+
+        if (selectedIndex === pendingQuestion.correct) {
+            waitingForAnswer = false;
+            pendingQuestion = null;
+
+            playerVisible = true;
+
+            if (rescueCause === "earth") {
+                player.x = Math.min(Math.max(player.x, 40), GAME_WIDTH - player.width - 40);
+                player.y = GAME_HEIGHT - 175;
+            } else {
+                player.x = Math.min(Math.max(player.x, 40), GAME_WIDTH - player.width - 40);
+                player.y = Math.min(Math.max(player.y, 35), GAME_HEIGHT - 130);
+            }
+
+            rescueCause = null;
+
+            obstacles.length = 0;
+            bananas.length = 0;
+            burstShotsPending = 0;
+            burstTimer = 0;
+            obstacleTimer = 0;
+
+            shieldCount = 0;
+            lastObstacleLane = null;
+            previousObstacleLane = null;
+
+            resultMessage = "✅ Correcto, continúa la misión";
+            resultTimer = 150;
+
+            return;
+        }
+
+        waitingForAnswer = false;
+        pendingQuestion = null;
+
+        resultMessage = "❌ Error, no pudiste salvarte";
+        resultTimer = 150;
+        pendingGameOverAfterMessage = true;
+    }
+
+    function drawResultMessage() {
+        if (resultTimer <= 0) return;
+
+        ctx.save();
+
+        ctx.fillStyle = "rgba(0,0,0,0.55)";
+        ctx.fillRect(0, GAME_HEIGHT/2 - 30, GAME_WIDTH, 60);
+
+        ctx.fillStyle = "#ffffff";
+        ctx.font = "bold 22px Montserrat";
+        ctx.textAlign = "center";
+        ctx.fillText(resultMessage, GAME_WIDTH/2, GAME_HEIGHT/2 + 8);
+
+        ctx.restore();
+    }
+
     function startGame() {
         if (gameStarted && !gameOver) return;
 
         gameStarted = true;
         gameOver = false;
         lastTime = 0;
-
-        updateActionButton();
 
         if (animationId) cancelAnimationFrame(animationId);
         animationId = requestAnimationFrame(gameLoop);
@@ -159,8 +320,21 @@ function initTeidesatKidsGame() {
     function handleActionButton() {
         if (!gameStarted && !gameOver) {
             startGame();
+
+            if (window.innerWidth <= 768 && !document.fullscreenElement) {
+                setTimeout(() => {
+                    toggleFullscreen();
+                }, 100);
+            }
+
         } else if (gameOver) {
             restartGame();
+
+            if (window.innerWidth <= 768 && !document.fullscreenElement) {
+                setTimeout(() => {
+                    toggleFullscreen();
+                }, 100);
+            }
         }
     }
 
@@ -281,15 +455,40 @@ function initTeidesatKidsGame() {
 
         paceTimer += deltaTime;
 
-        if (paceMode === "normal" && paceTimer > 9000) {
-            paceMode = "intense";
-            paceTimer = 0;
-        } else if (paceMode === "intense" && paceTimer > 4500) {
-            paceMode = "normal";
-            paceTimer = 0;
+        if (resultTimer > 0) {
+            resultTimer--;
+
+            if (resultTimer <= 0 && pendingGameOverAfterMessage) {
+                pendingGameOverAfterMessage = false;
+                triggerGameOverExplosion();
+            }
+
+            return;
         }
 
-        const paceMultiplier = paceMode === "intense" ? 1.10 : 1.0;
+        if (paceTimer > currentPhaseDuration) {
+            if (paceMode === "normal") {
+                paceMode = "intense";
+            } else if (paceMode === "intense") {
+                paceMode = "slow";
+            } else {
+                paceMode = "normal";
+            }
+
+            paceTimer = 0;
+            setNextPhaseDuration();
+        }
+
+        if (paceMode === "intense") {
+            targetPaceMultiplier = 1.18;
+        } else if (paceMode === "slow") {
+            targetPaceMultiplier = 0.92;
+        } else {
+            targetPaceMultiplier = 1.0;
+        }
+
+        // transición suave hacia el objetivo
+        currentPaceMultiplier += (targetPaceMultiplier - currentPaceMultiplier) * 0.035;
 
         if (explosion) {
             explosion.radius += 2.4 * deltaFactor;
@@ -298,13 +497,21 @@ function initTeidesatKidsGame() {
             if (explosion.life <= 0) {
                 explosion = null;
                 gameOver = true;
-                bestScore = Math.max(bestScore, Math.floor(score));
+
+                const finalScore = Math.floor(score);
+
+                if (finalScore > bestScore) {
+                    bestScore = finalScore;
+                    localStorage.setItem("teidesatKidsBestScore", bestScore);
+                }
             }
 
             return;
         }
 
         if (gameOver) return;
+
+        if (waitingForAnswer) return;
 
         earthOffset += 1.2 * deltaFactor;
 
@@ -319,6 +526,11 @@ function initTeidesatKidsGame() {
         }
         if (keys.down) {
             player.y += player.speedY * deltaFactor;
+        }
+
+        if (touchTarget) {
+            player.x += ((touchTarget.x - 70) - player.x - player.width / 2) * 0.12;
+            player.y += (touchTarget.y - player.y - player.height / 2) * 0.12;
         }
 
         if (player.x < 18) {
@@ -338,21 +550,15 @@ function initTeidesatKidsGame() {
 
         if (playerBottom >= earthAtPlayer) {
             player.y = earthAtPlayer - player.height;
-            triggerGameOverExplosion();
+            showRescueQuestion("earth");
             return;
         }
 
-        // PLÁTANO: lo dejo como lo tienes
         bananaTimer += deltaTime;
 
         if (bananaTimer > bananaInterval) {
-            if (Math.random() < bananaChance) {
+            if (bananas.length === 0 && Math.random() < bananaChance) {
                 spawnBanana();
-                bananaChance = 0.55;
-                bananaInterval = 5600;
-            } else {
-                bananaChance = Math.min(0.92, bananaChance + 0.10);
-                bananaInterval = Math.max(3200, bananaInterval - 500);
             }
 
             bananaTimer = 0;
@@ -377,18 +583,11 @@ function initTeidesatKidsGame() {
                 spawnObstacle(false);
 
                 const burstRoll = Math.random();
-                const singleBurstChance = 0.15 + difficulty * 0.07;
-                const doubleBurstChance = 0.015 + difficulty * 0.015;
+                const singleBurstChance = 0.20 + difficulty * 0.08;
 
                 if (burstRoll < singleBurstChance && obstacles.length < maxObstaclesOnScreen) {
-                    burstShotsPending = 1; // 2 en total
+                    burstShotsPending = 1; // 2 meteoritos en total
                     burstTimer = 230 - difficulty * 20 + Math.random() * 90;
-                } else if (
-                    burstRoll < singleBurstChance + doubleBurstChance &&
-                    obstacles.length < maxObstaclesOnScreen - 1
-                ) {
-                    burstShotsPending = 2; // 3 en total
-                    burstTimer = 215 - difficulty * 18 + Math.random() * 85;
                 }
             }
 
@@ -413,7 +612,7 @@ function initTeidesatKidsGame() {
 
         for (let i = obstacles.length - 1; i >= 0; i--) {
             const obstacle = obstacles[i];
-            obstacle.x -= obstacle.speed * paceMultiplier * deltaFactor;
+            obstacle.x -= obstacle.speed * currentPaceMultiplier * deltaFactor;
             obstacle.rotation += obstacle.rotationSpeed * deltaFactor;
 
             if (obstacle.x + obstacle.width < 0) {
@@ -429,7 +628,7 @@ function initTeidesatKidsGame() {
                     continue;
                 } else {
                     obstacles.splice(i, 1);
-                    triggerGameOverExplosion();
+                    showRescueQuestion("obstacle");
                     return;
                 }
             }
@@ -466,6 +665,35 @@ function initTeidesatKidsGame() {
             a.y < b.y + b.height &&
             a.y + a.height > b.y
         );
+    }
+
+    function isInsideArea(pointX, pointY, area) {
+        return (
+            pointX >= area.x &&
+            pointX <= area.x + area.width &&
+            pointY >= area.y &&
+            pointY <= area.y + area.height
+        );
+    }
+
+    function toggleFullscreen() {
+        const gameBox = canvas.closest(".teidesat-kids-game");
+
+        if (!gameBox) return;
+
+        if (!document.fullscreenElement) {
+            if (gameBox.requestFullscreen) {
+                gameBox.requestFullscreen().catch(() => {
+                    console.warn("Pantalla completa bloqueada por el navegador.");
+                });
+            }
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen().catch(() => {
+                    console.warn("No se pudo salir de pantalla completa.");
+                });
+            }
+        }
     }
 
     function drawExplosion() {
@@ -676,14 +904,19 @@ function initTeidesatKidsGame() {
         ctx.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 
         ctx.textAlign = "center";
-        ctx.fillStyle = "#ffffff";
-        ctx.font = "bold 34px Montserrat, sans-serif";
-        ctx.fillText("¡Misión fallida!", GAME_WIDTH / 2, GAME_HEIGHT / 2 - 22);
 
-        ctx.font = "18px Montserrat, sans-serif";
+        ctx.fillStyle = "#ffffff";
+        ctx.font = "bold 30px Montserrat, sans-serif";
+        ctx.fillText("Fin de la misión", GAME_WIDTH / 2, GAME_HEIGHT / 2 - 36);
+
+        ctx.fillStyle = "#66e0e0";
+        ctx.font = "bold 22px Montserrat, sans-serif";
+        ctx.fillText(`Puntuación: ${Math.floor(score)}`, GAME_WIDTH / 2, GAME_HEIGHT / 2);
+
         ctx.fillStyle = "rgba(255,255,255,0.82)";
-        ctx.fillText("Has tocado la Tierra o un obstáculo espacial", GAME_WIDTH / 2, GAME_HEIGHT / 2 + 12);
-        ctx.fillText("Pulsa Reiniciar para volver a intentarlo", GAME_WIDTH / 2, GAME_HEIGHT / 2 + 42);
+        ctx.font = "17px Montserrat, sans-serif";
+        ctx.fillText("Vuelve a intentarlo para llegar más lejos", GAME_WIDTH / 2, GAME_HEIGHT / 2 + 34);
+
         ctx.restore();
     }
 
@@ -744,11 +977,193 @@ function initTeidesatKidsGame() {
         ctx.restore();
     }
 
-    function draw() {
+    function drawFullscreenButton() {
+        ctx.save();
+
+        const isFull = !!document.fullscreenElement;
+        const area = fullscreenButtonArea;
+
+        ctx.fillStyle = "rgba(4, 10, 18, 0.55)";
+        ctx.strokeStyle = "rgba(255,255,255,0.35)";
+        ctx.lineWidth = 1.5;
+
+        ctx.beginPath();
+        ctx.roundRect(area.x, area.y, area.width, area.height, 8);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.strokeStyle = "rgba(255,255,255,0.9)";
+        ctx.lineWidth = 2;
+
+        const x = area.x + 10;
+        const y = area.y + 8;
+        const w = area.width - 20;
+        const h = area.height - 16;
+
+        if (!isFull) {
+            // Icono expandir
+            ctx.beginPath();
+            ctx.moveTo(x, y + 6);
+            ctx.lineTo(x, y);
+            ctx.lineTo(x + 6, y);
+
+            ctx.moveTo(x + w - 6, y);
+            ctx.lineTo(x + w, y);
+            ctx.lineTo(x + w, y + 6);
+
+            ctx.moveTo(x, y + h - 6);
+            ctx.lineTo(x, y + h);
+            ctx.lineTo(x + 6, y + h);
+
+            ctx.moveTo(x + w - 6, y + h);
+            ctx.lineTo(x + w, y + h);
+            ctx.lineTo(x + w, y + h - 6);
+            ctx.stroke();
+        } else {
+            // Icono contraer
+            ctx.beginPath();
+            ctx.moveTo(x + 6, y);
+            ctx.lineTo(x + 6, y + 6);
+            ctx.lineTo(x, y + 6);
+
+            ctx.moveTo(x + w - 6, y);
+            ctx.lineTo(x + w - 6, y + 6);
+            ctx.lineTo(x + w, y + 6);
+
+            ctx.moveTo(x + 6, y + h);
+            ctx.lineTo(x + 6, y + h - 6);
+            ctx.lineTo(x, y + h - 6);
+
+            ctx.moveTo(x + w - 6, y + h);
+            ctx.lineTo(x + w - 6, y + h - 6);
+            ctx.lineTo(x + w, y + h - 6);
+            ctx.stroke();
+        }
+
+        ctx.restore();
+    }
+
+    function drawQuestionPanel() {
+        if (!waitingForAnswer || !pendingQuestion) return;
+
+        ctx.save();
+
+        ctx.fillStyle = "rgba(4, 10, 18, 0.78)";
+        ctx.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+
+        ctx.fillStyle = "rgba(15, 23, 41, 0.96)";
+        ctx.strokeStyle = "rgba(102,224,224,0.45)";
+        ctx.lineWidth = 2;
+
+        const boxX = 110;
+        const boxY = 42;
+        const boxW = GAME_WIDTH - 220;
+        const boxH = 245;
+
+        ctx.beginPath();
+        ctx.roundRect(boxX, boxY, boxW, boxH, 24);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.textAlign = "center";
+
+        ctx.fillStyle = "#66e0e0";
+        ctx.font = "bold 18px Montserrat, sans-serif";
+        ctx.fillText("¡Sistema de rescate activado!", GAME_WIDTH / 2, boxY + 38);
+
+        ctx.fillStyle = "rgba(255,255,255,0.72)";
+        ctx.font = "14px Montserrat, sans-serif";
+        ctx.fillText("Responde bien para continuar la misión", GAME_WIDTH / 2, boxY + 62);
+
+        ctx.font = "16px Montserrat, sans-serif";
+        ctx.fillStyle = "rgba(255,255,255,0.88)";
+
+        ctx.fillStyle = "#ffffff";
+        ctx.font = "bold 17px Montserrat, sans-serif";
+        ctx.fillText(pendingQuestion.question, GAME_WIDTH / 2, boxY + 95);
+
+        questionOptionAreas.length = 0;
+
+        for (let i = 0; i < pendingQuestion.options.length; i++) {
+            const optionX = boxX + 80;
+            const optionY = boxY + 112 + i * 36;
+            const optionW = boxW - 160;
+            const optionH = 30;
+
+            questionOptionAreas.push({
+                x: optionX,
+                y: optionY,
+                width: optionW,
+                height: optionH,
+                index: i
+            });
+
+            ctx.fillStyle = "rgba(255,255,255,0.06)";
+            ctx.strokeStyle = "rgba(255,255,255,0.10)";
+            ctx.lineWidth = 1;
+
+            ctx.beginPath();
+            ctx.roundRect(optionX, optionY, optionW, optionH, 10);
+            ctx.fill();
+            ctx.stroke();
+
+            ctx.fillStyle = "#ffffff";
+            ctx.font = "bold 15px Montserrat, sans-serif";
+            ctx.fillText(`${i + 1}. ${pendingQuestion.options[i]}`, GAME_WIDTH / 2, optionY + 20);
+        }
+
+        ctx.fillStyle = "rgba(255,255,255,0.60)";
+        ctx.font = "13px Montserrat, sans-serif";
+        ctx.fillText("Pulsa una opción para continuar", GAME_WIDTH / 2, boxY + 225);
+
+        ctx.restore();
+    }
+
+    function drawGameButton() {
+        if (gameStarted && !gameOver) return;
+
+        const text = gameOver ? "Reiniciar" : "Jugar";
+
+        ctx.save();
+
+        if (gameOver) {
+            ctx.fillStyle = "#ffd54a";
+            ctx.strokeStyle = "rgba(255,255,255,0.75)";
+        } else {
+            ctx.fillStyle = "#66e0e0";
+            ctx.strokeStyle = "rgba(255,255,255,0.65)";
+        }
+
+        ctx.lineWidth = 2;
+
+        ctx.beginPath();
+        ctx.roundRect(
+            gameButtonArea.x,
+            gameButtonArea.y,
+            gameButtonArea.width,
+            gameButtonArea.height,
+            22
+        );
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = "#07111f";
+        ctx.font = "bold 18px Montserrat, sans-serif";
+        ctx.textAlign = "center";
+        ctx.fillText(
+            text,
+            gameButtonArea.x + gameButtonArea.width / 2,
+            gameButtonArea.y + 30
+        );
+
+        ctx.restore();
+    }
+
+   function draw() {
         ctx.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+
         drawBackground();
         drawEarth();
-        updateActionButton();
 
         for (const obstacle of obstacles) {
             drawObstacle(obstacle);
@@ -772,7 +1187,13 @@ function initTeidesatKidsGame() {
 
         if (gameOver) {
             drawGameOver();
+        } else {
+            drawQuestionPanel();
+            drawResultMessage();
         }
+
+        drawGameButton();
+        drawFullscreenButton();
     }
 
     function gameLoop(timestamp) {
@@ -789,28 +1210,33 @@ function initTeidesatKidsGame() {
     }
 
     function handleKeyDown(e) {
+        if (waitingForAnswer) {
+            if (e.code === "Digit1" || e.code === "Numpad1") answerQuestion(0);
+            if (e.code === "Digit2" || e.code === "Numpad2") answerQuestion(1);
+            if (e.code === "Digit3" || e.code === "Numpad3") answerQuestion(2);
+            return;
+        }
+
+        if (!gameStarted || gameOver) return;
+
         if (e.code === "ArrowLeft" || e.code === "KeyA") {
             e.preventDefault();
             keys.left = true;
-            if (!gameStarted) startGame();
         }
 
         if (e.code === "ArrowRight" || e.code === "KeyD") {
             e.preventDefault();
             keys.right = true;
-            if (!gameStarted) startGame();
         }
 
         if (e.code === "ArrowUp" || e.code === "KeyW") {
             e.preventDefault();
             keys.up = true;
-            if (!gameStarted) startGame();
         }
 
         if (e.code === "ArrowDown" || e.code === "KeyS") {
             e.preventDefault();
             keys.down = true;
-            if (!gameStarted) startGame();
         }
     }
 
@@ -833,47 +1259,113 @@ function initTeidesatKidsGame() {
     }
 
     function handleTouchStart(e) {
-        if (!gameStarted) {
-            startGame();
+        e.preventDefault();
+
+        const rect = canvas.getBoundingClientRect();
+        const touch = e.touches[0];
+
+        const touchX = ((touch.clientX - rect.left) / rect.width) * GAME_WIDTH;
+        const touchY = ((touch.clientY - rect.top) / rect.height) * GAME_HEIGHT;
+
+        if (isInsideArea(touchX, touchY, fullscreenButtonArea)) {
+            toggleFullscreen();
+            return;
         }
 
-        if (gameOver) return;
+        if ((!gameStarted || gameOver) && isInsideArea(touchX, touchY, gameButtonArea)) {
+            handleActionButton();
+            return;
+        }
+
+        if (waitingForAnswer) {
+            for (const area of questionOptionAreas) {
+                if (isInsideArea(touchX, touchY, area)) {
+                    answerQuestion(area.index);
+                    return;
+                }
+            }
+            return;
+        }
+
+        if (!gameStarted || gameOver) return;
+
+        touchTarget = {
+            x: touchX,
+            y: touchY
+        };
+    }
+
+    function handleTouchMove(e) {
+        if (!gameStarted || gameOver || waitingForAnswer || resultTimer > 0) return;
 
         e.preventDefault();
 
         const rect = canvas.getBoundingClientRect();
         const touch = e.touches[0];
-        const touchY = ((touch.clientY - rect.top) / rect.height) * GAME_HEIGHT;
 
-        if (touchY < GAME_HEIGHT / 2) {
-            keys.up = true;
-            keys.down = false;
-        } else {
-            keys.down = true;
-            keys.up = false;
-        }
+        touchTarget = {
+            x: ((touch.clientX - rect.left) / rect.width) * GAME_WIDTH,
+            y: ((touch.clientY - rect.top) / rect.height) * GAME_HEIGHT
+        };
     }
 
     function handleTouchEnd(e) {
         e.preventDefault();
-        keys.up = false;
-        keys.down = false;
+        touchTarget = null;
     }
 
-    if (actionButton && actionButton.dataset.bound !== "true") {
-        actionButton.addEventListener("click", handleActionButton);
-        actionButton.dataset.bound = "true";
+    function handleCanvasClick(e) {
+        const rect = canvas.getBoundingClientRect();
+
+        const clickX = ((e.clientX - rect.left) / rect.width) * GAME_WIDTH;
+        const clickY = ((e.clientY - rect.top) / rect.height) * GAME_HEIGHT;
+
+        if (isInsideArea(clickX, clickY, fullscreenButtonArea)) {
+            toggleFullscreen();
+            return;
+        }
+
+        if (isInsideArea(clickX, clickY, gameButtonArea)) {
+            handleActionButton();
+            return;
+        }
+
+        if (waitingForAnswer) {
+            for (const area of questionOptionAreas) {
+                if (isInsideArea(clickX, clickY, area)) {
+                    answerQuestion(area.index);
+                    return;
+                }
+            }
+        }
     }
 
     if (canvas.dataset.bound !== "true") {
         window.addEventListener("keydown", handleKeyDown);
         window.addEventListener("keyup", handleKeyUp);
 
+        canvas.addEventListener("click", handleCanvasClick);
         canvas.addEventListener("touchstart", handleTouchStart, { passive: false });
+        canvas.addEventListener("touchmove", handleTouchMove, { passive: false });
         canvas.addEventListener("touchend", handleTouchEnd, { passive: false });
 
         canvas.dataset.bound = "true";
     }
+
+    document.addEventListener("fullscreenchange", () => {
+        if (!document.fullscreenElement) {
+            const gameBox = canvas.closest(".teidesat-kids-game");
+
+            if (gameBox) {
+                setTimeout(() => {
+                    gameBox.scrollIntoView({
+                        behavior: "smooth",
+                        block: "center"
+                    });
+                }, 150);
+            }
+        }
+    });
 
     resetGame();
 }
