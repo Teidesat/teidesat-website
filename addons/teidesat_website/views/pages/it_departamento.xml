@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="page_departamento_it" name="Departamento IT">
+        <t t-call="teidesat_website.teidesat_base_layout">
+
+            <div class="teidesat-page teidesat-page--department-detail">
+
+                <!-- HERO -->
+                <section class="teidesat-department-hero">
+                    <div class="container">
+                        <div class="teidesat-department-hero__grid reveal-up">
+
+                            <div class="teidesat-department-hero__content">
+                                <span class="section-kicker">DEPARTAMENTO</span>
+                                <h1>IT</h1>
+                                <p class="teidesat-department-hero__lead">
+                                    El departamento de IT se encarga del desarrollo, soporte técnico
+                                    y mantenimiento de las herramientas digitales del proyecto,
+                                    incluyendo web, sistemas internos y automatización de procesos.
+                                </p>
+                            </div>
+
+                            <div class="teidesat-department-hero__visual">
+                                <div class="teidesat-department-hero__logo-wrap">
+                                    <img src="/teidesat_website/static/src/img/Pegatina_IT.png"
+                                         alt="Logo del departamento IT"
+                                         class="teidesat-department-hero__logo"/>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FRASE / IDENTIDAD -->
+                <section class="teidesat-department-band">
+                    <div class="container">
+                        <div class="teidesat-department-band__inner reveal-up">
+                            <span class="teidesat-department-band__title">Rol dentro del proyecto</span>
+                            <p>
+                                Convertir necesidades del proyecto en herramientas digitales útiles,
+                                mantenibles y conectadas con el trabajo real del equipo.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- RESUMEN -->
+                <section class="teidesat-department-section">
+                    <div class="container">
+
+                        <div class="teidesat-department-section__intro reveal-up">
+                            <span class="section-kicker">VISIÓN GENERAL</span>
+                            <h2>Qué hace este departamento</h2>
+                            <p>
+                                Esta área participa en tareas de desarrollo técnico, soporte a flujos
+                                de trabajo internos y mejora de la infraestructura digital del proyecto.
+                            </p>
+                        </div>
+
+                        <div class="teidesat-department-cards teidesat-department-cards--3">
+                            <article class="teidesat-department-card reveal-up">
+                                <h3>Web y frontend</h3>
+                                <p>
+                                    Desarrollo y mantenimiento de la web del proyecto, incluyendo
+                                    estructura, estilos, páginas internas e integración visual.
+                                </p>
+                            </article>
+
+                            <article class="teidesat-department-card reveal-up">
+                                <h3>Integraciones</h3>
+                                <p>
+                                    Conexión de formularios, CRM, automatizaciones y herramientas
+                                    internas para facilitar la organización del trabajo.
+                                </p>
+                            </article>
+
+                            <article class="teidesat-department-card reveal-up">
+                                <h3>Soporte técnico</h3>
+                                <p>
+                                    Resolución de incidencias, revisión de entornos de desarrollo y
+                                    apoyo técnico a otros miembros del equipo cuando es necesario.
+                                </p>
+                            </article>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- OBJETIVOS -->
+                <section class="teidesat-department-section teidesat-department-section--alt">
+                    <div class="container">
+
+                        <div class="teidesat-department-section__intro reveal-up">
+                            <span class="section-kicker">OBJETIVOS</span>
+                            <h2>Objetivos del departamento</h2>
+                            <p>
+                                Estas son algunas de las metas principales del área dentro del
+                                ecosistema de trabajo de TEIDESAT.
+                            </p>
+                        </div>
+
+                        <div class="teidesat-department-goals">
+                            <article class="teidesat-goal-card reveal-up">
+                                <span class="teidesat-goal-card__number">01</span>
+                                <h3>Unificar herramientas</h3>
+                                <p>
+                                    Mantener sistemas y flujos de trabajo coherentes entre desarrollo,
+                                    documentación y gestión interna.
+                                </p>
+                            </article>
+
+                            <article class="teidesat-goal-card reveal-up">
+                                <span class="teidesat-goal-card__number">02</span>
+                                <h3>Automatizar procesos</h3>
+                                <p>
+                                    Reducir trabajo manual mediante formularios, reglas automáticas e
+                                    integraciones con herramientas del proyecto.
+                                </p>
+                            </article>
+
+                            <article class="teidesat-goal-card reveal-up">
+                                <span class="teidesat-goal-card__number">03</span>
+                                <h3>Facilitar colaboración</h3>
+                                <p>
+                                    Preparar una base técnica que permita a más personas trabajar
+                                    sobre la web y otras herramientas sin romper la estructura.
+                                </p>
+                            </article>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- MIEMBROS -->
+                <section class="teidesat-department-section">
+                    <div class="container">
+
+                        <div class="teidesat-department-section__intro reveal-up">
+                            <span class="section-kicker">EQUIPO</span>
+                            <h2>Miembros del departamento</h2>
+                            <p>
+                                Espacio preparado para presentar a las personas que forman parte del
+                                departamento y su rol dentro del proyecto.
+                            </p>
+                        </div>
+
+                        <div class="teidesat-department-members">
+                            <article class="teidesat-member-card reveal-up">
+                                <div class="teidesat-member-card__avatar">
+                                    <span>G</span>
+                                </div>
+                                <h3>Guillermo García</h3>
+                                <p class="teidesat-member-card__role">Desarrollo web / soporte técnico</p>
+                                <p>
+                                    Trabajo en estructura del módulo, páginas web, integración con CRM
+                                    y mejora del entorno de desarrollo.
+                                </p>
+                            </article>
+
+                            <article class="teidesat-member-card reveal-up">
+                                <div class="teidesat-member-card__avatar">
+                                    <span>+</span>
+                                </div>
+                                <h3>Próximamente</h3>
+                                <p class="teidesat-member-card__role">Miembro del departamento</p>
+                                <p>
+                                    Esta tarjeta puede reutilizarse para añadir más personas, funciones
+                                    o responsables del área.
+                                </p>
+                            </article>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- CTA -->
+                <section class="teidesat-department-cta-section">
+                    <div class="container">
+                        <div class="teidesat-department-cta reveal-up">
+                            <div class="teidesat-department-cta__text">
+                                <h3>¿Quieres saber más sobre este departamento?</h3>
+                                <p>
+                                    Puedes seguir explorando otras áreas del proyecto o ponerte en contacto
+                                    con el equipo para conocer cómo participa cada departamento en TEIDESAT.
+                                </p>
+                            </div>
+
+                            <div class="teidesat-department-cta__actions">
+                                <a href="/departamentos" class="teidesat-btn-secondary">Volver a departamentos</a>
+                                <a href="/contacto" class="teidesat-btn-primary">Contactar</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+        </t>
+    </template>
+
+</odoo>

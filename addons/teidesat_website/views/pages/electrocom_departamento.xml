@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="page_departamento_electrocom" name="Departamento Electrocom">
+        <t t-call="teidesat_website.teidesat_base_layout">
+
+            <div class="teidesat-page teidesat-page--department-detail">
+
+                <!-- HERO -->
+                <section class="teidesat-department-hero">
+                    <div class="container">
+                        <div class="teidesat-department-hero__grid reveal-up">
+
+                            <div class="teidesat-department-hero__content">
+                                <span class="section-kicker">DEPARTAMENTO</span>
+                                <h1>Electrocom</h1>
+                                <p class="teidesat-department-hero__lead">
+                                    El departamento de Electrocom se encarga del diseño de sistemas electrónicos
+                                    y de comunicación del satélite, asegurando la transmisión de datos entre
+                                    el espacio y la estación en tierra.
+                                </p>
+                            </div>
+
+                            <div class="teidesat-department-hero__visual">
+                                <div class="teidesat-department-hero__logo-wrap">
+                                    <img src="/teidesat_website/static/src/img/Pegatina_Electrocom.png"
+                                         alt="Logo del departamento Electrocom"
+                                         class="teidesat-department-hero__logo"/>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FRASE -->
+                <section class="teidesat-department-band">
+                    <div class="container">
+                        <div class="teidesat-department-band__inner reveal-up">
+                            <span class="teidesat-department-band__title">Rol dentro del proyecto</span>
+                            <p>
+                                Diseñar y mantener los sistemas que permiten al satélite comunicarse,
+                                enviar datos y recibir comandos desde la Tierra.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- RESUMEN -->
+                <section class="teidesat-department-section">
+                    <div class="container">
+
+                        <div class="teidesat-department-section__intro reveal-up">
+                            <span class="section-kicker">VISIÓN GENERAL</span>
+                            <h2>Qué hace este departamento</h2>
+                            <p>
+                                Electrocom es responsable de toda la electrónica funcional del satélite,
+                                así como de los sistemas de transmisión y recepción de datos.
+                            </p>
+                        </div>
+
+                        <div class="teidesat-department-cards teidesat-department-cards--3">
+                            <article class="teidesat-department-card reveal-up">
+                                <h3>Sistemas electrónicos</h3>
+                                <p>
+                                    Diseño y desarrollo de circuitos y sistemas electrónicos necesarios
+                                    para el funcionamiento del satélite.
+                                </p>
+                            </article>
+
+                            <article class="teidesat-department-card reveal-up">
+                                <h3>Comunicaciones</h3>
+                                <p>
+                                    Implementación de sistemas de transmisión de datos entre el satélite
+                                    y la estación terrestre.
+                                </p>
+                            </article>
+
+                            <article class="teidesat-department-card reveal-up">
+                                <h3>Telemetría</h3>
+                                <p>
+                                    Gestión de los datos enviados desde el satélite para monitorizar
+                                    su estado y comportamiento en órbita.
+                                </p>
+                            </article>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- OBJETIVOS -->
+                <section class="teidesat-department-section teidesat-department-section--alt">
+                    <div class="container">
+
+                        <div class="teidesat-department-section__intro reveal-up">
+                            <span class="section-kicker">OBJETIVOS</span>
+                            <h2>Objetivos del departamento</h2>
+                            <p>
+                                Electrocom garantiza que el satélite pueda comunicarse de forma fiable
+                                durante toda la misión.
+                            </p>
+                        </div>
+
+                        <div class="teidesat-department-goals">
+                            <article class="teidesat-goal-card reveal-up">
+                                <span class="teidesat-goal-card__number">01</span>
+                                <h3>Garantizar la comunicación</h3>
+                                <p>
+                                    Asegurar que el satélite pueda enviar y recibir datos sin interrupciones.
+                                </p>
+                            </article>
+
+                            <article class="teidesat-goal-card reveal-up">
+                                <span class="teidesat-goal-card__number">02</span>
+                                <h3>Optimizar sistemas electrónicos</h3>
+                                <p>
+                                    Diseñar soluciones eficientes en consumo energético y rendimiento.
+                                </p>
+                            </article>
+
+                            <article class="teidesat-goal-card reveal-up">
+                                <span class="teidesat-goal-card__number">03</span>
+                                <h3>Monitorizar el estado del satélite</h3>
+                                <p>
+                                    Recoger y analizar datos de telemetría para conocer el comportamiento
+                                    del sistema en tiempo real.
+                                </p>
+                            </article>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- MIEMBROS -->
+                <section class="teidesat-department-section">
+                    <div class="container">
+
+                        <div class="teidesat-department-section__intro reveal-up">
+                            <span class="section-kicker">EQUIPO</span>
+                            <h2>Miembros del departamento</h2>
+                            <p>
+                                Personas encargadas del diseño electrónico y de las comunicaciones del satélite.
+                            </p>
+                        </div>
+
+                        <div class="teidesat-department-members">
+                            <article class="teidesat-member-card reveal-up">
+                                <div class="teidesat-member-card__avatar">
+                                    <span>E</span>
+                                </div>
+                                <h3>Miembro Electrocom</h3>
+                                <p class="teidesat-member-card__role">Electrónica / comunicaciones</p>
+                                <p>
+                                    Desarrollo de sistemas electrónicos y comunicación entre satélite y estación terrestre.
+                                </p>
+                            </article>
+
+                            <article class="teidesat-member-card reveal-up">
+                                <div class="teidesat-member-card__avatar">
+                                    <span>+</span>
+                                </div>
+                                <h3>Próximamente</h3>
+                                <p class="teidesat-member-card__role">Miembro del departamento</p>
+                                <p>
+                                    Espacio preparado para añadir nuevos integrantes del área.
+                                </p>
+                            </article>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- CTA -->
+                <section class="teidesat-department-cta-section">
+                    <div class="container">
+                        <div class="teidesat-department-cta reveal-up">
+                            <div class="teidesat-department-cta__text">
+                                <h3>¿Quieres saber más sobre Electrocom?</h3>
+                                <p>
+                                    Puedes explorar otros departamentos o contactar con el equipo para conocer
+                                    cómo funcionan los sistemas electrónicos y de comunicación del satélite.
+                                </p>
+                            </div>
+
+                            <div class="teidesat-department-cta__actions">
+                                <a href="/departamentos" class="teidesat-btn-secondary">Volver a departamentos</a>
+                                <a href="/contacto" class="teidesat-btn-primary">Contactar</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+        </t>
+    </template>
+
+</odoo>

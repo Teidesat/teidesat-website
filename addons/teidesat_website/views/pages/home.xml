@@ -1,0 +1,769 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- LAYOUT BASE -->
+    <template id="teidesat_base_layout" name="Teidesat Base Layout">
+        <html lang="es">
+            <head>
+                <meta charset="utf-8"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+                <link rel="preconnect" href="https://fonts.googleapis.com"/>
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+                <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+
+                <title>TEIDESAT</title>
+
+                <t t-call-assets="web.assets_frontend"/>
+            </head>
+
+            <body class="teidesat-page">
+
+                <!-- HEADER -->
+            <header class="teidesat-custom-header">
+                <div class="teidesat-custom-header__inner">
+
+                    <a href="/" class="teidesat-custom-header__logo">
+                        <img src="/teidesat_website/static/src/img/Logo TEIDESAT - Blanco sobre transparente.png"
+                            alt="TEIDESAT"
+                            class="teidesat-logo"/>
+                    </a>
+
+                    <nav class="teidesat-desktop-nav">
+                        <a href="/nosotros">Sobre nosotros</a>
+                        <a href="/divulgacion">Divulgación</a>
+                        <a href="/participa">Participa</a>
+                        <a href="/departamentos">Departamentos</a>
+                        <a href="/teidesatkids">TeidesatKids</a>
+                        <a href="/contacto">Contacto</a>
+                    </nav>
+
+                    <button class="teidesat-menu-toggle"
+                            type="button"
+                            id="teidesat-menu-toggle"
+                            aria-label="Abrir menú"
+                            aria-expanded="false"
+                            aria-controls="teidesat-side-menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+
+                </div>
+            </header>
+
+            <div class="teidesat-menu-overlay" id="teidesat-menu-overlay"></div>
+
+            <aside class="teidesat-side-menu" id="teidesat-side-menu" aria-hidden="true">
+                <div class="teidesat-side-menu__top">
+                    <button class="teidesat-side-menu__close"
+                            type="button"
+                            id="teidesat-menu-close"
+                            aria-label="Cerrar menú">
+                        ×
+                    </button>
+                </div>
+
+                <nav class="teidesat-side-menu__nav">
+                    <a href="/">Inicio</a>
+                    <a href="/nosotros">Sobre nosotros</a>
+                    <a href="/divulgacion">Divulgación</a>
+                    <a href="/participa">Participa</a>
+                    <a href="/departamentos">Departamentos</a>
+                    <a href="/teidesatkids">TeidesatKids</a>
+                    <a href="/contacto">Contacto</a>
+                </nav>
+            </aside>
+
+                <!-- CONTENIDO INYECTADO -->
+                <main class="teidesat-main">
+                    <t t-out="0"/>
+                </main>
+                
+
+                
+
+                <!-- FOOTER -->
+                <footer class="teidesat-footer-sponsors" id="patrocinadores">
+                    <div class="container">
+
+                        <div class="teidesat-footer-sponsors__heading">
+                            <span class="section-kicker--right">PATROCINADORES / COLABORADORES</span> <!-- REVISAR ESTA CLASE -->
+                        </div>
+
+                        <div class="teidesat-footer-sponsors__grid">
+
+                            <a href="#" class="teidesat-footer-sponsor" aria-label="IACTEC Espacio (IAC)">
+                                <img src="/teidesat_website/static/src/img/partner-placeholder.png"
+                                    alt="IACTEC Espacio (IAC)"/>
+                            </a>
+
+                            <a href="#" class="teidesat-footer-sponsor" aria-label="Cátedra Fundación Cepsa">
+                                <img src="/teidesat_website/static/src/img/partner-placeholder.png"
+                                    alt="Cátedra Fundación Cepsa"/>
+                            </a>
+
+                            <a href="#" class="teidesat-footer-sponsor" aria-label="Hydra Space">
+                                <img src="/teidesat_website/static/src/img/partner-placeholder.png"
+                                    alt="Hydra Space"/>
+                            </a>
+
+                            <a href="#" class="teidesat-footer-sponsor" aria-label="Patrocinador 4">
+                                <img src="/teidesat_website/static/src/img/partner-placeholder.png"
+                                    alt="Patrocinador 4"/>
+                            </a>
+
+                            <a href="#" class="teidesat-footer-sponsor" aria-label="Patrocinador 5">
+                                <img src="/teidesat_website/static/src/img/partner-placeholder.png"
+                                    alt="Patrocinador 5"/>
+                            </a>
+
+                            <a href="#" class="teidesat-footer-sponsor" aria-label="Patrocinador 6">
+                                <img src="/teidesat_website/static/src/img/partner-placeholder.png"
+                                    alt="Patrocinador 6"/>
+                            </a>
+
+                        </div>
+                    </div>
+                </footer>
+
+            </body>
+        </html>
+    </template>
+
+
+    <!-- HOME -->
+    <template id="teidesat_homepage" name="Teidesat Homepage">
+        <t t-call="teidesat_website.teidesat_base_layout">
+        <div class="teidesat-page-home">
+
+            <!-- HERO -->
+            <section class="teidesat-hero teidesat-hero--day" id="hero">
+                <div class="teidesat-hero-overlay"></div>
+
+                <div class="container position-relative">
+                    <div class="teidesat-hero-content">
+
+                        <div class="hero-title-block reveal-up">
+                            <span class="section-kicker--right">TEIDESAT</span>
+
+                            <h1 class="teidesat-hero-main-title">
+                                El primer nanosatélite universitario de Canarias
+                            </h1>
+
+                        </div>
+
+                        <div class="hero-satellite hero-satellite--drift" aria-hidden="true">
+                            <img src="/teidesat_website/static/src/img/cubesat.png"
+                                alt="CubeSat TEIDESAT"
+                                class="hero-satellite-img"/>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- OBJETIVOS -->
+            <section id="objetivos" class="teidesat-section teidesat-section-dark">
+                <div class="container">
+                    <div class="teidesat-objectives-stage reveal-up">
+
+                        <div class="teidesat-objectives-heading section-heading">
+                            <span class="section-kicker--right">Exosfera</span>
+                            <h2>Nuestros objetivos</h2>
+                            <p>
+                                Haz clic en cada punto para descubrir los principales objetivos de TEIDESAT.
+                            </p>
+                        </div>
+
+                        <div class="teidesat-objectives-system">
+
+                            <svg class="objectives-orbits-svg" viewBox="0 0 760 760" aria-hidden="true">
+                                <ellipse id="orbit-path-1" cx="380" cy="380" rx="110" ry="64" />
+                                <ellipse id="orbit-path-2" cx="380" cy="380" rx="175" ry="104" />
+                                <ellipse id="orbit-path-3" cx="380" cy="380" rx="240" ry="144" />
+                                <ellipse id="orbit-path-4" cx="380" cy="380" rx="305" ry="184" />
+                                <ellipse id="orbit-path-5" cx="380" cy="380" rx="370" ry="224" />
+                            </svg>
+
+                            <button class="objectives-core" type="button" id="objectives-toggle-all">
+                                <span>OBJETIVOS</span>
+                            </button>
+
+                            <button class="objective-node" data-target="objetivo-2" data-orbit="1" type="button">
+                                <span class="objective-node__label">1</span>
+                            </button>
+
+                            <button class="objective-node" data-target="objetivo-1" data-orbit="2" type="button">
+                                <span class="objective-node__label">2</span>
+                            </button>
+
+                            <button class="objective-node" data-target="objetivo-3" data-orbit="3" type="button">
+                                <span class="objective-node__label">3</span>
+                            </button>
+
+                            <button class="objective-node" data-target="objetivo-4" data-orbit="4" type="button">
+                                <span class="objective-node__label">4</span>
+                            </button>
+
+                            <button class="objective-node" data-target="objetivo-5" data-orbit="5" type="button">
+                                <span class="objective-node__label">5</span>
+                            </button>
+                        </div>
+
+                        <div class="objective-panel objective-panel--1" data-panel="objetivo-1">
+                            <h3>Objetivo Tecnológico</h3>
+                            <p>
+                                Diseñar y construir un nanosatélite para comunicaciones ópticas
+                                conforme a requisitos del sector espacial.
+                            </p>
+                        </div>
+
+                        <div class="objective-panel objective-panel--2" data-panel="objetivo-2">
+                            <h3>Misión</h3>
+                            <p>
+                                Diseñar, fabricar, poner en órbita y operar el primer nanosatélite
+                                universitario de Canarias.
+                            </p>
+                        </div>
+
+                        <div class="objective-panel objective-panel--3" data-panel="objetivo-3">
+                            <h3>Objetivo Científico</h3>
+                            <p>
+                                Analizar el impacto de la contaminación lumínica espacial mediante
+                                observación y transmisión de datos.
+                            </p>
+                        </div>
+
+                        <div class="objective-panel objective-panel--4" data-panel="objetivo-4">
+                            <h3>Objetivo Académico</h3>
+                            <p>
+                                Formar al alumnado en un entorno real de ingeniería espacial,
+                                promoviendo aprendizaje interdisciplinar.
+                            </p>
+                        </div>
+
+                        <div class="objective-panel objective-panel--5" data-panel="objetivo-5">
+                            <h3>Objetivo Divulgativo</h3>
+                            <p>
+                                Inspirar a nuevas generaciones a través de talleres, eventos y
+                                actividades de divulgación científica y tecnológica.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- QUIERES SABER MAS -->
+            <section id="mas-info" class="teidesat-section teidesat-section-gradient">
+                <div class="container">
+                    <div class="section-heading reveal-up">
+                        <span class="section-kicker--right">Termosfera</span>
+                        <h2>¿Quieres saber más?</h2>
+                        <p>
+                            Explora más sobre TEIDESAT, consulta preguntas frecuentes y descubre
+                            novedades relacionadas con la misión.
+                        </p>
+                    </div>
+
+                    <div class="teidesat-more-links reveal-up">
+                        <a href="https://www.instagram.com/teidesat/" target="_blank" rel="noopener noreferrer" class="teidesat-more-link" aria-label="Instagram">
+                            <span class="teidesat-more-link__icon">
+                                <i class="fa fa-instagram"></i>
+                            </span>
+                            <span class="teidesat-more-link__label">Instagram</span>
+                        </a>
+
+                        <a href="https://www.facebook.com/profile.php?id=100063464266134" target="_blank" rel="noopener noreferrer" class="teidesat-more-link" aria-label="Facebook">
+                            <span class="teidesat-more-link__icon">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                            <span class="teidesat-more-link__label">Facebook</span>
+                        </a>
+
+                        <a href="https://www.youtube.com/@TEIDESAT" target="_blank" rel="noopener noreferrer" class="teidesat-more-link" aria-label="YouTube">
+                            <span class="teidesat-more-link__icon">
+                                <i class="fa fa-youtube-play"></i>
+                            </span>
+                            <span class="teidesat-more-link__label">YouTube</span>
+                        </a>
+
+                        <a href="https://x.com/teidesat" target="_blank" rel="noopener noreferrer" class="teidesat-more-link" aria-label="X">
+                            <span class="teidesat-more-link__icon">
+                                <span class="teidesat-more-link__x">X</span>
+                            </span>
+                            <span class="teidesat-more-link__label">X</span>
+                        </a>
+                    </div>
+
+                    <div class="teidesat-faq reveal-up">
+                        <div class="teidesat-faq__heading">
+                            <h3>Preguntas frecuentes</h3>
+                        </div>
+
+                        <div class="teidesat-faq__list">
+                            <div class="teidesat-faq-item teidesat-faq-item--left">
+                                <button class="teidesat-faq-item__question" type="button">
+                                    <span>¿Qué es TEIDESAT?</span>
+                                    <span class="teidesat-faq-item__icon">+</span>
+                                </button>
+                                <div class="teidesat-faq-item__answer">
+                                    <p>
+                                        TEIDESAT es el primer nanosatélite universitario de Canarias,
+                                        concebido como una misión tecnológica, científica y educativa.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="teidesat-faq-item teidesat-faq-item--right">
+                                <button class="teidesat-faq-item__question" type="button">
+                                    <span>¿Cuál es el objetivo principal de la misión?</span>
+                                    <span class="teidesat-faq-item__icon">+</span>
+                                </button>
+                                <div class="teidesat-faq-item__answer">
+                                    <p>
+                                        Diseñar, fabricar, lanzar y operar un nanosatélite universitario,
+                                        desarrollando además capacidades de investigación y formación.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="teidesat-faq-item teidesat-faq-item--left">
+                                <button class="teidesat-faq-item__question" type="button">
+                                    <span>¿Quién participa en el proyecto?</span>
+                                    <span class="teidesat-faq-item__icon">+</span>
+                                </button>
+                                <div class="teidesat-faq-item__answer">
+                                    <p>
+                                        Participan estudiantes, profesorado, personal investigador y distintas
+                                        entidades colaboradoras del ámbito académico, tecnológico y espacial.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="teidesat-faq-item teidesat-faq-item--right">
+                                <button class="teidesat-faq-item__question" type="button">
+                                    <span>¿Cómo se pueden seguir sus avances?</span>
+                                    <span class="teidesat-faq-item__icon">+</span>
+                                </button>
+                                <div class="teidesat-faq-item__answer">
+                                    <p>
+                                        A través de sus redes sociales, publicaciones, eventos de divulgación
+                                        y futuras actualizaciones dentro de la propia web.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teidesat-news reveal-up">
+                        <div class="teidesat-news__heading">
+                            <h3>Novedades</h3>
+                        </div>
+
+                        <div class="teidesat-news-slider" data-slider="news">
+                            <div class="teidesat-news-slider__viewport">
+                                <div class="teidesat-news-slider__track">
+
+                                    <article class="teidesat-news-card">
+                                        <span class="teidesat-news-card__tag">Evento</span>
+                                        <h4>Talleres y charlas</h4>
+                                        <p>
+                                            Actividades de divulgación y encuentros para acercar el proyecto
+                                            al alumnado y al público general.
+                                        </p>
+                                    </article>
+
+                                    <article class="teidesat-news-card">
+                                        <span class="teidesat-news-card__tag">Proyecto</span>
+                                        <h4>Avances de desarrollo</h4>
+                                        <p>
+                                            Seguimiento del estado actual de integración, pruebas y evolución
+                                            de la misión.
+                                        </p>
+                                    </article>
+
+                                    <article class="teidesat-news-card">
+                                        <span class="teidesat-news-card__tag">Comunidad</span>
+                                        <h4>Participación y difusión</h4>
+                                        <p>
+                                            Noticias sobre colaboraciones, actividades y nuevas iniciativas
+                                            relacionadas con TEIDESAT.
+                                        </p>
+                                    </article>
+
+                                    <article class="teidesat-news-card">
+                                        <span class="teidesat-news-card__tag">Misión</span>
+                                        <h4>Próximos hitos</h4>
+                                        <p>
+                                            Resumen de próximas fases relevantes dentro del recorrido técnico
+                                            y académico del proyecto.
+                                        </p>
+                                    </article>
+
+                                    <article class="teidesat-news-card">
+                                        <span class="teidesat-news-card__tag">Actualidad</span>
+                                        <h4>Nuevas publicaciones</h4>
+                                        <p>
+                                            Difusión de noticias, artículos y materiales relacionados con la
+                                            evolución del proyecto.
+                                        </p>
+                                    </article>
+
+                                    <article class="teidesat-news-card">
+                                        <span class="teidesat-news-card__tag">Equipo</span>
+                                        <h4>Vida del proyecto</h4>
+                                        <p>
+                                            Pequeñas actualizaciones sobre el trabajo del equipo y el día a día
+                                            de la misión.
+                                        </p>
+                                    </article>
+
+                                </div>
+                            </div>
+
+                            <div class="teidesat-news-slider__dots"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TIMELINE -->
+            <section id="fases" class="teidesat-section teidesat-section-gradient">
+                <div class="container">
+                    <div class="section-heading reveal-up">
+                        <span class="section-kicker--right">Mesosfera</span>
+                        <h2>Fases del proyecto</h2>
+                        <p>
+                            Desde la concepción inicial hasta la futura fase operativa, TEIDESAT ha
+                            evolucionado a lo largo de varias etapas técnicas, organizativas y académicas.
+                        </p>
+                    </div>
+
+                    <div class="teidesat-timeline">
+                        <div class="timeline-item reveal-up">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-card">
+                                <span class="timeline-period">2017 – 2022</span>
+                                <h3>Fase 0 a B2</h3>
+                                <p>
+                                    Diseño preliminar, definición del concepto de misión y adaptación
+                                    del proyecto tras los retrasos derivados de la pandemia.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item reveal-up">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-card">
+                                <span class="timeline-period">2023 – 2024</span>
+                                <h3>Fase C</h3>
+                                <p>
+                                    Consolidación del diseño y planificación del modelo de vuelo,
+                                    estableciendo una base técnica más madura para la misión.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item reveal-up">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-card">
+                                <span class="timeline-period">2024 – 2025</span>
+                                <h3>Fase D1</h3>
+                                <p>
+                                    Fabricación de los distintos subsistemas del satélite y desarrollo
+                                    de componentes clave para su integración.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item reveal-up">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-card">
+                                <span class="timeline-period">2025</span>
+                                <h3>Fase D2</h3>
+                                <p>
+                                    Pruebas y verificación funcional para validar el comportamiento
+                                    del sistema antes del lanzamiento.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item reveal-up">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-card">
+                                <span class="timeline-period">2025 – 2027</span>
+                                <h3>Lanzamiento</h3>
+                                <p>
+                                    Preparación para el lanzamiento en colaboración con la empresa
+                                    española PLD SPACE.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item reveal-up">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-card">
+                                <span class="timeline-period">Fase operativa</span>
+                                <h3>Misión en órbita</h3>
+                                <p>
+                                    Ejecución de experimentos, transmisión de datos y actividades
+                                    educativas durante aproximadamente 1 a 1,5 años.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DESARROLLO Y ESTADO -->
+            <section id="desarrollo" class="teidesat-section teidesat-section-dark">
+                <div class="container">
+                    <div class="section-heading reveal-up">
+                        <span class="section-kicker--right">Estratosfera</span>
+                        <h2>Desarrollo y estado actual de la misión</h2>
+                        <p>
+                            TEIDESAT-1 evolucionó de un CubeSat 1U a una arquitectura 2U para
+                            incorporar nuevas capacidades de orientación, potencia y operación.
+                        </p>
+                    </div>
+
+                    <div class="feature-highlight reveal-up">
+                        <div class="feature-highlight__text">
+                            <h3>De 1U a 2U</h3>
+                            <p>
+                                El rediseño permitió integrar ruedas de inercia para mejorar el control
+                                de actitud en órbita, añadir paneles solares extra y rehacer parte del
+                                análisis mecánico, térmico y orbital de la misión.
+                            </p>
+                            <p>
+                                La estrategia de desarrollo es híbrida: se combinan modelos funcionales
+                                de desarrollo para pruebas preliminares y un modelo protoflight que será
+                                finalmente cualificado para vuelo.
+                            </p>
+                        </div>
+
+                        <div class="feature-highlight__stats">
+                            <div class="mini-stat">
+                                <span class="mini-stat__value">2U</span>
+                                <span class="mini-stat__label">Arquitectura actual</span>
+                            </div>
+                            <div class="mini-stat">
+                                <span class="mini-stat__value">PFM</span>
+                                <span class="mini-stat__label">Modelo protoflight</span>
+                            </div>
+                            <div class="mini-stat">
+                                <span class="mini-stat__value">DM</span>
+                                <span class="mini-stat__label">Modelos de desarrollo</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teidesat-grid teidesat-grid--3">
+                        <article class="info-card reveal-up">
+                            <h3>Carga útil óptica</h3>
+                            <p>
+                                Basada en una matriz LED y controlada desde una Raspberry Pi para
+                                experimentación en comunicaciones ópticas.
+                            </p>
+                        </article>
+
+                        <article class="info-card reveal-up">
+                            <h3>Sistema AOCS</h3>
+                            <p>
+                                Probado mediante una bobina de Helmholtz para simular campos
+                                magnéticos y validar el control de actitud.
+                            </p>
+                        </article>
+
+                        <article class="info-card reveal-up">
+                            <h3>Estructura del satélite</h3>
+                            <p>
+                                Validada mediante impresión 3D, análisis estructural y evaluaciones
+                                térmicas de comportamiento.
+                            </p>
+                        </article>
+
+                        <article class="info-card reveal-up">
+                            <h3>Estación óptica</h3>
+                            <p>
+                                Infraestructura con telescopio robotizado para apoyar las observaciones
+                                y el seguimiento de la misión.
+                            </p>
+                        </article>
+
+                        <article class="info-card reveal-up">
+                            <h3>Estación de radio</h3>
+                            <p>
+                                Ubicada en la Escuela de Ingeniería de la ULL para recepción,
+                                transmisión y soporte de comunicaciones.
+                            </p>
+                        </article>
+
+                        <article class="info-card reveal-up">
+                            <h3>Centro de Control</h3>
+                            <p>
+                                Habilitado gracias a la Cátedra Fundación Cepsa y concebido también
+                                como espacio Makerspace para desarrollo y operación.
+                            </p>
+                        </article>
+                    </div>
+
+                    <div class="status-banner reveal-up">
+                        <span class="status-pill">Estado actual</span>
+                        <p>
+                            Actualmente el satélite se encuentra en fase de fabricación, con la mayoría
+                            de sus componentes en desarrollo, integración o pruebas.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RETORNO -->
+            <section id="impacto" class="teidesat-section teidesat-section-impact">
+                <div class="container">
+                    <div class="section-heading reveal-up">
+                        <span class="section-kicker--right">Troposfera</span>
+                        <h2>Retorno académico y social</h2>
+                    </div>
+
+                    <div class="impact-layout">
+                        <div class="impact-copy reveal-up">
+                            <p>
+                                TEIDESAT es mucho más que una misión científica: funciona como una
+                                plataforma de formación avanzada para estudiantes de distintas
+                                disciplinas, ofreciendo prácticas, trabajos académicos y experiencia
+                                real en ingeniería espacial.
+                            </p>
+                            <p>
+                                En el plano social, el proyecto ha organizado más de cien talleres,
+                                charlas y eventos en colegios, institutos y congresos, fomentando la
+                                ciencia, la creatividad y el pensamiento crítico.
+                            </p>
+                            <p>
+                                Además, contribuye a consolidar un ecosistema tecnológico emergente
+                                en Canarias y refuerza el papel del archipiélago dentro de la
+                                industria espacial española.
+                            </p>
+                        </div>
+
+                        <div class="impact-stats">
+                            <article class="impact-stat reveal-up">
+                                <span class="impact-stat__value">+100</span>
+                                <span class="impact-stat__label">talleres, charlas y eventos</span>
+                            </article>
+
+                            <article class="impact-stat reveal-up">
+                                <span class="impact-stat__value">Real</span>
+                                <span class="impact-stat__label">experiencia formativa aplicada</span>
+                            </article>
+
+                            <article class="impact-stat reveal-up">
+                                <span class="impact-stat__value">Canarias</span>
+                                <span class="impact-stat__label">como nodo emergente espacial</span>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FINANCIACION -->
+            <section id="financiacion" class="teidesat-section teidesat-section-gradient">
+                <div class="container">
+                    <div class="section-heading reveal-up">
+                        <span class="section-kicker--right">Tierra</span>
+                        <h2>Financiación y apoyos</h2>
+                        <p>
+                            El proyecto cuenta con financiación institucional y apoyo técnico de
+                            empresas y entidades vinculadas al ecosistema tecnológico y espacial.
+                        </p>
+                    </div>
+
+                    <div class="support-layout">
+                        <article class="support-hero-card reveal-up">
+                            <span class="support-amount">≈ 85.000 €</span>
+                            <h3>Subvención principal</h3>
+                            <p>
+                                Financiación procedente principalmente de la Agencia Canaria de
+                                Investigación, el Gobierno de Canarias y el Instituto de Astrofísica
+                                de Canarias.
+                            </p>
+                            <div class="progress-block">
+                                <div class="progress-block__label">
+                                    <span>Ejecución aproximada</span>
+                                    <strong>85%</strong>
+                                </div>
+                                <div class="progress-block__bar">
+                                    <span style="width: 85%;"></span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <div class="support-list">
+                            <article class="info-card reveal-up">
+                                <h3>Apoyo institucional</h3>
+                                <p>
+                                    ACIISI, Gobierno de Canarias e IAC impulsan el desarrollo de la
+                                    misión desde sus primeras etapas.
+                                </p>
+                            </article>
+
+                            <article class="info-card reveal-up">
+                                <h3>Apoyo material y técnico</h3>
+                                <p>
+                                    Empresas como Altium, Ansys, Autodesk y Aisler han contribuido
+                                    con herramientas, recursos y soporte especializado.
+                                </p>
+                            </article>
+
+                            <article class="info-card reveal-up">
+                                <h3>Entorno colaborativo</h3>
+                                <p>
+                                    También participan entidades como URE, reforzando la dimensión
+                                    práctica, operativa y divulgativa del proyecto.
+                                </p>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- NAVEGACIÓN FLOTANTE -->
+                <div class="teidesat-floating-nav" id="teidesat-floating-nav">
+                    <button class="teidesat-floating-nav__toggle"
+                            type="button"
+                            id="teidesat-floating-nav-toggle"
+                            aria-label="Abrir navegación rápida"
+                            aria-expanded="false">
+                        ↑
+                    </button>
+
+                    <div class="teidesat-floating-nav__menu" id="teidesat-floating-nav-menu">
+                        <button type="button" class="teidesat-floating-nav__item" data-scroll-target="#hero">
+                            Teidesat
+                        </button>
+                        <button type="button" class="teidesat-floating-nav__item" data-scroll-target="#objetivos">
+                            Exosfera
+                        </button>
+                        <button type="button" class="teidesat-floating-nav__item" data-scroll-target="#mas-info">
+                            Termosfera
+                        </button>
+                        <button type="button" class="teidesat-floating-nav__item" data-scroll-target="#fases">
+                            Mesosfera
+                        </button>
+                        <button type="button" class="teidesat-floating-nav__item" data-scroll-target="#desarrollo">
+                            Estratosfera
+                        </button>
+                        <button type="button" class="teidesat-floating-nav__item" data-scroll-target="#impacto">
+                            Troposfera
+                        </button>
+                        <button type="button" class="teidesat-floating-nav__item" data-scroll-target="#financiacion">
+                            Tierra
+                        </button>
+                    </div>
+                </div>
+        </div>
+        </t>
+    </template>
+
+</odoo>

@@ -1,0 +1,312 @@
+/* =========================================================
+   ABOUT / NOSOTROS
+========================================================= */
+
+.teidesat-page--about {
+    background:
+        radial-gradient(circle at top, rgba(38, 78, 168, 0.18), transparent 28%),
+        linear-gradient(180deg, #050816 0%, #07111f 45%, #050816 100%);
+}
+
+body.teidesat-page:has(.teidesat-page--about) {
+    scroll-snap-type: none;
+}
+
+.teidesat-page--about .teidesat-about-section,
+.teidesat-page--about .teidesat-about-quote-band,
+.teidesat-page--about .teidesat-about-hero {
+    min-height: auto;
+    scroll-snap-align: none;
+    scroll-snap-stop: normal;
+    box-sizing: border-box;
+}
+
+/* HERO */
+.teidesat-about-hero {
+    position: relative;
+    padding: 150px 0 90px;
+    background:
+        radial-gradient(circle at 75% 30%, rgba(118,246,222,0.10), transparent 24%),
+        linear-gradient(180deg, #06101d 0%, #081223 100%);
+    overflow: hidden;
+}
+
+.teidesat-about-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(90deg, rgba(3,8,18,0.76) 0%, rgba(3,8,18,0.38) 50%, rgba(3,8,18,0.14) 100%);
+    pointer-events: none;
+}
+
+.teidesat-about-hero__content {
+    position: relative;
+    z-index: 2;
+    max-width: 860px;
+}
+
+.teidesat-about-hero__content h1 {
+    margin: 0 0 1rem;
+    font-size: clamp(2.8rem, 4.5vw, 5rem);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    color: #ffffff;
+}
+
+.teidesat-about-hero__lead {
+    margin: 0;
+    max-width: 760px;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.86);
+}
+
+/* SECCIONES */
+.teidesat-about-section {
+    padding: 88px 0;
+}
+
+.teidesat-about-section--story,
+.teidesat-about-section--team {
+    background: rgba(255,255,255,0.02);
+}
+
+.teidesat-about-section--what,
+.teidesat-about-section--philosophy {
+    background:
+        radial-gradient(circle at 20% 20%, rgba(70,130,255,0.10), transparent 24%),
+        linear-gradient(180deg, #07101d 0%, #081223 100%);
+}
+
+.teidesat-about-section--impact {
+    background:
+        radial-gradient(circle at 80% 20%, rgba(118,246,222,0.10), transparent 24%),
+        linear-gradient(180deg, #06101d 0%, #050816 100%);
+}
+
+/* FRASES LATINAS */
+.teidesat-about-quote-band {
+    padding: 34px 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.025) 0%, rgba(255,255,255,0.04) 100%);
+    border-top: 1px solid rgba(255,255,255,0.04);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.teidesat-about-quote-band--soft {
+    background: linear-gradient(180deg, rgba(118,246,222,0.04) 0%, rgba(255,255,255,0.025) 100%);
+}
+
+.teidesat-about-quote {
+    text-align: center;
+}
+
+.teidesat-about-quote__latin {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: clamp(1.15rem, 2vw, 1.5rem);
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.92);
+}
+
+.teidesat-about-quote p {
+    margin: 0;
+    color: rgba(255,255,255,0.72);
+    line-height: 1.7;
+}
+
+/* SPLIT */
+.teidesat-about-split {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 2rem;
+    align-items: center;
+}
+
+.teidesat-about-split--reverse {
+    grid-template-columns: 0.95fr 1.05fr;
+}
+
+.teidesat-about-split__text h2,
+.teidesat-about-block h2,
+.teidesat-about-impact__text h2 {
+    margin: 0 0 1rem;
+    font-size: clamp(2rem, 3vw, 3.1rem);
+    color: #ffffff;
+}
+
+.teidesat-about-split__text p,
+.teidesat-about-block p,
+.teidesat-about-impact__text p {
+    margin: 0 0 1rem;
+    color: rgba(255,255,255,0.82);
+    line-height: 1.82;
+}
+
+.teidesat-about-split__text p:last-child,
+.teidesat-about-impact__text p:last-child {
+    margin-bottom: 0;
+}
+
+/* IMAGENES */
+.teidesat-about-image-card {
+    padding: 0.5rem;
+    border-radius: 28px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 22px 55px rgba(0,0,0,0.2);
+}
+
+.teidesat-about-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 22px;
+}
+
+/* BLOCK */
+.teidesat-about-block {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.teidesat-about-block__intro {
+    font-size: 1.05rem;
+}
+
+.teidesat-about-block__text {
+    max-width: 860px;
+}
+
+/* CARDS */
+.teidesat-about-cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.35rem;
+    margin-top: 2rem;
+}
+
+/* TAGS */
+.teidesat-about-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin: 1.2rem 0 1.4rem;
+}
+
+.teidesat-about-tags span {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.65rem 1rem;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.92);
+    font-size: 0.95rem;
+}
+
+/* FILOSOFIA */
+.teidesat-about-philosophy-box {
+    margin: 2rem auto;  
+    padding: 1.8rem;
+    max-width: 700px;   
+    width: 100%;
+    border-radius: 24px;
+    background: rgba(14, 23, 40, 0.82);
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 18px 42px rgba(0,0,0,0.16);
+    text-align: center;
+}
+
+.teidesat-about-philosophy-box p {
+    margin: 0 0 0.65rem;
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.92);
+}
+
+.teidesat-about-philosophy-box p:last-child {
+    margin-bottom: 0;
+}
+
+/* IMPACTO */
+.teidesat-about-impact {
+    display: grid;
+    grid-template-columns: 1.2fr 0.9fr;
+    gap: 1.5rem;
+    align-items: stretch;
+}
+
+.teidesat-about-impact__stats {
+    display: grid;
+    gap: 1rem;
+    align-content: center;
+}
+
+/* RESPONSIVE */
+@media (max-width: 991px) {
+    .teidesat-about-split,
+    .teidesat-about-split--reverse,
+    .teidesat-about-impact,
+    .teidesat-about-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .teidesat-about-hero {
+        padding: 130px 0 70px;
+    }
+
+    .teidesat-about-section {
+        padding: 72px 0;
+    }
+}
+
+@media (max-width: 767px) {
+    .teidesat-about-hero {
+        padding: 120px 0 60px;
+    }
+
+    .teidesat-about-hero__lead {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+
+    .teidesat-about-quote-band {
+        padding: 26px 0;
+    }
+
+    .teidesat-about-quote__latin {
+        letter-spacing: 0.1em;
+        font-size: 1.05rem;
+    }
+
+    .teidesat-about-quote p {
+        font-size: 0.94rem;
+    }
+
+    .teidesat-about-section {
+        padding: 60px 0;
+    }
+
+    .teidesat-about-image-card {
+        border-radius: 22px;
+    }
+
+    .teidesat-about-image {
+        border-radius: 18px;
+    }
+
+    .teidesat-about-philosophy-box {
+        padding: 1.2rem;
+        border-radius: 20px;
+    }
+
+    .teidesat-about-tags {
+        gap: 0.65rem;
+    }
+
+    .teidesat-about-tags span {
+        font-size: 0.9rem;
+    }
+}

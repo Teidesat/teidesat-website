@@ -1,0 +1,391 @@
+/* =========================================================
+   TEIDESAT KIDS
+========================================================= */
+
+.teidesat-page--kids {
+    background:
+        radial-gradient(circle at top, rgba(38, 78, 168, 0.18), transparent 28%),
+        linear-gradient(180deg, #050816 0%, #07111f 45%, #050816 100%);
+}
+
+body.teidesat-page:has(.teidesat-page--kids) {
+    scroll-snap-type: none;
+}
+
+.teidesat-page--kids .teidesat-kids-hero,
+.teidesat-page--kids .teidesat-kids-section {
+    min-height: auto;
+    scroll-snap-align: none;
+    scroll-snap-stop: normal;
+    box-sizing: border-box;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.teidesat-kids-hero {
+    position: relative;
+    padding: 150px 0 90px;
+    background:
+        radial-gradient(circle at 75% 30%, rgba(102,224,224,0.12), transparent 24%),
+        linear-gradient(180deg, #06101d 0%, #081223 100%);
+    overflow: hidden;
+}
+
+.teidesat-kids-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(90deg, rgba(3,8,18,0.76) 0%, rgba(3,8,18,0.38) 50%, rgba(3,8,18,0.14) 100%);
+    pointer-events: none;
+}
+
+.teidesat-kids-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(circle at 14% 22%, rgba(255,255,255,0.22) 0 1px, transparent 1px),
+        radial-gradient(circle at 74% 16%, rgba(255,255,255,0.18) 0 1px, transparent 1px),
+        radial-gradient(circle at 88% 58%, rgba(255,255,255,0.16) 0 1px, transparent 1px),
+        radial-gradient(circle at 34% 78%, rgba(255,255,255,0.16) 0 1px, transparent 1px);
+    background-size: 280px 280px, 340px 340px, 420px 420px, 360px 360px;
+    opacity: 0.45;
+    pointer-events: none;
+}
+
+.teidesat-kids-hero__content {
+    position: relative;
+    z-index: 2;
+    max-width: 920px;
+}
+
+.teidesat-kids-hero__content h1 {
+    margin: 0 0 1rem;
+    font-size: clamp(2.8rem, 4.5vw, 5rem);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    color: #ffffff;
+}
+
+.teidesat-kids-hero__content p {
+    margin: 0;
+    max-width: 760px;
+    font-size: 1.12rem;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.86);
+}
+
+/* =========================================================
+   SECCIÓN PRINCIPAL
+========================================================= */
+
+.teidesat-kids-section {
+    padding: 88px 0;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(70,130,255,0.10), transparent 24%),
+        linear-gradient(180deg, #07101d 0%, #081223 100%);
+}
+
+.teidesat-kids-heading {
+    max-width: 860px;
+    margin: 0 auto 2.8rem;
+    text-align: center;
+}
+
+.teidesat-kids-heading h2 {
+    margin: 0.5rem 0 1rem;
+    font-size: clamp(2rem, 3vw, 3.1rem);
+    color: #ffffff;
+}
+
+.teidesat-kids-heading p {
+    margin: 0;
+    color: rgba(255,255,255,0.82);
+    line-height: 1.82;
+}
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+.teidesat-kids-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.35rem;
+}
+
+.kids-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 100%;
+    padding: 2rem;
+    border-radius: 24px;
+    background: rgba(15, 23, 41, 0.9);
+    border: 1px solid rgba(102,224,224,0.22);
+    box-shadow: 0 20px 45px rgba(0,0,0,0.16);
+    backdrop-filter: blur(10px);
+    transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+    text-align: center;
+}
+
+.kids-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(102,224,224,0.38);
+    box-shadow: 0 24px 50px rgba(0,0,0,0.2);
+}
+
+.kids-card__icon {
+    font-size: 3rem;
+    line-height: 1;
+    margin-bottom: 1rem;
+}
+
+.kids-card__body h3 {
+    margin: 0 0 0.8rem;
+    font-size: 1.5rem;
+    color: #66e0e0;
+}
+
+.kids-card__body p {
+    margin: 0;
+    color: rgba(255,255,255,0.82);
+    line-height: 1.75;
+}
+
+/* =========================================================
+   DATO ESPACIAL
+========================================================= */
+
+.teidesat-kids-fact {
+    margin-top: 2rem;
+    padding: 2rem;
+    border-radius: 28px;
+    background: rgba(102,224,224,0.08);
+    border: 1px solid rgba(102,224,224,0.18);
+    box-shadow: 0 20px 55px rgba(0,0,0,0.18);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+
+.teidesat-kids-fact__text {
+    max-width: 780px;
+}
+
+.teidesat-kids-fact__text h3 {
+    margin: 0 0 0.8rem;
+    font-size: clamp(1.5rem, 2.4vw, 2.1rem);
+    color: #ffffff;
+    line-height: 1.3;
+}
+
+.teidesat-kids-fact__text h3 span {
+    color: #66e0e0;
+}
+
+.teidesat-kids-fact__text p {
+    margin: 0;
+    color: rgba(255,255,255,0.82);
+    line-height: 1.8;
+}
+
+.teidesat-kids-fact__badge span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.95rem 1.4rem;
+    border-radius: 999px;
+    background: #66e0e0;
+    color: #07111f;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* =========================================================
+   JUEGO
+========================================================= */
+
+.teidesat-kids-game {
+    margin-top: 2rem;
+    padding: 2rem;
+    border-radius: 28px;
+    background: rgba(14, 23, 40, 0.82);
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 20px 55px rgba(0,0,0,0.18);
+}
+
+.teidesat-kids-game__heading {
+    max-width: 760px;
+    margin-bottom: 1.5rem;
+}
+
+.teidesat-kids-game__heading h2 {
+    margin: 0.5rem 0 1rem;
+    font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+    color: #ffffff;
+}
+
+.teidesat-kids-game__heading p {
+    margin: 0;
+    color: rgba(255,255,255,0.82);
+    line-height: 1.8;
+}
+
+.teidesat-kids-game__wrap {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 24px;
+    border: 1px solid rgba(102,224,224,0.18);
+    background:
+        radial-gradient(circle at 20% 20%, rgba(102,224,224,0.05), transparent 25%),
+        linear-gradient(180deg, #08111d 0%, #0c1627 100%);
+    box-shadow: inset 0 0 30px rgba(0,0,0,0.18);
+}
+
+#teidesat-kids-game-canvas {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+}
+
+.teidesat-kids-game__controls {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.2rem;
+    flex-wrap: wrap;
+}
+
+.teidesat-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.95rem 1.4rem;
+    border-radius: 999px;
+    text-decoration: none;
+    color: #ffffff;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    font-weight: 700;
+    transition: transform 0.22s ease, background 0.22s ease, border-color 0.22s ease;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.teidesat-btn-secondary:hover {
+    transform: translateY(-2px);
+    background: rgba(255,255,255,0.09);
+    border-color: rgba(102,224,224,0.24);
+    color: #ffffff;
+}
+
+#teidesat-kids-action:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.teidesat-kids-game:fullscreen {
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+    border: none;
+    background: #050816;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.teidesat-kids-game:fullscreen .teidesat-kids-game__heading,
+.teidesat-kids-game:fullscreen .teidesat-kids-game__controls {
+    display: none;
+}
+
+.teidesat-kids-game:fullscreen .teidesat-kids-game__wrap {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #050816;
+}
+
+.teidesat-kids-game:fullscreen #teidesat-kids-game-canvas {
+    width: 100vw !important;
+    height: auto !important;
+    max-height: 100vh !important;
+    max-width: 100vw !important;
+    object-fit: contain;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 991px) {
+    .teidesat-kids-hero {
+        padding: 130px 0 70px;
+    }
+
+    .teidesat-kids-section {
+        padding: 72px 0;
+    }
+
+    .teidesat-kids-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .teidesat-kids-fact {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 767px) {
+    .teidesat-kids-hero {
+        padding: 120px 0 60px;
+    }
+
+    .teidesat-kids-hero__content p {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+
+    .teidesat-kids-section {
+        padding: 60px 0;
+    }
+
+    .teidesat-kids-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .kids-card {
+        padding: 1.5rem;
+    }
+
+    .teidesat-kids-fact,
+    .teidesat-kids-game {
+        padding: 1.4rem;
+        border-radius: 22px;
+    }
+
+    .teidesat-kids-game__controls {
+        flex-direction: column;
+    }
+
+    .teidesat-btn-primary,
+    .teidesat-btn-secondary {
+        width: 100%;
+    }
+}

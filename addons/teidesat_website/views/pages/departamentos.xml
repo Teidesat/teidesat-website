@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="page_departamentos" name="Departamentos">
+        <t t-call="teidesat_website.teidesat_base_layout">
+
+            <div class="teidesat-page teidesat-page--departments">
+
+                <!-- HERO -->
+                <section class="teidesat-departments-hero">
+                    <div class="container">
+                        <div class="teidesat-departments-hero__content reveal-up">
+                            <span class="section-kicker">DEPARTAMENTOS</span>
+                            <h1>Nuestros departamentos</h1>
+                            <p class="teidesat-departments-hero__lead">
+                                TEIDESAT está formado por distintos departamentos que trabajan de forma coordinada
+                                para desarrollar, comunicar y hacer crecer el proyecto.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FRASE LATINA -->
+                <section class="teidesat-departments-quote-band">
+                    <div class="container">
+                        <div class="teidesat-departments-quote reveal-up">
+                            <span class="teidesat-departments-quote__latin">Unitas in diversitate</span>
+                            <p>Un mismo proyecto, múltiples disciplinas trabajando en una misma dirección.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- NUEVA SECCIÓN INTERACTIVA -->
+                <section class="teidesat-departments-section">
+                    <div class="container">
+                        <div class="teidesat-departments-intro reveal-up">
+                            <span class="section-kicker">ÁREAS DE TRABAJO</span>
+                            <h2>Explora cada área del proyecto</h2>
+                            <p>
+                                Pulsa sobre la estrella central para ir cambiando los departamentos visibles.
+                                Después puedes entrar en cada uno para conocer mejor su función dentro del proyecto.
+                            </p>
+                        </div>
+
+                        <div class="teidesat-departments-orbital reveal-up" id="departments-orbital">
+
+                            <a id="dept-slot-0" class="department-orbit-card department-orbit-card--top-left" href="#">
+                                <span class="department-orbit-card__glow"></span>
+                                <div class="department-orbit-card__image-wrap">
+                                    <img class="department-orbit-card__image" src="" alt=""/>
+                                </div>
+                                <span class="department-orbit-card__label"></span>
+                            </a>
+
+                            <a id="dept-slot-1" class="department-orbit-card department-orbit-card--top-right" href="#">
+                                <span class="department-orbit-card__glow"></span>
+                                <div class="department-orbit-card__image-wrap">
+                                    <img class="department-orbit-card__image" src="" alt=""/>
+                                </div>
+                                <span class="department-orbit-card__label"></span>
+                            </a>
+
+                            <a id="dept-slot-2" class="department-orbit-card department-orbit-card--bottom-left" href="#">
+                                <span class="department-orbit-card__glow"></span>
+                                <div class="department-orbit-card__image-wrap">
+                                    <img class="department-orbit-card__image" src="" alt=""/>
+                                </div>
+                                <span class="department-orbit-card__label"></span>
+                            </a>
+
+                            <a id="dept-slot-3" class="department-orbit-card department-orbit-card--bottom-right" href="#">
+                                <span class="department-orbit-card__glow"></span>
+                                <div class="department-orbit-card__image-wrap">
+                                    <img class="department-orbit-card__image" src="" alt=""/>
+                                </div>
+                                <span class="department-orbit-card__label"></span>
+                            </a>
+
+                            <button type="button"
+                                    id="departments-star-toggle"
+                                    class="departments-star-toggle"
+                                    aria-label="Cambiar departamentos visibles">
+                                <span class="departments-star-toggle__halo"></span>
+                                <img src="/teidesat_website/static/src/img/estrella_departamentos.png"
+                                     alt="Cambiar departamentos"
+                                     class="departments-star-toggle__image"/>
+                            </button>
+
+                            <div class="departments-star-helper">
+                                <span>Pulsa la estrella para cambiar</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+        </t>
+    </template>
+
+</odoo>

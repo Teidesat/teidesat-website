@@ -1,0 +1,73 @@
+<odoo>
+    <template id="website_404" name="HyperSpace - Página 404"
+              inherit_id="http_routing.404"
+              active="true"
+              customize_show="true">
+
+        <xpath expr="//div[@id='wrap']" position="replace">
+            
+
+
+
+            <div class="hs-404-wrapper">
+
+                    <!-- Campo de estrellas -->
+                    <div class="hs-stars" id="hs-stars-field"/>
+
+                    <!-- Nebulosas -->
+                    <div class="hs-nebula hs-nebula-1"/>
+                    <div class="hs-nebula hs-nebula-2"/>
+
+                    <!-- Grid perspectiva inferior -->
+                    <div class="hs-grid"/>
+
+                    <!-- Icono (señal / radar) -->
+                    <div class="hs-icon">
+                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="32" cy="32" r="30" stroke="#1565c0" stroke-width="1.5" stroke-dasharray="4 4"/>
+                            <circle cx="32" cy="32" r="20" stroke="#1e88e5" stroke-width="1.5" stroke-dasharray="3 3"/>
+                            <circle cx="32" cy="32" r="10" stroke="#42a5f5" stroke-width="1.5"/>
+                            <circle cx="32" cy="32" r="3" fill="#00e5ff"/>
+                            <line x1="32" y1="2"  x2="32" y2="14" stroke="#1e88e5" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="32" y1="50" x2="32" y2="62" stroke="#1e88e5" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="2"  y1="32" x2="14" y2="32" stroke="#1e88e5" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="50" y1="32" x2="62" y2="32" stroke="#1e88e5" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+
+                    <!-- Número de error -->
+                    <div class="hs-code">404</div>
+
+                    <!-- Línea escáner -->
+                    <div class="hs-scan-line"/>
+
+                    <!-- Badge -->
+                    <span class="hs-badge">Señal no encontrada</span>
+
+                    <!-- Título -->
+                    <h1 class="hs-title">Esta coordenada no existe en el universo</h1>
+
+                    <!-- Descripción -->
+                    <p class="hs-desc">
+                        La página que buscas se ha perdido en el vacío del espacio.
+                        Puede que haya sido movida, eliminada, o que la URL no sea correcta.
+                    </p>
+
+                    <!-- Botones de acción -->
+                    <div class="hs-actions">
+                        <a href="/" class="hs-btn hs-btn-primary">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                            </svg>
+                            Volver al inicio
+                        </a>
+                    </div>
+
+                    <!-- Marca -->
+                    <p class="hs-brand"><strong>HyperSpace</strong> · Sistema de navegación v17</p>
+
+                </div>
+        </xpath>
+
+    </template>
+</odoo>

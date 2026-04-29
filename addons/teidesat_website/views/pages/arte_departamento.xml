@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="page_departamento_arte" name="Departamento Arte">
+        <t t-call="teidesat_website.teidesat_base_layout">
+
+            <div class="teidesat-page teidesat-page--department-detail">
+
+                <!-- HERO -->
+                <section class="teidesat-department-hero">
+                    <div class="container">
+                        <div class="teidesat-department-hero__grid reveal-up">
+
+                            <div class="teidesat-department-hero__content">
+                                <span class="section-kicker">DEPARTAMENTO</span>
+                                <h1>Arte</h1>
+                                <p class="teidesat-department-hero__lead">
+                                    El departamento de Arte se encarga de construir la identidad visual
+                                    del proyecto, desarrollar recursos gráficos y aportar propuestas
+                                    estéticas que ayuden a comunicar TEIDESAT de forma clara, atractiva y coherente.
+                                </p>
+                            </div>
+
+                            <div class="teidesat-department-hero__visual">
+                                <div class="teidesat-department-hero__logo-wrap">
+                                    <img src="/teidesat_website/static/src/img/Pegatina_Arte.png"
+                                         alt="Logo del departamento Arte"
+                                         class="teidesat-department-hero__logo"/>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FRASE / IDENTIDAD -->
+                <section class="teidesat-department-band">
+                    <div class="container">
+                        <div class="teidesat-department-band__inner reveal-up">
+                            <span class="teidesat-department-band__title">Rol dentro del proyecto</span>
+                            <p>
+                                Traducir las ideas, valores y objetivos de TEIDESAT a un lenguaje visual
+                                reconocible, cuidado y alineado con la identidad del proyecto.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- RESUMEN -->
+                <section class="teidesat-department-section">
+                    <div class="container">
+
+                        <div class="teidesat-department-section__intro reveal-up">
+                            <span class="section-kicker">VISIÓN GENERAL</span>
+                            <h2>Qué hace este departamento</h2>
+                            <p>
+                                Esta área trabaja en la parte creativa y visual del proyecto, aportando
+                                recursos gráficos y propuestas de diseño para comunicar mejor el trabajo
+                                que realiza TEIDESAT.
+                            </p>
+                        </div>
+
+                        <div class="teidesat-department-cards teidesat-department-cards--3">
+                            <article class="teidesat-department-card reveal-up">
+                                <h3>Identidad visual</h3>
+                                <p>
+                                    Desarrollo de elementos gráficos, estilos visuales y propuestas
+                                    estéticas coherentes con la imagen global del proyecto.
+                                </p>
+                            </article>
+
+                            <article class="teidesat-department-card reveal-up">
+                                <h3>Recursos gráficos</h3>
+                                <p>
+                                    Creación de ilustraciones, composiciones, iconos y materiales que
+                                    pueden aplicarse a la web, redes sociales y documentación visual.
+                                </p>
+                            </article>
+
+                            <article class="teidesat-department-card reveal-up">
+                                <h3>Apoyo creativo</h3>
+                                <p>
+                                    Aportación de ideas para mejorar la presentación visual del proyecto
+                                    y reforzar la experiencia de usuario en los distintos soportes.
+                                </p>
+                            </article>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- OBJETIVOS -->
+                <section class="teidesat-department-section teidesat-department-section--alt">
+                    <div class="container">
+
+                        <div class="teidesat-department-section__intro reveal-up">
+                            <span class="section-kicker">OBJETIVOS</span>
+                            <h2>Objetivos del departamento</h2>
+                            <p>
+                                Estas son algunas de las líneas principales de trabajo del área de Arte
+                                dentro del ecosistema de TEIDESAT.
+                            </p>
+                        </div>
+
+                        <div class="teidesat-department-goals">
+                            <article class="teidesat-goal-card reveal-up">
+                                <span class="teidesat-goal-card__number">01</span>
+                                <h3>Dar identidad al proyecto</h3>
+                                <p>
+                                    Definir una línea visual reconocible que haga a TEIDESAT más claro,
+                                    atractivo y consistente en todos sus soportes.
+                                </p>
+                            </article>
+
+                            <article class="teidesat-goal-card reveal-up">
+                                <span class="teidesat-goal-card__number">02</span>
+                                <h3>Mejorar la comunicación visual</h3>
+                                <p>
+                                    Facilitar que conceptos, mensajes y secciones del proyecto se entiendan
+                                    mejor mediante recursos gráficos y soluciones de diseño.
+                                </p>
+                            </article>
+
+                            <article class="teidesat-goal-card reveal-up">
+                                <span class="teidesat-goal-card__number">03</span>
+                                <h3>Apoyar otras áreas</h3>
+                                <p>
+                                    Colaborar con departamentos como Divulgación o IT para traducir ideas
+                                    técnicas en materiales visuales útiles y aplicables.
+                                </p>
+                            </article>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- MIEMBROS -->
+                <section class="teidesat-department-section">
+                    <div class="container">
+
+                        <div class="teidesat-department-section__intro reveal-up">
+                            <span class="section-kicker">EQUIPO</span>
+                            <h2>Miembros del departamento</h2>
+                            <p>
+                                Espacio preparado para presentar a las personas que participan en el área
+                                creativa y visual del proyecto.
+                            </p>
+                        </div>
+
+                        <div class="teidesat-department-members">
+                            <article class="teidesat-member-card reveal-up">
+                                <div class="teidesat-member-card__avatar">
+                                    <span>A</span>
+                                </div>
+                                <h3>Miembro de Arte</h3>
+                                <p class="teidesat-member-card__role">Diseño visual / creatividad</p>
+                                <p>
+                                    Participación en propuestas estéticas, recursos gráficos y desarrollo
+                                    de materiales visuales relacionados con la web y la identidad del proyecto.
+                                </p>
+                            </article>
+
+                            <article class="teidesat-member-card reveal-up">
+                                <div class="teidesat-member-card__avatar">
+                                    <span>+</span>
+                                </div>
+                                <h3>Próximamente</h3>
+                                <p class="teidesat-member-card__role">Miembro del departamento</p>
+                                <p>
+                                    Esta tarjeta puede reutilizarse para añadir más integrantes, funciones
+                                    específicas o responsables del área creativa.
+                                </p>
+                            </article>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- CTA -->
+                <section class="teidesat-department-cta-section">
+                    <div class="container">
+                        <div class="teidesat-department-cta reveal-up">
+                            <div class="teidesat-department-cta__text">
+                                <h3>¿Quieres seguir explorando el proyecto?</h3>
+                                <p>
+                                    Puedes volver al mapa general de departamentos o ponerte en contacto
+                                    con el equipo para conocer mejor cómo se desarrolla la parte visual de TEIDESAT.
+                                </p>
+                            </div>
+
+                            <div class="teidesat-department-cta__actions">
+                                <a href="/departamentos" class="teidesat-btn-secondary">Volver a departamentos</a>
+                                <a href="/contacto" class="teidesat-btn-primary">Contactar</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+        </t>
+    </template>
+
+</odoo>

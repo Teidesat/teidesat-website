@@ -1,0 +1,491 @@
+/* =========================================================
+   DEPARTAMENTOS
+========================================================= */
+
+.teidesat-page--departments {
+    background:
+        radial-gradient(circle at top, rgba(38, 78, 168, 0.18), transparent 28%),
+        linear-gradient(180deg, #050816 0%, #07111f 45%, #050816 100%);
+}
+
+body.teidesat-page:has(.teidesat-page--departments) {
+    scroll-snap-type: none;
+}
+
+.teidesat-page--departments .teidesat-departments-hero,
+.teidesat-page--departments .teidesat-departments-quote-band,
+.teidesat-page--departments .teidesat-departments-section {
+    min-height: auto;
+    scroll-snap-align: none;
+    scroll-snap-stop: normal;
+    box-sizing: border-box;
+}
+
+/* HERO */
+.teidesat-departments-hero {
+    position: relative;
+    padding: 150px 0 90px;
+    background:
+        radial-gradient(circle at 75% 30%, rgba(118,246,222,0.10), transparent 24%),
+        linear-gradient(180deg, #06101d 0%, #081223 100%);
+    overflow: hidden;
+}
+
+.teidesat-departments-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(90deg, rgba(3,8,18,0.76) 0%, rgba(3,8,18,0.38) 50%, rgba(3,8,18,0.14) 100%);
+    pointer-events: none;
+}
+
+.teidesat-departments-hero__content {
+    position: relative;
+    z-index: 2;
+    max-width: 860px;
+}
+
+.teidesat-departments-hero__content h1 {
+    margin: 0 0 1rem;
+    font-size: clamp(2.8rem, 4.5vw, 5rem);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    color: #ffffff;
+}
+
+.teidesat-departments-hero__lead {
+    margin: 0;
+    max-width: 760px;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.86);
+}
+
+/* FRASE */
+.teidesat-departments-quote-band {
+    padding: 34px 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.025) 0%, rgba(255,255,255,0.04) 100%);
+    border-top: 1px solid rgba(255,255,255,0.04);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.teidesat-departments-quote {
+    text-align: center;
+}
+
+.teidesat-departments-quote__latin {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: clamp(1.15rem, 2vw, 1.5rem);
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.92);
+}
+
+.teidesat-departments-quote p {
+    margin: 0;
+    color: rgba(255,255,255,0.72);
+    line-height: 1.7;
+}
+
+/* SECCIÓN */
+.teidesat-departments-section {
+    padding: 88px 0;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(70,130,255,0.10), transparent 24%),
+        linear-gradient(180deg, #07101d 0%, #081223 100%);
+}
+
+.teidesat-departments-intro {
+    max-width: 760px;
+    margin: 0 auto 3.2rem;
+    text-align: center;
+}
+
+.teidesat-departments-intro h2 {
+    margin: 0.5rem 0 1rem;
+    font-size: clamp(2rem, 3vw, 3.1rem);
+    color: #fff;
+}
+
+.teidesat-departments-intro p {
+    margin: 0;
+    color: rgba(255,255,255,0.82);
+    line-height: 1.82;
+}
+
+/* =========================================================
+   SISTEMA CENTRAL
+========================================================= */
+
+.teidesat-departments-orbital {
+    position: relative;
+    width: min(1000px, 100%);
+    min-height: 760px;
+    margin: 0 auto;
+}
+
+.department-orbit-card {
+    position: absolute;
+    width: 270px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.85rem;
+    text-align: center;
+    transition:
+        transform 0.35s ease,
+        opacity 0.35s ease,
+        filter 0.35s ease;
+    opacity: 1;
+}
+
+.department-orbit-card.is-changing {
+    opacity: 0;
+    transform: scale(0.92);
+    pointer-events: none;
+}
+
+.department-orbit-card:hover {
+    transform: translateY(-6px);
+}
+
+.department-orbit-card--top-left {
+    top: 40px;
+    left: 90px;
+}
+
+.department-orbit-card--top-right {
+    top: 40px;
+    right: 90px;
+}
+
+.department-orbit-card--bottom-left {
+    bottom: 50px;
+    left: 90px;
+}
+
+.department-orbit-card--bottom-right {
+    bottom: 50px;
+    right: 90px;
+}
+
+.department-orbit-card__glow {
+    position: absolute;
+    inset: 30px 30px 46px;
+    border-radius: 999px;
+    background: rgba(118,246,222,0.22);
+    filter: blur(26px);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: scale(0.92);
+    z-index: 0;
+}
+
+.department-orbit-card:hover .department-orbit-card__glow {
+    opacity: 1;
+    transform: scale(1.08);
+}
+
+.department-orbit-card__image-wrap {
+    position: relative;
+    z-index: 2;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(10, 18, 35, 0.72);
+    border: 1px solid rgba(255,255,255,0.10);
+    box-shadow:
+        0 20px 40px rgba(0,0,0,0.24),
+        inset 0 1px 0 rgba(255,255,255,0.05);
+    overflow: hidden;
+    transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+}
+
+.department-orbit-card:hover .department-orbit-card__image-wrap {
+    transform: scale(1.06);
+    border-color: rgba(255,255,255,0.18);
+    box-shadow:
+        0 26px 52px rgba(0,0,0,0.28),
+        0 0 0 1px rgba(255,255,255,0.10);
+}
+
+.department-orbit-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.department-orbit-card__label {
+    position: relative;
+    z-index: 2;
+    color: rgba(255,255,255,0.96);
+    font-size: 1.08rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+/* =========================================================
+   ESTRELLA CENTRAL
+========================================================= */
+
+.departments-star-toggle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 210px;
+    height: 210px;
+    transform: translate(-50%, -50%);
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.departments-star-toggle__halo {
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle, rgba(118,246,222,0.18) 0%, rgba(118,246,222,0.08) 42%, transparent 72%);
+    filter: blur(16px);
+    animation: departmentsHaloPulse 2.6s ease-in-out infinite;
+}
+
+.departments-star-toggle__image {
+    position: relative;
+    z-index: 2;
+    width: 240px;
+    height: 240px;
+    object-fit: contain;
+    display: block;
+    filter:
+        brightness(1.15)
+        drop-shadow(0 0 20px rgba(118,246,222,0.22))
+        drop-shadow(0 0 42px rgba(118,246,222,0.22))
+        drop-shadow(0 0 70px rgba(74,214,255,0.14));
+    transition: transform 0.22s ease, filter 0.22s ease;
+}
+
+.departments-star-toggle:hover .departments-star-toggle__image {
+    transform: scale(1.06);
+    filter:
+        brightness(1.22)
+        drop-shadow(0 0 24px rgba(118,246,222,0.28))
+        drop-shadow(0 0 50px rgba(118,246,222,0.26))
+        drop-shadow(0 0 90px rgba(74,214,255,0.18));
+}
+
+.departments-star-toggle.is-spinning .departments-star-toggle__image {
+    animation: departmentsStarSpin 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.departments-star-helper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 135px);
+    z-index: 4;
+    text-align: center;
+}
+
+.departments-star-helper span {
+    display: inline-block;
+    padding: 0.5rem 0.95rem;
+    border-radius: 999px;
+    background: rgba(14, 23, 40, 0.75);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.82);
+    font-size: 0.88rem;
+    line-height: 1.4;
+}
+
+/* =========================================================
+   ANIMACIONES
+========================================================= */
+
+@keyframes departmentsStarSpin {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+    100% {
+        transform: rotate(180deg) scale(1.04);
+    }
+}
+
+@keyframes departmentsHaloPulse {
+    0%, 100% {
+        transform: scale(0.95);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.04);
+        opacity: 1;
+    }
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 991px) {
+    .teidesat-departments-hero {
+        padding: 130px 0 70px;
+    }
+
+    .teidesat-departments-section {
+        padding: 72px 0;
+    }
+
+    .teidesat-departments-orbital {
+        min-height: 980px;
+    }
+
+    .department-orbit-card {
+        width: 200px;
+    }
+
+    .department-orbit-card--top-left {
+        top: 30px;
+        left: 20px;
+    }
+
+    .department-orbit-card--top-right {
+        top: 30px;
+        right: 20px;
+    }
+
+    .department-orbit-card--bottom-left {
+        bottom: 40px;
+        left: 20px;
+    }
+
+    .department-orbit-card--bottom-right {
+        bottom: 40px;
+        right: 20px;
+    }
+
+    .departments-star-toggle {
+        width: 280px;
+        height: 280px;
+    }
+
+    .departments-star-toggle__image {
+        width: 240px;
+        height: 240px;
+    }
+
+    .departments-star-helper {
+        transform: translate(-50%, 118px);
+    }
+}
+
+@media (max-width: 767px) {
+    .teidesat-departments-hero {
+        padding: 120px 0 60px;
+    }
+
+    .teidesat-departments-hero__lead {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+
+    .teidesat-departments-quote-band {
+        padding: 26px 0;
+    }
+
+    .teidesat-departments-quote__latin {
+        letter-spacing: 0.1em;
+        font-size: 1.05rem;
+    }
+
+    .teidesat-departments-quote p {
+        font-size: 0.94rem;
+    }
+
+    .teidesat-departments-section {
+        padding: 60px 0;
+    }
+
+    .teidesat-departments-orbital {
+        min-height: auto;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.4rem;
+        justify-items: center;
+    }
+
+    .departments-star-toggle {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        order: 1;
+        width: 150px;
+        height: 150px;
+    }
+
+    .departments-star-toggle__image {
+        width: 125px;
+        height: 125px;
+    }
+
+    .departments-star-helper {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        order: 2;
+        margin-top: -0.6rem;
+    }
+
+    .department-orbit-card {
+        position: relative;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        width: 100%;
+        max-width: 250px;
+        order: 3;
+    }
+
+    .department-orbit-card__image-wrap {
+        width: 130px;
+        height: 130px;
+    }
+}
+
+@media (max-width: 479px) {
+    .department-orbit-card__image-wrap {
+        width: 112px;
+        height: 112px;
+    }
+
+    .department-orbit-card__label {
+        font-size: 0.86rem;
+    }
+
+    .departments-star-toggle {
+        width: 130px;
+        height: 130px;
+    }
+
+    .departments-star-toggle__image {
+        width: 108px;
+        height: 108px;
+    }
+}
