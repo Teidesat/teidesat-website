@@ -65,18 +65,42 @@ body.teidesat-menu-open {
    NAVEGACIÓN FLOTANTE
 ========================================================= */
 
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 105px;
+}
+
+#hero,
+#objetivos,
+#mas-info,
+#fases,
+#desarrollo,
+#impacto,
+#financiacion {
+    scroll-margin-top: 105px;
+}
+
 .teidesat-floating-nav {
     position: fixed;
     right: 20px;
-    bottom: 20px;
+    top: 50%;
+    transform: translateY(-50%);
     z-index: 1300;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 0.8rem;
+
+    width: 60px;
+    height: 60px;
+    overflow: visible;
+}
+
+.teidesat-floating-nav.is-open {
+    width: 190px;
 }
 
 .teidesat-floating-nav__toggle {
+    position: absolute;
+    top: 0;
+    right: 0;
+
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -87,29 +111,36 @@ body.teidesat-menu-open {
     cursor: pointer;
     box-shadow: 0 14px 32px rgba(0,0,0,0.28);
     backdrop-filter: blur(10px);
-    transition: transform 0.22s ease, background 0.22s ease, border-color 0.22s ease;
+
+    transition:
+        background 0.22s ease,
+        border-color 0.22s ease;
+
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .teidesat-floating-nav__toggle:hover {
-    transform: translateY(-4px);
     background: rgba(16, 28, 48, 0.95);
     border-color: rgba(158,223,255,0.3);
 }
 
 .teidesat-floating-nav__menu {
-    display: flex;
+    position: absolute;
+    top: 72px;
+    right: 0;
+
+    display: none;
     flex-direction: column;
     gap: 0.6rem;
-    opacity: 0;
-    transform: translateY(10px);
-    pointer-events: none;
-    transition: opacity 0.22s ease, transform 0.22s ease;
+
+    max-height: calc(100vh - 160px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .teidesat-floating-nav.is-open .teidesat-floating-nav__menu {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
+    display: flex;
 }
 
 .teidesat-floating-nav__item {
@@ -122,20 +153,48 @@ body.teidesat-menu-open {
     text-align: left;
     cursor: pointer;
     font-size: 0.92rem;
-    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .teidesat-floating-nav__item:hover {
-    transform: translateX(-4px);
     background: rgba(18, 30, 50, 0.96);
     border-color: rgba(158,223,255,0.24);
     color: #ffffff;
 }
 
 @media (max-width: 767px) {
+    html {
+        scroll-padding-top: 100px;
+    }
+
+    #hero,
+    #objetivos,
+    #mas-info,
+    #fases,
+    #desarrollo,
+    #impacto,
+    #financiacion {
+        scroll-margin-top: 100px;
+    }
+
     .teidesat-floating-nav {
-        right: 14px;
-        bottom: 14px;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 54px;
+        height: 54px;
+        z-index: 3000;
+    }
+
+    .teidesat-floating-nav.is-open {
+        width: 145px;
     }
 
     .teidesat-floating-nav__toggle {
@@ -143,13 +202,43 @@ body.teidesat-menu-open {
         height: 54px;
     }
 
+    /*
+       En móvil vuelve a salir debajo de la flecha.
+       Lo hacemos más compacto y con scroll interno si no cabe entero.
+    */
+    .teidesat-floating-nav__menu {
+        position: absolute;
+        top: 62px;
+        right: 0;
+        transform: none;
+
+        gap: 0.38rem;
+        max-height: calc(50dvh - 84px);
+        overflow-y: auto;
+        padding-right: 2px;
+    }
+
     .teidesat-floating-nav__item {
-        min-width: 145px;
-        font-size: 0.86rem;
-        padding: 0.7rem 0.9rem;
+        min-width: 132px;
+        font-size: 0.78rem;
+        padding: 0.52rem 0.72rem;
+        border-radius: 999px;
+        line-height: 1.15;
     }
 }
 
+@media (max-width: 390px) {
+    .teidesat-floating-nav__menu {
+        gap: 0.32rem;
+        max-height: calc(50dvh - 74px);
+    }
+
+    .teidesat-floating-nav__item {
+        min-width: 122px;
+        font-size: 0.74rem;
+        padding: 0.48rem 0.65rem;
+    }
+}
 /* =========================================================
    HEADER
 ========================================================= */
@@ -344,7 +433,6 @@ body.teidesat-menu-open {
 
 .teidesat-footer-sponsors {
     position: relative;
-    min-height: auto;
     padding: 3.5rem 0 3rem;
     background: #020712;
     border-top: 1px solid rgba(255,255,255,0.06);
@@ -365,29 +453,22 @@ body.teidesat-menu-open {
     text-align: left;
 }
 
-.teidesat-footer-sponsors__heading h2 {
-    margin: 0;
-    font-size: clamp(1.8rem, 3vw, 2.8rem);
-    color: #ffffff;
-    font-weight: 700;
-}
-
 .teidesat-footer-sponsors__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(5, minmax(140px, 1fr));
     gap: 1rem;
     align-items: stretch;
 }
 
 .teidesat-footer-sponsor {
-    min-height: 110px;
+    min-height: 96px;
     border-radius: 18px;
     border: 1px solid rgba(255,255,255,0.08);
-    background: rgba(255,255,255,0.02);
+    background: rgba(255,255,255,0.025);
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1rem;
+    padding: 1.25rem;
     text-decoration: none;
     box-sizing: border-box;
     transition:
@@ -398,25 +479,59 @@ body.teidesat-menu-open {
 
 .teidesat-footer-sponsor:hover {
     transform: translateY(-4px);
-    border-color: rgba(158,223,255,0.22);
-    background: rgba(255,255,255,0.04);
+    border-color: rgba(158,223,255,0.28);
+    background: rgba(158,223,255,0.055);
 }
 
 .teidesat-footer-sponsor img {
-    max-width: 100%;
-    max-height: 56px;
-    width: auto;
+    max-width: 155px;
+    max-height: 48px;
+    width: 100%;
     height: auto;
     object-fit: contain;
     display: block;
-    filter: grayscale(100%) brightness(1.05);
-    opacity: 0.92;
-    transition: filter 0.22s ease, opacity 0.22s ease;
+    opacity: 0.86;
+    transition:
+        opacity 0.22s ease,
+        transform 0.22s ease,
+        filter 0.22s ease;
 }
 
 .teidesat-footer-sponsor:hover img {
-    filter: grayscale(0%) brightness(1.08);
     opacity: 1;
+    transform: scale(1.04);
+    filter: brightness(1.12);
+}
+
+@media (max-width: 992px) {
+    .teidesat-footer-sponsors__grid {
+        grid-template-columns: repeat(3, minmax(130px, 1fr));
+    }
+}
+
+@media (max-width: 576px) {
+    .teidesat-footer-sponsors {
+        padding: 3rem 0 2.5rem;
+    }
+
+    .teidesat-footer-sponsors .container {
+        padding: 0 1.25rem;
+    }
+
+    .teidesat-footer-sponsors__grid {
+        grid-template-columns: repeat(2, minmax(120px, 1fr));
+        gap: 0.8rem;
+    }
+
+    .teidesat-footer-sponsor {
+        min-height: 78px;
+        padding: 1rem;
+    }
+
+    .teidesat-footer-sponsor img {
+        max-width: 130px;
+        max-height: 38px;
+    }
 }
 
 /* =========================================================
@@ -1041,6 +1156,7 @@ body.teidesat-menu-open {
     overflow: hidden;
     width: 100%;
     position: relative;
+    touch-action: pan-y;
 }
 
 .teidesat-news-slider__track {

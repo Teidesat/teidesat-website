@@ -93,34 +93,44 @@
 
                         <div class="teidesat-footer-sponsors__grid">
 
-                            <a href="#" class="teidesat-footer-sponsor" aria-label="IACTEC Espacio (IAC)">
-                                <img src="/teidesat_website/static/src/img/partner-placeholder.png"
-                                    alt="IACTEC Espacio (IAC)"/>
-                            </a>
-
                             <a href="#" class="teidesat-footer-sponsor" aria-label="Cátedra Fundación Cepsa">
-                                <img src="/teidesat_website/static/src/img/partner-placeholder.png"
-                                    alt="Cátedra Fundación Cepsa"/>
+                                <img src="/teidesat_website/static/src/img/partners/catedra-cepsa.png" alt="Cátedra Fundación Cepsa"/>
                             </a>
 
-                            <a href="#" class="teidesat-footer-sponsor" aria-label="Hydra Space">
-                                <img src="/teidesat_website/static/src/img/partner-placeholder.png"
-                                    alt="Hydra Space"/>
+                            <a href="#" class="teidesat-footer-sponsor" aria-label="Universidad de Las Palmas de Gran Canaria">
+                                <img src="/teidesat_website/static/src/img/partners/ulpgc.png" alt="Universidad de Las Palmas de Gran Canaria"/>
                             </a>
 
-                            <a href="#" class="teidesat-footer-sponsor" aria-label="Patrocinador 4">
-                                <img src="/teidesat_website/static/src/img/partner-placeholder.png"
-                                    alt="Patrocinador 4"/>
+                            <a href="#" class="teidesat-footer-sponsor" aria-label="Hyperspace Canarias">
+                                <img src="/teidesat_website/static/src/img/partners/hyperspace.png" alt="Hyperspace Canarias"/>
                             </a>
 
-                            <a href="#" class="teidesat-footer-sponsor" aria-label="Patrocinador 5">
-                                <img src="/teidesat_website/static/src/img/partner-placeholder.png"
-                                    alt="Patrocinador 5"/>
+                            <a href="#" class="teidesat-footer-sponsor" aria-label="Cepsa">
+                                <img src="/teidesat_website/static/src/img/partners/cepsa.png" alt="Cepsa"/>
                             </a>
 
-                            <a href="#" class="teidesat-footer-sponsor" aria-label="Patrocinador 6">
-                                <img src="/teidesat_website/static/src/img/partner-placeholder.png"
-                                    alt="Patrocinador 6"/>
+                            <a href="#" class="teidesat-footer-sponsor" aria-label="Universidad de La Laguna">
+                                <img src="/teidesat_website/static/src/img/partners/ull.png" alt="Universidad de La Laguna"/>
+                            </a>
+
+                            <a href="#" class="teidesat-footer-sponsor" aria-label="URE">
+                                <img src="/teidesat_website/static/src/img/partners/ure.png" alt="URE"/>
+                            </a>
+
+                            <a href="#" class="teidesat-footer-sponsor" aria-label="Big Signal">
+                                <img src="/teidesat_website/static/src/img/partners/big-signal.png" alt="Big Signal"/>
+                            </a>
+
+                            <a href="#" class="teidesat-footer-sponsor" aria-label="OrCAD">
+                                <img src="/teidesat_website/static/src/img/partners/orcad.png" alt="OrCAD"/>
+                            </a>
+
+                            <a href="#" class="teidesat-footer-sponsor" aria-label="Cadence">
+                                <img src="/teidesat_website/static/src/img/partners/cadence.png" alt="Cadence"/>
+                            </a>
+
+                            <a href="#" class="teidesat-footer-sponsor" aria-label="Altium">
+                                <img src="/teidesat_website/static/src/img/partners/altium.png" alt="Altium"/>
                             </a>
 
                         </div>

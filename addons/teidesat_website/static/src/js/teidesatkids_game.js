@@ -318,23 +318,22 @@ function initTeidesatKidsGame() {
     }
 
     function handleActionButton() {
+        const shouldOpenFullscreen =
+            window.innerWidth <= 768 && !isGameFullscreenLike();
+
         if (!gameStarted && !gameOver) {
+            if (shouldOpenFullscreen) {
+                toggleFullscreen();
+            }
+
             startGame();
 
-            if (window.innerWidth <= 768 && !document.fullscreenElement) {
-                setTimeout(() => {
-                    toggleFullscreen();
-                }, 100);
-            }
-
         } else if (gameOver) {
-            restartGame();
-
-            if (window.innerWidth <= 768 && !document.fullscreenElement) {
-                setTimeout(() => {
-                    toggleFullscreen();
-                }, 100);
+            if (shouldOpenFullscreen) {
+                toggleFullscreen();
             }
+
+            restartGame();
         }
     }
 
@@ -676,23 +675,74 @@ function initTeidesatKidsGame() {
         );
     }
 
+    function isIOSDevice() {
+        return (
+            /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+            (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)
+        );
+    }
+
+    function isGameFullscreenLike() {
+        const gameBox = canvas.closest(".teidesat-kids-game");
+
+        return (
+            !!document.fullscreenElement ||
+            !!gameBox?.classList.contains("teidesat-kids-game--fake-fullscreen")
+        );
+    }
+
+    function enterFakeFullscreen() {
+        const gameBox = canvas.closest(".teidesat-kids-game");
+
+        if (!gameBox) return;
+
+        gameBox.classList.add("teidesat-kids-game--fake-fullscreen");
+        document.body.classList.add("teidesat-kids-game-open");
+
+        window.scrollTo(0, 0);
+    }
+
+    function exitFakeFullscreen() {
+        const gameBox = canvas.closest(".teidesat-kids-game");
+
+        if (!gameBox) return;
+
+        gameBox.classList.remove("teidesat-kids-game--fake-fullscreen");
+        document.body.classList.remove("teidesat-kids-game-open");
+
+        setTimeout(() => {
+            gameBox.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+        }, 100);
+    }
+
     function toggleFullscreen() {
         const gameBox = canvas.closest(".teidesat-kids-game");
 
         if (!gameBox) return;
 
+        const isIOS = isIOSDevice();
+
+        if (isIOS || !gameBox.requestFullscreen) {
+            if (gameBox.classList.contains("teidesat-kids-game--fake-fullscreen")) {
+                exitFakeFullscreen();
+            } else {
+                enterFakeFullscreen();
+            }
+
+            return;
+        }
+
         if (!document.fullscreenElement) {
-            if (gameBox.requestFullscreen) {
-                gameBox.requestFullscreen().catch(() => {
-                    console.warn("Pantalla completa bloqueada por el navegador.");
-                });
-            }
+            gameBox.requestFullscreen().catch(() => {
+                enterFakeFullscreen();
+            });
         } else {
-            if (document.exitFullscreen) {
-                document.exitFullscreen().catch(() => {
-                    console.warn("No se pudo salir de pantalla completa.");
-                });
-            }
+            document.exitFullscreen().catch(() => {
+                exitFakeFullscreen();
+            });
         }
     }
 
@@ -980,7 +1030,7 @@ function initTeidesatKidsGame() {
     function drawFullscreenButton() {
         ctx.save();
 
-        const isFull = !!document.fullscreenElement;
+        const isFull = isGameFullscreenLike();
         const area = fullscreenButtonArea;
 
         ctx.fillStyle = "rgba(4, 10, 18, 0.55)";
@@ -1353,17 +1403,20 @@ function initTeidesatKidsGame() {
     }
 
     document.addEventListener("fullscreenchange", () => {
-        if (!document.fullscreenElement) {
-            const gameBox = canvas.closest(".teidesat-kids-game");
+        const gameBox = canvas.closest(".teidesat-kids-game");
 
-            if (gameBox) {
-                setTimeout(() => {
-                    gameBox.scrollIntoView({
-                        behavior: "smooth",
-                        block: "center"
-                    });
-                }, 150);
-            }
+        if (!gameBox) return;
+
+        if (!document.fullscreenElement) {
+            gameBox.classList.remove("teidesat-kids-game--fake-fullscreen");
+            document.body.classList.remove("teidesat-kids-game-open");
+
+            setTimeout(() => {
+                gameBox.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+            }, 150);
         }
     });
 
