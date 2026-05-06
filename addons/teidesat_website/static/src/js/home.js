@@ -1,52 +1,94 @@
 function initTeidesatPage() {
     console.log("TEIDESAT JS cargado");
 
-    /* =========================================================
-    NAVEGACIÓN FLOTANTE
-    ========================================================= */
+/* =========================================================
+NAVEGACIÓN FLOTANTE
+========================================================= */
 
-    const floatingNav = document.getElementById("teidesat-floating-nav");
-    const floatingNavToggle = document.getElementById("teidesat-floating-nav-toggle");
-    const floatingNavItems = document.querySelectorAll(".teidesat-floating-nav__item");
+const floatingNav = document.getElementById("teidesat-floating-nav");
+const floatingNavToggle = document.getElementById("teidesat-floating-nav-toggle");
 
-    if (floatingNav && floatingNavToggle) {
-        if (floatingNavToggle.dataset.bound !== "true") {
-            floatingNavToggle.addEventListener("click", () => {
-                const isOpen = floatingNav.classList.toggle("is-open");
-                floatingNavToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
-            });
+function closeFloatingNav() {
+    if (!floatingNav || !floatingNavToggle) return;
 
-            floatingNavToggle.dataset.bound = "true";
+    floatingNav.classList.remove("is-open");
+    floatingNavToggle.setAttribute("aria-expanded", "false");
+}
+
+function isMobileViewport() {
+    return window.matchMedia("(max-width: 767px)").matches;
+}
+
+function goToFloatingSection(selector) {
+    const target = document.querySelector(selector);
+
+    if (!target) {
+        console.warn("No se encontró la sección:", selector);
+        return;
+    }
+
+    closeFloatingNav();
+
+    setTimeout(function () {
+        if (isMobileViewport()) {
+            /*
+               En móvil dejamos exactamente el sistema que ya te funciona.
+            */
+            if (window.location.hash === selector) {
+                history.replaceState(null, "", window.location.pathname + window.location.search);
+            }
+
+            window.location.hash = selector;
+
+            setTimeout(function () {
+                target.scrollIntoView({
+                    behavior: "auto",
+                    block: "start"
+                });
+            }, 80);
+
+            return;
         }
 
-        floatingNavItems.forEach((item) => {
-            if (item.dataset.bound === "true") return;
-
-            item.addEventListener("click", () => {
-                const targetSelector = item.getAttribute("data-scroll-target");
-                const target = document.querySelector(targetSelector);
-
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start"
-                    });
-                }
-
-                floatingNav.classList.remove("is-open");
-                floatingNavToggle.setAttribute("aria-expanded", "false");
-            });
-
-            item.dataset.bound = "true";
+        /*
+           En PC usamos el sistema simple que ya funcionaba antes,
+           pero con animación suave.
+        */
+        target.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
         });
+    }, 80);
+}
 
-        document.addEventListener("click", (e) => {
-            if (!floatingNav.contains(e.target)) {
-                floatingNav.classList.remove("is-open");
-                floatingNavToggle.setAttribute("aria-expanded", "false");
-            }
-        });
-    }
+if (floatingNav && floatingNavToggle) {
+    floatingNavToggle.onclick = function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const isOpen = floatingNav.classList.toggle("is-open");
+        floatingNavToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    };
+
+    floatingNav.onclick = function (event) {
+        const item = event.target.closest(".teidesat-floating-nav__item");
+
+        if (!item) return;
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        const targetSelector = item.getAttribute("data-scroll-target");
+
+        goToFloatingSection(targetSelector);
+    };
+
+    document.addEventListener("click", function (event) {
+        if (!floatingNav.contains(event.target)) {
+            closeFloatingNav();
+        }
+    });
+}
 
     /* =========================================================
        HERO SEGÚN HORA
@@ -306,6 +348,12 @@ function initTeidesatPage() {
         let cardsPerPage = 3;
         let totalPages = 1;
 
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let touchCurrentX = 0;
+        let isTouchingSlider = false;
+        let isHorizontalSwipe = false;
+
         function getCardsPerPage() {
             const width = window.innerWidth;
 
@@ -322,6 +370,25 @@ function initTeidesatPage() {
             } else if (cardsPerPage === 2) {
                 newsSlider.classList.add('is-2-col');
             }
+        }
+
+        function getPageOffset(pageIndex) {
+            const firstCard = cards[0];
+            if (!firstCard || !track) return 0;
+
+            const trackStyles = window.getComputedStyle(track);
+            const gap = parseFloat(trackStyles.columnGap || trackStyles.gap || 0);
+
+            const cardWidth = firstCard.getBoundingClientRect().width;
+
+            return (cardWidth + gap) * cardsPerPage * pageIndex;
+        }
+
+        function applyTrackOffset(offset, animated = true) {
+            if (!track) return;
+
+            track.style.transition = animated ? "transform 0.45s ease" : "none";
+            track.style.transform = `translateX(-${offset}px)`;
         }
 
         function buildDots() {
@@ -348,6 +415,7 @@ function initTeidesatPage() {
             if (!dotsContainer) return;
 
             const dots = dotsContainer.querySelectorAll('.teidesat-news-slider__dot');
+
             dots.forEach((dot, i) => {
                 dot.classList.toggle('active', i === currentPage);
             });
@@ -357,17 +425,9 @@ function initTeidesatPage() {
             const maxPage = Math.max(0, totalPages - 1);
             currentPage = Math.max(0, Math.min(pageIndex, maxPage));
 
-            const firstCard = cards[0];
-            if (!firstCard) return;
+            const pageOffset = getPageOffset(currentPage);
 
-            const trackStyles = window.getComputedStyle(track);
-            const gap = parseFloat(trackStyles.columnGap || trackStyles.gap || 0);
-
-            const cardWidth = firstCard.getBoundingClientRect().width;
-            const pageOffset = (cardWidth + gap) * cardsPerPage * currentPage;
-
-            track.style.transform = `translateX(-${pageOffset}px)`;
-
+            applyTrackOffset(pageOffset, true);
             updateDots();
         }
 
@@ -394,15 +454,20 @@ function initTeidesatPage() {
             });
         }
 
+        /*
+        PC: mover el slider con la rueda del ratón
+        */
         if (viewport && viewport.dataset.wheelBound !== "true") {
             viewport.addEventListener('wheel', (e) => {
                 if (totalPages <= 1) return;
 
-                if (e.deltaY > 10) {
-                    e.preventDefault();
+                if (Math.abs(e.deltaY) < 10) return;
+
+                e.preventDefault();
+
+                if (e.deltaY > 0) {
                     goToPage(currentPage + 1);
-                } else if (e.deltaY < -10) {
-                    e.preventDefault();
+                } else {
                     goToPage(currentPage - 1);
                 }
             }, { passive: false });
@@ -410,11 +475,87 @@ function initTeidesatPage() {
             viewport.dataset.wheelBound = "true";
         }
 
+        /*
+        MÓVIL: arrastrar lateralmente con el dedo
+        */
+        if (viewport && viewport.dataset.touchBound !== "true") {
+            viewport.addEventListener("touchstart", (e) => {
+                if (totalPages <= 1) return;
+
+                const touch = e.touches[0];
+
+                touchStartX = touch.clientX;
+                touchStartY = touch.clientY;
+                touchCurrentX = touch.clientX;
+
+                isTouchingSlider = true;
+                isHorizontalSwipe = false;
+            }, { passive: true });
+
+            viewport.addEventListener("touchmove", (e) => {
+                if (!isTouchingSlider || totalPages <= 1) return;
+
+                const touch = e.touches[0];
+
+                touchCurrentX = touch.clientX;
+
+                const deltaX = touchCurrentX - touchStartX;
+                const deltaY = touch.clientY - touchStartY;
+
+                /*
+                Solo bloqueamos el scroll vertical si detectamos claramente
+                que el usuario está arrastrando en horizontal.
+                */
+                if (Math.abs(deltaX) > 12 && Math.abs(deltaX) > Math.abs(deltaY)) {
+                    isHorizontalSwipe = true;
+                    e.preventDefault();
+
+                    const baseOffset = getPageOffset(currentPage);
+                    const dragOffset = baseOffset - deltaX;
+
+                    applyTrackOffset(Math.max(0, dragOffset), false);
+                }
+            }, { passive: false });
+
+            viewport.addEventListener("touchend", () => {
+                if (!isTouchingSlider || totalPages <= 1) return;
+
+                const deltaX = touchCurrentX - touchStartX;
+                const swipeThreshold = 45;
+
+                isTouchingSlider = false;
+
+                if (!isHorizontalSwipe) {
+                    goToPage(currentPage);
+                    return;
+                }
+
+                if (deltaX < -swipeThreshold) {
+                    goToPage(currentPage + 1);
+                } else if (deltaX > swipeThreshold) {
+                    goToPage(currentPage - 1);
+                } else {
+                    goToPage(currentPage);
+                }
+
+                isHorizontalSwipe = false;
+            }, { passive: true });
+
+            viewport.addEventListener("touchcancel", () => {
+                isTouchingSlider = false;
+                isHorizontalSwipe = false;
+                goToPage(currentPage);
+            }, { passive: true });
+
+            viewport.dataset.touchBound = "true";
+        }
+
         let resizeTimeout;
 
         if (!window.__teidesatNewsResizeBound) {
             window.addEventListener('resize', () => {
                 clearTimeout(resizeTimeout);
+
                 resizeTimeout = setTimeout(() => {
                     updateNewsSlider();
                 }, 120);
