@@ -290,45 +290,6 @@ body.teidesat-page:has(.teidesat-page--kids) {
     transform: none;
 }
 
-.teidesat-kids-game:fullscreen {
-    width: 100vw;
-    height: 100vh;
-    padding: 0;
-    margin: 0;
-    border-radius: 0;
-    border: none;
-    background: #050816;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-
-.teidesat-kids-game:fullscreen .teidesat-kids-game__heading,
-.teidesat-kids-game:fullscreen .teidesat-kids-game__controls {
-    display: none;
-}
-
-.teidesat-kids-game:fullscreen .teidesat-kids-game__wrap {
-    width: 100vw;
-    height: 100vh;
-    border-radius: 0;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    background: #050816;
-}
-
-.teidesat-kids-game:fullscreen #teidesat-kids-game-canvas {
-    width: 100vw !important;
-    height: auto !important;
-    max-height: 100vh !important;
-    max-width: 100vw !important;
-    object-fit: contain;
-}
-
 /* =========================================================
    RESPONSIVE
 ========================================================= */
@@ -389,14 +350,10 @@ body.teidesat-page:has(.teidesat-page--kids) {
         width: 100%;
     }
 }
-/* =========================================================
-   TEIDESAT KIDS - FULLSCREEN SIMULADO PARA IPHONE / SAFARI
-========================================================= */
 
-body.teidesat-kids-game-open {
-    overflow: hidden !important;
-    touch-action: none;
-}
+/* =========================================================
+   TEIDESAT KIDS - MODO JUEGO HORIZONTAL EN MÓVIL
+========================================================= */
 
 #teidesat-kids-game-canvas {
     touch-action: none;
@@ -405,66 +362,63 @@ body.teidesat-kids-game-open {
     -webkit-touch-callout: none;
 }
 
-.teidesat-kids-game--fake-fullscreen {
+body.teidesat-kids-game-focus-open {
+    overflow: hidden !important;
+    overscroll-behavior: none;
+    touch-action: none;
+}
+
+.teidesat-kids-game--landscape-focus {
     position: fixed !important;
     inset: 0 !important;
     z-index: 999999 !important;
+
     width: 100vw !important;
     height: 100vh !important;
     height: 100dvh !important;
+
     margin: 0 !important;
     padding: 0 !important;
     border-radius: 0 !important;
     border: none !important;
+
     background: #050816 !important;
+
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
+
     overflow: hidden !important;
 }
 
-.teidesat-kids-game--fake-fullscreen .teidesat-kids-game__heading,
-.teidesat-kids-game--fake-fullscreen .teidesat-kids-game__controls {
+.teidesat-kids-game--landscape-focus .teidesat-kids-game__heading,
+.teidesat-kids-game--landscape-focus .teidesat-kids-game__controls {
     display: none !important;
 }
 
-.teidesat-kids-game--fake-fullscreen .teidesat-kids-game__wrap {
+.teidesat-kids-game--landscape-focus .teidesat-kids-game__wrap {
     width: 100vw !important;
     height: 100vh !important;
     height: 100dvh !important;
+
     border-radius: 0 !important;
     border: none !important;
+
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    overflow: hidden !important;
+
     background: #050816 !important;
+    overflow: hidden !important;
 }
 
-.teidesat-kids-game--fake-fullscreen #teidesat-kids-game-canvas {
+.teidesat-kids-game--landscape-focus #teidesat-kids-game-canvas {
     width: 100vw !important;
     height: auto !important;
+
     max-width: 100vw !important;
     max-height: 100vh !important;
     max-height: 100dvh !important;
-    object-fit: contain;
-}
 
-@media (orientation: portrait) and (max-width: 767px) {
-    .teidesat-kids-game--fake-fullscreen::before {
-        content: "Gira el móvil para jugar mejor";
-        position: absolute;
-        top: 12px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 2;
-        padding: 0.45rem 0.8rem;
-        border-radius: 999px;
-        background: rgba(4, 10, 18, 0.72);
-        border: 1px solid rgba(102, 224, 224, 0.28);
-        color: #ffffff;
-        font-size: 0.82rem;
-        font-weight: 700;
-        pointer-events: none;
-    }
+    object-fit: contain;
 }

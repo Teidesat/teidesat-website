@@ -48,19 +48,119 @@ function initTeidesatKidsGame() {
     let resultTimer = 0;
     let pendingGameOverAfterMessage = false;
 
-    const fullscreenButtonArea = {
-        x: GAME_WIDTH - 54,
-        y: GAME_HEIGHT - 46,
-        width: 38,
-        height: 28
-    };
-
     const gameButtonArea = {
         x: GAME_WIDTH / 2 - 90,
         y: GAME_HEIGHT / 2 + 62,
         width: 180,
         height: 46
     };
+
+    const soundButtonArea = {
+        x: GAME_WIDTH - 54,
+        y: GAME_HEIGHT - 46,
+        width: 38,
+        height: 28
+    };
+
+    let audioCtx = null;
+    let soundEnabled = localStorage.getItem("teidesatKidsSound") !== "off";
+
+    function unlockAudio() {
+        if (!audioCtx) {
+            const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+            if (!AudioContextClass) return;
+            audioCtx = new AudioContextClass();
+        }
+
+        if (audioCtx.state === "suspended") {
+            audioCtx.resume();
+        }
+    }
+
+    function playTone(frequency, duration = 0.12, type = "sine", volume = 0.08, delay = 0) {
+        if (!soundEnabled) return;
+        if (!audioCtx) return;
+
+        const startTime = audioCtx.currentTime + delay;
+
+        const oscillator = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+
+        oscillator.type = type;
+        oscillator.frequency.setValueAtTime(frequency, startTime);
+
+        gain.gain.setValueAtTime(0.0001, startTime);
+        gain.gain.exponentialRampToValueAtTime(volume, startTime + 0.015);
+        gain.gain.exponentialRampToValueAtTime(0.0001, startTime + duration);
+
+        oscillator.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        oscillator.start(startTime);
+        oscillator.stop(startTime + duration + 0.03);
+    }
+
+
+    function playSfx(name) {
+        if (!soundEnabled) return;
+        unlockAudio();
+
+        if (!audioCtx) return;
+
+        switch (name) {
+            case "click":
+                playTone(520, 0.05, "square", 0.035);
+                break;
+
+            case "start":
+                playTone(440, 0.07, "sine", 0.05);
+                playTone(660, 0.08, "sine", 0.05, 0.07);
+                playTone(880, 0.10, "sine", 0.05, 0.15);
+                break;
+
+            case "collect":
+                playTone(760, 0.06, "triangle", 0.06);
+                playTone(1050, 0.09, "triangle", 0.06, 0.06);
+                break;
+
+            case "shield":
+                playTone(420, 0.08, "sine", 0.05);
+                playTone(620, 0.10, "sine", 0.05, 0.08);
+                break;
+
+            case "hit":
+                playTone(160, 0.12, "sawtooth", 0.08);
+                playTone(95, 0.16, "sawtooth", 0.06, 0.06);
+                break;
+
+            case "correct":
+                playTone(620, 0.08, "triangle", 0.06);
+                playTone(860, 0.10, "triangle", 0.06, 0.08);
+                break;
+
+            case "wrong":
+                playTone(260, 0.10, "sawtooth", 0.06);
+                playTone(170, 0.16, "sawtooth", 0.06, 0.10);
+                break;
+
+            case "gameover":
+                playTone(220, 0.12, "sawtooth", 0.07);
+                playTone(160, 0.16, "sawtooth", 0.06, 0.12);
+                playTone(95, 0.22, "sawtooth", 0.05, 0.25);
+                break;
+        }
+    }
+
+    function toggleSound() {
+        unlockAudio();
+
+        soundEnabled = !soundEnabled;
+        localStorage.setItem("teidesatKidsSound", soundEnabled ? "on" : "off");
+
+        if (soundEnabled) {
+            playSfx("click");
+        }
+    }
 
     const questionOptionAreas = [];
 
@@ -160,6 +260,7 @@ function initTeidesatKidsGame() {
     }
 
     function resetGame() {
+
         gameStarted = false;
         gameOver = false;
         score = 0;
@@ -208,11 +309,15 @@ function initTeidesatKidsGame() {
         keys.left = false;
         keys.right = false;
 
+        updateGameLandscapeMode();
+
         draw();
     }
 
     function triggerGameOverExplosion() {
         if (explosion || gameOver) return;
+
+        playSfx("gameover");
 
         explosion = {
             x: player.x + player.width / 2,
@@ -245,6 +350,8 @@ function initTeidesatKidsGame() {
         if (!waitingForAnswer || !pendingQuestion) return;
 
         if (selectedIndex === pendingQuestion.correct) {
+            playSfx("correct");
+
             waitingForAnswer = false;
             pendingQuestion = null;
 
@@ -275,6 +382,7 @@ function initTeidesatKidsGame() {
 
             return;
         }
+        playSfx("wrong");
 
         waitingForAnswer = false;
         pendingQuestion = null;
@@ -303,9 +411,15 @@ function initTeidesatKidsGame() {
     function startGame() {
         if (gameStarted && !gameOver) return;
 
+        unlockAudio();
+
         gameStarted = true;
         gameOver = false;
         lastTime = 0;
+
+        playSfx("start");
+
+        updateGameLandscapeMode();
 
         if (animationId) cancelAnimationFrame(animationId);
         animationId = requestAnimationFrame(gameLoop);
@@ -318,21 +432,9 @@ function initTeidesatKidsGame() {
     }
 
     function handleActionButton() {
-        const shouldOpenFullscreen =
-            window.innerWidth <= 768 && !isGameFullscreenLike();
-
         if (!gameStarted && !gameOver) {
-            if (shouldOpenFullscreen) {
-                toggleFullscreen();
-            }
-
             startGame();
-
         } else if (gameOver) {
-            if (shouldOpenFullscreen) {
-                toggleFullscreen();
-            }
-
             restartGame();
         }
     }
@@ -528,8 +630,10 @@ function initTeidesatKidsGame() {
         }
 
         if (touchTarget) {
-            player.x += ((touchTarget.x - 70) - player.x - player.width / 2) * 0.12;
-            player.y += (touchTarget.y - player.y - player.height / 2) * 0.12;
+            const touchFollowStrength = 0.075;
+
+            player.x += ((touchTarget.x - 70) - player.x - player.width / 2) * touchFollowStrength;
+            player.y += (touchTarget.y - player.y - player.height / 2) * touchFollowStrength;
         }
 
         if (player.x < 18) {
@@ -624,9 +728,11 @@ function initTeidesatKidsGame() {
                 if (shieldCount > 0) {
                     shieldCount -= 1;
                     obstacles.splice(i, 1);
+                    playSfx("shield");
                     continue;
                 } else {
                     obstacles.splice(i, 1);
+                    playSfx("hit");
                     showRescueQuestion("obstacle");
                     return;
                 }
@@ -645,6 +751,7 @@ function initTeidesatKidsGame() {
             if (isColliding(player, banana)) {
                 bananas.splice(i, 1);
                 shieldCount = Math.min(5, shieldCount + 1);
+                playSfx("collect");
             }
         }
 
@@ -675,75 +782,26 @@ function initTeidesatKidsGame() {
         );
     }
 
-    function isIOSDevice() {
-        return (
-            /iPad|iPhone|iPod/.test(navigator.userAgent) ||
-            (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)
-        );
+    function isMobileViewport() {
+        return window.matchMedia("(max-width: 900px)").matches;
     }
 
-    function isGameFullscreenLike() {
-        const gameBox = canvas.closest(".teidesat-kids-game");
-
-        return (
-            !!document.fullscreenElement ||
-            !!gameBox?.classList.contains("teidesat-kids-game--fake-fullscreen")
-        );
+    function isLandscapeViewport() {
+        return window.matchMedia("(orientation: landscape)").matches;
     }
 
-    function enterFakeFullscreen() {
+    function updateGameLandscapeMode() {
         const gameBox = canvas.closest(".teidesat-kids-game");
 
         if (!gameBox) return;
 
-        gameBox.classList.add("teidesat-kids-game--fake-fullscreen");
-        document.body.classList.add("teidesat-kids-game-open");
+        const shouldFocus =
+            isMobileViewport() &&
+            isLandscapeViewport() &&
+            gameStarted;
 
-        window.scrollTo(0, 0);
-    }
-
-    function exitFakeFullscreen() {
-        const gameBox = canvas.closest(".teidesat-kids-game");
-
-        if (!gameBox) return;
-
-        gameBox.classList.remove("teidesat-kids-game--fake-fullscreen");
-        document.body.classList.remove("teidesat-kids-game-open");
-
-        setTimeout(() => {
-            gameBox.scrollIntoView({
-                behavior: "smooth",
-                block: "center"
-            });
-        }, 100);
-    }
-
-    function toggleFullscreen() {
-        const gameBox = canvas.closest(".teidesat-kids-game");
-
-        if (!gameBox) return;
-
-        const isIOS = isIOSDevice();
-
-        if (isIOS || !gameBox.requestFullscreen) {
-            if (gameBox.classList.contains("teidesat-kids-game--fake-fullscreen")) {
-                exitFakeFullscreen();
-            } else {
-                enterFakeFullscreen();
-            }
-
-            return;
-        }
-
-        if (!document.fullscreenElement) {
-            gameBox.requestFullscreen().catch(() => {
-                enterFakeFullscreen();
-            });
-        } else {
-            document.exitFullscreen().catch(() => {
-                exitFakeFullscreen();
-            });
-        }
+        gameBox.classList.toggle("teidesat-kids-game--landscape-focus", shouldFocus);
+        document.body.classList.toggle("teidesat-kids-game-focus-open", shouldFocus);
     }
 
     function drawExplosion() {
@@ -1027,11 +1085,10 @@ function initTeidesatKidsGame() {
         ctx.restore();
     }
 
-    function drawFullscreenButton() {
+    function drawSoundButton() {
         ctx.save();
 
-        const isFull = isGameFullscreenLike();
-        const area = fullscreenButtonArea;
+        const area = soundButtonArea;
 
         ctx.fillStyle = "rgba(4, 10, 18, 0.55)";
         ctx.strokeStyle = "rgba(255,255,255,0.35)";
@@ -1042,53 +1099,12 @@ function initTeidesatKidsGame() {
         ctx.fill();
         ctx.stroke();
 
-        ctx.strokeStyle = "rgba(255,255,255,0.9)";
-        ctx.lineWidth = 2;
+        ctx.fillStyle = "rgba(255,255,255,0.92)";
+        ctx.font = "bold 16px Montserrat, sans-serif";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
 
-        const x = area.x + 10;
-        const y = area.y + 8;
-        const w = area.width - 20;
-        const h = area.height - 16;
-
-        if (!isFull) {
-            // Icono expandir
-            ctx.beginPath();
-            ctx.moveTo(x, y + 6);
-            ctx.lineTo(x, y);
-            ctx.lineTo(x + 6, y);
-
-            ctx.moveTo(x + w - 6, y);
-            ctx.lineTo(x + w, y);
-            ctx.lineTo(x + w, y + 6);
-
-            ctx.moveTo(x, y + h - 6);
-            ctx.lineTo(x, y + h);
-            ctx.lineTo(x + 6, y + h);
-
-            ctx.moveTo(x + w - 6, y + h);
-            ctx.lineTo(x + w, y + h);
-            ctx.lineTo(x + w, y + h - 6);
-            ctx.stroke();
-        } else {
-            // Icono contraer
-            ctx.beginPath();
-            ctx.moveTo(x + 6, y);
-            ctx.lineTo(x + 6, y + 6);
-            ctx.lineTo(x, y + 6);
-
-            ctx.moveTo(x + w - 6, y);
-            ctx.lineTo(x + w - 6, y + 6);
-            ctx.lineTo(x + w, y + 6);
-
-            ctx.moveTo(x + 6, y + h);
-            ctx.lineTo(x + 6, y + h - 6);
-            ctx.lineTo(x, y + h - 6);
-
-            ctx.moveTo(x + w - 6, y + h);
-            ctx.lineTo(x + w - 6, y + h - 6);
-            ctx.lineTo(x + w, y + h - 6);
-            ctx.stroke();
-        }
+        ctx.fillText(soundEnabled ? "♪" : "×", area.x + area.width / 2, area.y + area.height / 2 + 1);
 
         ctx.restore();
     }
@@ -1243,7 +1259,7 @@ function initTeidesatKidsGame() {
         }
 
         drawGameButton();
-        drawFullscreenButton();
+        drawSoundButton();
     }
 
     function gameLoop(timestamp) {
@@ -1317,13 +1333,8 @@ function initTeidesatKidsGame() {
         const touchX = ((touch.clientX - rect.left) / rect.width) * GAME_WIDTH;
         const touchY = ((touch.clientY - rect.top) / rect.height) * GAME_HEIGHT;
 
-        if (isInsideArea(touchX, touchY, fullscreenButtonArea)) {
-            toggleFullscreen();
-            return;
-        }
-
-        if ((!gameStarted || gameOver) && isInsideArea(touchX, touchY, gameButtonArea)) {
-            handleActionButton();
+        if (isInsideArea(touchX, touchY, soundButtonArea)) {
+            toggleSound();
             return;
         }
 
@@ -1334,6 +1345,11 @@ function initTeidesatKidsGame() {
                     return;
                 }
             }
+            return;
+        }
+
+        if ((!gameStarted || gameOver) && isInsideArea(touchX, touchY, gameButtonArea)) {
+            handleActionButton();
             return;
         }
 
@@ -1370,13 +1386,8 @@ function initTeidesatKidsGame() {
         const clickX = ((e.clientX - rect.left) / rect.width) * GAME_WIDTH;
         const clickY = ((e.clientY - rect.top) / rect.height) * GAME_HEIGHT;
 
-        if (isInsideArea(clickX, clickY, fullscreenButtonArea)) {
-            toggleFullscreen();
-            return;
-        }
-
-        if (isInsideArea(clickX, clickY, gameButtonArea)) {
-            handleActionButton();
+        if (isInsideArea(clickX, clickY, soundButtonArea)) {
+            toggleSound();
             return;
         }
 
@@ -1387,6 +1398,12 @@ function initTeidesatKidsGame() {
                     return;
                 }
             }
+            return;
+        }
+
+        if ((!gameStarted || gameOver) && isInsideArea(clickX, clickY, gameButtonArea)) {
+            handleActionButton();
+            return;
         }
     }
 
@@ -1402,23 +1419,15 @@ function initTeidesatKidsGame() {
         canvas.dataset.bound = "true";
     }
 
-    document.addEventListener("fullscreenchange", () => {
-        const gameBox = canvas.closest(".teidesat-kids-game");
+    if (!window.__teidesatKidsOrientationBound) {
+        window.addEventListener("resize", updateGameLandscapeMode);
 
-        if (!gameBox) return;
+        window.addEventListener("orientationchange", () => {
+            setTimeout(updateGameLandscapeMode, 300);
+        });
 
-        if (!document.fullscreenElement) {
-            gameBox.classList.remove("teidesat-kids-game--fake-fullscreen");
-            document.body.classList.remove("teidesat-kids-game-open");
-
-            setTimeout(() => {
-                gameBox.scrollIntoView({
-                    behavior: "smooth",
-                    block: "center"
-                });
-            }, 150);
-        }
-    });
+        window.__teidesatKidsOrientationBound = true;
+    }
 
     resetGame();
 }
