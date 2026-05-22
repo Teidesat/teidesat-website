@@ -140,6 +140,7 @@ NAVEGACIÓN FLOTANTE
     sideMenu.classList.add("is-open");
     menuOverlay.classList.add("is-open");
     sideMenu.setAttribute("aria-hidden", "false");
+    sideMenu.removeAttribute("inert");
     menuToggle.setAttribute("aria-expanded", "true");
     document.body.classList.add("teidesat-menu-open");
   }
@@ -149,6 +150,7 @@ NAVEGACIÓN FLOTANTE
     sideMenu.classList.remove("is-open");
     menuOverlay.classList.remove("is-open");
     sideMenu.setAttribute("aria-hidden", "true");
+    sideMenu.setAttribute("inert", "");
     menuToggle.setAttribute("aria-expanded", "false");
     document.body.classList.remove("teidesat-menu-open");
   }

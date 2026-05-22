@@ -347,6 +347,20 @@ html {
     background: #9edfff;
 }
 
+/* Ocultar el toggle semánticamente en escritorio */
+@media (min-width: 992px) {
+    .teidesat-nav-toggle-wrapper {
+        display: none;
+        visibility: hidden;
+    }
+}
+
+@media (max-width: 991px) {
+    .teidesat-nav-toggle-wrapper {
+        display: contents;
+    }
+}
+
 /* =========================================================
    MENÚ LATERAL
 ========================================================= */
@@ -2329,139 +2343,120 @@ html {
         font-size: 1.65rem;
     }
 
+    /* cierre del @media (max-width: 480px) */
     .teidesat-more-links {
         gap: 0.8rem;
     }
+}
 
-    /* =========================================================
+/* =========================================================
    ACCESIBILIDAD – FOCO VISIBLE (WCAG 2.1 AA)
-   Añadir al final del CSS existente.
-   No modifica ninguna regla existente.
 ========================================================= */
 
-    /*
-   Foco visible para todos los elementos focusables:
-   botones nativos, links, y los divs/articles con tabindex="0".
-   Se usa :focus-visible para que NO aparezca el outline al hacer
-   clic con ratón, solo al navegar con teclado.
-*/
-    :focus-visible {
-        outline: 2px solid var(--teidesat-accent);
-        /* #9edfff */
-        outline-offset: 4px;
-        border-radius: 6px;
-    }
+:focus-visible {
+    outline: 2px solid var(--teidesat-accent);
+    outline-offset: 4px;
+    border-radius: 6px;
+}
 
-    /*
-   Los elementos redondeados (tarjetas, botones pill, nodos)
-   heredan el border-radius correspondiente para que el outline
-   siga la forma del elemento.
-*/
-    .teidesat-floating-nav__toggle:focus-visible,
-    .teidesat-floating-nav__item:focus-visible,
-    .teidesat-menu-toggle:focus-visible,
-    .teidesat-side-menu__close:focus-visible,
-    .objectives-core:focus-visible,
-    .objective-node:focus-visible,
-    .teidesat-news-slider__dot:focus-visible {
-        border-radius: 50%;
-        outline-offset: 3px;
-    }
+.teidesat-floating-nav__toggle:focus-visible,
+.teidesat-floating-nav__item:focus-visible,
+.teidesat-menu-toggle:focus-visible,
+.teidesat-side-menu__close:focus-visible,
+.objectives-core:focus-visible,
+.objective-node:focus-visible,
+.teidesat-news-slider__dot:focus-visible {
+    border-radius: 50%;
+    outline-offset: 3px;
+}
 
-    .teidesat-faq-item__question:focus-visible,
-    .objective-panel:focus-visible,
-    .teidesat-news-card:focus-visible,
-    .info-card:focus-visible,
-    .timeline-card:focus-visible,
-    .support-hero-card:focus-visible,
-    .impact-copy:focus-visible,
-    .impact-stat:focus-visible,
-    .mini-stat:focus-visible,
-    .status-banner:focus-visible,
-    .teidesat-footer-sponsor:focus-visible {
-        border-radius: 22px;
-        outline-offset: 3px;
-    }
+.teidesat-faq-item__question:focus-visible,
+.objective-panel:focus-visible,
+.teidesat-news-card:focus-visible,
+.info-card:focus-visible,
+.timeline-card:focus-visible,
+.support-hero-card:focus-visible,
+.impact-copy:focus-visible,
+.impact-stat:focus-visible,
+.mini-stat:focus-visible,
+.status-banner:focus-visible,
+.teidesat-footer-sponsor:focus-visible {
+    border-radius: 22px;
+    outline-offset: 3px;
+}
 
-    .teidesat-more-link:focus-visible {
-        border-radius: 12px;
-        outline-offset: 6px;
-    }
+.teidesat-more-link:focus-visible {
+    border-radius: 12px;
+    outline-offset: 6px;
+}
 
-    /* Links del menú lateral */
-    .teidesat-side-menu__nav a:focus-visible {
-        border-radius: 6px;
-        outline-offset: 4px;
-    }
+.teidesat-side-menu__nav a:focus-visible {
+    border-radius: 6px;
+    outline-offset: 4px;
+}
 
-    /*
-   Los h1/h2/h3 y párrafos con tabindex="0" no tienen forma
-   redondeada, así que el outline por defecto les queda bien.
-   Solo ajustamos el offset para que no pegue al texto.
-*/
-    h1:focus-visible,
-    h2:focus-visible,
-    h3:focus-visible,
-    p:focus-visible,
-    span[tabindex]:focus-visible {
-        border-radius: 4px;
-        outline-offset: 6px;
-    }
+h1:focus-visible,
+h2:focus-visible,
+h3:focus-visible,
+p:focus-visible,
+span[tabindex]:focus-visible {
+    border-radius: 4px;
+    outline-offset: 6px;
+}
 
-    /*
-   Anulamos el outline por defecto del navegador (Firefox/Chrome
-   muestran uno azul/negro que choca con el fondo oscuro).
-*/
-    :focus:not(:focus-visible) {
-        outline: none;
-    }
+:focus:not(:focus-visible) {
+    outline: none;
+}
 
-    /*
-   La barra de progreso tiene overflow:hidden, así que el outline
-   tiene que ir en el contenedor padre para ser visible.
-*/
-    .progress-block__bar:focus-visible {
-        border-radius: 999px;
-        outline-offset: 3px;
-    }
+.progress-block__bar:focus-visible {
+    border-radius: 999px;
+    outline-offset: 3px;
+}
 
-    /* =========================================================
-   SKIP LINK (opcional, solo visible al enfocar con Tab)
-   Si no se quiere usar, simplemente no añadir el elemento
-   al HTML. No afecta al diseño si no está en el DOM.
+/* Secciones de contenido navegables con Tab */
+.teidesat-about-section:focus-visible {
+    outline: 2px solid var(--teidesat-accent);
+    outline-offset: -4px;
+    border-radius: 0;
+}
+
+/* =========================================================
+   SKIP LINK
 ========================================================= */
-    .teidesat-skip-link {
-        position: fixed;
-        top: -100px;
-        /* fuera de pantalla por defecto */
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 9999;
-        padding: 0.75rem 1.4rem;
-        border-radius: 999px;
-        background: var(--teidesat-accent);
-        color: #020712;
-        font-weight: 700;
-        font-size: 0.95rem;
-        text-decoration: none;
-        white-space: nowrap;
-        transition: top 0.18s ease;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-    }
 
-    .teidesat-skip-link:focus {
-        top: 16px;
-        /* aparece al recibir foco */
-        outline: 2px solid #020712;
-        outline-offset: 3px;
-    }
+.teidesat-skip-link {
+    position: fixed;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    padding: 0.75rem 1.4rem;
+    border-radius: 999px;
+    background: var(--teidesat-accent);
+    color: #020712;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: top 0.18s ease;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
 
-    .teidesat-news-card__title {
-        margin: 0 0 0.7rem;
-        font-size: 1.2rem;
-        font-weight: 700;
-        color: #ffffff;
-        font-family: 'Rajdhani', sans-serif;
-        letter-spacing: 0.03em;
-    }
+.teidesat-skip-link:focus {
+    top: 16px;
+    outline: 2px solid #020712;
+    outline-offset: 3px;
+}
+
+/* =========================================================
+   NEWS CARD TITLE
+========================================================= */
+
+.teidesat-news-card__title {
+    margin: 0 0 0.7rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #ffffff;
+    font-family: 'Rajdhani', sans-serif;
+    letter-spacing: 0.03em;
 }

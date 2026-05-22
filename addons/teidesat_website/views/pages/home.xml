@@ -37,7 +37,7 @@
                         <a href="/teidesatkids">TeidesatKids</a>
                         <a href="/contacto">Contacto</a>
                     </nav>
-
+                    <div class="teidesat-nav-toggle-wrapper" aria-hidden="false">
                         <button class="teidesat-menu-toggle"
                                 type="button"
                                 id="teidesat-menu-toggle"
@@ -48,13 +48,13 @@
                             <span aria-hidden="true"></span>
                             <span aria-hidden="true"></span>
                         </button>
-
+                    </div>
                 </div>
             </header>
 
                 <div class="teidesat-menu-overlay" id="teidesat-menu-overlay" aria-hidden="true"></div>
 
-                <aside class="teidesat-side-menu" id="teidesat-side-menu" aria-hidden="true" aria-label="Menú de navegación principal">
+                <aside class="teidesat-side-menu" id="teidesat-side-menu" aria-hidden="true" inert="inert" aria-label="Menú de navegación principal">
                     <div class="teidesat-side-menu__top">
                         <button class="teidesat-side-menu__close"
                                 type="button"
