@@ -5,6 +5,8 @@
     'category': 'Website',
     'depends': ['website'],
     'data': [
+        'security/ir.model.access.csv',
+        'views/teidesatkids_question_views.xml',
         'views/pages/home.xml',
         'views/pages/divulgacion.xml',
         'views/pages/nosotros.xml',
