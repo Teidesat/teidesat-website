@@ -8,7 +8,8 @@
         linear-gradient(180deg, #050816 0%, #07111f 45%, #050816 100%);
 }
 
-body.teidesat-page:has(.teidesat-page--contacto) {
+/* REEMPLAZO DE :has() */
+body.teidesat-page-contacto {
     scroll-snap-type: none;
 }
 
@@ -119,7 +120,9 @@ body.teidesat-page:has(.teidesat-page--contacto) {
     background: rgba(14, 23, 40, 0.82);
     border: 1px solid rgba(255,255,255,0.08);
     box-shadow: 0 20px 55px rgba(0,0,0,0.18);
-    backdrop-filter: blur(10px);
+
+    /* optimización ligera */
+    backdrop-filter: blur(8px);
 }
 
 /* =========================================================
@@ -145,6 +148,7 @@ body.teidesat-page:has(.teidesat-page--contacto) {
 .teidesat-form-row--hidden.teidesat-form-row--visible {
     display: flex;
 }
+
 .teidesat-form-row label {
     font-size: 0.95rem;
     font-weight: 600;
@@ -161,35 +165,12 @@ body.teidesat-page:has(.teidesat-page--contacto) {
     background: rgba(255,255,255,0.05);
     color: #ffffff;
     outline: none;
-    transition: border-color 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+    transition: border-color 0.22s ease, box-shadow 0.22s ease;
     box-sizing: border-box;
-    appearance: none;
 }
 
-.teidesat-form-row input::placeholder,
-.teidesat-form-row textarea::placeholder {
-    color: rgba(255,255,255,0.42);
-}
-
-.teidesat-form-row input:focus,
-.teidesat-form-row select:focus,
-.teidesat-form-row textarea:focus {
-    border-color: rgba(118,246,222,0.55);
-    box-shadow: 0 0 0 4px rgba(118,246,222,0.10);
-    background: rgba(255,255,255,0.07);
-}
-
-.teidesat-form-row select {
-    cursor: pointer;
-}
-
-.teidesat-form-row select option {
-    color: #07111f;
-    background: #ffffff;
-}
-
-/* Campo mensaje ocupa todo el ancho */
-.teidesat-form-row:has(textarea) {
+/* textarea ocupa todo el ancho (REEMPLAZO DE :has) */
+.teidesat-form-row--textarea {
     grid-column: 1 / -1;
 }
 
@@ -223,17 +204,15 @@ body.teidesat-page:has(.teidesat-page--contacto) {
     font-weight: 700;
     cursor: pointer;
     transition: transform 0.22s ease, box-shadow 0.22s ease;
-    white-space: nowrap;
 }
 
 .teidesat-contacto-actions .teidesat-btn-primary:hover {
     transform: translateY(-2px);
     box-shadow: 0 12px 28px rgba(118,246,222,0.2);
-    color: #07111f;
 }
 
 /* =========================================================
-   MENSAJE DE ÉXITO (por si luego lo usamos)
+   MENSAJE DE ÉXITO
 ========================================================= */
 
 .teidesat-contacto-success {
@@ -252,23 +231,12 @@ body.teidesat-page:has(.teidesat-page--contacto) {
 ========================================================= */
 
 @media (max-width: 991px) {
-    .teidesat-contacto-hero {
-        padding: 130px 0 70px;
-    }
-
-    .teidesat-contacto-section {
-        padding: 72px 0;
-    }
-
-    .teidesat-contacto-form-wrap {
-        padding: 1.6rem;
-    }
 
     .teidesat-contacto-form {
         grid-template-columns: 1fr;
     }
 
-    .teidesat-form-row:has(textarea) {
+    .teidesat-form-row--textarea {
         grid-column: auto;
     }
 
@@ -279,13 +247,9 @@ body.teidesat-page:has(.teidesat-page--contacto) {
 }
 
 @media (max-width: 767px) {
+
     .teidesat-contacto-hero {
         padding: 120px 0 60px;
-    }
-
-    .teidesat-contacto-hero__content p {
-        font-size: 1rem;
-        line-height: 1.7;
     }
 
     .teidesat-contacto-section {
@@ -297,14 +261,18 @@ body.teidesat-page:has(.teidesat-page--contacto) {
         border-radius: 22px;
     }
 
-    .teidesat-form-row input,
-    .teidesat-form-row select,
-    .teidesat-form-row textarea {
-        padding: 0.9rem 0.95rem;
+    .teidesat-contacto-form input,
+    .teidesat-contacto-form select,
+    .teidesat-contacto-form textarea {
         border-radius: 14px;
     }
 
     .teidesat-contacto-actions .teidesat-btn-primary {
         width: 100%;
+    }
+
+    /* mejora rendimiento móvil */
+    .teidesat-contacto-hero::after {
+        display: none;
     }
 }
