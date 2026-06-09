@@ -131,6 +131,7 @@ if (floatingNav && floatingNavToggle) {
         sideMenu.classList.add("is-open");
         menuOverlay.classList.add("is-open");
         sideMenu.setAttribute("aria-hidden", "false");
+        
         menuToggle.setAttribute("aria-expanded", "true");
         document.body.classList.add("teidesat-menu-open");
     }
