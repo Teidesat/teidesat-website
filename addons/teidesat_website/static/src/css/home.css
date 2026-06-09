@@ -7,8 +7,8 @@ html {
     --teidesat-bg-soft: #0b1326;
     --teidesat-card: rgba(18, 26, 46, 0.82);
     --teidesat-card-strong: rgba(20, 30, 54, 0.94);
-    --teidesat-border: rgba(255,255,255,0.08);
-    --teidesat-text-soft: rgba(255,255,255,0.78);
+    --teidesat-border: rgba(255, 255, 255, 0.08);
+    --teidesat-text-soft: rgba(255, 255, 255, 0.78);
     --teidesat-accent: #9edfff;
     --teidesat-accent-2: #76f6de;
     --teidesat-glow: rgba(118, 246, 222, 0.18);
@@ -28,6 +28,7 @@ body.teidesat-page {
     font-family: 'Manrope', sans-serif;
     scrollbar-gutter: stable;
 }
+
 /* ==========================================
    TIPOGRAFÍA TEIDESAT GLOBAL
 ========================================== */
@@ -54,6 +55,7 @@ body.teidesat-page .support-amount {
 body.teidesat-menu-open {
     overflow: hidden;
 }
+
 .hero-title-block,
 .section-heading,
 .teidesat-objectives-heading,
@@ -61,6 +63,7 @@ body.teidesat-menu-open {
     width: 100%;
     box-sizing: border-box;
 }
+
 /* =========================================================
    NAVEGACIÓN FLOTANTE
 ========================================================= */
@@ -104,12 +107,12 @@ html {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.14);
+    border: 1px solid rgba(255, 255, 255, 0.14);
     background: rgba(10, 18, 34, 0.88);
     color: #ffffff;
     font-size: 1.4rem;
     cursor: pointer;
-    box-shadow: 0 14px 32px rgba(0,0,0,0.28);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.28);
     backdrop-filter: blur(10px);
 
     transition:
@@ -122,7 +125,7 @@ html {
 
 .teidesat-floating-nav__toggle:hover {
     background: rgba(16, 28, 48, 0.95);
-    border-color: rgba(158,223,255,0.3);
+    border-color: rgba(158, 223, 255, 0.3);
 }
 
 .teidesat-floating-nav__menu {
@@ -147,9 +150,9 @@ html {
     min-width: 170px;
     padding: 0.8rem 1rem;
     border-radius: 999px;
-    border: 1px solid rgba(255,255,255,0.08);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     background: rgba(12, 20, 36, 0.92);
-    color: rgba(255,255,255,0.9);
+    color: rgba(255, 255, 255, 0.9);
     text-align: left;
     cursor: pointer;
     font-size: 0.92rem;
@@ -165,7 +168,7 @@ html {
 
 .teidesat-floating-nav__item:hover {
     background: rgba(18, 30, 50, 0.96);
-    border-color: rgba(158,223,255,0.24);
+    border-color: rgba(158, 223, 255, 0.24);
     color: #ffffff;
 }
 
@@ -239,6 +242,7 @@ html {
         padding: 0.48rem 0.65rem;
     }
 }
+
 /* =========================================================
    HEADER
 ========================================================= */
@@ -271,7 +275,7 @@ html {
     gap: 2rem;
     background: rgba(2, 7, 18, 0.35);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.06);
+    border: 1px solid rgba(255, 255, 255, 0.06);
     border-radius: 18px;
     padding: 0.65rem 1.2rem;
     box-sizing: border-box;
@@ -289,7 +293,7 @@ html {
     height: 36px;
     width: auto;
     display: block;
-    filter: drop-shadow(0 0 10px rgba(141,214,255,0.35));
+    filter: drop-shadow(0 0 10px rgba(141, 214, 255, 0.35));
 }
 
 .teidesat-desktop-nav {
@@ -305,7 +309,7 @@ html {
     font-weight: 600;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.82);
+    color: rgba(255, 255, 255, 0.82);
     text-decoration: none;
     transition: all 0.2s ease;
 }
@@ -335,12 +339,26 @@ html {
     width: 26px;
     height: 2px;
     border-radius: 999px;
-    background: rgba(255,255,255,0.92);
+    background: rgba(255, 255, 255, 0.92);
     transition: transform 0.22s ease, opacity 0.22s ease, background 0.22s ease;
 }
 
 .teidesat-menu-toggle:hover span {
     background: #9edfff;
+}
+
+/* Ocultar el toggle semánticamente en escritorio */
+@media (min-width: 992px) {
+    .teidesat-nav-toggle-wrapper {
+        display: none;
+        visibility: hidden;
+    }
+}
+
+@media (max-width: 991px) {
+    .teidesat-nav-toggle-wrapper {
+        display: contents;
+    }
 }
 
 /* =========================================================
@@ -372,7 +390,7 @@ html {
     height: 100vh;
     height: 100svh;
     background: rgba(1, 5, 14, 0.98);
-    border-right: 1px solid rgba(255,255,255,0.06);
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
     z-index: 1200;
     transform: translateX(-100%);
     transition: transform 0.28s ease;
@@ -396,7 +414,7 @@ html {
 .teidesat-side-menu__close {
     border: 0;
     background: transparent;
-    color: rgba(255,255,255,0.7);
+    color: rgba(255, 255, 255, 0.7);
     font-size: 2rem;
     line-height: 1;
     cursor: pointer;
@@ -415,7 +433,7 @@ html {
 }
 
 .teidesat-side-menu__nav a {
-    color: rgba(255,255,255,0.82);
+    color: rgba(255, 255, 255, 0.82);
     text-decoration: none;
     font-size: 1.05rem;
     line-height: 1.4;
@@ -435,7 +453,7 @@ html {
     position: relative;
     padding: 3.5rem 0 3rem;
     background: #020712;
-    border-top: 1px solid rgba(255,255,255,0.06);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
     overflow: hidden;
     box-sizing: border-box;
 }
@@ -463,8 +481,8 @@ html {
 .teidesat-footer-sponsor {
     min-height: 96px;
     border-radius: 18px;
-    border: 1px solid rgba(255,255,255,0.08);
-    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.025);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -479,8 +497,8 @@ html {
 
 .teidesat-footer-sponsor:hover {
     transform: translateY(-4px);
-    border-color: rgba(158,223,255,0.28);
-    background: rgba(158,223,255,0.055);
+    border-color: rgba(158, 223, 255, 0.28);
+    background: rgba(158, 223, 255, 0.055);
 }
 
 .teidesat-footer-sponsor img {
@@ -645,12 +663,10 @@ html {
 .teidesat-hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-        90deg,
-        rgba(3, 8, 18, 0.78) 0%,
-        rgba(3, 8, 18, 0.35) 42%,
-        rgba(3, 8, 18, 0.12) 100%
-    );
+    background: linear-gradient(90deg,
+            rgba(3, 8, 18, 0.78) 0%,
+            rgba(3, 8, 18, 0.35) 42%,
+            rgba(3, 8, 18, 0.12) 100%);
 }
 
 .teidesat-hero .container {
@@ -701,14 +717,12 @@ html {
     left: 24%;
     transform: translateY(-50%) rotate(155deg);
     transform-origin: right center;
-    background: linear-gradient(
-        90deg,
-        rgba(141, 214, 255, 0) 0%,
-        rgba(141, 214, 255, 0.06) 18%,
-        rgba(141, 214, 255, 0.16) 45%,
-        rgba(141, 214, 255, 0.35) 72%,
-        rgba(255, 255, 255, 0.95) 100%
-    );
+    background: linear-gradient(90deg,
+            rgba(141, 214, 255, 0) 0%,
+            rgba(141, 214, 255, 0.06) 18%,
+            rgba(141, 214, 255, 0.16) 45%,
+            rgba(141, 214, 255, 0.35) 72%,
+            rgba(255, 255, 255, 0.95) 100%);
     filter: blur(10px);
     border-radius: 999px;
     z-index: 0;
@@ -722,8 +736,7 @@ html {
     height: 100%;
     object-fit: contain;
     filter:
-        drop-shadow(0 0 18px rgba(141, 214, 255, 0.35))
-        drop-shadow(0 0 30px rgba(141, 214, 255, 0.25));
+        drop-shadow(0 0 18px rgba(141, 214, 255, 0.35)) drop-shadow(0 0 30px rgba(141, 214, 255, 0.25));
 }
 
 .hero-satellite--drift {
@@ -734,6 +747,7 @@ html {
     0% {
         transform: translate(400px, -500px);
     }
+
     100% {
         transform: translate(-1100px, 200px);
     }
@@ -791,7 +805,7 @@ html {
 .teidesat-objectives-heading p {
     margin: 0;
     max-width: 760px;
-    color: rgba(255,255,255,0.78);
+    color: rgba(255, 255, 255, 0.78);
     line-height: 1.75;
 }
 
@@ -801,6 +815,7 @@ html {
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
 }
+
 .teidesat-objectives-heading h2,
 .teidesat-objectives-heading p {
     transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -869,7 +884,7 @@ html {
 }
 
 .objectives-core span {
-    color: rgba(255,255,255,0.97);
+    color: rgba(255, 255, 255, 0.97);
     font-size: 1.2rem;
     font-weight: 300;
     letter-spacing: 0.08em;
@@ -897,7 +912,7 @@ html {
     justify-content: center;
     box-shadow:
         0 0 12px rgba(118, 246, 222, 0.18),
-        inset 0 0 8px rgba(255,255,255,0.05);
+        inset 0 0 8px rgba(255, 255, 255, 0.05);
     transition:
         background 0.22s ease,
         border-color 0.22s ease,
@@ -910,7 +925,7 @@ html {
     border-color: rgba(220, 255, 246, 0.95);
     box-shadow:
         0 0 22px rgba(118, 246, 222, 0.32),
-        inset 0 0 10px rgba(255,255,255,0.08);
+        inset 0 0 10px rgba(255, 255, 255, 0.08);
 }
 
 .objective-node__label {
@@ -932,7 +947,7 @@ html {
     border-radius: 22px;
     background: rgba(20, 27, 46, 0.92);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 18px 50px rgba(0,0,0,0.18);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
     z-index: 1;
     box-sizing: border-box;
 }
@@ -1018,7 +1033,7 @@ html {
     width: 72px;
     height: 72px;
     border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.10);
+    border: 1px solid rgba(255, 255, 255, 0.10);
     background: rgba(18, 28, 50, 0.82);
     display: flex;
     align-items: center;
@@ -1030,12 +1045,12 @@ html {
 
 .teidesat-more-link:hover .teidesat-more-link__icon {
     transform: translateY(-4px);
-    border-color: rgba(158,223,255,0.25);
-    background: rgba(255,255,255,0.04);
+    border-color: rgba(158, 223, 255, 0.25);
+    background: rgba(255, 255, 255, 0.04);
 }
 
 .teidesat-more-link__label {
-    color: rgba(255,255,255,0.88);
+    color: rgba(255, 255, 255, 0.88);
     font-size: 0.95rem;
     text-align: center;
 }
@@ -1080,7 +1095,7 @@ html {
     width: 100%;
     border: 0;
     background: rgba(18, 28, 50, 0.82);
-    border: 1px solid rgba(255,255,255,0.08);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 22px;
     color: #ffffff;
     padding: 1.2rem 1.3rem;
@@ -1111,11 +1126,11 @@ html {
     padding: 1.2rem 1.3rem;
     border-radius: 22px;
     background: rgba(18, 28, 50, 0.96);
-    border: 1px solid rgba(255,255,255,0.08);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     min-height: 84px;
     box-sizing: border-box;
     z-index: 3;
-    box-shadow: 0 18px 40px rgba(0,0,0,0.2);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.2);
 }
 
 .teidesat-faq-item.active .teidesat-faq-item__answer {
@@ -1128,7 +1143,7 @@ html {
 
 .teidesat-faq-item__answer p {
     margin: 0;
-    color: rgba(255,255,255,0.8);
+    color: rgba(255, 255, 255, 0.8);
     line-height: 1.7;
 }
 
@@ -1173,7 +1188,7 @@ html {
     padding: 1.3rem;
     border-radius: 22px;
     background: rgba(18, 28, 50, 0.82);
-    border: 1px solid rgba(255,255,255,0.08);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     min-height: 220px;
     box-sizing: border-box;
 }
@@ -1191,8 +1206,8 @@ html {
     margin-bottom: 0.8rem;
     padding: 0.35rem 0.7rem;
     border-radius: 999px;
-    background: rgba(118,246,222,0.12);
-    border: 1px solid rgba(118,246,222,0.18);
+    background: rgba(118, 246, 222, 0.12);
+    border: 1px solid rgba(118, 246, 222, 0.18);
     color: #d9fff8;
     font-size: 0.72rem;
     font-weight: 700;
@@ -1208,7 +1223,7 @@ html {
 
 .teidesat-news-card p {
     margin: 0;
-    color: rgba(255,255,255,0.8);
+    color: rgba(255, 255, 255, 0.8);
     line-height: 1.7;
 }
 
@@ -1224,7 +1239,7 @@ html {
     height: 10px;
     border-radius: 50%;
     border: 0;
-    background: rgba(255,255,255,0.22);
+    background: rgba(255, 255, 255, 0.22);
     cursor: pointer;
     transition: transform 0.2s ease, background 0.2s ease;
 }
@@ -1306,29 +1321,45 @@ html {
     transform: translate(-50%, -50%);
     z-index: 5;
     background: #dffffa;
-    clip-path: polygon(
-        50% 0%,
-        61% 35%,
-        100% 35%,
-        68% 57%,
-        79% 100%,
-        50% 72%,
-        21% 100%,
-        32% 57%,
-        0% 35%,
-        39% 35%
-    );
+    clip-path: polygon(50% 0%,
+            61% 35%,
+            100% 35%,
+            68% 57%,
+            79% 100%,
+            50% 72%,
+            21% 100%,
+            32% 57%,
+            0% 35%,
+            39% 35%);
     box-shadow:
-        0 0 8px rgba(118,246,222,0.8),
-        0 0 18px rgba(118,246,222,0.45),
-        0 0 30px rgba(118,246,222,0.18);
+        0 0 8px rgba(118, 246, 222, 0.8),
+        0 0 18px rgba(118, 246, 222, 0.45),
+        0 0 30px rgba(118, 246, 222, 0.18);
 }
-.timeline-item:nth-child(1) .timeline-dot { left: calc(50% + 1px); }
-.timeline-item:nth-child(2) .timeline-dot { left: calc(50% - 2px); }
-.timeline-item:nth-child(3) .timeline-dot { left: calc(50% - 11px); }
-.timeline-item:nth-child(4) .timeline-dot { left: calc(50% + 5px); }
-.timeline-item:nth-child(5) .timeline-dot { left: calc(50% - 10px); }
-.timeline-item:nth-child(6) .timeline-dot { left: calc(50% - 2px); }
+
+.timeline-item:nth-child(1) .timeline-dot {
+    left: calc(50% + 1px);
+}
+
+.timeline-item:nth-child(2) .timeline-dot {
+    left: calc(50% - 2px);
+}
+
+.timeline-item:nth-child(3) .timeline-dot {
+    left: calc(50% - 11px);
+}
+
+.timeline-item:nth-child(4) .timeline-dot {
+    left: calc(50% + 5px);
+}
+
+.timeline-item:nth-child(5) .timeline-dot {
+    left: calc(50% - 10px);
+}
+
+.timeline-item:nth-child(6) .timeline-dot {
+    left: calc(50% - 2px);
+}
 
 .timeline-card {
     position: relative;
@@ -1337,8 +1368,8 @@ html {
     padding: 1rem 1.1rem;
     border-radius: 22px;
     background: rgba(15, 24, 43, 0.84);
-    border: 1px solid rgba(255,255,255,0.08);
-    box-shadow: 0 18px 42px rgba(0,0,0,0.18);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 18px 42px rgba(0, 0, 0, 0.18);
     backdrop-filter: blur(8px);
 }
 
@@ -1356,12 +1387,10 @@ html {
     top: 50%;
     width: 54px;
     height: 2px;
-    background: linear-gradient(
-        90deg,
-        rgba(118,246,222,0.0),
-        rgba(118,246,222,0.55),
-        rgba(118,246,222,0.0)
-    );
+    background: linear-gradient(90deg,
+            rgba(118, 246, 222, 0.0),
+            rgba(118, 246, 222, 0.55),
+            rgba(118, 246, 222, 0.0));
 }
 
 .timeline-item:nth-child(odd) .timeline-card::after {
@@ -1391,7 +1420,7 @@ html {
 
 .timeline-card p {
     margin: 0;
-    color: rgba(255,255,255,0.78);
+    color: rgba(255, 255, 255, 0.78);
     line-height: 1.45;
     font-size: 0.94rem;
 }
@@ -1413,7 +1442,7 @@ html {
     border-radius: 26px;
     background: var(--teidesat-card);
     border: 1px solid var(--teidesat-border);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.18);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
     backdrop-filter: blur(10px);
 }
 
@@ -1446,8 +1475,8 @@ html {
 .mini-stat {
     padding: 1.2rem;
     border-radius: 20px;
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.05);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1462,7 +1491,7 @@ html {
 
 .mini-stat__label {
     margin-top: 0.5rem;
-    color: rgba(255,255,255,0.82);
+    color: rgba(255, 255, 255, 0.82);
     line-height: 1.5;
 }
 
@@ -1485,7 +1514,7 @@ html {
     border-radius: 22px;
     background: var(--teidesat-card);
     border: 1px solid var(--teidesat-border);
-    box-shadow: 0 20px 45px rgba(0,0,0,0.16);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.16);
     backdrop-filter: blur(10px);
     overflow: hidden;
     transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
@@ -1498,13 +1527,13 @@ html {
     inset: 0 auto auto 0;
     width: 100%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(158,223,255,0.5), transparent);
+    background: linear-gradient(90deg, transparent, rgba(158, 223, 255, 0.5), transparent);
 }
 
 .info-card:hover {
     transform: translateY(-6px);
-    border-color: rgba(158,223,255,0.16);
-    box-shadow: 0 28px 55px rgba(0,0,0,0.22);
+    border-color: rgba(158, 223, 255, 0.16);
+    box-shadow: 0 28px 55px rgba(0, 0, 0, 0.22);
 }
 
 .info-card h3 {
@@ -1523,8 +1552,8 @@ html {
     margin-top: 2rem;
     padding: 1.2rem 1.4rem;
     border-radius: 22px;
-    background: linear-gradient(135deg, rgba(118,246,222,0.12), rgba(158,223,255,0.06));
-    border: 1px solid rgba(158,223,255,0.14);
+    background: linear-gradient(135deg, rgba(118, 246, 222, 0.12), rgba(158, 223, 255, 0.06));
+    border: 1px solid rgba(158, 223, 255, 0.14);
     display: flex;
     flex-direction: column;
     gap: 0.7rem;
@@ -1535,8 +1564,8 @@ html {
     width: fit-content;
     padding: 0.38rem 0.8rem;
     border-radius: 999px;
-    background: rgba(118,246,222,0.14);
-    border: 1px solid rgba(118,246,222,0.2);
+    background: rgba(118, 246, 222, 0.14);
+    border: 1px solid rgba(118, 246, 222, 0.2);
     color: #d9fff8;
     font-size: 0.78rem;
     font-weight: 700;
@@ -1546,7 +1575,7 @@ html {
 
 .status-banner p {
     margin: 0;
-    color: rgba(255,255,255,0.88);
+    color: rgba(255, 255, 255, 0.88);
     line-height: 1.75;
 }
 
@@ -1565,10 +1594,10 @@ html {
     padding: 1.8rem;
     border-radius: 28px;
     background:
-        radial-gradient(circle at top right, rgba(158,223,255,0.12), transparent 30%),
+        radial-gradient(circle at top right, rgba(158, 223, 255, 0.12), transparent 30%),
         rgba(16, 25, 46, 0.92);
     border: 1px solid var(--teidesat-border);
-    box-shadow: 0 24px 60px rgba(0,0,0,0.18);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
 }
 
 .support-amount {
@@ -1598,14 +1627,14 @@ html {
     gap: 1rem;
     margin-bottom: 0.6rem;
     font-size: 0.95rem;
-    color: rgba(255,255,255,0.88);
+    color: rgba(255, 255, 255, 0.88);
 }
 
 .progress-block__bar {
     width: 100%;
     height: 12px;
     border-radius: 999px;
-    background: rgba(255,255,255,0.08);
+    background: rgba(255, 255, 255, 0.08);
     overflow: hidden;
 }
 
@@ -1614,7 +1643,7 @@ html {
     height: 100%;
     border-radius: inherit;
     background: linear-gradient(90deg, #76f6de 0%, #9edfff 100%);
-    box-shadow: 0 0 20px rgba(118,246,222,0.24);
+    box-shadow: 0 0 20px rgba(118, 246, 222, 0.24);
 }
 
 .support-list {
@@ -1659,7 +1688,7 @@ html {
     border-radius: 28px;
     background: rgba(14, 23, 40, 0.82);
     border: 1px solid var(--teidesat-border);
-    box-shadow: 0 20px 55px rgba(0,0,0,0.18);
+    box-shadow: 0 20px 55px rgba(0, 0, 0, 0.18);
     box-sizing: border-box;
 }
 
@@ -1683,8 +1712,8 @@ html {
     padding: 1.4rem;
     border-radius: 22px;
     background: rgba(18, 28, 50, 0.88);
-    border: 1px solid rgba(255,255,255,0.08);
-    box-shadow: 0 18px 48px rgba(0,0,0,0.18);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.18);
     box-sizing: border-box;
 }
 
@@ -1697,7 +1726,7 @@ html {
 }
 
 .impact-stat__label {
-    color: rgba(255,255,255,0.84);
+    color: rgba(255, 255, 255, 0.84);
     line-height: 1.6;
 }
 
@@ -1780,7 +1809,7 @@ html {
         gap: 1.5rem;
     }
 
-   .teidesat-objectives-heading {
+    .teidesat-objectives-heading {
         position: relative;
         top: auto;
         left: auto;
@@ -1835,11 +1864,25 @@ html {
         display: block;
     }
 
-    .objective-panel--2 { order: 2; }
-    .objective-panel--1 { order: 3; }
-    .objective-panel--3 { order: 4; }
-    .objective-panel--4 { order: 5; }
-    .objective-panel--5 { order: 6; }
+    .objective-panel--2 {
+        order: 2;
+    }
+
+    .objective-panel--1 {
+        order: 3;
+    }
+
+    .objective-panel--3 {
+        order: 4;
+    }
+
+    .objective-panel--4 {
+        order: 5;
+    }
+
+    .objective-panel--5 {
+        order: 6;
+    }
 
     #objetivos.has-active-objective .teidesat-objectives-heading {
         opacity: 1;
@@ -1874,6 +1917,7 @@ html {
         grid-row: 1;
         justify-self: start;
     }
+
     /* Ocultar línea central decorativa */
     .teidesat-timeline::before {
         display: none;
@@ -2299,7 +2343,120 @@ html {
         font-size: 1.65rem;
     }
 
+    /* cierre del @media (max-width: 480px) */
     .teidesat-more-links {
         gap: 0.8rem;
     }
+}
+
+/* =========================================================
+   ACCESIBILIDAD – FOCO VISIBLE (WCAG 2.1 AA)
+========================================================= */
+
+:focus-visible {
+    outline: 2px solid var(--teidesat-accent);
+    outline-offset: 4px;
+    border-radius: 6px;
+}
+
+.teidesat-floating-nav__toggle:focus-visible,
+.teidesat-floating-nav__item:focus-visible,
+.teidesat-menu-toggle:focus-visible,
+.teidesat-side-menu__close:focus-visible,
+.objectives-core:focus-visible,
+.objective-node:focus-visible,
+.teidesat-news-slider__dot:focus-visible {
+    border-radius: 50%;
+    outline-offset: 3px;
+}
+
+.teidesat-faq-item__question:focus-visible,
+.objective-panel:focus-visible,
+.teidesat-news-card:focus-visible,
+.info-card:focus-visible,
+.timeline-card:focus-visible,
+.support-hero-card:focus-visible,
+.impact-copy:focus-visible,
+.impact-stat:focus-visible,
+.mini-stat:focus-visible,
+.status-banner:focus-visible,
+.teidesat-footer-sponsor:focus-visible {
+    border-radius: 22px;
+    outline-offset: 3px;
+}
+
+.teidesat-more-link:focus-visible {
+    border-radius: 12px;
+    outline-offset: 6px;
+}
+
+.teidesat-side-menu__nav a:focus-visible {
+    border-radius: 6px;
+    outline-offset: 4px;
+}
+
+h1:focus-visible,
+h2:focus-visible,
+h3:focus-visible,
+p:focus-visible,
+span[tabindex]:focus-visible {
+    border-radius: 4px;
+    outline-offset: 6px;
+}
+
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+.progress-block__bar:focus-visible {
+    border-radius: 999px;
+    outline-offset: 3px;
+}
+
+/* Secciones de contenido navegables con Tab */
+.teidesat-about-section:focus-visible {
+    outline: 2px solid var(--teidesat-accent);
+    outline-offset: -4px;
+    border-radius: 0;
+}
+
+/* =========================================================
+   SKIP LINK
+========================================================= */
+
+.teidesat-skip-link {
+    position: fixed;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    padding: 0.75rem 1.4rem;
+    border-radius: 999px;
+    background: var(--teidesat-accent);
+    color: #020712;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: top 0.18s ease;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.teidesat-skip-link:focus {
+    top: 16px;
+    outline: 2px solid #020712;
+    outline-offset: 3px;
+}
+
+/* =========================================================
+   NEWS CARD TITLE
+========================================================= */
+
+.teidesat-news-card__title {
+    margin: 0 0 0.7rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #ffffff;
+    font-family: 'Rajdhani', sans-serif;
+    letter-spacing: 0.03em;
 }

@@ -4,223 +4,234 @@
 
             <div class="teidesat-page teidesat-page--about">
 
-                <!-- HERO -->
-                <section class="teidesat-about-hero">
-                    <div class="container">
-                        <div class="teidesat-about-hero__content reveal-up">
-                            <span class="section-kicker">SOBRE NOSOTROS</span>
-                            <h1>Somos Teidesat</h1>
-                            <p class="teidesat-about-hero__lead">
-                                Un equipo multidisciplinar que desarrolla el primer nanosatélite universitario de Canarias.
-                            </p>
-                        </div>
-                    </div>
-                </section>
+                <!-- SKIP LINK -->
+                <a href="#main-content" class="teidesat-skip-link">Saltar al contenido principal</a>
 
-                <!-- FRASE LATINA -->
-                <section class="teidesat-about-quote-band">
-                    <div class="container">
-                        <div class="teidesat-about-quote reveal-up">
-                            <span class="teidesat-about-quote__latin">Ad astra per aspera</span>
-                            <p>Ningún camino fácil lleva a la gloria: hacia las estrellas a través de las dificultades.</p>
-                        </div>
-                    </div>
-                </section>
+                <main id="main-content" tabindex="-1">
 
-                <!-- NUESTRA HISTORIA -->
-                <section class="teidesat-about-section teidesat-about-section--story">
-                    <div class="container">
-                        <div class="teidesat-about-split reveal-up">
-                            <div class="teidesat-about-split__text">
-                                <span class="section-kicker">NUESTRA HISTORIA</span>
-                                <h2>Nuestra historia</h2>
-                                <p>
-                                    TEIDESAT nace en 2017 en la Universidad de La Laguna con una ambición clara: demostrar que en Canarias también se puede diseñar, fabricar y operar tecnología espacial de alto nivel.
-                                </p>
-                                <p>
-                                    Lo que comenzó como una iniciativa estudiantil se ha convertido en una plataforma formativa y tecnológica por la que han pasado más de un centenar de estudiantes de distintas disciplinas. No es solo un satélite: es un entorno real de aprendizaje, responsabilidad y exigencia técnica.
+                    <!-- HERO -->
+                    <section class="teidesat-about-hero" aria-labelledby="hero-heading">
+                        <div class="container">
+                            <div class="teidesat-about-hero__content reveal-up">
+                                <span class="section-kicker">SOBRE NOSOTROS</span>
+                                <h1 id="hero-heading">Somos Teidesat</h1>
+                                <p class="teidesat-about-hero__lead">
+                                    Un equipo multidisciplinar que desarrolla el primer nanosatélite universitario de Canarias.
                                 </p>
                             </div>
+                        </div>
+                    </section>
 
-                            <div class="teidesat-about-split__media">
-                                <div class="teidesat-about-image-card">
-                                    <img src="/teidesat_website/static/src/img/nosotros-historia.jpg"
-                                         alt="Historia del proyecto TEIDESAT"
-                                         class="teidesat-about-image"/>
+                    <!-- FRASE LATINA -->
+                    <section class="teidesat-about-quote-band" aria-hidden="true">
+                        <div class="container">
+                            <div class="teidesat-about-quote reveal-up">
+                                <span class="teidesat-about-quote__latin">Ad astra per aspera</span>
+                                <p>Ningún camino fácil lleva a la gloria: hacia las estrellas a través de las dificultades.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- NUESTRA HISTORIA -->
+                    <section class="teidesat-about-section teidesat-about-section--story" aria-labelledby="historia-heading" tabindex="0">
+                        <div class="container">
+                            <div class="teidesat-about-split reveal-up">
+                                <div class="teidesat-about-split__text">
+                                    <span class="section-kicker">NUESTRA HISTORIA</span>
+                                    <h2 id="historia-heading">Nuestra historia</h2>
+                                    <p>
+                                        TEIDESAT nace en 2017 en la Universidad de La Laguna con una ambición clara: demostrar que en Canarias también se puede diseñar, fabricar y operar tecnología espacial de alto nivel.
+                                    </p>
+                                    <p>
+                                        Lo que comenzó como una iniciativa estudiantil se ha convertido en una plataforma formativa y tecnológica por la que han pasado más de un centenar de estudiantes de distintas disciplinas. No es solo un satélite: es un entorno real de aprendizaje, responsabilidad y exigencia técnica.
+                                    </p>
+                                </div>
+
+                                <div class="teidesat-about-split__media" aria-hidden="true">
+                                    <div class="teidesat-about-image-card">
+                                        <img src="/teidesat_website/static/src/img/nosotros-historia.jpg"
+                                             alt=""
+                                             aria-hidden="true"
+                                             role="presentation"
+                                             class="teidesat-about-image"/>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
 
-                <!-- FRASE LATINA -->
-                <section class="teidesat-about-quote-band teidesat-about-quote-band--soft">
-                    <div class="container">
-                        <div class="teidesat-about-quote reveal-up">
-                            <span class="teidesat-about-quote__latin">Memento Mori</span>
-                            <p>Recuerda que morirás, para que nunca olvides vivir.</p>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- QUE HACEMOS -->
-                <section class="teidesat-about-section teidesat-about-section--what">
-                    <div class="container">
-                        <div class="teidesat-about-block reveal-up">
-                            <span class="section-kicker">QUÉ HACEMOS REALMENTE</span>
-                            <h2>Qué hacemos realmente</h2>
-                            <p class="teidesat-about-block__intro">
-                                Diseñamos y desarrollamos un nanosatélite bajo estándares profesionales, aplicando metodologías reales de ingeniería, gestión y validación técnica.
-                            </p>
-                            <p>
-                                Pero el satélite es solo una parte del impacto.
-                            </p>
-
-                            <div class="teidesat-about-cards">
-                                <article class="info-card">
-                                    <h3>Formación práctica</h3>
-                                    <p>Trabajo en un entorno profesional real, con procesos y responsabilidades reales.</p>
-                                </article>
-
-                                <article class="info-card">
-                                    <h3>Interdisciplinariedad</h3>
-                                    <p>Coordinación entre perfiles distintos para resolver problemas complejos.</p>
-                                </article>
-
-                                <article class="info-card">
-                                    <h3>Gestión tecnológica</h3>
-                                    <p>Desarrollo y seguimiento de proyectos técnicos con exigencia y trazabilidad.</p>
-                                </article>
-
-                                <article class="info-card">
-                                    <h3>Divulgación activa</h3>
-                                    <p>Compromiso con la ciencia y la tecnología en Canarias a través de actividades públicas.</p>
-                                </article>
+                    <!-- FRASE LATINA -->
+                    <section class="teidesat-about-quote-band teidesat-about-quote-band--soft" aria-hidden="true">
+                        <div class="container">
+                            <div class="teidesat-about-quote reveal-up">
+                                <span class="teidesat-about-quote__latin">Memento Mori</span>
+                                <p>Recuerda que morirás, para que nunca olvides vivir.</p>
                             </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
 
-                <!-- FRASE LATINA -->
-                <section class="teidesat-about-quote-band">
-                    <div class="container">
-                        <div class="teidesat-about-quote reveal-up">
-                            <span class="teidesat-about-quote__latin">Non sibi, sed omnibus</span>
-                            <p>No para uno mismo, sino para todos.</p>
-                        </div>
-                    </div>
-                </section>
+                    <!-- QUE HACEMOS -->
+                    <section class="teidesat-about-section teidesat-about-section--what" aria-labelledby="que-hacemos-heading" tabindex="0">
+                        <div class="container">
+                            <div class="teidesat-about-block reveal-up">
+                                <span class="section-kicker">QUÉ HACEMOS REALMENTE</span>
+                                <h2 id="que-hacemos-heading">Qué hacemos realmente</h2>
+                                <p class="teidesat-about-block__intro">
+                                    Diseñamos y desarrollamos un nanosatélite bajo estándares profesionales, aplicando metodologías reales de ingeniería, gestión y validación técnica.
+                                </p>
+                                <p>
+                                    Pero el satélite es solo una parte del impacto.
+                                </p>
 
-                <!-- QUIEN FORMA EL EQUIPO -->
-                <section class="teidesat-about-section teidesat-about-section--team">
-                    <div class="container">
-                        <div class="teidesat-about-split teidesat-about-split--reverse reveal-up">
-                            <div class="teidesat-about-split__media">
-                                <div class="teidesat-about-image-card">
-                                    <img src="/teidesat_website/static/src/img/nosotros-equipo.jpg"
-                                         alt="Equipo multidisciplinar TEIDESAT"
-                                         class="teidesat-about-image"/>
+                                <div class="teidesat-about-cards">
+                                    <article class="info-card">
+                                        <h3>Formación práctica</h3>
+                                        <p>Trabajo en un entorno profesional real, con procesos y responsabilidades reales.</p>
+                                    </article>
+
+                                    <article class="info-card">
+                                        <h3>Interdisciplinariedad</h3>
+                                        <p>Coordinación entre perfiles distintos para resolver problemas complejos.</p>
+                                    </article>
+
+                                    <article class="info-card">
+                                        <h3>Gestión tecnológica</h3>
+                                        <p>Desarrollo y seguimiento de proyectos técnicos con exigencia y trazabilidad.</p>
+                                    </article>
+
+                                    <article class="info-card">
+                                        <h3>Divulgación activa</h3>
+                                        <p>Compromiso con la ciencia y la tecnología en Canarias a través de actividades públicas.</p>
+                                    </article>
                                 </div>
                             </div>
+                        </div>
+                    </section>
 
-                            <div class="teidesat-about-split__text">
-                                <span class="section-kicker">QUIÉN FORMA EL EQUIPO</span>
-                                <h2>Quién forma el equipo</h2>
-                                <p>
-                                    El equipo está compuesto por estudiantes y recién graduados de:
-                                </p>
+                    <!-- FRASE LATINA -->
+                    <section class="teidesat-about-quote-band" aria-hidden="true">
+                        <div class="container">
+                            <div class="teidesat-about-quote reveal-up">
+                                <span class="teidesat-about-quote__latin">Non sibi, sed omnibus</span>
+                                <p>No para uno mismo, sino para todos.</p>
+                            </div>
+                        </div>
+                    </section>
 
-                                <div class="teidesat-about-tags">
-                                    <span>Ingeniería</span>
-                                    <span>Física</span>
-                                    <span>Comunicación</span>
-                                    <span>Economía</span>
-                                    <span>Arte y diseño</span>
+                    <!-- QUIEN FORMA EL EQUIPO -->
+                    <section class="teidesat-about-section teidesat-about-section--team" aria-labelledby="equipo-heading" tabindex="0">
+                        <div class="container">
+                            <div class="teidesat-about-split teidesat-about-split--reverse reveal-up">
+                                <div class="teidesat-about-split__media" aria-hidden="true">
+                                    <div class="teidesat-about-image-card">
+                                        <img src="/teidesat_website/static/src/img/nosotros-equipo.jpg"
+                                             alt=""
+                                             aria-hidden="true"
+                                             role="presentation"
+                                             class="teidesat-about-image"/>
+                                    </div>
                                 </div>
 
-                                <p>
-                                    La diversidad no es estética: es estratégica.
-                                </p>
-                                <p>
-                                    Un proyecto espacial necesita técnica, gestión, comunicación y visión.
-                                </p>
+                                <div class="teidesat-about-split__text">
+                                    <span class="section-kicker">QUIÉN FORMA EL EQUIPO</span>
+                                    <h2 id="equipo-heading">Quién forma el equipo</h2>
+                                    <p>
+                                        El equipo está compuesto por estudiantes y recién graduados de:
+                                    </p>
+
+                                    <div class="teidesat-about-tags" aria-label="Disciplinas del equipo">
+                                        <span>Ingeniería</span>
+                                        <span>Física</span>
+                                        <span>Comunicación</span>
+                                        <span>Economía</span>
+                                        <span>Arte y diseño</span>
+                                    </div>
+
+                                    <p>
+                                        La diversidad no es estética: es estratégica.
+                                    </p>
+                                    <p>
+                                        Un proyecto espacial necesita técnica, gestión, comunicación y visión.
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
 
-                <!-- FRASE LATINA -->
-                <section class="teidesat-about-quote-band teidesat-about-quote-band--soft">
-                    <div class="container">
-                        <div class="teidesat-about-quote reveal-up">
-                            <span class="teidesat-about-quote__latin">Sapere aude</span>
-                            <p>Atreverse a saber.</p>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- FILOSOFIA -->
-                <section class="teidesat-about-section teidesat-about-section--philosophy">
-                    <div class="container">
-                        <div class="teidesat-about-block reveal-up">
-                            <span class="section-kicker">NUESTRA FILOSOFÍA</span>
-                            <h2>Nuestra filosofía</h2>
-
-                            <div class="teidesat-about-philosophy-box">
-                                <p>En el sector espacial no existen atajos.</p>
-                                <p>Si no está documentado, no existe.</p>
-                                <p>Si no está validado, no vuela.</p>
+                    <!-- FRASE LATINA -->
+                    <section class="teidesat-about-quote-band teidesat-about-quote-band--soft" aria-hidden="true">
+                        <div class="container">
+                            <div class="teidesat-about-quote reveal-up">
+                                <span class="teidesat-about-quote__latin">Sapere aude</span>
+                                <p>Atreverse a saber.</p>
                             </div>
-
-                            <p class="teidesat-about-block__text">
-                                TEIDESAT busca formar profesionales capaces de trabajar bajo estándares reales, asumir responsabilidades y entender que la ingeniería no es solo diseño, sino rigor, trazabilidad y compromiso.
-                            </p>
                         </div>
-                    </div>
-                </section>
+                    </section>
 
-                <!-- FRASE LATINA -->
-                <section class="teidesat-about-quote-band">
-                    <div class="container">
-                        <div class="teidesat-about-quote reveal-up">
-                            <span class="teidesat-about-quote__latin">Audentes fortuna iuvat</span>
-                            <p>La fortuna favorece a los valientes.</p>
-                        </div>
-                    </div>
-                </section>
+                    <!-- FILOSOFIA -->
+                    <section class="teidesat-about-section teidesat-about-section--philosophy" aria-labelledby="filosofia-heading" tabindex="0">
+                        <div class="container">
+                            <div class="teidesat-about-block reveal-up">
+                                <span class="section-kicker">NUESTRA FILOSOFÍA</span>
+                                <h2 id="filosofia-heading">Nuestra filosofía</h2>
 
-                <!-- IMPACTO -->
-                <section class="teidesat-about-section teidesat-about-section--impact">
-                    <div class="container">
-                        <div class="teidesat-about-impact reveal-up">
-                            <div class="teidesat-about-impact__text">
-                                <span class="section-kicker">IMPACTO SOCIAL Y EDUCATIVO</span>
-                                <h2>Impacto social y educativo</h2>
-                                <p>
-                                    Más allá del desarrollo técnico, TEIDESAT ha desarrollado decenas de actividades divulgativas, talleres y encuentros educativos en Canarias.
-                                </p>
-                                <p>
-                                    El objetivo no es únicamente lanzar un satélite. Es inspirar vocaciones científicas. Es demostrar que el talento local puede competir en el ámbito aeroespacial.
+                                <div class="teidesat-about-philosophy-box">
+                                    <p>En el sector espacial no existen atajos.</p>
+                                    <p>Si no está documentado, no existe.</p>
+                                    <p>Si no está validado, no vuela.</p>
+                                </div>
+
+                                <p class="teidesat-about-block__text">
+                                    TEIDESAT busca formar profesionales capaces de trabajar bajo estándares reales, asumir responsabilidades y entender que la ingeniería no es solo diseño, sino rigor, trazabilidad y compromiso.
                                 </p>
                             </div>
+                        </div>
+                    </section>
 
-                            <div class="teidesat-about-impact__stats">
-                                <article class="impact-stat">
-                                    <span class="impact-stat__value">Canarias</span>
-                                    <span class="impact-stat__label">como espacio de innovación y talento</span>
-                                </article>
-                                <article class="impact-stat">
-                                    <span class="impact-stat__value">STEM</span>
-                                    <span class="impact-stat__label">vocaciones científicas y tecnológicas</span>
-                                </article>
-                                <article class="impact-stat">
-                                    <span class="impact-stat__value">Real</span>
-                                    <span class="impact-stat__label">aprendizaje aplicado en un entorno exigente</span>
-                                </article>
+                    <!-- FRASE LATINA -->
+                    <section class="teidesat-about-quote-band" aria-hidden="true">
+                        <div class="container">
+                            <div class="teidesat-about-quote reveal-up">
+                                <span class="teidesat-about-quote__latin">Audentes fortuna iuvat</span>
+                                <p>La fortuna favorece a los valientes.</p>
                             </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
+
+                    <!-- IMPACTO -->
+                    <section class="teidesat-about-section teidesat-about-section--impact" aria-labelledby="impacto-heading" tabindex="0">
+                        <div class="container">
+                            <div class="teidesat-about-impact reveal-up">
+                                <div class="teidesat-about-impact__text">
+                                    <span class="section-kicker">IMPACTO SOCIAL Y EDUCATIVO</span>
+                                    <h2 id="impacto-heading">Impacto social y educativo</h2>
+                                    <p>
+                                        Más allá del desarrollo técnico, TEIDESAT ha desarrollado decenas de actividades divulgativas, talleres y encuentros educativos en Canarias.
+                                    </p>
+                                    <p>
+                                        El objetivo no es únicamente lanzar un satélite. Es inspirar vocaciones científicas. Es demostrar que el talento local puede competir en el ámbito aeroespacial.
+                                    </p>
+                                </div>
+
+                                <div class="teidesat-about-impact__stats" aria-label="Datos de impacto">
+                                    <article class="impact-stat">
+                                        <span class="impact-stat__value">Canarias</span>
+                                        <span class="impact-stat__label">como espacio de innovación y talento</span>
+                                    </article>
+                                    <article class="impact-stat">
+                                        <span class="impact-stat__value">STEM</span>
+                                        <span class="impact-stat__label">vocaciones científicas y tecnológicas</span>
+                                    </article>
+                                    <article class="impact-stat">
+                                        <span class="impact-stat__value">Real</span>
+                                        <span class="impact-stat__label">aprendizaje aplicado en un entorno exigente</span>
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                </main>
 
             </div>
 
