@@ -64,6 +64,45 @@ function initTeidesatKidsGame() {
 
     let audioCtx = null;
     let soundEnabled = localStorage.getItem("teidesatKidsSound") !== "off";
+    let bgMusic = null;
+    let musicForcedOff = false;
+
+    function startBackgroundMusic() {
+        if (!soundEnabled) return;
+        if (!gameStarted || gameOver) return;
+        if (waitingForAnswer) return;
+
+        if (!bgMusic) {
+            bgMusic = new Audio('/teidesat_website/static/src/audio/BgSound.mp3');
+            bgMusic.loop = true;
+            bgMusic.volume = 0.1;
+            bgMusic.addEventListener('canplaythrough', () => {
+                resumeBackgroundMusic();
+            });
+            resumeBackgroundMusic();
+        } else {
+            resumeBackgroundMusic();
+        }
+    }
+
+    function stopBackgroundMusic() {
+        if (bgMusic) {
+            bgMusic.pause();
+            bgMusic.currentTime = 0;
+        }
+    }
+
+    function pauseBackgroundMusic() {
+        if (bgMusic) bgMusic.pause();
+    }
+
+    function resumeBackgroundMusic() {
+        if (!soundEnabled) return;
+        if (!gameStarted || gameOver) return;
+        if (waitingForAnswer) return;
+        if (musicForcedOff) return;
+        if (bgMusic) bgMusic.play().catch(e => console.log("Error al reanudar:", e));
+    }
 
     function unlockAudio() {
         if (!audioCtx) {
@@ -157,6 +196,12 @@ function initTeidesatKidsGame() {
         soundEnabled = !soundEnabled;
         localStorage.setItem("teidesatKidsSound", soundEnabled ? "on" : "off");
 
+        if (!soundEnabled && bgMusic) {
+            bgMusic.pause();
+        } else if (soundEnabled && bgMusic && gameStarted && !gameOver && !waitingForAnswer) {
+            bgMusic.play().catch(e => console.log("Error al reanudar:", e));
+        }
+
         if (soundEnabled) {
             playSfx("click");
         }
@@ -164,7 +209,7 @@ function initTeidesatKidsGame() {
 
     const questionOptionAreas = [];
 
-    const scienceQuestions = [
+    let scienceQuestions = [
         {
             question: "¿Qué es un nanosatélite?",
             options: ["Un satélite pequeño", "Un planeta pequeño", "Una estrella"],
@@ -217,6 +262,43 @@ function initTeidesatKidsGame() {
         }
     ];
 
+    async function loadQuestionsFromOdoo() {
+        try {
+            const response = await fetch("/teidesatkids/questions");
+
+            if (!response.ok) {
+                throw new Error("Respuesta no válida del servidor");
+            }
+
+            const questions = await response.json();
+
+            if (Array.isArray(questions) && questions.length > 0) {
+                scienceQuestions = questions;
+                console.log("Preguntas cargadas desde Odoo:", scienceQuestions.length);
+            }
+        } catch (error) {
+            console.warn(
+                "No se pudieron cargar preguntas desde Odoo. Se usan preguntas por defecto.",
+                error
+            );
+        }
+    }
+
+    function shuffleQuestion(question) {
+        const options = question.options.map((text, index) => ({
+            text,
+            isCorrect: index === question.correct
+        }));
+
+        options.sort(() => Math.random() - 0.5);
+
+        return {
+            question: question.question,
+            options: options.map(option => option.text),
+            correct: options.findIndex(option => option.isCorrect)
+        };
+    }
+
     const stars = Array.from({ length: 50 }, () => ({
         x: Math.random() * GAME_WIDTH,
         y: Math.random() * GAME_HEIGHT * 0.75,
@@ -248,7 +330,7 @@ function initTeidesatKidsGame() {
         const curve = 46 * Math.pow((normalized - 0.5), 2);
         return base + curve;
     }
-    
+
     function setNextPhaseDuration() {
         if (paceMode === "normal") {
             currentPhaseDuration = 6500 + Math.random() * 2500; // 6.5s a 9s
@@ -310,6 +392,7 @@ function initTeidesatKidsGame() {
         keys.right = false;
 
         updateGameLandscapeMode();
+        stopBackgroundMusic();
 
         draw();
     }
@@ -318,6 +401,8 @@ function initTeidesatKidsGame() {
         if (explosion || gameOver) return;
 
         playSfx("gameover");
+        stopBackgroundMusic();
+        musicForcedOff = true;
 
         explosion = {
             x: player.x + player.width / 2,
@@ -345,6 +430,12 @@ function initTeidesatKidsGame() {
         rescueUsed = true;
         rescueCause = cause;
         waitingForAnswer = true;
+        pauseBackgroundMusic();
+        pendingQuestion = scienceQuestions[Math.floor(Math.random() * scienceQuestions.length)];
+        const selectedQuestion =
+            scienceQuestions[Math.floor(Math.random() * scienceQuestions.length)];
+
+        pendingQuestion = shuffleQuestion(selectedQuestion);
 
         pendingQuestion = structuredClone(
         scienceQuestions[Math.floor(Math.random() * scienceQuestions.length)]
@@ -397,6 +488,7 @@ function initTeidesatKidsGame() {
 
             resultMessage = "✅ Correcto, continúa la misión";
             resultTimer = 150;
+            resumeBackgroundMusic();
 
             return;
         }
@@ -408,6 +500,7 @@ function initTeidesatKidsGame() {
         resultMessage = "❌ Error, no pudiste salvarte";
         resultTimer = 150;
         pendingGameOverAfterMessage = true;
+        stopBackgroundMusic();
     }
 
     function drawResultMessage() {
@@ -416,12 +509,12 @@ function initTeidesatKidsGame() {
         ctx.save();
 
         ctx.fillStyle = "rgba(0,0,0,0.55)";
-        ctx.fillRect(0, GAME_HEIGHT/2 - 30, GAME_WIDTH, 60);
+        ctx.fillRect(0, GAME_HEIGHT / 2 - 30, GAME_WIDTH, 60);
 
         ctx.fillStyle = "#ffffff";
         ctx.font = "bold 22px Montserrat";
         ctx.textAlign = "center";
-        ctx.fillText(resultMessage, GAME_WIDTH/2, GAME_HEIGHT/2 + 8);
+        ctx.fillText(resultMessage, GAME_WIDTH / 2, GAME_HEIGHT / 2 + 8);
 
         ctx.restore();
     }
@@ -436,6 +529,11 @@ function initTeidesatKidsGame() {
         lastTime = 0;
 
         playSfx("start");
+        setTimeout(() => {
+            if (gameStarted && !gameOver && !waitingForAnswer && soundEnabled) {
+                startBackgroundMusic();
+            }
+        }, 200);
 
         updateGameLandscapeMode();
 
@@ -446,6 +544,7 @@ function initTeidesatKidsGame() {
     function restartGame() {
         if (!gameOver) return;
         resetGame();
+        musicForcedOff = false;
         startGame();
     }
 
@@ -616,6 +715,7 @@ function initTeidesatKidsGame() {
             if (explosion.life <= 0) {
                 explosion = null;
                 gameOver = true;
+                
 
                 const finalScore = Math.floor(score);
 
@@ -1243,7 +1343,7 @@ function initTeidesatKidsGame() {
         ctx.restore();
     }
 
-   function draw() {
+    function draw() {
         ctx.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 
         drawBackground();
@@ -1446,7 +1546,7 @@ function initTeidesatKidsGame() {
 
         window.__teidesatKidsOrientationBound = true;
     }
-
+    loadQuestionsFromOdoo();
     resetGame();
 }
 

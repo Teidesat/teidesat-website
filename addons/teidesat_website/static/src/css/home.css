@@ -403,6 +403,11 @@ html {
     padding: 0;
 }
 
+/* Quitar el menú y eliminar el error  */
+#teidesat-side-menu[aria-hidden="true"] {
+    display: none !important;
+}
+
 .teidesat-side-menu__close:hover {
     color: #ffffff;
 }
