@@ -1,5 +1,6 @@
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 :root {
@@ -12,6 +13,7 @@ html {
     --teidesat-accent: #9edfff;
     --teidesat-accent-2: #76f6de;
     --teidesat-glow: rgba(118, 246, 222, 0.18);
+    --touch-target: 44px;
 }
 
 .teidesat-page-home {
@@ -23,10 +25,24 @@ body.teidesat-page {
     padding: 0;
     background: #050816;
     color: #f4f7fb;
+    /*
+     * FIX CLAVE: scroll-snap DESACTIVADO por defecto.
+     * Se activa solo en la home vía la clase .snap-ready que
+     * añade el JavaScript tras resetear el scroll a 0.
+     * Antes estaba siempre activo y al navegar entre páginas
+     * el browser quedaba "atrapado" entre secciones.
+     */
+    scroll-snap-type: none;
     overflow-y: scroll;
     overflow-x: hidden;
-    font-family: 'Manrope', sans-serif;
-    scrollbar-gutter: stable;
+    font-family: 'Montserrat', sans-serif;
+    /* Quitado: scrollbar-gutter: stable — causa shifts de layout en móvil */
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Snap activo solo cuando JS lo habilita (solo en /) */
+body.teidesat-page.snap-ready {
+    scroll-snap-type: y mandatory;
 }
 /* ==========================================
    TIPOGRAFÍA TEIDESAT GLOBAL
@@ -240,6 +256,32 @@ html {
     }
 }
 /* =========================================================
+   REVEAL-UP
+   Gestionado también desde base_layout.xml (inline style).
+   Ambos son necesarios: inline carga primero para evitar
+   flash, CSS cubre las páginas donde el inline no llega.
+========================================================= */
+
+.reveal-up {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal-up.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 767px) {
+    .reveal-up {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+        transition: none !important;
+    }
+}
+
+/* =========================================================
    HEADER
 ========================================================= */
 .teidesat-desktop-nav a {
@@ -271,6 +313,7 @@ html {
     gap: 2rem;
     background: rgba(2, 7, 18, 0.35);
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255,255,255,0.06);
     border-radius: 18px;
     padding: 0.65rem 1.2rem;
@@ -316,8 +359,10 @@ html {
 }
 
 .teidesat-menu-toggle {
-    width: 56px;
-    height: 56px;
+    width: var(--touch-target);
+    height: var(--touch-target);
+    min-width: var(--touch-target);
+    min-height: var(--touch-target);
     padding: 0;
     border: 0;
     background: transparent;
@@ -381,6 +426,7 @@ html {
     padding: 1.3rem 1.2rem 1.5rem;
     box-sizing: border-box;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .teidesat-side-menu.is-open {
@@ -401,8 +447,15 @@ html {
     line-height: 1;
     cursor: pointer;
     padding: 0;
+    min-width: var(--touch-target);
+    min-height: var(--touch-target);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    -webkit-tap-highlight-color: transparent;
 }
 
+.teidesat-side-menu__close:hover { color: #ffffff; }
 /* Quitar el menú y eliminar el error  */
 #teidesat-side-menu[aria-hidden="true"] {
     display: none !important;
@@ -415,7 +468,7 @@ html {
 .teidesat-side-menu__nav {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.5rem;
     margin-top: 1rem;
 }
 
@@ -425,6 +478,12 @@ html {
     font-size: 1.05rem;
     line-height: 1.4;
     transition: color 0.2s ease, transform 0.2s ease;
+    min-height: var(--touch-target);
+    display: flex;
+    align-items: center;
+    padding: 0.3rem 0.5rem;
+    border-radius: 10px;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .teidesat-side-menu__nav a:hover {
@@ -475,6 +534,11 @@ html {
     justify-content: center;
     padding: 1.25rem;
     text-decoration: none;
+    color: #ffffff;
+    font-size: 1.8rem;
+    line-height: 1;
+    transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+    -webkit-tap-highlight-color: transparent;
     box-sizing: border-box;
     transition:
         transform 0.22s ease,
@@ -502,6 +566,19 @@ html {
         filter 0.22s ease;
 }
 
+.teidesat-footer__socials a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 2.1rem;
+    line-height: 1;
+    transition: transform 0.22s ease, color 0.22s ease, opacity 0.22s ease;
+    opacity: 0.95;
+    min-width: var(--touch-target);
+    min-height: var(--touch-target);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-tap-highlight-color: transparent;
 .teidesat-footer-sponsor:hover img {
     opacity: 1;
     transform: scale(1.04);
@@ -543,13 +620,9 @@ html {
    BASE
 ========================================================= */
 
-.teidesat-section {
-    padding: 6rem 0;
-}
+.teidesat-section { padding: 6rem 0; }
 
-.teidesat-section-dark {
-    background: rgba(255, 255, 255, 0.03);
-}
+.teidesat-section-dark { background: rgba(255, 255, 255, 0.03); }
 
 .teidesat-section-gradient {
     background:
@@ -564,9 +637,7 @@ html {
         linear-gradient(180deg, #07101d 0%, #050816 100%);
 }
 
-.section-heading {
-    margin-bottom: 3rem;
-}
+.section-heading { margin-bottom: 3rem; }
 
 .section-heading h2 {
     font-size: clamp(2rem, 3vw, 3rem);
@@ -607,9 +678,7 @@ html {
    HERO
 ========================================================= */
 
-.hero-title-block {
-    max-width: 1250px;
-}
+.hero-title-block { max-width: 1250px; }
 
 .teidesat-hero {
     position: relative;
@@ -631,21 +700,10 @@ html {
     text-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
 }
 
-.teidesat-hero--morning {
-    background-image: url('/teidesat_website/static/src/img/hero-morning.png');
-}
-
-.teidesat-hero--day {
-    background-image: url('/teidesat_website/static/src/img/hero-day.png');
-}
-
-.teidesat-hero--evening {
-    background-image: url('/teidesat_website/static/src/img/hero-evening.png');
-}
-
-.teidesat-hero--night {
-    background-image: url('/teidesat_website/static/src/img/hero-night.png');
-}
+.teidesat-hero--morning  { background-image: url('/teidesat_website/static/src/img/hero-morning.png'); }
+.teidesat-hero--day      { background-image: url('/teidesat_website/static/src/img/hero-day.png'); }
+.teidesat-hero--evening  { background-image: url('/teidesat_website/static/src/img/hero-evening.png'); }
+.teidesat-hero--night    { background-image: url('/teidesat_website/static/src/img/hero-night.png'); }
 
 .teidesat-hero-overlay {
     position: absolute;
@@ -656,6 +714,17 @@ html {
         rgba(3, 8, 18, 0.35) 42%,
         rgba(3, 8, 18, 0.12) 100%
     );
+}
+
+@media (max-width: 767px) {
+    .teidesat-hero-overlay {
+        background: linear-gradient(
+            160deg,
+            rgba(3, 8, 18, 0.88) 0%,
+            rgba(3, 8, 18, 0.65) 60%,
+            rgba(3, 8, 18, 0.40) 100%
+        );
+    }
 }
 
 .teidesat-hero .container {
@@ -685,6 +754,7 @@ html {
     letter-spacing: -0.03em;
 }
 
+/* Satélite */
 .hero-satellite {
     position: absolute;
     top: 75%;
@@ -736,12 +806,12 @@ html {
 }
 
 @keyframes satelliteDrift {
-    0% {
-        transform: translate(400px, -500px);
-    }
-    100% {
-        transform: translate(-1100px, 200px);
-    }
+    0%   { transform: translate(400px, -500px); }
+    100% { transform: translate(-1100px, 200px); }
+}
+
+@media (max-width: 767px) {
+    .hero-satellite--drift { animation-duration: 18s; }
 }
 
 /* =========================================================
@@ -757,6 +827,7 @@ html {
     box-sizing: border-box;
 }
 
+#objetivos .container { width: 100%; }
 #objetivos .container {
     width: 100%;
     max-width: 1320px;
@@ -867,11 +938,10 @@ html {
         0 0 30px rgba(118, 246, 222, 0.28),
         0 0 80px rgba(118, 246, 222, 0.14);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
 }
 
-.objectives-core:hover {
-    transform: translate(-50%, -50%) scale(1.04);
-}
+.objectives-core:hover { transform: translate(-50%, -50%) scale(1.04); }
 
 .objectives-core span {
     color: rgba(255,255,255,0.97);
@@ -903,10 +973,10 @@ html {
     box-shadow:
         0 0 12px rgba(118, 246, 222, 0.18),
         inset 0 0 8px rgba(255,255,255,0.05);
-    transition:
-        background 0.22s ease,
-        border-color 0.22s ease,
-        box-shadow 0.22s ease;
+    transition: background 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+    -webkit-tap-highlight-color: transparent;
+    min-width: 36px;
+    min-height: 36px;
 }
 
 .objective-node:hover,
@@ -942,47 +1012,15 @@ html {
     box-sizing: border-box;
 }
 
-.objective-panel.active {
-    display: block;
-}
+.objective-panel.active { display: block; }
+.objective-panel h3 { font-size: 1.4rem; margin-bottom: 0.65rem; color: #aaf7e7; }
+.objective-panel p  { font-size: 0.96rem; line-height: 1.65; color: rgba(255, 255, 255, 0.82); }
 
-.objective-panel h3 {
-    font-size: 1.4rem;
-    margin-bottom: 0.65rem;
-    color: #aaf7e7;
-}
-
-.objective-panel p {
-    font-size: 0.96rem;
-    line-height: 1.65;
-    color: rgba(255, 255, 255, 0.82);
-}
-
-.objective-panel--1 {
-    top: 70px;
-    left: -10px;
-}
-
-.objective-panel--2 {
-    top: -50px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.objective-panel--3 {
-    top: 70px;
-    right: -10px;
-}
-
-.objective-panel--4 {
-    bottom: 60px;
-    left: -10px;
-}
-
-.objective-panel--5 {
-    bottom: 60px;
-    right: -10px;
-}
+.objective-panel--1 { top: 70px; left: -10px; }
+.objective-panel--2 { top: -50px; left: 50%; transform: translateX(-50%); }
+.objective-panel--3 { top: 70px; right: -10px; }
+.objective-panel--4 { bottom: 60px; left: -10px; }
+.objective-panel--5 { bottom: 60px; right: -10px; }
 
 /* =========================================================
    QUIERES SABER MAS
@@ -1252,6 +1290,9 @@ html {
     box-sizing: border-box;
 }
 
+#fases .container { width: 100%; max-width: 1320px; margin: 0 auto; }
+#fases .section-heading { max-width: 1080px; margin: 0 auto 2rem; }
+#fases .section-heading p { max-width: 780px; line-height: 1.55; }
 #fases .container {
     width: 100%;
     max-width: 1320px;
@@ -1280,6 +1321,7 @@ html {
 .teidesat-timeline::before {
     content: "";
     position: absolute;
+    top: 6px; bottom: 6px;
     top: 60px;
     bottom: 60px;
     left: 50%;
@@ -1299,9 +1341,7 @@ html {
     min-height: 112px;
 }
 
-.timeline-item:last-child {
-    margin-bottom: 0;
-}
+.timeline-item:last-child { margin-bottom: 0; }
 
 .timeline-dot {
     position: absolute;
@@ -1309,6 +1349,9 @@ html {
     width: 24px;
     height: 24px;
     transform: translate(-50%, -50%);
+    background: radial-gradient(circle, #d9fff8 0%, #76f6de 55%, #318a7f 100%);
+    box-shadow: 0 0 0 6px rgba(118, 246, 222, 0.08), 0 0 18px rgba(118, 246, 222, 0.28);
+    z-index: 2;
     z-index: 5;
     background: #dffffa;
     clip-path: polygon(
@@ -1345,15 +1388,11 @@ html {
     border: 1px solid rgba(255,255,255,0.08);
     box-shadow: 0 18px 42px rgba(0,0,0,0.18);
     backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
-.timeline-item:nth-child(odd) .timeline-card {
-    margin-left: auto;
-}
-
-.timeline-item:nth-child(even) .timeline-card {
-    margin-right: auto;
-}
+.timeline-item:nth-child(odd) .timeline-card  { margin-left: auto; }
+.timeline-item:nth-child(even) .timeline-card { margin-right: auto; }
 
 .timeline-card::after {
     content: "";
@@ -1369,6 +1408,8 @@ html {
     );
 }
 
+.timeline-item:nth-child(odd) .timeline-card::after  { left: -22px; }
+.timeline-item:nth-child(even) .timeline-card::after { right: -22px; }
 .timeline-item:nth-child(odd) .timeline-card::after {
     left: -54px;
 }
@@ -1387,19 +1428,8 @@ html {
     color: #9edfff;
 }
 
-.timeline-card h3 {
-    margin: 0 0 0.35rem;
-    font-size: 1.45rem;
-    color: #ffffff;
-    line-height: 1.15;
-}
-
-.timeline-card p {
-    margin: 0;
-    color: rgba(255,255,255,0.78);
-    line-height: 1.45;
-    font-size: 0.94rem;
-}
+.timeline-card h3 { margin: 0 0 0.35rem; font-size: 1.45rem; color: #ffffff; line-height: 1.15; }
+.timeline-card p  { margin: 0; color: rgba(255,255,255,0.78); line-height: 1.45; font-size: 0.94rem; }
 
 /* =========================================================
    DESARROLLO
@@ -1420,33 +1450,14 @@ html {
     border: 1px solid var(--teidesat-border);
     box-shadow: 0 20px 50px rgba(0,0,0,0.18);
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
-.feature-highlight__text {
-    padding: 1.8rem;
-}
-
-.feature-highlight__text h3 {
-    margin: 0 0 1rem;
-    font-size: 1.8rem;
-    color: #ffffff;
-}
-
-.feature-highlight__text p {
-    margin: 0 0 1rem;
-    color: var(--teidesat-text-soft);
-    line-height: 1.8;
-}
-
-.feature-highlight__text p:last-child {
-    margin-bottom: 0;
-}
-
-.feature-highlight__stats {
-    padding: 1.2rem;
-    display: grid;
-    gap: 1rem;
-}
+.feature-highlight__text { padding: 1.8rem; }
+.feature-highlight__text h3 { margin: 0 0 1rem; font-size: 1.8rem; color: #ffffff; }
+.feature-highlight__text p  { margin: 0 0 1rem; color: var(--teidesat-text-soft); line-height: 1.8; }
+.feature-highlight__text p:last-child { margin-bottom: 0; }
+.feature-highlight__stats { padding: 1.2rem; display: grid; gap: 1rem; }
 
 .mini-stat {
     padding: 1.2rem;
@@ -1458,31 +1469,15 @@ html {
     justify-content: center;
 }
 
-.mini-stat__value {
-    font-size: 2rem;
-    font-weight: 800;
-    color: var(--teidesat-accent-2);
-    line-height: 1;
-}
-
-.mini-stat__label {
-    margin-top: 0.5rem;
-    color: rgba(255,255,255,0.82);
-    line-height: 1.5;
-}
+.mini-stat__value { font-size: 2rem; font-weight: 800; color: var(--teidesat-accent-2); line-height: 1; }
+.mini-stat__label { margin-top: 0.5rem; color: rgba(255,255,255,0.82); line-height: 1.5; }
 
 /* =========================================================
    CARDS / GRIDS
 ========================================================= */
 
-.teidesat-grid {
-    display: grid;
-    gap: 1.4rem;
-}
-
-.teidesat-grid--3 {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-}
+.teidesat-grid { display: grid; gap: 1.4rem; }
+.teidesat-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
 .info-card {
     position: relative;
@@ -1492,6 +1487,7 @@ html {
     border: 1px solid var(--teidesat-border);
     box-shadow: 0 20px 45px rgba(0,0,0,0.16);
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     overflow: hidden;
     transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
     box-sizing: border-box;
@@ -1512,17 +1508,8 @@ html {
     box-shadow: 0 28px 55px rgba(0,0,0,0.22);
 }
 
-.info-card h3 {
-    margin: 0 0 0.7rem;
-    font-size: 1.2rem;
-    color: #ffffff;
-}
-
-.info-card p {
-    margin: 0;
-    color: var(--teidesat-text-soft);
-    line-height: 1.7;
-}
+.info-card h3 { margin: 0 0 0.7rem; font-size: 1.2rem; color: #ffffff; }
+.info-card p  { margin: 0; color: var(--teidesat-text-soft); line-height: 1.7; }
 
 .status-banner {
     margin-top: 2rem;
@@ -1549,11 +1536,7 @@ html {
     text-transform: uppercase;
 }
 
-.status-banner p {
-    margin: 0;
-    color: rgba(255,255,255,0.88);
-    line-height: 1.75;
-}
+.status-banner p { margin: 0; color: rgba(255,255,255,0.88); line-height: 1.75; }
 
 /* =========================================================
    FINANCIACIÓN
@@ -1585,17 +1568,8 @@ html {
     line-height: 1;
 }
 
-.support-hero-card h3 {
-    margin: 0 0 1rem;
-    font-size: 1.8rem;
-    color: #fff;
-}
-
-.support-hero-card p {
-    margin: 0 0 1.5rem;
-    line-height: 1.8;
-    color: var(--teidesat-text-soft);
-}
+.support-hero-card h3 { margin: 0 0 1rem; font-size: 1.8rem; color: #fff; }
+.support-hero-card p  { margin: 0 0 1.5rem; line-height: 1.8; color: var(--teidesat-text-soft); }
 
 .progress-block__label {
     display: flex;
@@ -1622,15 +1596,42 @@ html {
     box-shadow: 0 0 20px rgba(118,246,222,0.24);
 }
 
-.support-list {
-    display: grid;
-    gap: 1rem;
-}
+.support-list { display: grid; gap: 1rem; }
 
 /* =========================================================
    IMPACTO
 ========================================================= */
 
+.partner-card {
+    position: relative;
+    padding: 1.6rem;
+    border-radius: 24px;
+    background: rgba(14, 21, 38, 0.94);
+    border: 1px solid rgba(255,255,255,0.08);
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+    box-sizing: border-box;
+}
+
+.partner-card:hover { transform: translateY(-6px); }
+
+.partner-card__glow {
+    position: absolute;
+    top: -50px; right: -50px;
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(118,246,222,0.18) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.partner-card h3 { position: relative; margin: 0 0 0.9rem; font-size: 1.25rem; color: #fff; }
+.partner-card p  { position: relative; margin: 0; color: var(--teidesat-text-soft); line-height: 1.75; }
+
+#colaboraciones.teidesat-section {
+    min-height: 100vh;
+    min-height: 100svh;
+    padding: 120px 0 60px;
 .teidesat-section-impact {
     min-height: auto;
     padding: 120px 0 70px;
@@ -1643,6 +1644,44 @@ html {
     width: 100%;
     max-width: 1280px;
     margin: 0 auto;
+    min-height: calc(100svh - 180px);
+    display: grid;
+    grid-template-rows: auto 1fr;
+    align-content: start;
+}
+
+#colaboraciones .section-heading { margin-bottom: 2.5rem; }
+
+#colaboraciones .teidesat-grid--3 {
+    max-width: 1180px;
+    margin: 0 auto;
+    width: 100%;
+    grid-template-columns: repeat(3, minmax(260px, 360px));
+    justify-content: center;
+    align-content: center;
+    align-items: stretch;
+}
+
+#colaboraciones .partner-card {
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+/* =========================================================
+   IMPACTO
+
+.teidesat-section-impact {
+    min-height: 100vh;
+    min-height: 100svh;
+    padding: 120px 0 40px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.teidesat-section-impact .container { width: 100%; max-width: 1280px; margin: 0 auto; }
 }
 
 #impacto .section-heading {
@@ -1668,6 +1707,9 @@ html {
     box-sizing: border-box;
 }
 
+.impact-copy h2 { margin: 0 0 1rem; font-size: clamp(2rem, 3.2vw, 3.1rem); color: #fff; }
+.impact-copy p  { margin: 0 0 1rem; color: var(--teidesat-text-soft); line-height: 1.72; }
+.impact-copy p:last-child { margin-bottom: 0; }
 .impact-copy p {
     margin: 0 0 1rem;
     color: var(--teidesat-text-soft);
@@ -1678,11 +1720,7 @@ html {
     margin-bottom: 0;
 }
 
-.impact-stats {
-    display: grid;
-    gap: 1rem;
-    align-content: center;
-}
+.impact-stats { display: grid; gap: 1rem; align-content: center; }
 
 .impact-stat {
     padding: 1.4rem;
@@ -1693,22 +1731,30 @@ html {
     box-sizing: border-box;
 }
 
-.impact-stat__value {
-    display: block;
-    font-size: 2rem;
-    font-weight: 800;
-    color: var(--teidesat-accent-2);
-    margin-bottom: 0.5rem;
-}
-
-.impact-stat__label {
-    color: rgba(255,255,255,0.84);
-    line-height: 1.6;
-}
+.impact-stat__value { display: block; font-size: 2rem; font-weight: 800; color: var(--teidesat-accent-2); margin-bottom: 0.5rem; }
+.impact-stat__label { color: rgba(255,255,255,0.84); line-height: 1.6; }
 
 /* =========================================================
+   RESPONSIVE — TABLET (≤1199px)
+
+@media (max-width: 1199px) {
+    .feature-highlight, .support-layout, .impact-layout { grid-template-columns: 1fr; }
+    .teidesat-grid--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    #colaboraciones .teidesat-grid--3 { grid-template-columns: repeat(2, minmax(260px, 360px)); }
+
+    #objetivos.teidesat-section { min-height: 100vh; min-height: 100svh; padding: 120px 0 60px; display: flex; align-items: flex-start; }
+
+    .teidesat-objectives-stage {
+        width: 100%; height: auto;
+        display: flex; flex-direction: column; align-items: center;
+        justify-content: flex-start; gap: 1.5rem; margin-top: 0;
+    }
+
+    .teidesat-objectives-system {
+        position: relative; top: auto; left: auto;
+        width: 560px; height: 560px;
+        margin: 0 auto; transform: none; flex: 0 0 auto;
    REVEAL
-========================================================= */
 
 .reveal-up {
     opacity: 0;
@@ -1723,7 +1769,6 @@ html {
 
 /* =========================================================
    RESPONSIVE
-========================================================= */
 
 @media (max-width: 1199px) {
 
@@ -1823,23 +1868,13 @@ html {
         height: 28px;
     }
 
-    .objective-node__label {
-        font-size: 0.82rem;
-    }
+    .objectives-core { width: 76px; height: 76px; }
+    .objectives-core span { font-size: 1rem; }
+    .objective-node { width: 28px; height: 28px; }
+    .objective-node__label { font-size: 0.82rem; }
 
-    .objective-panel {
-        position: static;
-        width: 100%;
-        max-width: 560px;
-        min-height: auto;
-        transform: none !important;
-        margin: 0 auto;
-    }
-
-    .objective-panel.active {
-        display: block;
-    }
-
+    .objective-panel { position: static; width: 100%; max-width: 560px; min-height: auto; transform: none !important; margin: 0 auto; }
+    .objective-panel.active { display: block; }
     .objective-panel--2 { order: 2; }
     .objective-panel--1 { order: 3; }
     .objective-panel--3 { order: 4; }
@@ -1857,6 +1892,39 @@ html {
     }
 }
 
+/* =========================================================
+   RESPONSIVE — TABLET PEQUEÑA (≤991px)
+
+@media (max-width: 991px) {
+    #fases.teidesat-section { min-height: calc(100svh + 72px); padding: 110px 0 96px; display: flex; align-items: flex-start; }
+    #fases .container { padding-left: 16px; padding-right: 16px; box-sizing: border-box; }
+    #fases .section-heading { margin-bottom: 1.8rem; }
+
+    .teidesat-timeline { width: 100%; padding: 0 0 4rem 26px; box-sizing: border-box; }
+    .teidesat-timeline::before { left: 10px; transform: none; top: 0; bottom: 0; }
+    .timeline-item { min-height: auto; margin-bottom: 1rem; }
+    .timeline-dot { left: 10px; top: 1.25rem; transform: translate(-50%, 0); width: 12px; height: 12px; }
+    .timeline-card { width: 100%; margin: 0 !important; padding: 1rem; }
+    .timeline-card::after { display: none; }
+
+    #colaboraciones.teidesat-section, .teidesat-section-impact { min-height: calc(100svh + 72px); padding: 110px 0 88px; display: flex; align-items: flex-start; }
+    #colaboraciones .container { min-height: auto; display: block; }
+    #colaboraciones .teidesat-grid--3 { grid-template-columns: 1fr; max-width: 700px; }
+    .impact-layout { grid-template-columns: 1fr; gap: 1.2rem; }
+
+    .teidesat-custom-footer { padding: 3rem 0 2.2rem; }
+    .teidesat-custom-footer__inner { grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 1.8rem; }
+    .teidesat-footer__brand { justify-content: center; }
+    .teidesat-footer__logo { width: 230px; }
+    .teidesat-footer__socials { justify-content: center; }
+}
+
+/* =========================================================
+   RESPONSIVE — MÓVIL (≤767px)
+
+@media (max-width: 767px) {
+    .teidesat-custom-header { padding: 0.65rem 0.75rem; }
+    .teidesat-logo { height: 28px; }
 @media (max-width: 991px) {
     .teidesat-custom-header__inner {
         display: grid;
@@ -2072,55 +2140,87 @@ html {
         transform: none;
     }
 
-    .objectives-orbits-svg {
-        width: 100%;
-        height: 100%;
+    .teidesat-hero-content { padding-top: 6rem; padding-bottom: 2rem; }
+    .teidesat-hero-main-title { font-size: clamp(2rem, 9.5vw, 3.2rem); letter-spacing: -0.02em; line-height: 1.06; }
+    .teidesat-hero-brand { font-size: 0.95rem; letter-spacing: 0.22em; }
+
+    .hero-satellite { width: 220px; height: 220px; right: -20%; top: 80%; opacity: 0.85; }
+
+    .teidesat-grid--3 { grid-template-columns: 1fr; }
+    .section-heading { margin-bottom: 1.8rem; }
+    .section-heading h2 { line-height: 1.15; }
+    .section-heading p { font-size: 0.96rem; }
+
+    #fases .container, #colaboraciones .container, .teidesat-section-impact .container {
+        padding-left: 14px; padding-right: 14px; box-sizing: border-box;
     }
 
-    .objectives-core {
-        width: 52px;
-        height: 52px;
+    #objetivos.teidesat-section { min-height: 100vh; min-height: 100svh; padding: 100px 0 40px; display: flex; align-items: flex-start; }
+
+    .teidesat-objectives-stage { width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 1rem; height: auto; margin-top: 0; }
+
+    .teidesat-objectives-system { position: relative; top: auto; left: auto; width: min(380px, 92vw); height: min(380px, 92vw); margin: 0 auto; transform: none; flex: 0 0 auto; }
+
+    .objectives-orbits-svg { width: 100%; height: 100%; }
+    .objectives-core { width: 50px; height: 50px; }
+    .objectives-core span { font-size: 0.75rem; letter-spacing: 0.03em; }
+    .objective-node { width: 24px; height: 24px; min-width: 32px; min-height: 32px; }
+    .objective-node__label { font-size: 0.68rem; }
+
+    .objective-panel { position: static; width: 100%; max-width: min(360px, 92vw); min-height: auto; padding: 1rem; transform: none !important; display: none; margin: 0 auto; border-radius: 18px; }
+    .objective-panel.active { display: block; }
+    .objective-panel h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .objective-panel p  { font-size: 0.9rem; line-height: 1.55; }
+
+    .timeline-card h3 { font-size: 1.25rem; }
+    .timeline-card p  { font-size: 0.92rem; line-height: 1.5; }
+
+    .impact-copy { padding: 1.25rem; }
+    .impact-stat { padding: 1.1rem; }
+    .impact-stat__value { font-size: 1.7rem; }
+    .mini-stat__value { font-size: 1.7rem; }
+    .support-hero-card { padding: 1.35rem; }
+    .partner-card { padding: 1.3rem; }
+
+    .info-card:hover, .partner-card:hover { transform: none; }
+}
+
+/* =========================================================
+   RESPONSIVE — MÓVIL PEQUEÑO (≤480px)
+
+@media (max-width: 480px) {
+    .teidesat-custom-header { padding: 0.6rem; }
+
+    .hero-satellite { width: 190px; height: 190px; right: -26%; }
+    .hero-satellite::before { width: 110px; height: 14px; top: 47%; left: 31%; transform: translateY(-50%) rotate(155deg); filter: blur(7px); }
+
+    .support-hero-card, .impact-copy, .info-card, .partner-card, .timeline-card { border-radius: 16px; }
+
+    #fases .container, #colaboraciones .container, .teidesat-section-impact .container {
+        padding-left: 12px; padding-right: 12px;
     }
 
-    .objectives-core span {
-        font-size: 0.8rem;
-        letter-spacing: 0.04em;
-    }
+    .teidesat-timeline { padding: 0 0 3rem 20px; }
+    .timeline-dot { left: 8px; }
+    .teidesat-timeline::before { left: 8px; }
+    .timeline-card { padding: 0.9rem; }
+    .timeline-card h3 { font-size: 1.1rem; }
+    .timeline-period { font-size: 0.67rem; }
 
-    .objective-node {
-        width: 24px;
-        height: 24px;
-    }
+    .teidesat-objectives-system { width: min(300px, 94vw); height: min(300px, 94vw); }
+    .objectives-core { width: 42px; height: 42px; }
+    .objectives-core span { font-size: 0.65rem; }
+    .objective-node { width: 20px; height: 20px; }
+    .objective-node__label { font-size: 0.6rem; }
+    .objective-panel { max-width: min(280px, 94vw); }
 
-    .objective-node__label {
-        font-size: 0.7rem;
-    }
-
-    .objective-panel {
-        position: static;
-        width: 100%;
-        max-width: 320px;
-        min-height: auto;
-        padding: 1rem;
-        transform: none !important;
-        display: none;
-        margin: 0 auto;
-    }
-
-    .objective-panel.active {
-        display: block;
-    }
-
-    .objective-panel h3 {
-        font-size: 1.15rem;
-        margin-bottom: 0.55rem;
-    }
-
-    .objective-panel p {
-        font-size: 0.9rem;
-        line-height: 1.55;
-    }
-
+    .teidesat-custom-footer { padding: 2.2rem 0 1.8rem; }
+    .teidesat-custom-footer__inner { padding: 0 1rem; gap: 1.3rem; }
+    .teidesat-footer__logo { width: 180px; }
+    .teidesat-footer__backtop { width: 46px; height: 46px; font-size: 1.4rem; }
+    .teidesat-footer__socials { gap: 0.8rem; }
+    .teidesat-footer__socials a { font-size: 1.7rem; }
+    .teidesat-footer__social-x { font-size: 1.6rem; }
     #objetivos.has-active-objective .teidesat-objectives-heading {
         opacity: 1;
         visibility: visible;

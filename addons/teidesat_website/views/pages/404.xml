@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <template id="website_404" name="HyperSpace - Página 404"
               inherit_id="http_routing.404"
@@ -5,69 +6,144 @@
               customize_show="true">
 
         <xpath expr="//div[@id='wrap']" position="replace">
-            
 
-
+            <style>
+                html, body { overflow-x: hidden !important; max-width: 100vw; }
+                #wrapwrap, #wrap { opacity: 1 !important; visibility: visible !important; }
+            </style>
 
             <div class="hs-404-wrapper">
+                <div class="hs-stars" id="hs-stars-field"></div>
+                <div class="hs-nebula hs-nebula-1"></div>
+                <div class="hs-nebula hs-nebula-2"></div>
+                <div class="hs-grid"></div>
 
-                    <!-- Campo de estrellas -->
-                    <div class="hs-stars" id="hs-stars-field"/>
-
-                    <!-- Nebulosas -->
-                    <div class="hs-nebula hs-nebula-1"/>
-                    <div class="hs-nebula hs-nebula-2"/>
-
-                    <!-- Grid perspectiva inferior -->
-                    <div class="hs-grid"/>
-
-                    <!-- Icono (señal / radar) -->
-                    <div class="hs-icon">
-                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="32" cy="32" r="30" stroke="#1565c0" stroke-width="1.5" stroke-dasharray="4 4"/>
-                            <circle cx="32" cy="32" r="20" stroke="#1e88e5" stroke-width="1.5" stroke-dasharray="3 3"/>
-                            <circle cx="32" cy="32" r="10" stroke="#42a5f5" stroke-width="1.5"/>
-                            <circle cx="32" cy="32" r="3" fill="#00e5ff"/>
-                            <line x1="32" y1="2"  x2="32" y2="14" stroke="#1e88e5" stroke-width="2" stroke-linecap="round"/>
-                            <line x1="32" y1="50" x2="32" y2="62" stroke="#1e88e5" stroke-width="2" stroke-linecap="round"/>
-                            <line x1="2"  y1="32" x2="14" y2="32" stroke="#1e88e5" stroke-width="2" stroke-linecap="round"/>
-                            <line x1="50" y1="32" x2="62" y2="32" stroke="#1e88e5" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                    </div>
-
-                    <!-- Número de error -->
-                    <div class="hs-code">404</div>
-
-                    <!-- Línea escáner -->
-                    <div class="hs-scan-line"/>
-
-                    <!-- Badge -->
-                    <span class="hs-badge">Señal no encontrada</span>
-
-                    <!-- Título -->
-                    <h1 class="hs-title">Esta coordenada no existe en el universo</h1>
-
-                    <!-- Descripción -->
-                    <p class="hs-desc">
-                        La página que buscas se ha perdido en el vacío del espacio.
-                        Puede que haya sido movida, eliminada, o que la URL no sea correcta.
-                    </p>
-
-                    <!-- Botones de acción -->
-                    <div class="hs-actions">
-                        <a href="/" class="hs-btn hs-btn-primary">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
-                            </svg>
-                            Volver al inicio
-                        </a>
-                    </div>
-
-                    <!-- Marca -->
-                    <p class="hs-brand"><strong>HyperSpace</strong> · Sistema de navegación v17</p>
-
+                <div class="hs-icon">
+                    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="32" cy="32" r="30" stroke="#1565c0" stroke-width="1.5" stroke-dasharray="4 4"/>
+                        <circle cx="32" cy="32" r="20" stroke="#1e88e5" stroke-width="1.5" stroke-dasharray="3 3"/>
+                        <circle cx="32" cy="32" r="10" stroke="#42a5f5" stroke-width="1.5"/>
+                        <circle cx="32" cy="32" r="3" fill="#00e5ff"/>
+                        <line x1="32" y1="2"  x2="32" y2="14" stroke="#1e88e5" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="32" y1="50" x2="32" y2="62" stroke="#1e88e5" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="2"  y1="32" x2="14" y2="32" stroke="#1e88e5" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="50" y1="32" x2="62" y2="32" stroke="#1e88e5" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
                 </div>
-        </xpath>
 
+                <div class="hs-code">404</div>
+                <div class="hs-scan-line"></div>
+                <span class="hs-badge">Señal no encontrada</span>
+                <h1 class="hs-title">Esta coordenada no existe en el universo</h1>
+                <p class="hs-desc">
+                    La página que buscas se ha perdido en el vacío del espacio.
+                    Puede que haya sido movida, eliminada, o que la URL no sea correcta.
+                </p>
+
+                <div class="hs-actions">
+                    <a href="/" class="hs-btn hs-btn-primary">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                        </svg>
+                        Volver al inicio
+                    </a>
+                </div>
+
+                <p class="hs-brand"><strong>HyperSpace</strong> · Sistema de navegación v17</p>
+            </div>
+
+            <script type="text/javascript">
+//<![CDATA[
+(function () {
+    'use strict';
+
+    function clearOdoo() {
+        ['wrapwrap', 'wrap'].forEach(function (id) {
+            var el = document.getElementById(id);
+            if (!el) return;
+            ['opacity','visibility','transition','transform'].forEach(function (p) {
+                el.style.removeProperty(p);
+            });
+        });
+    }
+
+    function buildStars() {
+        var field = document.getElementById('hs-stars-field');
+        if (!field) return;
+        field.innerHTML = '';
+        var frag = document.createDocumentFragment();
+        for (var i = 0; i < 90; i++) {
+            var s  = document.createElement('div');
+            var sz = (Math.random() * 2.5 + 0.5).toFixed(1);
+            s.className = 'hs-star';
+            s.style.cssText = [
+                'width:'    + sz + 'px',
+                'height:'   + sz + 'px',
+                'top:'      + (Math.random() * 100).toFixed(2) + '%',
+                'left:'     + (Math.random() * 100).toFixed(2) + '%',
+                '--dur:'    + (Math.random() * 3 + 2).toFixed(1) + 's',
+                '--delay:-' + (Math.random() * 4).toFixed(1) + 's'
+            ].join(';');
+            frag.appendChild(s);
+        }
+        field.appendChild(frag);
+    }
+
+    function resetScroll() {
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+        var ww = document.getElementById('wrapwrap');
+        if (ww) ww.scrollTop = 0;
+    }
+
+    /* Las estrellas solo se generan una vez */
+    var starsBuilt = false;
+
+    function init() {
+        clearOdoo();
+        resetScroll();
+        if (!starsBuilt) {
+            buildStars();
+            starsBuilt = true;
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+    window.addEventListener('load', function () { setTimeout(init, 30); });
+    window.addEventListener('resize', clearOdoo);
+
+    ['pushState','replaceState'].forEach(function (m) {
+        var orig = history[m].bind(history);
+        history[m] = function () {
+            orig.apply(this, arguments);
+            starsBuilt = false; /* Permitir regenerar si se vuelve a la 404 */
+            setTimeout(init, 60);
+        };
+    });
+    window.addEventListener('popstate', function () {
+        starsBuilt = false;
+        setTimeout(init, 60);
+    });
+
+    /* Vigilar cambios de style en wrapwrap */
+    var ww = document.getElementById('wrapwrap');
+    if (ww) {
+        new MutationObserver(function (mutations) {
+            mutations.forEach(function (m) {
+                if (m.attributeName === 'style') clearOdoo();
+            });
+        }).observe(ww, { attributes: true });
+    }
+
+})();
+//]]>
+            </script>
+
+        </xpath>
     </template>
 </odoo>

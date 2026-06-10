@@ -6,6 +6,18 @@
         <html lang="es">
             <head>
                 <meta charset="utf-8"/>
+
+                <!--
+                    FIX MÓVIL — Viewport completo.
+                    maximum-scale=5 permite zoom accesible sin bloquear el layout.
+                    viewport-fit=cover cubre el notch en iOS.
+                    width=device-width es la clave para que Odoo pjax no restablezca
+                    el ancho a 980px al inyectar contenido nuevo sin recargar el <head>.
+                -->
+                <meta name="viewport"
+                      content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover"/>
+
+                <title>TEIDESAT</title>
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
                 <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -15,10 +27,129 @@
                 <title>TEIDESAT</title>
 
                 <t t-call-assets="web.assets_frontend"/>
+
+                <!--
+                    ANTI-FOUC — Este bloque se ejecuta de forma síncrona antes de que
+                    el parser procese cualquier <link> externo de Odoo.
+                    Oculta el body con visibility (no display:none, para que el layout
+                    se calcule correctamente) y lo restaura en DOMContentLoaded.
+                    El timeout de 400ms es el fallback de seguridad por si DOMContentLoaded
+                    no dispara (no debería ocurrir, pero protege contra módulos de Odoo
+                    que bloquean el evento).
+                -->
+                <style id="teidesat-fouc-guard">
+                    html.teidesat-loading body {
+                        visibility: hidden !important;
+                        pointer-events: none !important;
+                    }
+                </style>
+                <script>
+//<![CDATA[
+(function () {
+    document.documentElement.classList.add('teidesat-loading');
+    var t = setTimeout(function () {
+        document.documentElement.classList.remove('teidesat-loading');
+    }, 400);
+    function reveal() {
+        clearTimeout(t);
+        document.documentElement.classList.remove('teidesat-loading');
+        var g = document.getElementById('teidesat-fouc-guard');
+        if (g) g.remove();
+    }
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', reveal, { once: true });
+    } else {
+        reveal();
+    }
+})();
+//]]>
+                </script>
+
+                <style>
+                    /*
+                     * FIX 1 — Overflow horizontal global.
+                     * Previene que cualquier elemento desborde el viewport.
+                     */
+                    html, body {
+                        overflow-x: hidden !important;
+                        max-width: 100vw;
+                    }
+
+                    /*
+                     * FIX 2 — Contenedores Odoo siempre visibles.
+                     * Odoo inyecta opacity:0/visibility:hidden en #wrapwrap durante
+                     * navegación pjax. Lo anulamos con !important.
+                     */
+                    #wrapwrap, #wrap, main, .teidesat-main {
+                        opacity: 1 !important;
+                        visibility: visible !important;
+                    }
+
+                    /*
+                     * FIX 3 — Scroll-snap gestionado por JS.
+                     *
+                     * CAUSA RAÍZ del bug de navegación:
+                     * Con scroll-snap-type: mandatory en body, al navegar
+                     * sin full-reload el browser mantiene el scrollY anterior
+                     * y queda "atrapado" entre secciones mostrando solo el fondo.
+                     * El snap se activa solo en / y solo tras resetear el scroll.
+                     */
+                    body.teidesat-page {
+                        scroll-snap-type: none;
+                    }
+                    body.teidesat-page.snap-ready {
+                        scroll-snap-type: y mandatory;
+                    }
+
+                    /* reveal-up */
+                    .reveal-up {
+                        opacity: 0;
+                        transform: translateY(28px);
+                        transition: opacity 0.7s ease, transform 0.7s ease;
+                    }
+                    .reveal-up.is-visible {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                    @media (max-width: 767px) {
+                        .reveal-up {
+                            opacity: 1 !important;
+                            transform: translateY(0) !important;
+                            transition: none !important;
+                        }
+                    }
+                </style>
             </head>
 
             <body class="teidesat-page">
 
+                <header class="teidesat-custom-header">
+                    <div class="teidesat-custom-header__inner">
+                        <button class="teidesat-menu-toggle"
+                                type="button"
+                                id="teidesat-menu-toggle"
+                                aria-label="Abrir menú"
+                                aria-expanded="false"
+                                aria-controls="teidesat-side-menu">
+                            <span></span><span></span><span></span>
+                        </button>
+                        <a href="/" class="teidesat-custom-header__logo">
+                            <img src="/teidesat_website/static/src/img/Logo TEIDESAT - Blanco sobre transparente.png"
+                                alt="TEIDESAT" class="teidesat-logo"/>
+                        </a>
+                        <div class="teidesat-header-spacer"></div>
+                    </div>
+                </header>
+
+                <div class="teidesat-menu-overlay" id="teidesat-menu-overlay"></div>
+
+                <aside class="teidesat-side-menu" id="teidesat-side-menu" aria-hidden="true">
+                    <div class="teidesat-side-menu__top">
+                        <button class="teidesat-side-menu__close" type="button"
+                                id="teidesat-menu-close" aria-label="Cerrar menú">&#215;</button>
+                    </div>
+                    <nav class="teidesat-side-menu__nav">
+                        <a href="/">Inicio</a>
                 <!-- HEADER -->
             <header class="teidesat-custom-header">
                 <div class="teidesat-custom-header__inner">
@@ -34,6 +165,11 @@
                         <a href="/divulgacion">Divulgación</a>
                         <a href="/participa">Participa</a>
                         <a href="/departamentos">Departamentos</a>
+                        <a href="#">TeidesatKids</a>
+                        <a href="/contacto">Contacto</a>
+                    </nav>
+                </aside>
+
                         <a href="/teidesatkids">TeidesatKids</a>
                         <a href="/contacto">Contacto</a>
                     </nav>
@@ -83,6 +219,22 @@
 
                 
 
+                <footer class="teidesat-custom-footer" id="contacto">
+                    <div class="teidesat-custom-footer__inner">
+                        <div class="teidesat-footer__brand">
+                            <img src="/teidesat_website/static/src/img/Logo TEIDESAT - Blanco sobre transparente.png"
+                                alt="TEIDESAT" class="teidesat-footer__logo"/>
+                        </div>
+                        <a href="#" id="teidesat-backtop" class="teidesat-footer__backtop" aria-label="Volver arriba">
+                            <span>&#x2303;</span>
+                        </a>
+                        <div class="teidesat-footer__socials">
+                            <a href="https://github.com/Teidesat" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa fa-github"></i></a>
+                            <a href="https://x.com/teidesat" target="_blank" rel="noopener noreferrer" aria-label="X"><span class="teidesat-footer__social-x">X</span></a>
+                            <a href="https://www.instagram.com/teidesat/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa fa-instagram"></i></a>
+                            <a href="https://www.facebook.com/profile.php?id=100063464266134" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+                            <a href="https://www.linkedin.com/company/teidesat/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a>
+                            <a href="https://www.youtube.com/@TEIDESAT" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fa fa-youtube-play"></i></a>
                 <!-- FOOTER -->
                 <footer class="teidesat-footer-sponsors" id="patrocinadores">
                     <div class="container">
@@ -137,9 +289,258 @@
                     </div>
                 </footer>
 
+                <script type="text/javascript">
+//<![CDATA[
+(function () {
+    'use strict';
+
+    var REVEAL    = 'reveal-up';
+    var VISIBLE   = 'is-visible';
+    var MOBILE_BP = 767;
+    var SNAP_DELAY = 400;
+
+    /* ────────────────────────────────────────────────────────────
+       MENÚ — Solo se inicializa UNA VEZ.
+       Re-inicializar en cada navegación duplica los listeners
+       y rompe el toggle en Odoo pjax.
+    ──────────────────────────────────────────────────────────── */
+    var menuReady = false;
+
+    function initMenu() {
+        if (menuReady) return;
+
+        var toggle  = document.getElementById('teidesat-menu-toggle');
+        var close   = document.getElementById('teidesat-menu-close');
+        var overlay = document.getElementById('teidesat-menu-overlay');
+        var menu    = document.getElementById('teidesat-side-menu');
+        if (!toggle || !menu) return;
+
+        function openMenu() {
+            menu.classList.add('is-open');
+            if (overlay) overlay.classList.add('is-open');
+            document.body.classList.add('teidesat-menu-open');
+            toggle.setAttribute('aria-expanded', 'true');
+            menu.setAttribute('aria-hidden', 'false');
+        }
+
+        function closeMenu() {
+            menu.classList.remove('is-open');
+            if (overlay) overlay.classList.remove('is-open');
+            document.body.classList.remove('teidesat-menu-open');
+            toggle.setAttribute('aria-expanded', 'false');
+            menu.setAttribute('aria-hidden', 'true');
+        }
+
+        toggle.addEventListener('click', openMenu);
+        if (close)   close.addEventListener('click', closeMenu);
+        if (overlay) overlay.addEventListener('click', closeMenu);
+
+        menu.querySelectorAll('a').forEach(function (a) {
+            a.addEventListener('click', closeMenu);
+        });
+
+        menuReady = true;
+    }
+
+    /* ── Botón volver arriba ────────────────────────────────── */
+    var backtopReady = false;
+
+    function initBacktop() {
+        if (backtopReady) return;
+        var btn = document.getElementById('teidesat-backtop');
+        if (!btn) return;
+        btn.addEventListener('click', function (e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        backtopReady = true;
+    }
+
+    /* ── Limpiar opacity/visibility inline de Odoo ─────────── */
+    function clearOdooOverlay() {
+        ['wrapwrap', 'wrap'].forEach(function (id) {
+            var el = document.getElementById(id);
+            if (!el) return;
+            el.style.removeProperty('opacity');
+            el.style.removeProperty('visibility');
+            el.style.removeProperty('transition');
+            el.style.removeProperty('transform');
+            el.style.removeProperty('pointer-events');
+        });
+        document.querySelectorAll('main,.teidesat-main,.o_main_content').forEach(function (el) {
+            el.style.removeProperty('opacity');
+            el.style.removeProperty('visibility');
+        });
+    }
+
+    /* ── Forzar viewport correcto en móvil ────────────────────── */
+    function fixViewport() {
+        var metas = document.head.querySelectorAll('meta[name="viewport"]');
+        var correct = 'width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover';
+
+        /* Eliminar todos los duplicados y dejar solo uno */
+        if (metas.length > 1) {
+            for (var i = 1; i < metas.length; i++) {
+                metas[i].parentNode.removeChild(metas[i]);
+            }
+        }
+
+        if (metas.length === 0) {
+            /* No existe ninguno — crearlo */
+            var m = document.createElement('meta');
+            m.name = 'viewport';
+            m.content = correct;
+            document.head.insertBefore(m, document.head.firstChild);
+        } else if (metas[0].content !== correct) {
+            /* Existe pero con contenido incorrecto — corregirlo */
+            metas[0].content = correct;
+        }
+    }
+
+    /* ── Scroll al top + gestión del snap ──────────────────── */
+    var snapTimer = null;
+
+    function resetScroll() {
+        document.body.classList.remove('snap-ready');
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+        var ww = document.getElementById('wrapwrap');
+        if (ww) ww.scrollTop = 0;
+
+        clearTimeout(snapTimer);
+        snapTimer = setTimeout(function () {
+            var path = window.location.pathname;
+            if (path === '/' || path === '') {
+                document.body.classList.add('snap-ready');
+            }
+        }, SNAP_DELAY);
+    }
+
+    /* ── Reveal-up ──────────────────────────────────────────── */
+    var io = null;
+
+    function triggerReveal() {
+        var mobile = window.innerWidth <= MOBILE_BP;
+        if (io) { io.disconnect(); io = null; }
+
+        if (!mobile && window.IntersectionObserver) {
+            io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (e) {
+                    if (e.isIntersecting) {
+                        e.target.classList.add(VISIBLE);
+                        io.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.08 });
+        }
+
+        document.querySelectorAll('.' + REVEAL).forEach(function (el) {
+            if (mobile) {
+                el.classList.add(VISIBLE);
+            } else if (!el.classList.contains(VISIBLE)) {
+                if (io) io.observe(el);
+                else    el.classList.add(VISIBLE);
+            }
+        });
+    }
+
+    /* ── Inicialización de página (se llama en cada navegación) */
+    function initPage() {
+        fixViewport();        /* <-- FIX viewport antes de todo */
+        clearOdooOverlay();
+        resetScroll();
+        triggerReveal();
+    }
+
+    /* ── Arranque inicial (una sola vez, incluye menú) ──────── */
+    function boot() {
+        fixViewport();
+        clearOdooOverlay();
+        resetScroll();
+        triggerReveal();
+        initMenu();
+        initBacktop();
+    }
+
+    /* ── Disparadores ───────────────────────────────────────── */
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', boot);
+    } else {
+        boot();
+    }
+    window.addEventListener('load', function () { setTimeout(boot, 30); });
+
+    window.addEventListener('resize', function () {
+        fixViewport();
+        clearOdooOverlay();
+        triggerReveal();
+        var path = window.location.pathname;
+        if (path === '/' || path === '') {
+            document.body.classList.add('snap-ready');
+        } else {
+            document.body.classList.remove('snap-ready');
+        }
+    });
+
+    window.addEventListener('orientationchange', function () {
+        setTimeout(initPage, 250);
+    });
+
+    /* Interceptar history API (SPA / pjax de Odoo) */
+    ['pushState', 'replaceState'].forEach(function (method) {
+        var orig = history[method].bind(history);
+        history[method] = function () {
+            orig.apply(this, arguments);
+            setTimeout(initPage,  60);
+            setTimeout(initPage, 380);
+        };
+    });
+    window.addEventListener('popstate', function () { setTimeout(initPage, 60); });
+
+    /* Eventos internos de Odoo website */
+    ['page:load', 'content_changed', 'website.dom_ready', 'dom_updated'].forEach(function (e) {
+        document.addEventListener(e, initPage);
+    });
+
+    /* MutationObserver — detecta inyección de contenido nuevo.
+       Ignora nodos del menú y decorativos para evitar bucles
+       que duplicaban listeners en versiones anteriores. */
+    var ignoredIds     = ['teidesat-menu-toggle', 'teidesat-menu-close',
+                          'teidesat-menu-overlay', 'teidesat-side-menu',
+                          'teidesat-backtop'];
+    var ignoredClasses = ['hs-star', 'hs-stars', 'is-open', 'is-visible',
+                          'teidesat-loading'];
+
+    new MutationObserver(function (mutations) {
+        var hit = mutations.some(function (m) {
+            if (m.type !== 'childList') return false;
+            for (var i = 0; i < m.addedNodes.length; i++) {
+                var n = m.addedNodes[i];
+                if (n.nodeType !== 1) continue;
+                if (n.id && ignoredIds.indexOf(n.id) !== -1) continue;
+                var skip = false;
+                if (n.classList) {
+                    for (var j = 0; j < ignoredClasses.length; j++) {
+                        if (n.classList.contains(ignoredClasses[j])) { skip = true; break; }
+                    }
+                }
+                if (!skip) return true;
+            }
+            return false;
+        });
+        if (hit) setTimeout(initPage, 60);
+    }).observe(document.body, { childList: true, subtree: true });
+
+})();
+//]]>
+                </script>
+
             </body>
         </html>
     </template>
+
 
 
     <!-- HOME -->
@@ -147,14 +548,13 @@
         <t t-call="teidesat_website.teidesat_base_layout">
         <div class="teidesat-page-home">
 
-            <!-- HERO -->
             <section class="teidesat-hero teidesat-hero--day" id="hero">
                 <div class="teidesat-hero-overlay"></div>
-
                 <div class="container position-relative">
                     <div class="teidesat-hero-content">
-
                         <div class="hero-title-block reveal-up">
+                            <div class="teidesat-hero-brand">TEIDESAT</div>
+                            <h1 class="teidesat-hero-main-title">El primer nanosatélite universitario de Canarias</h1>
                             <span class="section-kicker--right">TEIDESAT</span>
 
                             <h1 class="teidesat-hero-main-title">
@@ -162,17 +562,13 @@
                             </h1>
 
                         </div>
-
                         <div class="hero-satellite hero-satellite--drift" aria-hidden="true">
-                            <img src="/teidesat_website/static/src/img/cubesat.png"
-                                alt="CubeSat TEIDESAT"
-                                class="hero-satellite-img"/>
+                            <img src="/teidesat_website/static/src/img/cubesat.png" alt="CubeSat TEIDESAT" class="hero-satellite-img"/>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- OBJETIVOS -->
             <section id="objetivos" class="teidesat-section teidesat-section-dark">
                 <div class="container">
                     <div class="teidesat-objectives-stage reveal-up">
@@ -186,7 +582,6 @@
                         </div>
 
                         <div class="teidesat-objectives-system">
-
                             <svg class="objectives-orbits-svg" viewBox="0 0 760 760" aria-hidden="true">
                                 <ellipse id="orbit-path-1" cx="380" cy="380" rx="110" ry="64" />
                                 <ellipse id="orbit-path-2" cx="380" cy="380" rx="175" ry="104" />
@@ -194,72 +589,18 @@
                                 <ellipse id="orbit-path-4" cx="380" cy="380" rx="305" ry="184" />
                                 <ellipse id="orbit-path-5" cx="380" cy="380" rx="370" ry="224" />
                             </svg>
-
-                            <button class="objectives-core" type="button" id="objectives-toggle-all">
-                                <span>OBJETIVOS</span>
-                            </button>
-
-                            <button class="objective-node" data-target="objetivo-2" data-orbit="1" type="button">
-                                <span class="objective-node__label">1</span>
-                            </button>
-
-                            <button class="objective-node" data-target="objetivo-1" data-orbit="2" type="button">
-                                <span class="objective-node__label">2</span>
-                            </button>
-
-                            <button class="objective-node" data-target="objetivo-3" data-orbit="3" type="button">
-                                <span class="objective-node__label">3</span>
-                            </button>
-
-                            <button class="objective-node" data-target="objetivo-4" data-orbit="4" type="button">
-                                <span class="objective-node__label">4</span>
-                            </button>
-
-                            <button class="objective-node" data-target="objetivo-5" data-orbit="5" type="button">
-                                <span class="objective-node__label">5</span>
-                            </button>
+                            <button class="objectives-core" type="button" id="objectives-toggle-all"><span>OBJETIVOS</span></button>
+                            <button class="objective-node" data-target="objetivo-2" data-orbit="1" type="button"><span class="objective-node__label">1</span></button>
+                            <button class="objective-node" data-target="objetivo-1" data-orbit="2" type="button"><span class="objective-node__label">2</span></button>
+                            <button class="objective-node" data-target="objetivo-3" data-orbit="3" type="button"><span class="objective-node__label">3</span></button>
+                            <button class="objective-node" data-target="objetivo-4" data-orbit="4" type="button"><span class="objective-node__label">4</span></button>
+                            <button class="objective-node" data-target="objetivo-5" data-orbit="5" type="button"><span class="objective-node__label">5</span></button>
                         </div>
-
-                        <div class="objective-panel objective-panel--1" data-panel="objetivo-1">
-                            <h3>Objetivo Tecnológico</h3>
-                            <p>
-                                Diseñar y construir un nanosatélite para comunicaciones ópticas
-                                conforme a requisitos del sector espacial.
-                            </p>
-                        </div>
-
-                        <div class="objective-panel objective-panel--2" data-panel="objetivo-2">
-                            <h3>Misión</h3>
-                            <p>
-                                Diseñar, fabricar, poner en órbita y operar el primer nanosatélite
-                                universitario de Canarias.
-                            </p>
-                        </div>
-
-                        <div class="objective-panel objective-panel--3" data-panel="objetivo-3">
-                            <h3>Objetivo Científico</h3>
-                            <p>
-                                Analizar el impacto de la contaminación lumínica espacial mediante
-                                observación y transmisión de datos.
-                            </p>
-                        </div>
-
-                        <div class="objective-panel objective-panel--4" data-panel="objetivo-4">
-                            <h3>Objetivo Académico</h3>
-                            <p>
-                                Formar al alumnado en un entorno real de ingeniería espacial,
-                                promoviendo aprendizaje interdisciplinar.
-                            </p>
-                        </div>
-
-                        <div class="objective-panel objective-panel--5" data-panel="objetivo-5">
-                            <h3>Objetivo Divulgativo</h3>
-                            <p>
-                                Inspirar a nuevas generaciones a través de talleres, eventos y
-                                actividades de divulgación científica y tecnológica.
-                            </p>
-                        </div>
-
+                        <div class="objective-panel objective-panel--1" data-panel="objetivo-1"><h3>Objetivo Tecnológico</h3><p>Diseñar y construir un nanosatélite para comunicaciones ópticas conforme a requisitos del sector espacial.</p></div>
+                        <div class="objective-panel objective-panel--2" data-panel="objetivo-2"><h3>Misión</h3><p>Diseñar, fabricar, poner en órbita y operar el primer nanosatélite universitario de Canarias.</p></div>
+                        <div class="objective-panel objective-panel--3" data-panel="objetivo-3"><h3>Objetivo Científico</h3><p>Analizar el impacto de la contaminación lumínica espacial mediante observación y transmisión de datos.</p></div>
+                        <div class="objective-panel objective-panel--4" data-panel="objetivo-4"><h3>Objetivo Académico</h3><p>Formar al alumnado en un entorno real de ingeniería espacial, promoviendo aprendizaje interdisciplinar.</p></div>
+                        <div class="objective-panel objective-panel--5" data-panel="objetivo-5"><h3>Objetivo Divulgativo</h3><p>Inspirar a nuevas generaciones a través de talleres, eventos y actividades de divulgación científica y tecnológica.</p></div>
                     </div>
                 </div>
             </section>
@@ -444,91 +785,22 @@
                     <div class="section-heading reveal-up">
                         <span class="section-kicker--right">Mesosfera</span>
                         <h2>Fases del proyecto</h2>
-                        <p>
-                            Desde la concepción inicial hasta la futura fase operativa, TEIDESAT ha
-                            evolucionado a lo largo de varias etapas técnicas, organizativas y académicas.
-                        </p>
+                        <p>Desde la concepción inicial hasta la futura fase operativa, TEIDESAT ha evolucionado a lo largo de varias etapas técnicas, organizativas y académicas.</p>
                     </div>
-
                     <div class="teidesat-timeline">
-                        <div class="timeline-item reveal-up">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-card">
-                                <span class="timeline-period">2017 – 2022</span>
-                                <h3>Fase 0 a B2</h3>
-                                <p>
-                                    Diseño preliminar, definición del concepto de misión y adaptación
-                                    del proyecto tras los retrasos derivados de la pandemia.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="timeline-item reveal-up">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-card">
-                                <span class="timeline-period">2023 – 2024</span>
-                                <h3>Fase C</h3>
-                                <p>
-                                    Consolidación del diseño y planificación del modelo de vuelo,
-                                    estableciendo una base técnica más madura para la misión.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="timeline-item reveal-up">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-card">
-                                <span class="timeline-period">2024 – 2025</span>
-                                <h3>Fase D1</h3>
-                                <p>
-                                    Fabricación de los distintos subsistemas del satélite y desarrollo
-                                    de componentes clave para su integración.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="timeline-item reveal-up">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-card">
-                                <span class="timeline-period">2025</span>
-                                <h3>Fase D2</h3>
-                                <p>
-                                    Pruebas y verificación funcional para validar el comportamiento
-                                    del sistema antes del lanzamiento.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="timeline-item reveal-up">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-card">
-                                <span class="timeline-period">2025 – 2027</span>
-                                <h3>Lanzamiento</h3>
-                                <p>
-                                    Preparación para el lanzamiento en colaboración con la empresa
-                                    española PLD SPACE.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="timeline-item reveal-up">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-card">
-                                <span class="timeline-period">Fase operativa</span>
-                                <h3>Misión en órbita</h3>
-                                <p>
-                                    Ejecución de experimentos, transmisión de datos y actividades
-                                    educativas durante aproximadamente 1 a 1,5 años.
-                                </p>
-                            </div>
-                        </div>
+                        <div class="timeline-item reveal-up"><div class="timeline-dot"></div><div class="timeline-card"><span class="timeline-period">2017 – 2022</span><h3>Fase 0 a B2</h3><p>Diseño preliminar, definición del concepto de misión y adaptación del proyecto tras los retrasos derivados de la pandemia.</p></div></div>
+                        <div class="timeline-item reveal-up"><div class="timeline-dot"></div><div class="timeline-card"><span class="timeline-period">2023 – 2024</span><h3>Fase C</h3><p>Consolidación del diseño y planificación del modelo de vuelo, estableciendo una base técnica más madura para la misión.</p></div></div>
+                        <div class="timeline-item reveal-up"><div class="timeline-dot"></div><div class="timeline-card"><span class="timeline-period">2024 – 2025</span><h3>Fase D1</h3><p>Fabricación de los distintos subsistemas del satélite y desarrollo de componentes clave para su integración.</p></div></div>
+                        <div class="timeline-item reveal-up"><div class="timeline-dot"></div><div class="timeline-card"><span class="timeline-period">2025</span><h3>Fase D2</h3><p>Pruebas y verificación funcional para validar el comportamiento del sistema antes del lanzamiento.</p></div></div>
+                        <div class="timeline-item reveal-up"><div class="timeline-dot"></div><div class="timeline-card"><span class="timeline-period">2025 – 2027</span><h3>Lanzamiento</h3><p>Preparación para el lanzamiento en colaboración con la empresa española PLD SPACE.</p></div></div>
+                        <div class="timeline-item reveal-up"><div class="timeline-dot"></div><div class="timeline-card"><span class="timeline-period">Fase operativa</span><h3>Misión en órbita</h3><p>Ejecución de experimentos, transmisión de datos y actividades educativas durante aproximadamente 1 a 1,5 años.</p></div></div>
                     </div>
                 </div>
             </section>
 
-            <!-- DESARROLLO Y ESTADO -->
             <section id="desarrollo" class="teidesat-section teidesat-section-dark">
                 <div class="container">
+                    <div class="section-heading reveal-up"><span class="section-kicker">INGENIERÍA</span><h2>Desarrollo y estado actual de la misión</h2><p>TEIDESAT-1 evolucionó de un CubeSat 1U a una arquitectura 2U para incorporar nuevas capacidades de orientación, potencia y operación.</p></div>
                     <div class="section-heading reveal-up">
                         <span class="section-kicker--right">Estratosfera</span>
                         <h2>Desarrollo y estado actual de la misión</h2>
@@ -539,96 +811,28 @@
                     </div>
 
                     <div class="feature-highlight reveal-up">
-                        <div class="feature-highlight__text">
-                            <h3>De 1U a 2U</h3>
-                            <p>
-                                El rediseño permitió integrar ruedas de inercia para mejorar el control
-                                de actitud en órbita, añadir paneles solares extra y rehacer parte del
-                                análisis mecánico, térmico y orbital de la misión.
-                            </p>
-                            <p>
-                                La estrategia de desarrollo es híbrida: se combinan modelos funcionales
-                                de desarrollo para pruebas preliminares y un modelo protoflight que será
-                                finalmente cualificado para vuelo.
-                            </p>
-                        </div>
-
+                        <div class="feature-highlight__text"><h3>De 1U a 2U</h3><p>El rediseño permitió integrar ruedas de inercia para mejorar el control de actitud en órbita, añadir paneles solares extra y rehacer parte del análisis mecánico, térmico y orbital de la misión.</p><p>La estrategia de desarrollo es híbrida: se combinan modelos funcionales de desarrollo para pruebas preliminares y un modelo protoflight que será finalmente cualificado para vuelo.</p></div>
                         <div class="feature-highlight__stats">
-                            <div class="mini-stat">
-                                <span class="mini-stat__value">2U</span>
-                                <span class="mini-stat__label">Arquitectura actual</span>
-                            </div>
-                            <div class="mini-stat">
-                                <span class="mini-stat__value">PFM</span>
-                                <span class="mini-stat__label">Modelo protoflight</span>
-                            </div>
-                            <div class="mini-stat">
-                                <span class="mini-stat__value">DM</span>
-                                <span class="mini-stat__label">Modelos de desarrollo</span>
-                            </div>
+                            <div class="mini-stat"><span class="mini-stat__value">2U</span><span class="mini-stat__label">Arquitectura actual</span></div>
+                            <div class="mini-stat"><span class="mini-stat__value">PFM</span><span class="mini-stat__label">Modelo protoflight</span></div>
+                            <div class="mini-stat"><span class="mini-stat__value">DM</span><span class="mini-stat__label">Modelos de desarrollo</span></div>
                         </div>
                     </div>
-
                     <div class="teidesat-grid teidesat-grid--3">
-                        <article class="info-card reveal-up">
-                            <h3>Carga útil óptica</h3>
-                            <p>
-                                Basada en una matriz LED y controlada desde una Raspberry Pi para
-                                experimentación en comunicaciones ópticas.
-                            </p>
-                        </article>
-
-                        <article class="info-card reveal-up">
-                            <h3>Sistema AOCS</h3>
-                            <p>
-                                Probado mediante una bobina de Helmholtz para simular campos
-                                magnéticos y validar el control de actitud.
-                            </p>
-                        </article>
-
-                        <article class="info-card reveal-up">
-                            <h3>Estructura del satélite</h3>
-                            <p>
-                                Validada mediante impresión 3D, análisis estructural y evaluaciones
-                                térmicas de comportamiento.
-                            </p>
-                        </article>
-
-                        <article class="info-card reveal-up">
-                            <h3>Estación óptica</h3>
-                            <p>
-                                Infraestructura con telescopio robotizado para apoyar las observaciones
-                                y el seguimiento de la misión.
-                            </p>
-                        </article>
-
-                        <article class="info-card reveal-up">
-                            <h3>Estación de radio</h3>
-                            <p>
-                                Ubicada en la Escuela de Ingeniería de la ULL para recepción,
-                                transmisión y soporte de comunicaciones.
-                            </p>
-                        </article>
-
-                        <article class="info-card reveal-up">
-                            <h3>Centro de Control</h3>
-                            <p>
-                                Habilitado gracias a la Cátedra Fundación Cepsa y concebido también
-                                como espacio Makerspace para desarrollo y operación.
-                            </p>
-                        </article>
+                        <article class="info-card reveal-up"><h3>Carga útil óptica</h3><p>Basada en una matriz LED y controlada desde una Raspberry Pi para experimentación en comunicaciones ópticas.</p></article>
+                        <article class="info-card reveal-up"><h3>Sistema AOCS</h3><p>Probado mediante una bobina de Helmholtz para simular campos magnéticos y validar el control de actitud.</p></article>
+                        <article class="info-card reveal-up"><h3>Estructura del satélite</h3><p>Validada mediante impresión 3D, análisis estructural y evaluaciones térmicas de comportamiento.</p></article>
+                        <article class="info-card reveal-up"><h3>Estación óptica</h3><p>Infraestructura con telescopio robotizado para apoyar las observaciones y el seguimiento de la misión.</p></article>
+                        <article class="info-card reveal-up"><h3>Estación de radio</h3><p>Ubicada en la Escuela de Ingeniería de la ULL para recepción, transmisión y soporte de comunicaciones.</p></article>
+                        <article class="info-card reveal-up"><h3>Centro de Control</h3><p>Habilitado gracias a la Cátedra Fundación Cepsa y concebido también como espacio Makerspace para desarrollo y operación.</p></article>
                     </div>
-
-                    <div class="status-banner reveal-up">
-                        <span class="status-pill">Estado actual</span>
-                        <p>
-                            Actualmente el satélite se encuentra en fase de fabricación, con la mayoría
-                            de sus componentes en desarrollo, integración o pruebas.
-                        </p>
-                    </div>
+                    <div class="status-banner reveal-up"><span class="status-pill">Estado actual</span><p>Actualmente el satélite se encuentra en fase de fabricación, con la mayoría de sus componentes en desarrollo, integración o pruebas.</p></div>
                 </div>
             </section>
 
+            <section id="financiacion" class="teidesat-section teidesat-section-gradient">
+                <div class="container">
+                    <div class="section-heading reveal-up"><span class="section-kicker">RECURSOS</span><h2>Financiación y apoyos</h2><p>El proyecto cuenta con financiación institucional y apoyo técnico de empresas y entidades vinculadas al ecosistema tecnológico y espacial.</p></div>
             <!-- RETORNO -->
             <section id="impacto" class="teidesat-section teidesat-section-impact">
                 <div class="container">
@@ -691,53 +895,43 @@
 
                     <div class="support-layout">
                         <article class="support-hero-card reveal-up">
-                            <span class="support-amount">≈ 85.000 €</span>
-                            <h3>Subvención principal</h3>
-                            <p>
-                                Financiación procedente principalmente de la Agencia Canaria de
-                                Investigación, el Gobierno de Canarias y el Instituto de Astrofísica
-                                de Canarias.
-                            </p>
-                            <div class="progress-block">
-                                <div class="progress-block__label">
-                                    <span>Ejecución aproximada</span>
-                                    <strong>85%</strong>
-                                </div>
-                                <div class="progress-block__bar">
-                                    <span style="width: 85%;"></span>
-                                </div>
-                            </div>
+                            <span class="support-amount">≈ 85.000 €</span><h3>Subvención principal</h3><p>Financiación procedente principalmente de la Agencia Canaria de Investigación, el Gobierno de Canarias y el Instituto de Astrofísica de Canarias.</p>
+                            <div class="progress-block"><div class="progress-block__label"><span>Ejecución aproximada</span><strong>85%</strong></div><div class="progress-block__bar"><span style="width: 85%;"></span></div></div>
                         </article>
-
                         <div class="support-list">
-                            <article class="info-card reveal-up">
-                                <h3>Apoyo institucional</h3>
-                                <p>
-                                    ACIISI, Gobierno de Canarias e IAC impulsan el desarrollo de la
-                                    misión desde sus primeras etapas.
-                                </p>
-                            </article>
-
-                            <article class="info-card reveal-up">
-                                <h3>Apoyo material y técnico</h3>
-                                <p>
-                                    Empresas como Altium, Ansys, Autodesk y Aisler han contribuido
-                                    con herramientas, recursos y soporte especializado.
-                                </p>
-                            </article>
-
-                            <article class="info-card reveal-up">
-                                <h3>Entorno colaborativo</h3>
-                                <p>
-                                    También participan entidades como URE, reforzando la dimensión
-                                    práctica, operativa y divulgativa del proyecto.
-                                </p>
-                            </article>
+                            <article class="info-card reveal-up"><h3>Apoyo institucional</h3><p>ACIISI, Gobierno de Canarias e IAC impulsan el desarrollo de la misión desde sus primeras etapas.</p></article>
+                            <article class="info-card reveal-up"><h3>Apoyo material y técnico</h3><p>Empresas como Altium, Ansys, Autodesk y Aisler han contribuido con herramientas, recursos y soporte especializado.</p></article>
+                            <article class="info-card reveal-up"><h3>Entorno colaborativo</h3><p>También participan entidades como URE, reforzando la dimensión práctica, operativa y divulgativa del proyecto.</p></article>
                         </div>
                     </div>
                 </div>
             </section>
 
+            <section id="colaboraciones" class="teidesat-section teidesat-section-dark">
+                <div class="container">
+                    <div class="section-heading reveal-up"><span class="section-kicker">ALIANZAS</span><h2>Colaboraciones clave</h2><p>La misión se apoya en socios estratégicos que aportan infraestructura, financiación, asesoramiento técnico y proyección futura.</p></div>
+                    <div class="teidesat-grid teidesat-grid--3 collaborators-grid">
+                        <article class="partner-card reveal-up"><div class="partner-card__glow"></div><h3>IACTEC Espacio (IAC)</h3><p>Asesoramiento técnico, acceso a infraestructura especializada y colaboración directa en áreas relacionadas con el desarrollo espacial.</p></article>
+                        <article class="partner-card reveal-up"><div class="partner-card__glow"></div><h3>Cátedra Fundación Cepsa</h3><p>Financiación para el espacio Makerspace y apoyo a su utilización como sala de control de la misión.</p></article>
+                        <article class="partner-card reveal-up"><div class="partner-card__glow"></div><h3>Hydra Space</h3><p>Interés en impulsar colaboración técnica y futuras oportunidades de transferencia de conocimiento.</p></article>
+                    </div>
+                </div>
+            </section>
+
+            <section id="impacto" class="teidesat-section teidesat-section-impact">
+                <div class="container">
+                    <div class="impact-layout">
+                        <div class="impact-copy reveal-up">
+                            <span class="section-kicker">IMPACTO</span><h2>Retorno académico y social</h2>
+                            <p>TEIDESAT es mucho más que una misión científica: funciona como una plataforma de formación avanzada para estudiantes de distintas disciplinas, ofreciendo prácticas, trabajos académicos y experiencia real en ingeniería espacial.</p>
+                            <p>En el plano social, el proyecto ha organizado más de cien talleres, charlas y eventos en colegios, institutos y congresos, fomentando la ciencia, la creatividad y el pensamiento crítico.</p>
+                            <p>Además, contribuye a consolidar un ecosistema tecnológico emergente en Canarias y refuerza el papel del archipiélago dentro de la industria espacial española.</p>
+                        </div>
+                        <div class="impact-stats">
+                            <article class="impact-stat reveal-up"><span class="impact-stat__value">+100</span><span class="impact-stat__label">talleres, charlas y eventos</span></article>
+                            <article class="impact-stat reveal-up"><span class="impact-stat__value">Real</span><span class="impact-stat__label">experiencia formativa aplicada</span></article>
+                            <article class="impact-stat reveal-up"><span class="impact-stat__value">Canarias</span><span class="impact-stat__label">como nodo emergente espacial</span></article>
+                        </div>
             <!-- NAVEGACIÓN FLOTANTE -->
                 <div class="teidesat-floating-nav" id="teidesat-floating-nav">
                     <button class="teidesat-floating-nav__toggle"

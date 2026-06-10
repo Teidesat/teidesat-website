@@ -15,13 +15,21 @@
     --hs-accent2:     #0091ea;
 }
 
+/* =========================================================
+   BASE
+========================================================= */
+
 body {
     background: var(--hs-void);
     color: var(--hs-white);
-    font-family: 'Courier New', 'Lucida Console', monospace; /* estilo terminal */   
+    font-family: 'Courier New', 'Lucida Console', monospace;
     min-height: 100vh;
     margin: 0;
 }
+
+/* =========================================================
+   WRAPPER
+========================================================= */
 
 .hs-404-wrapper {
     position: relative;
@@ -33,13 +41,16 @@ body {
     overflow: hidden;
     padding: 4rem 2rem;
     background:
-        radial-gradient(ellipse 80% 60% at 50% 0%,   #0d2f5e 0%, transparent 65%),
-        radial-gradient(ellipse 50% 40% at 80% 80%,  #062244 0%, transparent 60%),
-        radial-gradient(ellipse 40% 30% at 20% 60%,  #071a38 0%, transparent 55%),
+        radial-gradient(ellipse 80% 60% at 50% 0%, #0d2f5e 0%, transparent 65%),
+        radial-gradient(ellipse 50% 40% at 80% 80%, #062244 0%, transparent 60%),
+        radial-gradient(ellipse 40% 30% at 20% 60%, #071a38 0%, transparent 55%),
         linear-gradient(180deg, #020b18 0%, #041428 50%, #020b18 100%);
 }
 
-/* Campo de estrellas */
+/* =========================================================
+   ESTRELLAS
+========================================================= */
+
 .hs-stars {
     position: absolute;
     inset: 0;
@@ -47,18 +58,24 @@ body {
     pointer-events: none;
     z-index: 0;
 }
+
 .hs-star {
     position: absolute;
     border-radius: 50%;
     background: var(--hs-white);
     animation: hs-twinkle var(--dur, 3s) ease-in-out infinite var(--delay, 0s);
-}
-@keyframes hs-twinkle {
-    0%, 100% { opacity: 0.15; transform: scale(1); }
-    50%       { opacity: 0.9;  transform: scale(1.4); }
+    will-change: opacity, transform;
 }
 
-/* Nebulosas */
+@keyframes hs-twinkle {
+    0%, 100% { opacity: 0.15; transform: scale(1); }
+    50%      { opacity: 0.9;  transform: scale(1.4); }
+}
+
+/* =========================================================
+   NEBULOSAS (ligera mejora GPU)
+========================================================= */
+
 .hs-nebula {
     position: absolute;
     border-radius: 50%;
@@ -66,27 +83,40 @@ body {
     pointer-events: none;
     z-index: 0;
     animation: hs-nebula-drift 12s ease-in-out infinite alternate;
+    will-change: transform;
 }
+
 .hs-nebula-1 {
-    width: 600px; height: 400px;
-    top: -100px; left: -150px;
+    width: 600px;
+    height: 400px;
+    top: -100px;
+    left: -150px;
     background: radial-gradient(circle, rgba(21,101,192,.35) 0%, transparent 70%);
 }
+
 .hs-nebula-2 {
-    width: 500px; height: 350px;
-    bottom: -80px; right: -100px;
+    width: 500px;
+    height: 350px;
+    bottom: -80px;
+    right: -100px;
     background: radial-gradient(circle, rgba(0,145,234,.25) 0%, transparent 70%);
     animation-delay: -6s;
 }
+
 @keyframes hs-nebula-drift {
     0%   { transform: translate(0, 0) scale(1); }
     100% { transform: translate(30px, 20px) scale(1.05); }
 }
 
-/* Grid perspectiva */
+/* =========================================================
+   GRID
+========================================================= */
+
 .hs-grid {
     position: absolute;
-    bottom: 0; left: 0; right: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     height: 45%;
     background-image:
         linear-gradient(rgba(21,101,192,.18) 1px, transparent 1px),
@@ -99,7 +129,10 @@ body {
     z-index: 0;
 }
 
-/* Número 404 */
+/* =========================================================
+   404
+========================================================= */
+
 .hs-code {
     position: relative;
     z-index: 2;
@@ -114,13 +147,18 @@ body {
     filter: drop-shadow(0 0 40px rgba(66,165,245,.45));
     animation: hs-float 6s ease-in-out infinite;
     user-select: none;
-}
-@keyframes hs-float {
-    0%, 100% { transform: translateY(0px); }
-    50%       { transform: translateY(-14px); }
+    will-change: transform;
 }
 
-/* Línea escáner */
+@keyframes hs-float {
+    0%, 100% { transform: translateY(0px); }
+    50%      { transform: translateY(-14px); }
+}
+
+/* =========================================================
+   SCAN LINE
+========================================================= */
+
 .hs-scan-line {
     position: relative;
     z-index: 2;
@@ -134,13 +172,18 @@ body {
         transparent 100%);
     margin: 0.5rem auto 1.8rem;
     animation: hs-scan-pulse 3s ease-in-out infinite;
-}
-@keyframes hs-scan-pulse {
-    0%, 100% { opacity: .5; transform: scaleX(.8); }
-    50%       { opacity: 1;  transform: scaleX(1); }
+    will-change: transform, opacity;
 }
 
-/* Badge */
+@keyframes hs-scan-pulse {
+    0%, 100% { opacity: .5; transform: scaleX(.8); }
+    50%      { opacity: 1;  transform: scaleX(1); }
+}
+
+/* =========================================================
+   BADGE
+========================================================= */
+
 .hs-badge {
     position: relative;
     z-index: 2;
@@ -158,7 +201,10 @@ body {
     backdrop-filter: blur(4px);
 }
 
-/* Título */
+/* =========================================================
+   TEXTOS
+========================================================= */
+
 .hs-title {
     position: relative;
     z-index: 2;
@@ -170,7 +216,6 @@ body {
     letter-spacing: .02em;
 }
 
-/* Descripción */
 .hs-desc {
     position: relative;
     z-index: 2;
@@ -182,7 +227,10 @@ body {
     margin: 0 auto 2.8rem;
 }
 
-/* Botones */
+/* =========================================================
+   BOTONES
+========================================================= */
+
 .hs-actions {
     position: relative;
     z-index: 2;
@@ -191,6 +239,7 @@ body {
     gap: 1rem;
     justify-content: center;
 }
+
 .hs-btn {
     display: inline-flex;
     align-items: center;
@@ -205,29 +254,36 @@ body {
     cursor: pointer;
     border: none;
 }
+
 .hs-btn-primary {
     background: linear-gradient(135deg, var(--hs-electric) 0%, var(--hs-pulse) 100%);
     color: #fff !important;
     box-shadow: 0 4px 24px rgba(21,101,192,.5);
 }
+
 .hs-btn-primary:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 32px rgba(30,136,229,.65);
     background: linear-gradient(135deg, var(--hs-pulse) 0%, var(--hs-glow) 100%);
 }
+
 .hs-btn-ghost {
     background: rgba(21,101,192,.1);
     color: var(--hs-corona) !important;
     border: 1px solid rgba(66,165,245,.3);
     backdrop-filter: blur(4px);
 }
+
 .hs-btn-ghost:hover {
     transform: translateY(-2px);
     background: rgba(21,101,192,.25);
     border-color: rgba(66,165,245,.6);
 }
 
-/* Marca inferior */
+/* =========================================================
+   BRAND
+========================================================= */
+
 .hs-brand {
     position: relative;
     z-index: 2;
@@ -237,27 +293,39 @@ body {
     text-transform: uppercase;
     color: rgba(90,122,153,.55);
 }
+
 .hs-brand strong {
     color: rgba(144,202,249,.4);
     font-weight: 700;
 }
 
-/* Icono decorativo */
+/* =========================================================
+   ICON
+========================================================= */
+
 .hs-icon {
     position: relative;
     z-index: 2;
     margin-bottom: 1.2rem;
     opacity: .75;
 }
+
 .hs-icon svg {
-    width: 56px; height: 56px;
+    width: 56px;
+    height: 56px;
     filter: drop-shadow(0 0 16px rgba(0,229,255,.4));
     animation: hs-icon-spin 20s linear infinite;
+    will-change: transform;
 }
+
 @keyframes hs-icon-spin {
     from { transform: rotate(0deg); }
     to   { transform: rotate(360deg); }
 }
+
+/* =========================================================
+   OCULTAR ODOO LAYOUT
+========================================================= */
 
 header#top,
 footer.o_footer,
