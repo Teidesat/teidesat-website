@@ -209,7 +209,7 @@ function initTeidesatKidsGame() {
 
     const questionOptionAreas = [];
 
-    const scienceQuestions = [
+    let scienceQuestions = [
         {
             question: "¿Qué es un nanosatélite?",
             options: ["Un satélite pequeño", "Un planeta pequeño", "Una estrella"],
@@ -261,6 +261,43 @@ function initTeidesatKidsGame() {
             correct: 0
         }
     ];
+
+    async function loadQuestionsFromOdoo() {
+        try {
+            const response = await fetch("/teidesatkids/questions");
+
+            if (!response.ok) {
+                throw new Error("Respuesta no válida del servidor");
+            }
+
+            const questions = await response.json();
+
+            if (Array.isArray(questions) && questions.length > 0) {
+                scienceQuestions = questions;
+                console.log("Preguntas cargadas desde Odoo:", scienceQuestions.length);
+            }
+        } catch (error) {
+            console.warn(
+                "No se pudieron cargar preguntas desde Odoo. Se usan preguntas por defecto.",
+                error
+            );
+        }
+    }
+
+    function shuffleQuestion(question) {
+        const options = question.options.map((text, index) => ({
+            text,
+            isCorrect: index === question.correct
+        }));
+
+        options.sort(() => Math.random() - 0.5);
+
+        return {
+            question: question.question,
+            options: options.map(option => option.text),
+            correct: options.findIndex(option => option.isCorrect)
+        };
+    }
 
     const stars = Array.from({ length: 50 }, () => ({
         x: Math.random() * GAME_WIDTH,
@@ -388,6 +425,10 @@ function initTeidesatKidsGame() {
         waitingForAnswer = true;
         pauseBackgroundMusic();
         pendingQuestion = scienceQuestions[Math.floor(Math.random() * scienceQuestions.length)];
+        const selectedQuestion =
+            scienceQuestions[Math.floor(Math.random() * scienceQuestions.length)];
+
+        pendingQuestion = shuffleQuestion(selectedQuestion);
 
         keys.up = false;
         keys.down = false;
@@ -1486,7 +1527,7 @@ function initTeidesatKidsGame() {
 
         window.__teidesatKidsOrientationBound = true;
     }
-
+    loadQuestionsFromOdoo();
     resetGame();
 }
 

@@ -53,13 +53,13 @@
             </header>
 
             <div class="teidesat-menu-overlay" id="teidesat-menu-overlay"></div>
-
-            <aside class="teidesat-side-menu" id="teidesat-side-menu" aria-hidden="true">
+            <aside class="teidesat-side-menu" id="teidesat-side-menu"  aria-hidden="true">
                 <div class="teidesat-side-menu__top">
                     <button class="teidesat-side-menu__close"
                             type="button"
                             id="teidesat-menu-close"
-                            aria-label="Cerrar menú">
+                            aria-label="Cerrar menú"
+                            data-bound="true">
                         ×
                     </button>
                 </div>

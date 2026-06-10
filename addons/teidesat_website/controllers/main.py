@@ -1,5 +1,6 @@
 from odoo import http
 from odoo.http import request
+import json
 
 
 class TeidesatWebsite(http.Controller):
@@ -63,6 +64,34 @@ class TeidesatWebsite(http.Controller):
     @http.route('/departamentos/electrocom', type='http', auth='public', website=True)
     def departamento_electrocom(self, **kwargs):
         return request.render('teidesat_website.page_departamento_electrocom')
+    
+    @http.route("/teidesatkids/questions", type="http", auth="public", website=True, methods=["GET"], csrf=False)
+    def teidesatkids_questions(self, **kwargs):
+        questions = request.env["teidesat.kids.question"].sudo().search([
+            ("active", "=", True)
+        ])
+
+        result = []
+
+        for q in questions:
+            result.append({
+                "question": q.name,
+                "options": [
+                    q.answer_1,
+                    q.answer_2,
+                    q.answer_3
+                ],
+                "correct": int(q.correct_answer),
+                "category": q.category or "",
+                "difficulty": q.difficulty or "easy"
+            })
+
+        return request.make_response(
+            json.dumps(result, ensure_ascii=False),
+            headers=[
+                ("Content-Type", "application/json; charset=utf-8")
+            ]
+        )
 
     @http.route('/contacto/enviar', type='http', auth='public', website=True, methods=['POST'], csrf=True)
     def contacto_enviar(self, **post):
