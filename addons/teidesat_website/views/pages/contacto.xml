@@ -71,7 +71,16 @@
                                         <option value="Voluntariado">Voluntariado</option>
                                         <option value="Divulgación">Divulgación</option>
                                         <option value="TFG/TFM">TFG/TFM</option>
+                                        <option value="Memes">Houston, tenemos un problema</option>
+                                        <option value="Memes">Se me ha ido la nave</option>
+                                        <option value="Memes">Quiero subirme al cohete</option>
+                                        <option value="Otro">Asunto libre</option>
                                     </select>
+                                </div>
+
+                                <div class="teidesat-form-row teidesat-form-row--hidden" id="teidesat-asunto-libre-row">
+                                    <label for="asunto_libre">Escribe el asunto *</label>
+                                    <input type="text" id="asunto_libre" name="asunto_libre" placeholder="Escribe aquí el asunto"/>
                                 </div>
 
                                 <div class="teidesat-form-row">
@@ -90,6 +99,8 @@
                 </section>
 
             </div>
+
+            <script type="text/javascript" src="/teidesat_website/static/src/js/contacto.js"></script>
 
         </t>
     </template>

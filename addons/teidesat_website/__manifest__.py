@@ -5,6 +5,8 @@
     'category': 'Website',
     'depends': ['website'],
     'data': [
+        'security/ir.model.access.csv',
+        'views/teidesatkids_question_views.xml',
         'views/pages/home.xml',
         'views/pages/divulgacion.xml',
         'views/pages/nosotros.xml',
@@ -20,6 +22,7 @@
         'views/pages/rd_departamento.xml',
         'views/pages/electrocom_departamento.xml',
         'views/pages/404.xml',
+        'views/pages/teidesatkids.xml',
     ],
     'assets': {
         'web.assets_frontend': [
@@ -35,6 +38,9 @@
             'teidesat_website/static/src/css/404.css',
             'teidesat_website/static/src/js/404.js',
             'teidesat_website/static/src/js/nav_fix.js',
+            'teidesat_website/static/src/js/contacto.js',
+            'teidesat_website/static/src/css/teidesatkids.css',
+            'teidesat_website/static/src/js/teidesatkids_game.js',
         ],
     },
     'installable': True,

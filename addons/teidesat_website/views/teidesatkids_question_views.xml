@@ -1,0 +1,52 @@
+<odoo>
+
+    <record id="view_teidesat_kids_question_tree" model="ir.ui.view">
+        <field name="name">teidesat.kids.question.tree</field>
+        <field name="model">teidesat.kids.question</field>
+        <field name="arch" type="xml">
+            <tree string="Preguntas TeidesatKids">
+                <field name="name"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_teidesat_kids_question_form" model="ir.ui.view">
+        <field name="name">teidesat.kids.question.form</field>
+        <field name="model">teidesat.kids.question</field>
+        <field name="arch" type="xml">
+            <form string="Pregunta TeidesatKids">
+                <sheet>
+                    <group>
+                        <field name="active"/>
+                        <field name="name"/>
+                    </group>
+
+                    <group string="Respuestas">
+                        <field name="answer_1"/>
+                        <field name="answer_2"/>
+                        <field name="answer_3"/>
+                        <field name="correct_answer"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_teidesat_kids_questions" model="ir.actions.act_window">
+        <field name="name">Preguntas TeidesatKids</field>
+        <field name="res_model">teidesat.kids.question</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_teidesat_kids_root"
+              name="TeidesatKids"
+              sequence="80"/>
+
+    <menuitem id="menu_teidesat_kids_questions"
+              name="Preguntas"
+              parent="menu_teidesat_kids_root"
+              action="action_teidesat_kids_questions"
+              sequence="10"/>
+
+</odoo>

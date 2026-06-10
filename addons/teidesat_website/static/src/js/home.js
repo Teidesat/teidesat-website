@@ -1,6 +1,95 @@
 function initTeidesatPage() {
     console.log("TEIDESAT JS cargado");
 
+/* =========================================================
+NAVEGACIÓN FLOTANTE
+========================================================= */
+
+const floatingNav = document.getElementById("teidesat-floating-nav");
+const floatingNavToggle = document.getElementById("teidesat-floating-nav-toggle");
+
+function closeFloatingNav() {
+    if (!floatingNav || !floatingNavToggle) return;
+
+    floatingNav.classList.remove("is-open");
+    floatingNavToggle.setAttribute("aria-expanded", "false");
+}
+
+function isMobileViewport() {
+    return window.matchMedia("(max-width: 767px)").matches;
+}
+
+function goToFloatingSection(selector) {
+    const target = document.querySelector(selector);
+
+    if (!target) {
+        console.warn("No se encontró la sección:", selector);
+        return;
+    }
+
+    closeFloatingNav();
+
+    setTimeout(function () {
+        if (isMobileViewport()) {
+            /*
+               En móvil dejamos exactamente el sistema que ya te funciona.
+            */
+            if (window.location.hash === selector) {
+                history.replaceState(null, "", window.location.pathname + window.location.search);
+            }
+
+            window.location.hash = selector;
+
+            setTimeout(function () {
+                target.scrollIntoView({
+                    behavior: "auto",
+                    block: "start"
+                });
+            }, 80);
+
+            return;
+        }
+
+        /*
+           En PC usamos el sistema simple que ya funcionaba antes,
+           pero con animación suave.
+        */
+        target.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    }, 80);
+}
+
+if (floatingNav && floatingNavToggle) {
+    floatingNavToggle.onclick = function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const isOpen = floatingNav.classList.toggle("is-open");
+        floatingNavToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    };
+
+    floatingNav.onclick = function (event) {
+        const item = event.target.closest(".teidesat-floating-nav__item");
+
+        if (!item) return;
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        const targetSelector = item.getAttribute("data-scroll-target");
+
+        goToFloatingSection(targetSelector);
+    };
+
+    document.addEventListener("click", function (event) {
+        if (!floatingNav.contains(event.target)) {
+            closeFloatingNav();
+        }
+    });
+}
+
     /* =========================================================
        HERO SEGÚN HORA
     ========================================================= */
@@ -42,6 +131,7 @@ function initTeidesatPage() {
         sideMenu.classList.add("is-open");
         menuOverlay.classList.add("is-open");
         sideMenu.setAttribute("aria-hidden", "false");
+        
         menuToggle.setAttribute("aria-expanded", "true");
         document.body.classList.add("teidesat-menu-open");
     }
@@ -75,30 +165,6 @@ function initTeidesatPage() {
             link.addEventListener("click", closeMenu);
         });
         sideMenu.dataset.linksBound = "true";
-    }
-
-    /* =========================================================
-       BOTÓN VOLVER ARRIBA
-    ========================================================= */
-
-       const backTop = document.getElementById("teidesat-backtop");
-
-    if (backTop && backTop.dataset.bound !== "true") {
-        backTop.addEventListener("click", function (e) {
-            e.preventDefault();
-
-            const scrollTarget = document.scrollingElement || document.documentElement || document.body;
-
-            scrollTarget.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-
-            document.documentElement.scrollTop = 0;
-            document.body.scrollTop = 0;
-        });
-
-        backTop.dataset.bound = "true";
     }
 
     /* =========================================================
@@ -147,6 +213,7 @@ function initTeidesatPage() {
        OBJETIVOS
     ========================================================= */
 
+    const objectivesSection = document.getElementById("objetivos");
     const system = document.querySelector(".teidesat-objectives-system");
     const nodes = document.querySelectorAll(".objective-node");
     const toggleAllButton = document.getElementById("objectives-toggle-all");
@@ -164,6 +231,16 @@ function initTeidesatPage() {
             return Array.from(nodes).every((node) => node.classList.contains("active"));
         }
 
+        function updateObjectivesHeadingVisibility() {
+            if (!objectivesSection) return;
+
+            const hasAnyOpen = Array.from(nodes).some((node) =>
+                node.classList.contains("active")
+            );
+
+            objectivesSection.classList.toggle("has-active-objective", hasAnyOpen);
+        }
+
         nodes.forEach((node) => {
             if (node.dataset.bound === "true") return;
 
@@ -171,6 +248,7 @@ function initTeidesatPage() {
                 const target = this.getAttribute("data-target");
                 const nextState = !this.classList.contains("active");
                 setObjectiveState(target, nextState);
+                updateObjectivesHeadingVisibility();
             });
 
             node.dataset.bound = "true";
@@ -184,10 +262,14 @@ function initTeidesatPage() {
                     const target = node.getAttribute("data-target");
                     setObjectiveState(target, openAll);
                 });
+
+                updateObjectivesHeadingVisibility();
             });
 
             toggleAllButton.dataset.bound = "true";
         }
+
+        updateObjectivesHeadingVisibility();
 
         const orbitConfigs = [
             { orbit: 1, duration: 11, offset: 0.08 },
@@ -231,6 +313,259 @@ function initTeidesatPage() {
             system.dataset.animationStarted = "true";
             requestAnimationFrame(animateOrbits);
         }
+    }
+
+    /* =========================================================
+    FAQ
+    ========================================================= */
+
+    const faqItems = document.querySelectorAll(".teidesat-faq-item");
+
+    faqItems.forEach((item) => {
+        const question = item.querySelector(".teidesat-faq-item__question");
+
+        if (!question || question.dataset.bound === "true") return;
+
+        question.addEventListener("click", () => {
+            item.classList.toggle("active");
+        });
+
+        question.dataset.bound = "true";
+    });
+
+    /* =========================================================
+    NEWS SLIDER
+    ========================================================= */
+
+    const newsSlider = document.querySelector('[data-slider="news"]');
+
+    if (newsSlider) {
+        const viewport = newsSlider.querySelector('.teidesat-news-slider__viewport');
+        const track = newsSlider.querySelector('.teidesat-news-slider__track');
+        const dotsContainer = newsSlider.querySelector('.teidesat-news-slider__dots');
+        const cards = Array.from(newsSlider.querySelectorAll('.teidesat-news-card'));
+
+        let currentPage = 0;
+        let cardsPerPage = 3;
+        let totalPages = 1;
+
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let touchCurrentX = 0;
+        let isTouchingSlider = false;
+        let isHorizontalSwipe = false;
+
+        function getCardsPerPage() {
+            const width = window.innerWidth;
+
+            if (width <= 767) return 1;
+            if (width <= 1199) return 2;
+            return 3;
+        }
+
+        function updateSliderClasses() {
+            newsSlider.classList.remove('is-1-col', 'is-2-col');
+
+            if (cardsPerPage === 1) {
+                newsSlider.classList.add('is-1-col');
+            } else if (cardsPerPage === 2) {
+                newsSlider.classList.add('is-2-col');
+            }
+        }
+
+        function getPageOffset(pageIndex) {
+            const firstCard = cards[0];
+            if (!firstCard || !track) return 0;
+
+            const trackStyles = window.getComputedStyle(track);
+            const gap = parseFloat(trackStyles.columnGap || trackStyles.gap || 0);
+
+            const cardWidth = firstCard.getBoundingClientRect().width;
+
+            return (cardWidth + gap) * cardsPerPage * pageIndex;
+        }
+
+        function applyTrackOffset(offset, animated = true) {
+            if (!track) return;
+
+            track.style.transition = animated ? "transform 0.45s ease" : "none";
+            track.style.transform = `translateX(-${offset}px)`;
+        }
+
+        function buildDots() {
+            if (!dotsContainer) return;
+
+            dotsContainer.innerHTML = '';
+
+            for (let i = 0; i < totalPages; i++) {
+                const dot = document.createElement('button');
+                dot.type = 'button';
+                dot.className = 'teidesat-news-slider__dot';
+                dot.setAttribute('aria-label', `Ver grupo ${i + 1}`);
+                dot.dataset.slide = String(i);
+
+                dot.addEventListener('click', () => {
+                    goToPage(i);
+                });
+
+                dotsContainer.appendChild(dot);
+            }
+        }
+
+        function updateDots() {
+            if (!dotsContainer) return;
+
+            const dots = dotsContainer.querySelectorAll('.teidesat-news-slider__dot');
+
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentPage);
+            });
+        }
+
+        function goToPage(pageIndex) {
+            const maxPage = Math.max(0, totalPages - 1);
+            currentPage = Math.max(0, Math.min(pageIndex, maxPage));
+
+            const pageOffset = getPageOffset(currentPage);
+
+            applyTrackOffset(pageOffset, true);
+            updateDots();
+        }
+
+        function updateNewsSlider() {
+            if (!viewport || !track || !cards.length) return;
+
+            cardsPerPage = getCardsPerPage();
+            updateSliderClasses();
+
+            totalPages = Math.ceil(cards.length / cardsPerPage);
+
+            if (currentPage > totalPages - 1) {
+                currentPage = totalPages - 1;
+            }
+
+            if (currentPage < 0) {
+                currentPage = 0;
+            }
+
+            buildDots();
+
+            requestAnimationFrame(() => {
+                goToPage(currentPage);
+            });
+        }
+
+        /*
+        PC: mover el slider con la rueda del ratón
+        */
+        if (viewport && viewport.dataset.wheelBound !== "true") {
+            viewport.addEventListener('wheel', (e) => {
+                if (totalPages <= 1) return;
+
+                if (Math.abs(e.deltaY) < 10) return;
+
+                e.preventDefault();
+
+                if (e.deltaY > 0) {
+                    goToPage(currentPage + 1);
+                } else {
+                    goToPage(currentPage - 1);
+                }
+            }, { passive: false });
+
+            viewport.dataset.wheelBound = "true";
+        }
+
+        /*
+        MÓVIL: arrastrar lateralmente con el dedo
+        */
+        if (viewport && viewport.dataset.touchBound !== "true") {
+            viewport.addEventListener("touchstart", (e) => {
+                if (totalPages <= 1) return;
+
+                const touch = e.touches[0];
+
+                touchStartX = touch.clientX;
+                touchStartY = touch.clientY;
+                touchCurrentX = touch.clientX;
+
+                isTouchingSlider = true;
+                isHorizontalSwipe = false;
+            }, { passive: true });
+
+            viewport.addEventListener("touchmove", (e) => {
+                if (!isTouchingSlider || totalPages <= 1) return;
+
+                const touch = e.touches[0];
+
+                touchCurrentX = touch.clientX;
+
+                const deltaX = touchCurrentX - touchStartX;
+                const deltaY = touch.clientY - touchStartY;
+
+                /*
+                Solo bloqueamos el scroll vertical si detectamos claramente
+                que el usuario está arrastrando en horizontal.
+                */
+                if (Math.abs(deltaX) > 12 && Math.abs(deltaX) > Math.abs(deltaY)) {
+                    isHorizontalSwipe = true;
+                    e.preventDefault();
+
+                    const baseOffset = getPageOffset(currentPage);
+                    const dragOffset = baseOffset - deltaX;
+
+                    applyTrackOffset(Math.max(0, dragOffset), false);
+                }
+            }, { passive: false });
+
+            viewport.addEventListener("touchend", () => {
+                if (!isTouchingSlider || totalPages <= 1) return;
+
+                const deltaX = touchCurrentX - touchStartX;
+                const swipeThreshold = 45;
+
+                isTouchingSlider = false;
+
+                if (!isHorizontalSwipe) {
+                    goToPage(currentPage);
+                    return;
+                }
+
+                if (deltaX < -swipeThreshold) {
+                    goToPage(currentPage + 1);
+                } else if (deltaX > swipeThreshold) {
+                    goToPage(currentPage - 1);
+                } else {
+                    goToPage(currentPage);
+                }
+
+                isHorizontalSwipe = false;
+            }, { passive: true });
+
+            viewport.addEventListener("touchcancel", () => {
+                isTouchingSlider = false;
+                isHorizontalSwipe = false;
+                goToPage(currentPage);
+            }, { passive: true });
+
+            viewport.dataset.touchBound = "true";
+        }
+
+        let resizeTimeout;
+
+        if (!window.__teidesatNewsResizeBound) {
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimeout);
+
+                resizeTimeout = setTimeout(() => {
+                    updateNewsSlider();
+                }, 120);
+            });
+
+            window.__teidesatNewsResizeBound = true;
+        }
+
+        updateNewsSlider();
     }
 }
 

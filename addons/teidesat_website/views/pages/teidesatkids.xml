@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="page_teidesatkids" name="Teidesat Kids">
+        <t t-call="teidesat_website.teidesat_base_layout">
+
+            <div class="teidesat-page--kids">
+
+                <!-- HERO -->
+                <section class="teidesat-kids-hero">
+                    <div class="container">
+                        <div class="teidesat-kids-hero__content reveal-up">
+                            <span class="section-kicker">PRÓXIMA GENERACIÓN</span>
+                            <h1>Teidesat Kids</h1>
+                            <p>
+                                ¡El espacio no tiene límites! Aquí los más pequeños descubren cómo funciona
+                                un satélite, exploran el universo y aprenden jugando con TEIDESAT.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- BLOQUE PRINCIPAL -->
+                <section class="teidesat-kids-section">
+                    <div class="container">
+
+                        <div class="teidesat-kids-heading reveal-up">
+                            <span class="section-kicker">EXPLORA</span>
+                            <h2>Aprende, imagina y juega</h2>
+                            <p>
+                                Teidesat Kids acerca el mundo del espacio a los más pequeños con ideas,
+                                curiosidades y actividades pensadas para despertar su imaginación.
+                            </p>
+                        </div>
+
+                        <div class="teidesat-kids-grid">
+
+                            <article class="kids-card reveal-up">
+                                <div class="kids-card__icon">🚀</div>
+                                <div class="kids-card__body">
+                                    <h3>Misión Cohete</h3>
+                                    <p>
+                                        Descubre cómo vencemos la gravedad para despegar de la Tierra
+                                        y viajar hacia el espacio.
+                                    </p>
+                                </div>
+                            </article>
+
+                            <article class="kids-card reveal-up">
+                                <div class="kids-card__icon">🛰️</div>
+                                <div class="kids-card__body">
+                                    <h3>Tu Satélite</h3>
+                                    <p>
+                                        Aprende qué es un nanosatélite y cómo TEIDESAT-1 puede hacer
+                                        cosas increíbles allá arriba.
+                                    </p>
+                                </div>
+                            </article>
+
+                            <article class="kids-card reveal-up">
+                                <div class="kids-card__icon">👩‍🚀</div>
+                                <div class="kids-card__body">
+                                    <h3>Ser Astronauta</h3>
+                                    <p>
+                                        Imagina cómo sería entrenarte para una misión espacial y qué
+                                        habilidades necesitarías.
+                                    </p>
+                                </div>
+                            </article>
+
+                        </div>
+
+                        <!-- DATO ESPACIAL -->
+                        <div class="teidesat-kids-fact reveal-up">
+                            <div class="teidesat-kids-fact__text">
+                                <h3>
+                                    ¿Sabías que el <span>Teidesat-1</span> es tan pequeño como una caja de zapatos?
+                                </h3>
+                                <p>
+                                    ¡Es verdad! Aunque son pequeños, los nanosatélites pueden hacer cosas
+                                    impresionantes, como medir señales, enviar información y ayudar en misiones científicas.
+                                </p>
+                            </div>
+
+                            <div class="teidesat-kids-fact__badge">
+                                <span>¡Dato Espacial! ✨</span>
+                            </div>
+                        </div>
+
+                        <!-- JUEGO -->
+                        <div class="teidesat-kids-game reveal-up">
+                            <div class="teidesat-kids-game__heading">
+                                <span class="section-kicker">JUEGA</span>
+                                <h2>Mini misión espacial</h2>
+                                <p>
+                                    Ayuda a nuestro mini satélite a esquivar obstáculos en el espacio o recoger 
+                                    plátanos para activar su escudo. ¡Cuánto más tiempo sobreviva, más puntos ganarás!
+                                </p>
+                            </div>
+
+                            <div class="teidesat-kids-game__wrap">
+                                <canvas id="teidesat-kids-game-canvas" width="960" height="320"></canvas>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+            </div>
+
+        </t>
+    </template>
+
+</odoo>
