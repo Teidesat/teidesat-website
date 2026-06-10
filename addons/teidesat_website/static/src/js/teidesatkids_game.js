@@ -61,6 +61,12 @@ function initTeidesatKidsGame() {
         width: 38,
         height: 28
     };
+    const fullscreenButtonArea = {
+        x: 10,
+        y: GAME_HEIGHT - 46,
+        width: 100,
+        height: 28
+    };
 
     let audioCtx = null;
     let soundEnabled = localStorage.getItem("teidesatKidsSound") !== "off";
@@ -161,6 +167,68 @@ function initTeidesatKidsGame() {
             playSfx("click");
         }
     }
+    let landscapeForcedByButton = false;
+
+    function toggleFullscreen() {
+        const gameBox = canvas.closest(".teidesat-kids-game");
+        const el = gameBox || canvas;
+
+        if (!document.fullscreenElement) {
+            el.requestFullscreen().then(() => {
+                if (screen.orientation && screen.orientation.lock) {
+                    screen.orientation.lock("landscape").catch(() => {});
+                }
+            }).catch(() => {
+                landscapeForcedByButton = true;
+                if (screen.orientation && screen.orientation.lock) {
+                    screen.orientation.lock("landscape").catch(() => {});
+                }
+                updateGameLandscapeMode();
+            });
+        } else {
+            if (screen.orientation && screen.orientation.unlock) {
+                screen.orientation.unlock();
+            }
+            document.exitFullscreen();
+        }
+    }
+
+    function exitLandscapeMode() {
+        landscapeForcedByButton = false;
+        if (screen.orientation && screen.orientation.unlock) {
+            screen.orientation.unlock();
+        }
+        updateGameLandscapeMode();
+    }
+
+    function drawFullscreenButton() {
+        ctx.save();
+
+        const area = fullscreenButtonArea;
+        const isActive = !!document.fullscreenElement || landscapeForcedByButton;
+
+        ctx.fillStyle = "rgba(4, 10, 18, 0.55)";
+        ctx.strokeStyle = "rgba(255,255,255,0.35)";
+        ctx.lineWidth = 1.5;
+
+        ctx.beginPath();
+        ctx.roundRect(area.x, area.y, area.width, area.height, 8);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = "rgba(255,255,255,0.92)";
+        ctx.font = "bold 12px Montserrat, sans-serif";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText(
+            isActive ? "✕ Salir" : "⛶ Horizontal",
+            area.x + area.width / 2,
+            area.y + area.height / 2 + 1
+        );
+
+        ctx.restore();
+    }
+
 
     const questionOptionAreas = [];
 
@@ -248,7 +316,7 @@ function initTeidesatKidsGame() {
         const curve = 46 * Math.pow((normalized - 0.5), 2);
         return base + curve;
     }
-    
+
     function setNextPhaseDuration() {
         if (paceMode === "normal") {
             currentPhaseDuration = 6500 + Math.random() * 2500; // 6.5s a 9s
@@ -398,12 +466,12 @@ function initTeidesatKidsGame() {
         ctx.save();
 
         ctx.fillStyle = "rgba(0,0,0,0.55)";
-        ctx.fillRect(0, GAME_HEIGHT/2 - 30, GAME_WIDTH, 60);
+        ctx.fillRect(0, GAME_HEIGHT / 2 - 30, GAME_WIDTH, 60);
 
         ctx.fillStyle = "#ffffff";
         ctx.font = "bold 22px Montserrat";
         ctx.textAlign = "center";
-        ctx.fillText(resultMessage, GAME_WIDTH/2, GAME_HEIGHT/2 + 8);
+        ctx.fillText(resultMessage, GAME_WIDTH / 2, GAME_HEIGHT / 2 + 8);
 
         ctx.restore();
     }
@@ -792,17 +860,31 @@ function initTeidesatKidsGame() {
 
     function updateGameLandscapeMode() {
         const gameBox = canvas.closest(".teidesat-kids-game");
-
         if (!gameBox) return;
 
-        const shouldFocus =
-            isMobileViewport() &&
-            isLandscapeViewport() &&
-            gameStarted;
+        const autoFocus = isMobileViewport() && isLandscapeViewport() && gameStarted;
+        const shouldFocus = autoFocus || landscapeForcedByButton;
 
         gameBox.classList.toggle("teidesat-kids-game--landscape-focus", shouldFocus);
         document.body.classList.toggle("teidesat-kids-game-focus-open", shouldFocus);
     }
+    
+    function toggleLandscapeMode() {
+        landscapeForcedByButton = !landscapeForcedByButton;
+    
+        if (landscapeForcedByButton) {
+            if (screen.orientation && screen.orientation.lock) {
+                screen.orientation.lock("landscape").catch(() => {});
+            }
+        } else {
+            if (screen.orientation && screen.orientation.unlock) {
+                screen.orientation.unlock();
+            }
+        }
+    
+        updateGameLandscapeMode();
+    }
+    
 
     function drawExplosion() {
         if (!explosion) return;
@@ -1109,6 +1191,34 @@ function initTeidesatKidsGame() {
         ctx.restore();
     }
 
+    function drawFullscreenButton() {
+        ctx.save();
+
+        const area = fullscreenButtonArea;
+        const isActive = document.fullscreenElement != null;
+
+        ctx.fillStyle = "rgba(4, 10, 18, 0.55)";
+        ctx.strokeStyle = "rgba(255,255,255,0.35)";
+        ctx.lineWidth = 1.5;
+
+        ctx.beginPath();
+        ctx.roundRect(area.x, area.y, area.width, area.height, 8);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = "rgba(255,255,255,0.92)";
+        ctx.font = "bold 12px Montserrat, sans-serif";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText(
+            isActive ? "✕ Salir" : "⛶ Horizontal",
+            area.x + area.width / 2,
+            area.y + area.height / 2 + 1
+        );
+
+        ctx.restore();
+    }
+
     function drawQuestionPanel() {
         if (!waitingForAnswer || !pendingQuestion) return;
 
@@ -1225,7 +1335,7 @@ function initTeidesatKidsGame() {
         ctx.restore();
     }
 
-   function draw() {
+    function draw() {
         ctx.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 
         drawBackground();
@@ -1260,6 +1370,7 @@ function initTeidesatKidsGame() {
 
         drawGameButton();
         drawSoundButton();
+        drawFullscreenButton();
     }
 
     function gameLoop(timestamp) {
@@ -1338,6 +1449,15 @@ function initTeidesatKidsGame() {
             return;
         }
 
+        if (isInsideArea(touchX, touchY, fullscreenButtonArea)) {
+            if (landscapeForcedByButton) {
+                exitLandscapeMode();
+            } else {
+                toggleFullscreen();
+            }
+            return;
+        }
+
         if (waitingForAnswer) {
             for (const area of questionOptionAreas) {
                 if (isInsideArea(touchX, touchY, area)) {
@@ -1388,6 +1508,15 @@ function initTeidesatKidsGame() {
 
         if (isInsideArea(clickX, clickY, soundButtonArea)) {
             toggleSound();
+            return;
+        }
+
+        if (isInsideArea(clickX, clickY, fullscreenButtonArea)) {
+            if (landscapeForcedByButton) {
+                exitLandscapeMode();
+            } else {
+                toggleFullscreen();
+            }
             return;
         }
 
