@@ -222,8 +222,8 @@ function initTeidesatKidsGame() {
         },
         {
             question: "¿Qué planeta es nuestro hogar?",
-            options: ["Marte", "La Tierra", "Júpiter"],
-            correct: 1
+            options: ["La Tierra", "Marte", "Júpiter"],
+            correct: 0
         },
         {
             question: "¿Para qué sirve una antena en un satélite?",
@@ -247,8 +247,8 @@ function initTeidesatKidsGame() {
         },
         {
             question: "¿Qué necesita un satélite para comunicarse?",
-            options: ["Una antena", "Un paracaídas", "Una rueda"],
-            correct: 0
+            options: ["Un paracaídas", "Una antena", "Una rueda"],
+            correct: 1
         },
         {
             question: "¿Qué protege a la Tierra de muchos meteoritos pequeños?",
@@ -414,6 +414,13 @@ function initTeidesatKidsGame() {
         playerVisible = false;
     }
 
+    function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    }
+
     function showRescueQuestion(cause = "obstacle") {
         if (rescueUsed) {
             triggerGameOverExplosion();
@@ -430,6 +437,18 @@ function initTeidesatKidsGame() {
 
         pendingQuestion = shuffleQuestion(selectedQuestion);
 
+        pendingQuestion = structuredClone(
+        scienceQuestions[Math.floor(Math.random() * scienceQuestions.length)]
+        );
+
+
+        const correctAnswer = pendingQuestion.options[pendingQuestion.correct];
+
+        shuffleArray(pendingQuestion.options);
+        
+
+        pendingQuestion.correct = pendingQuestion.options.indexOf(correctAnswer);
+        
         keys.up = false;
         keys.down = false;
         keys.left = false;
