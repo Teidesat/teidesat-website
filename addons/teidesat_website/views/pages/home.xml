@@ -3,23 +3,21 @@
 
     <!-- LAYOUT BASE -->
     <template id="teidesat_base_layout" name="Teidesat Base Layout">
-        <html lang="es">
-            <head>
+        <t t-call="website.layout">
+            <t t-set="title">TEIDESAT</t>
+
+            <t t-set="head">
                 <meta charset="utf-8"/>
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
                 <link rel="preconnect" href="https://fonts.googleapis.com"/>
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
                 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+            </t>
 
-                <title>TEIDESAT</title>
+            <t t-set="body_classname" t-value="'teidesat-page'"/>
 
-                <t t-call-assets="web.assets_frontend"/>
-            </head>
-
-            <body class="teidesat-page">
-
-                <!-- HEADER -->
+            <!-- HEADER -->
             <header class="teidesat-custom-header">
                 <div class="teidesat-custom-header__inner">
 
@@ -53,7 +51,7 @@
             </header>
 
             <div class="teidesat-menu-overlay" id="teidesat-menu-overlay"></div>
-            <aside class="teidesat-side-menu" id="teidesat-side-menu"  aria-hidden="true">
+            <aside class="teidesat-side-menu" id="teidesat-side-menu" aria-hidden="true">
                 <div class="teidesat-side-menu__top">
                     <button class="teidesat-side-menu__close"
                             type="button"
@@ -75,70 +73,65 @@
                 </nav>
             </aside>
 
-                <!-- CONTENIDO INYECTADO -->
-                <main class="teidesat-main">
-                    <t t-out="0"/>
-                </main>
-                
+            <!-- CONTENIDO INYECTADO -->
+            <main class="teidesat-main">
+                <t t-out="0"/>
+            </main>
 
-                
+            <!-- FOOTER -->
+            <footer class="teidesat-footer-sponsors" id="patrocinadores">
+                <div class="container">
 
-                <!-- FOOTER -->
-                <footer class="teidesat-footer-sponsors" id="patrocinadores">
-                    <div class="container">
-
-                        <div class="teidesat-footer-sponsors__heading">
-                            <span class="section-kicker--right">PATROCINADORES / COLABORADORES</span> <!-- REVISAR ESTA CLASE -->
-                        </div>
-
-                        <div class="teidesat-footer-sponsors__grid">
-
-                            <a href="#" class="teidesat-footer-sponsor" aria-label="Cátedra Fundación Cepsa">
-                                <img src="/teidesat_website/static/src/img/partners/catedra-cepsa.png" alt="Cátedra Fundación Cepsa"/>
-                            </a>
-
-                            <a href="#" class="teidesat-footer-sponsor" aria-label="Universidad de Las Palmas de Gran Canaria">
-                                <img src="/teidesat_website/static/src/img/partners/ulpgc.png" alt="Universidad de Las Palmas de Gran Canaria"/>
-                            </a>
-
-                            <a href="#" class="teidesat-footer-sponsor" aria-label="Hyperspace Canarias">
-                                <img src="/teidesat_website/static/src/img/partners/hyperspace.png" alt="Hyperspace Canarias"/>
-                            </a>
-
-                            <a href="#" class="teidesat-footer-sponsor" aria-label="Cepsa">
-                                <img src="/teidesat_website/static/src/img/partners/cepsa.png" alt="Cepsa"/>
-                            </a>
-
-                            <a href="#" class="teidesat-footer-sponsor" aria-label="Universidad de La Laguna">
-                                <img src="/teidesat_website/static/src/img/partners/ull.png" alt="Universidad de La Laguna"/>
-                            </a>
-
-                            <a href="#" class="teidesat-footer-sponsor" aria-label="URE">
-                                <img src="/teidesat_website/static/src/img/partners/ure.png" alt="URE"/>
-                            </a>
-
-                            <a href="#" class="teidesat-footer-sponsor" aria-label="Big Signal">
-                                <img src="/teidesat_website/static/src/img/partners/big-signal.png" alt="Big Signal"/>
-                            </a>
-
-                            <a href="#" class="teidesat-footer-sponsor" aria-label="OrCAD">
-                                <img src="/teidesat_website/static/src/img/partners/orcad.png" alt="OrCAD"/>
-                            </a>
-
-                            <a href="#" class="teidesat-footer-sponsor" aria-label="Cadence">
-                                <img src="/teidesat_website/static/src/img/partners/cadence.png" alt="Cadence"/>
-                            </a>
-
-                            <a href="#" class="teidesat-footer-sponsor" aria-label="Altium">
-                                <img src="/teidesat_website/static/src/img/partners/altium.png" alt="Altium"/>
-                            </a>
-
-                        </div>
+                    <div class="teidesat-footer-sponsors__heading">
+                        <span class="section-kicker--right">PATROCINADORES / COLABORADORES</span>
                     </div>
-                </footer>
 
-            </body>
-        </html>
+                    <div class="teidesat-footer-sponsors__grid">
+
+                        <a href="#" class="teidesat-footer-sponsor" aria-label="Cátedra Fundación Cepsa">
+                            <img src="/teidesat_website/static/src/img/partners/catedra-cepsa.png" alt="Cátedra Fundación Cepsa"/>
+                        </a>
+
+                        <a href="#" class="teidesat-footer-sponsor" aria-label="Universidad de Las Palmas de Gran Canaria">
+                            <img src="/teidesat_website/static/src/img/partners/ulpgc.png" alt="Universidad de Las Palmas de Gran Canaria"/>
+                        </a>
+
+                        <a href="#" class="teidesat-footer-sponsor" aria-label="Hyperspace Canarias">
+                            <img src="/teidesat_website/static/src/img/partners/hyperspace.png" alt="Hyperspace Canarias"/>
+                        </a>
+
+                        <a href="#" class="teidesat-footer-sponsor" aria-label="Cepsa">
+                            <img src="/teidesat_website/static/src/img/partners/cepsa.png" alt="Cepsa"/>
+                        </a>
+
+                        <a href="#" class="teidesat-footer-sponsor" aria-label="Universidad de La Laguna">
+                            <img src="/teidesat_website/static/src/img/partners/ull.png" alt="Universidad de La Laguna"/>
+                        </a>
+
+                        <a href="#" class="teidesat-footer-sponsor" aria-label="URE">
+                            <img src="/teidesat_website/static/src/img/partners/ure.png" alt="URE"/>
+                        </a>
+
+                        <a href="#" class="teidesat-footer-sponsor" aria-label="Big Signal">
+                            <img src="/teidesat_website/static/src/img/partners/big-signal.png" alt="Big Signal"/>
+                        </a>
+
+                        <a href="#" class="teidesat-footer-sponsor" aria-label="OrCAD">
+                            <img src="/teidesat_website/static/src/img/partners/orcad.png" alt="OrCAD"/>
+                        </a>
+
+                        <a href="#" class="teidesat-footer-sponsor" aria-label="Cadence">
+                            <img src="/teidesat_website/static/src/img/partners/cadence.png" alt="Cadence"/>
+                        </a>
+
+                        <a href="#" class="teidesat-footer-sponsor" aria-label="Altium">
+                            <img src="/teidesat_website/static/src/img/partners/altium.png" alt="Altium"/>
+                        </a>
+
+                    </div>
+                </div>
+            </footer>
+        </t>
     </template>
 
 
